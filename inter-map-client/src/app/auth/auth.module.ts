@@ -5,13 +5,15 @@ import { AuthRoutingModule } from './auth-routing.module';
 import {AuthService} from './auth.service';
 import { RegisterCompanyComponent } from './register-company/register-company.component';
 import { RegisterCantidateComponent } from './register-cantidate/register-cantidate.component';
+import {FormsModule} from '@angular/forms';
 
 
 @NgModule({
   declarations: [LoginComponent, RegisterCompanyComponent, RegisterCantidateComponent],
   imports: [
     CommonModule,
-    AuthRoutingModule
+    AuthRoutingModule,
+    FormsModule
   ],
   providers: [AuthService]
 })

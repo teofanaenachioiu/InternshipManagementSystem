@@ -1,1 +1,9 @@
-<p>login works!</p>
+<div class='main-container'>
+  <div class='login-circle'>
+    <img class='hex-icon' alt='avatar' src='assets/img/hexagon.png'>
+    <input class='login-input input-email' type='text' [(ngModel)]='email' placeholder='Email'>
+    <input class='login-input input-password' type='text' [(ngModel)]='password' placeholder='Password'>
+    <button (click)='login()' class='input-button' value='Login'>Login</button>
+    <a (click)='forgetPassword()' class='text'>Forget Password?</a>
+  </div>
+</div>

@@ -24,6 +24,7 @@ const materialComponents = [
     AppRoutingModule,
     BrowserAnimationsModule,
     materialComponents
+
   ],
   providers: [],
   bootstrap: [AppComponent]
