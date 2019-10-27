@@ -6,6 +6,7 @@ import {AuthService} from './auth.service';
 import { RegisterCompanyComponent } from './register-company/register-company.component';
 import { RegisterCantidateComponent } from './register-cantidate/register-cantidate.component';
 import {FormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import {FormsModule} from '@angular/forms';
   imports: [
     CommonModule,
     AuthRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [AuthService]
 })

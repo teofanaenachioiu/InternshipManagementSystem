@@ -12,8 +12,8 @@ export class LoginComponent implements OnInit {
   email: string;
   password: string;
 
-  // constructor(private authService: AuthService, private router: Router) {
-  // }
+  constructor(private authService: AuthService, private router: Router) {
+  }
 
   constructor() {}
 
