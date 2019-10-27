@@ -1,0 +1,48 @@
+
+<mat-horizontal-stepper [linear]="isLinear">
+  <mat-step label="Choose profile" [completed]="selectedProfile">
+    <div>
+      <div class="div-title">
+        <p class="step-title">Step 1:&nbsp;</p><p class="step-title description-title">Choose profile</p>
+      </div>
+      <p class="choose-one">{{error}}</p>
+
+      <div class="images-div">
+        <div class="profile-div">
+        </div>
+
+        <div class="profile-div">
+          <input class="radio" type="radio" value="student" [(ngModel)]="selectedProfile" id="radioStudent">
+          <label class="opacity" for='radioStudent'>
+            <img class="image" alt='avatar' src='assets/img/student.png'>
+          </label>
+        </div>
+
+        <div class="profile-div">
+          <input class="radio" type="radio" value="company" [(ngModel)]="selectedProfile" id="radioCompany">
+          <label class="opacity" for="radioCompany">
+            <img alt='avatar' class="image" src="assets/img/company.png">
+          </label>
+        </div>
+
+        <div class="profile-div">
+          <button mat-button matStepperNext (click)="clickOnNext()" >
+            <mat-icon>navigate_next</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
+
+  </mat-step>
+  <mat-step label="Registration">
+
+  </mat-step>
+  <mat-step label="About you">
+
+  </mat-step>
+  <mat-step label="Key words">
+
+  </mat-step>
+</mat-horizontal-stepper>
+

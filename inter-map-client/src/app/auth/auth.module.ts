@@ -4,18 +4,39 @@ import { LoginComponent } from './login/login.component';
 import { AuthRoutingModule } from './auth-routing.module';
 import {AuthService} from './auth.service';
 import { RegisterCompanyComponent } from './register-company/register-company.component';
-import { RegisterCantidateComponent } from './register-cantidate/register-cantidate.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import { RegisterComponent } from './register/register.component';
+import {
+  MatButtonModule,
+  MatHorizontalStepper,
+  MatIconModule, MatInputModule,
+  MatListModule,
+  MatSidenavModule,
+  MatStepperModule,
+  MatToolbarModule
+} from '@angular/material';
 
+const materialComponents = [
+  MatButtonModule,
+  MatToolbarModule,
+  MatSidenavModule,
+  MatListModule,
+  MatButtonModule,
+  MatIconModule,
+  MatStepperModule
+];
 
 @NgModule({
-  declarations: [LoginComponent, RegisterCompanyComponent, RegisterCantidateComponent],
+  declarations: [LoginComponent, RegisterCompanyComponent, RegisterComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,
+    HttpClientModule,
+    materialComponents,
     FormsModule,
-    HttpClientModule
+    ReactiveFormsModule,
+    MatInputModule
   ],
   providers: [AuthService]
 })

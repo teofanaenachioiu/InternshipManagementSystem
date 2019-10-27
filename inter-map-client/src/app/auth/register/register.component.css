@@ -1,0 +1,73 @@
+.step-title {
+  display: table-cell;
+  text-align: center;
+  font-size: 30px;
+  font-style: italic;
+  border-bottom: 2px solid darkgray;
+}
+
+.description-title {
+  color: dodgerblue;
+  /*font-weight: bold;*/
+}
+
+.choose-one {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  font-style: italic;
+  color: indianred;
+}
+
+.div-title {
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.p-title {
+  border-bottom: 2px solid;
+}
+
+.radio {
+  visibility: hidden;
+  border: 5px solid blue;
+}
+
+.opacity {
+  display: inline-block;
+  opacity: 0.3;
+  /*border: 3px solid red;*/
+}
+
+.radio:checked + .opacity{
+  opacity: 1;
+}
+
+.image {
+  height: 15em;
+}
+
+.profile-div {
+  display: inline-block;
+  align-content: center;
+  align-items: center;
+  vertical-align: middle;
+  /*border: 1px solid;*/
+  width: 25%;
+  /*padding-left: 60px;*/
+}
+
+.images-div {
+  display: table;
+  /*align-content: center;*/
+  /*margin-left: auto;*/
+  /*margin-right: auto;*/
+  padding-top: 5em;
+  width: 100%;
+  /*border: 1px solid;*/
+}
+
+.icon {
+  font-size: 5em;
+}
