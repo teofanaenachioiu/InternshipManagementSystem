@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { AuthRoutingModule } from './auth-routing.module';
 import {AuthService} from './auth.service';
-import { RegisterCompanyComponent } from './register-company/register-company.component';
 import {FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
@@ -28,7 +27,7 @@ const materialComponents = [
 ];
 
 @NgModule({
-  declarations: [LoginComponent, RegisterCompanyComponent, RegisterComponent],
+  declarations: [LoginComponent, RegisterComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,
