@@ -37,17 +37,19 @@
   </mat-step>
   <mat-step label="Registration">
 
+    <div class="div-title">
+      <p class="step-title">Step 2:&nbsp;</p><p class="step-title description-title">Registration</p>
+    </div>
       <div class="example-container">
-        
           <mat-form-field>
             <input matInput placeholder="Enter your email" [formControl]="email" required>
             <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
           </mat-form-field>
-        
+
           <mat-form-field>
               <input matInput placeholder="Enter your password" [type]="hidePassword ? 'password' : 'text'" [(ngModel)]='password'>
               <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" >
-              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
               </button>
           </mat-form-field>
 
@@ -63,7 +65,7 @@
             </button>
 
        </div>
-      
+
   </mat-step>
   <mat-step label="About you">
 
