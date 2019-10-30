@@ -71,3 +71,14 @@
 .icon {
   font-size: 5em;
 }
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+  margin-left: 40%;
+  margin-top: 10%;
+}
+
+.example-container > * {
+  width: 30%;
+}
