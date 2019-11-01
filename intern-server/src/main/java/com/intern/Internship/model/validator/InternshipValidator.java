@@ -12,13 +12,12 @@ public class InternshipValidator implements Validator<Internship> {
         if(entity.getEndTime()==null) msg+="End time has to be specified!";
         if(entity.getPaid()==null) msg+="You need to specify if the internship is paid or not!";
         if(entity.getNrMonths()<0) msg+="The number of months has to be >0!";
-        if(entity.getField().equals("")) msg+="Field cannot be empty!";
         if(entity.getDescription().equals("")) msg+="Description cannot be empty!";
         if(entity.getNrApplicants()<0) msg+="The number of applicants has to be >=0!";
         if(entity.getStatus()==null) msg+="Status has to be specified!";
         if(entity.getLocation().equals("")) msg+="Location has to be specified!";
         if(entity.getAddedDate()==null) msg+="The added date has to be specified!";
-        if(entity.getEmployer()==null) msg+="Employer has to be specified!";
+        if(entity.getCompany()==null) msg+="Company has to be specified!";
         if(entity.getAreaOfInterest()==null) msg+="Area of interest has to be specified!";
 
         if(msg!=""){

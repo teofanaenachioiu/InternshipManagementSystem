@@ -13,7 +13,7 @@ import java.sql.Blob;
 @Setter
 @NoArgsConstructor
 @Entity
-public class Employer implements HasID<String>{
+public class Company implements HasID<String>{
     @Id
     @Column(name = "email")
     private String ID; //email
@@ -23,27 +23,30 @@ public class Employer implements HasID<String>{
     private String address;
     private String telephone;
     private String description;
+    private String field;
     private Blob logo;
 
-    public Employer(String ID, String password, String name, String address, String telephone, String description, Blob logo) {
+    public Company(String ID, String password, String name, String address, String telephone, String description, String field, Blob logo) {
         this.ID = ID;
         this.password = password;
         this.name = name;
         this.address = address;
         this.telephone = telephone;
         this.description = description;
+        this.field = field;
         this.logo = logo;
     }
 
     @Override
     public String toString() {
-        return "Employer{" +
+        return "Company{" +
                 "email='" + ID + '\'' +
                 ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
                 ", telephone='" + telephone + '\'' +
                 ", description='" + description + '\'' +
+                ", field='" + field + '\'' +
                 ", logo=" + logo +
                 '}';
     }
