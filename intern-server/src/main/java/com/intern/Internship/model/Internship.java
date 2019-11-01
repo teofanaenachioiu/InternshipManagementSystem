@@ -28,28 +28,26 @@ public class Internship implements HasID<String>{
     private LocalDate endTime;
     private Boolean paid;
     private int nrMonths;
-    private String field;
     private String description;
     private int nrApplicants;
     private InternshipStatus status;
     private String location;
     private LocalDate addedDate;
-    private Employer employer;
+    private Company company;
     private AreaOfInterest areaOfInterest;
 
-    public Internship(String name, LocalDate startTime, LocalDate endTime, Boolean paid, int nrMonths, String field, String description, int nrApplicants, InternshipStatus status, String location, LocalDate addedDate,Employer employer,AreaOfInterest areaOfInterest) {
+    public Internship(String name, LocalDate startTime, LocalDate endTime, Boolean paid, int nrMonths, String description, int nrApplicants, InternshipStatus status, String location, LocalDate addedDate,Company company,AreaOfInterest areaOfInterest) {
         this.name = name;
         this.startTime = startTime;
         this.endTime = endTime;
         this.paid = paid;
         this.nrMonths = nrMonths;
-        this.field = field;
         this.description = description;
         this.nrApplicants = nrApplicants;
         this.status = status;
         this.location = location;
         this.addedDate = addedDate;
-        this.employer=employer;
+        this.company=company;
         this.areaOfInterest=areaOfInterest;
     }
 
@@ -62,13 +60,12 @@ public class Internship implements HasID<String>{
                 ", endTime=" + endTime +
                 ", paid=" + paid +
                 ", nrMonths=" + nrMonths +
-                ", field='" + field + '\'' +
                 ", description='" + description + '\'' +
                 ", nrApplicants=" + nrApplicants +
                 ", status=" + status +
                 ", location='" + location + '\'' +
                 ", addedDate=" + addedDate +
-                ", employer=" + employer.getID() +
+                ", employer=" + company.getID() +
                 ", areaOfInterest=" + areaOfInterest.getID() +
                 '}';
     }
