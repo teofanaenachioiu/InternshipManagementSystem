@@ -68,8 +68,8 @@ public class Internship implements HasID<String>{
                 ", status=" + status +
                 ", location='" + location + '\'' +
                 ", addedDate=" + addedDate +
-                ", employer=" + employer +
-                ", areaOfInterest=" + areaOfInterest +
+                ", employer=" + employer.getID() +
+                ", areaOfInterest=" + areaOfInterest.getID() +
                 '}';
     }
 }
