@@ -28,7 +28,6 @@ public class Internship implements HasID<String>{
     private LocalDate endTime;
     private Boolean paid;
     private int nrMonths;
-    private String field;
     private String description;
     private int nrApplicants;
     private InternshipStatus status;
@@ -37,13 +36,12 @@ public class Internship implements HasID<String>{
     private Employer employer;
     private AreaOfInterest areaOfInterest;
 
-    public Internship(String name, LocalDate startTime, LocalDate endTime, Boolean paid, int nrMonths, String field, String description, int nrApplicants, InternshipStatus status, String location, LocalDate addedDate,Employer employer,AreaOfInterest areaOfInterest) {
+    public Internship(String name, LocalDate startTime, LocalDate endTime, Boolean paid, int nrMonths, String description, int nrApplicants, InternshipStatus status, String location, LocalDate addedDate,Employer employer,AreaOfInterest areaOfInterest) {
         this.name = name;
         this.startTime = startTime;
         this.endTime = endTime;
         this.paid = paid;
         this.nrMonths = nrMonths;
-        this.field = field;
         this.description = description;
         this.nrApplicants = nrApplicants;
         this.status = status;
@@ -62,7 +60,6 @@ public class Internship implements HasID<String>{
                 ", endTime=" + endTime +
                 ", paid=" + paid +
                 ", nrMonths=" + nrMonths +
-                ", field='" + field + '\'' +
                 ", description='" + description + '\'' +
                 ", nrApplicants=" + nrApplicants +
                 ", status=" + status +
