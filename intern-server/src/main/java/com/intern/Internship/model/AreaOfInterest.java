@@ -13,11 +13,20 @@ import javax.persistence.Id;
 @Setter
 @NoArgsConstructor
 @Entity
-public class AreaOfInterest {
+public class AreaOfInterest implements HasID<String>{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String ID;
 
     private String name;
     private String tagType;
+
+    @Override
+    public String toString() {
+        return "AreaOfInterest{" +
+                "ID='" + ID + '\'' +
+                ", name='" + name + '\'' +
+                ", tagType='" + tagType + '\'' +
+                '}';
+    }
 }

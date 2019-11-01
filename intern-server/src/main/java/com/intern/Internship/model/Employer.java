@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.sql.Blob;
@@ -12,8 +13,9 @@ import java.sql.Blob;
 @Setter
 @NoArgsConstructor
 @Entity
-public class Employer {
+public class Employer implements HasID<String>{
     @Id
+    @Column(name = "email")
     private String ID; //email
 
     private String password;
@@ -31,5 +33,18 @@ public class Employer {
         this.telephone = telephone;
         this.description = description;
         this.logo = logo;
+    }
+
+    @Override
+    public String toString() {
+        return "Employer{" +
+                "email='" + ID + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", telephone='" + telephone + '\'' +
+                ", description='" + description + '\'' +
+                ", logo=" + logo +
+                '}';
     }
 }

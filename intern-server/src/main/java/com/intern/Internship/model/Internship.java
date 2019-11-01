@@ -18,7 +18,7 @@ enum InternshipStatus{
 @Setter
 @NoArgsConstructor
 @Entity
-public class Internship {
+public class Internship implements HasID<String>{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String ID;
@@ -51,5 +51,25 @@ public class Internship {
         this.addedDate = addedDate;
         this.employer=employer;
         this.areaOfInterest=areaOfInterest;
+    }
+
+    @Override
+    public String toString() {
+        return "Internship{" +
+                "ID='" + ID + '\'' +
+                ", name='" + name + '\'' +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
+                ", paid=" + paid +
+                ", nrMonths=" + nrMonths +
+                ", field='" + field + '\'' +
+                ", description='" + description + '\'' +
+                ", nrApplicants=" + nrApplicants +
+                ", status=" + status +
+                ", location='" + location + '\'' +
+                ", addedDate=" + addedDate +
+                ", employer=" + employer +
+                ", areaOfInterest=" + areaOfInterest +
+                '}';
     }
 }
