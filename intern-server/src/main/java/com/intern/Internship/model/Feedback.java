@@ -37,7 +37,7 @@ public class Feedback implements HasID<String>{
                 ", description='" + description + '\'' +
                 ", anonymous=" + anonymous +
                 ", rating=" + rating +
-                ", internship=" + internship +
+                ", internship=" + internship.getID() +
                 '}';
     }
 }

@@ -40,8 +40,8 @@ public class Application implements HasID<String> {
                 "ID='" + ID + '\'' +
                 ", applicationStatus=" + applicationStatus +
                 ", extraMessage='" + extraMessage + '\'' +
-                ", internship=" + internship +
-                ", candidate=" + candidate +
+                ", internship=" + internship.getID() +
+                ", candidate=" + candidate.getID() +
                 '}';
     }
 }
