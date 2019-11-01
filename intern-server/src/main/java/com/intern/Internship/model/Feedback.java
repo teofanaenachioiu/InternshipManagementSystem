@@ -13,7 +13,7 @@ import javax.persistence.Id;
 @Setter
 @NoArgsConstructor
 @Entity
-public class Feedback {
+public class Feedback implements HasID<String>{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String ID;
@@ -28,5 +28,16 @@ public class Feedback {
         this.anonymous=anonymous;
         this.rating=rating;
         this.internship=internship;
+    }
+
+    @Override
+    public String toString() {
+        return "Feedback{" +
+                "ID='" + ID + '\'' +
+                ", description='" + description + '\'' +
+                ", anonymous=" + anonymous +
+                ", rating=" + rating +
+                ", internship=" + internship +
+                '}';
     }
 }

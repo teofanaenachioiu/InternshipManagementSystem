@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.sql.Blob;
@@ -21,8 +22,9 @@ enum CandidateStatus{
 @Setter
 @NoArgsConstructor
 @Entity
-public class Candidate {
+public class Candidate implements HasID<String>{
     @Id
+    @Column(name = "email")
     private String ID; //email
 
     private String password;
@@ -48,5 +50,22 @@ public class Candidate {
         this.candidateStatus = candidateStatus;
         this.avatar = avatar;
         this.CVPdf = CVPdf;
+    }
+
+    @Override
+    public String toString() {
+        return "Candidate{" +
+                "email='" + ID + '\'' +
+                ", password='" + password + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", address='" + address + '\'' +
+                ", telephone='" + telephone + '\'' +
+                ", birthDate=" + birthDate +
+                ", sex=" + sex +
+                ", candidateStatus=" + candidateStatus +
+                ", avatar=" + avatar +
+                ", CVPdf=" + CVPdf +
+                '}';
     }
 }

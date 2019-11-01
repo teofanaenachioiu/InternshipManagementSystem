@@ -17,7 +17,7 @@ enum ApplicationStatus{
 @Setter
 @NoArgsConstructor
 @Entity
-public class Application {
+public class Application implements HasID<String> {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String ID;
@@ -32,5 +32,16 @@ public class Application {
         this.extraMessage = extraMessage;
         this.internship = internship;
         this.candidate = candidate;
+    }
+
+    @Override
+    public String toString() {
+        return "Application{" +
+                "ID='" + ID + '\'' +
+                ", applicationStatus=" + applicationStatus +
+                ", extraMessage='" + extraMessage + '\'' +
+                ", internship=" + internship +
+                ", candidate=" + candidate +
+                '}';
     }
 }
