@@ -35,35 +35,39 @@
 
 
   </mat-step>
-  <mat-step label="Registration">
+  <mat-step label="Registration" >
 
     <div class="div-title">
       <p class="step-title">Step 2:&nbsp;</p><p class="step-title description-title">Registration</p>
     </div>
+    <p class="choose-one">{{errorRegistration}}</p>
       <div class="example-container">
+
           <mat-form-field>
-            <input matInput placeholder="Enter your email" [formControl]="email" required>
+            <input matInput placeholder="Enter your email" [formControl]="email" required >
             <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
           </mat-form-field>
 
           <mat-form-field>
-              <input matInput placeholder="Enter your password" [type]="hidePassword ? 'password' : 'text'" [(ngModel)]='password'>
+              <input matInput placeholder="Enter your password" [type]="hidePassword ? 'password' : 'text'" [(ngModel)]='password' required>
               <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" >
               <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
               </button>
           </mat-form-field>
 
           <mat-form-field>
-              <input matInput placeholder="Re-type your password" [type]="hideRetypePassword ? 'password' : 'text'" [(ngModel)]='retypePassword' >
+              <input matInput placeholder="Re-type your password" [type]="hideRetypePassword ? 'password' : 'text'" [(ngModel)]='retypePassword'
+               required  >
               <button mat-icon-button matSuffix (click)="hideRetypePassword  = !hideRetypePassword " >
-              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              <mat-icon>{{hideRetypePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
               </button>
           </mat-form-field>
-
-            <button mat-button matStepperNext (click)="testButton()" >
+        
+          <div *ngIf="validComponent()">
+            <button mat-button matStepperNext (click)="clickOnAboutYou()"  >
                   <mat-icon>navigate_next</mat-icon>
             </button>
-
+    </div>
        </div>
 
   </mat-step>

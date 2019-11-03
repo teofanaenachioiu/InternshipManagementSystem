@@ -16,6 +16,8 @@ import {
   MatToolbarModule
 } from '@angular/material';
 
+
+
 const materialComponents = [
   MatButtonModule,
   MatToolbarModule,
@@ -35,7 +37,7 @@ const materialComponents = [
     materialComponents,
     FormsModule,
     ReactiveFormsModule,
-    MatInputModule
+    MatInputModule,
   ],
   providers: [AuthService]
 })

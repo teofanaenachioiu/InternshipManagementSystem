@@ -13,11 +13,14 @@ export class RegisterComponent implements OnInit {
   @Input()
   selectedProfile: string;
 
+
+
   isLinear = true;
   private error = '';
+  private errorRegistration = '';
   email = new FormControl('', [Validators.required, Validators.email]);
-  password: string;
-  retypePassword: string;
+  password: string='';
+  retypePassword: string='';
   hidePassword = true;
   hideRetypePassword = true;
 
@@ -36,6 +39,20 @@ export class RegisterComponent implements OnInit {
       this.error = '';
       console.log(this.selectedProfile);
     }
+  }
+
+  validComponent(){
+    if( this.password === this.retypePassword && this.email.valid && this.password.length > 0  ){
+      this.errorRegistration="";
+      return true;
+    }
+    if (this.password.length > 0 && this.retypePassword.length > 0)
+       this.errorRegistration = "Please check your passwords";
+    return false;
+  }
+ 
+  clickOnAboutYou(){
+    console.log("Write about you");
   }
 
   getErrorMessage() {
