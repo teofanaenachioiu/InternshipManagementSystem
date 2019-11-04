@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormControl, Validators} from '@angular/forms';
-
-
+import { FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
+import { EmailValidation, PasswordValidation, RepeatPasswordEStateMatcher, RepeatPasswordValidator } from './validators';
 
 @Component({
   selector: 'app-register',
@@ -17,15 +16,21 @@ export class RegisterComponent implements OnInit {
 
   isLinear = true;
   private error = '';
-  private errorRegistration = '';
-  email = new FormControl('', [Validators.required, Validators.email]);
-  password: string='';
-  retypePassword: string='';
   hidePassword = true;
   hideRetypePassword = true;
 
-  constructor() {
+  form: any;
+  passwordsMatcher = new RepeatPasswordEStateMatcher;
+  
+
+  constructor(private formBuilder: FormBuilder) {
     this.selectedProfile = null;
+    this.form = this.formBuilder.group ( {
+      email: new FormControl('', EmailValidation),
+      password: new FormControl('', PasswordValidation),
+      passwordAgain: new FormControl(''),
+      acceptTerms: new FormControl('', [Validators.requiredTrue])
+    }, { validator: RepeatPasswordValidator });
   }
 
   ngOnInit() {
@@ -41,30 +46,10 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  validComponent(){
-    if( this.password === this.retypePassword && this.email.valid && this.password.length > 0  ){
-      this.errorRegistration="";
-      return true;
-    }
-    if (this.password.length > 0 && this.retypePassword.length > 0)
-       this.errorRegistration = "Please check your passwords";
-    return false;
-  }
- 
+  
   clickOnAboutYou(){
     console.log("Write about you");
   }
 
-  getErrorMessage() {
-    return this.email.hasError('required') ? 'You must enter a value' :
-        this.email.hasError('email') ? 'Not a valid email' :
-            '';
-  }
-
-  testButton(){
-    console.log(this.email.value);
-    console.log(this.password);
-    console.log(this.retypePassword);
-  }
-
+ 
 }
