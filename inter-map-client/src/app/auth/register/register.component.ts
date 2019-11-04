@@ -12,8 +12,6 @@ export class RegisterComponent implements OnInit {
   @Input()
   selectedProfile: string;
 
-
-
   isLinear = true;
   private error = '';
   hidePassword = true;
