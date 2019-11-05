@@ -40,7 +40,7 @@
     <div class="div-title">
       <p class="step-title">Step 2:&nbsp;</p><p class="step-title description-title">Registration</p>
     </div>
-    <p class="choose-one">{{errorRegistration}}</p>
+
       <div class="example-container">
 
           <form [formGroup]="form" >
@@ -56,12 +56,12 @@
                     </mat-error>
                     </mat-form-field>
                 </div>
-                
+
                 <div class="form-field">
                     <mat-form-field>
                     <input matInput formControlName="password" placeholder="Password" [type]="hidePassword ? 'password' : 'text'">
                      <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
-                    <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon> 
+                    <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </button>
                     <mat-hint class="ac-form-field-description">Between 6 and 24 characters.</mat-hint>
                     <mat-error *ngIf="form.get('password').hasError('required')">
@@ -75,12 +75,12 @@
                     </mat-error>
                     </mat-form-field>
                 </div>
-               
+
                 <div class="form-field">
                     <mat-form-field>
                     <input matInput formControlName="passwordAgain" placeholder="Confirm the password" [type]="hideRetypePassword ? 'password' : 'text'" [errorStateMatcher]="passwordsMatcher">
                     <button mat-icon-button matSuffix (click)="hideRetypePassword = !hideRetypePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideRetypePassword">
-                        <mat-icon>{{hideRetypePassword ? 'visibility_off' : 'visibility'}}</mat-icon> 
+                        <mat-icon>{{hideRetypePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
                       </button>
                     <mat-error *ngIf="form.hasError('passwordsNotEqual')" >Passwords are different. They should be equal!</mat-error>
                     </mat-form-field>
@@ -94,7 +94,7 @@
                 <button mat-raised-button matStepperNext [disabled]="!form.valid" (click)="clickOnAboutYou()" >Create Account</button>
             </div>
         </form>
-      
+
        </div>
 
   </mat-step>
