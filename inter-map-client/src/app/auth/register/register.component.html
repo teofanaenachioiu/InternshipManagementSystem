@@ -8,29 +8,30 @@
       <p class="choose-one">{{error}}</p>
 
       <div class="images-div">
-        <div class="profile-div">
+
+        <div class="profiles">
+          <div class="profile-div">
+            <input class="radio" type="radio" value="student" [(ngModel)]="selectedProfile" id="radioStudent">
+            <label class="opacity" for='radioStudent'>
+              <img class="image" alt='avatar' src='assets/img/student.png'>
+            </label>
+          </div>
+          <div class="profile-div">
+            <input class="radio" type="radio" value="company" [(ngModel)]="selectedProfile" id="radioCompany">
+            <label class="opacity" for="radioCompany">
+              <img alt='avatar' class="image" src="assets/img/company.png">
+            </label>
+          </div>
         </div>
 
-        <div class="profile-div">
-          <input class="radio" type="radio" value="student" [(ngModel)]="selectedProfile" id="radioStudent">
-          <label class="opacity" for='radioStudent'>
-            <img class="image" alt='avatar' src='assets/img/student.png'>
-          </label>
-        </div>
-
-        <div class="profile-div">
-          <input class="radio" type="radio" value="company" [(ngModel)]="selectedProfile" id="radioCompany">
-          <label class="opacity" for="radioCompany">
-            <img alt='avatar' class="image" src="assets/img/company.png">
-          </label>
-        </div>
-
-        <div class="profile-div">
+        <div class="next-button">
           <button mat-button matStepperNext (click)="clickOnNext()" >
             <mat-icon>navigate_next</mat-icon>
           </button>
         </div>
+
       </div>
+
     </div>
 
 

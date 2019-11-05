@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
 import { EmailValidation, PasswordValidation, RepeatPasswordEStateMatcher, RepeatPasswordValidator } from './validators';
+import {AuthService} from '../auth.service';
 
 @Component({
   selector: 'app-register',
@@ -18,10 +19,9 @@ export class RegisterComponent implements OnInit {
   hideRetypePassword = true;
 
   form: any;
-  passwordsMatcher = new RepeatPasswordEStateMatcher;
-  
+  passwordsMatcher = new RepeatPasswordEStateMatcher();
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private authService: AuthService, private formBuilder: FormBuilder) {
     this.selectedProfile = null;
     this.form = this.formBuilder.group ( {
       email: new FormControl('', EmailValidation),
@@ -44,10 +44,23 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  
-  clickOnAboutYou(){
+
+  clickOnAboutYou() {
     console.log("Write about you");
+
+    const email = this.form.get('email').value;
+    const password = this.form.get('password').value;
+    const passwordAgain = this.form.get('passwordAgain').value;
+
+    if (password === passwordAgain) {
+      this.authService.register(email, password)
+        .subscribe((res) => {
+          console.log(res);
+        }, (error) => {
+          console.log(error.statusText);
+        });
+    }
   }
 
- 
+
 }
