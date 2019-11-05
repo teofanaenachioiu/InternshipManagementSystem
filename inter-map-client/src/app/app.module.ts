@@ -4,7 +4,16 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatButtonModule, MatHorizontalStepper, MatIconModule, MatListModule, MatSidenavModule, MatToolbarModule} from '@angular/material';
+import {
+  MatButtonModule,
+  MatHorizontalStepper,
+  MatIconModule,
+  MatListModule,
+  MatMenuModule,
+  MatSidenavModule,
+  MatToolbarModule
+} from '@angular/material';
+import { GeneralMenuComponent } from './menus/general-menu/general-menu.component';
 
 const materialComponents = [
   MatButtonModule,
@@ -12,12 +21,14 @@ const materialComponents = [
   MatSidenavModule,
   MatListModule,
   MatButtonModule,
-  MatIconModule
+  MatIconModule,
+  MatMenuModule
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
+    GeneralMenuComponent,
   ],
   imports: [
     BrowserModule,

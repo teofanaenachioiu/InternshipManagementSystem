@@ -41,20 +41,17 @@ export class LoginComponent implements OnInit {
   login() {
     console.log(this.email.value);
     console.log(this.password.value);
-    console.log(this.loginMessage);
-    // this.authService.authenticate(this.email, this.password)
-    //   .subscribe((res) => {
-    //     this.router.navigate([`/........`]);
-    //   }, (error) => {
-    //     this.loginMessage = error;
-    //   });
-    // }
-    console.log('login!');
+    this.authService.authenticate(this.email.value, this.password.value)
+      .subscribe((res) => {
+        this.loginMessage = null;
+        console.log(res);
+      }, (error) => {
+        this.loginMessage = error.statusText;
+        console.log(error.statusText);
+      });
   }
 
   forgetPassword() {
-    console.log('forget password!');
+
   }
-
-
 }
