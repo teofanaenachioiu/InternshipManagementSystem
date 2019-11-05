@@ -1,5 +1,4 @@
-export class CandidateDTO {
-  id: number;
+export class User {
   email: string;
   password: string;
 
