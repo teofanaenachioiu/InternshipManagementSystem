@@ -1,0 +1,114 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+$dark-cerulean:(
+  50: #0d3c73,
+  100: #0d3c73,
+  200: #0d3c73,
+  300: #0d3c73,
+  400: #0d3c73,
+  500: #0d3c73,
+  600: #0d3c73,
+  700: #0d3c73,
+  800: #0d3c73,
+  900: #0d3c73,
+  A100: #0d3c73,
+  A200: #0d3c73,
+  A400: #0d3c73,
+  A700: #0d3c73,
+  contrast: (
+    50: white,
+    100: white,
+    200: white,
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: white,
+    A200: white,
+    A400: white,
+    A700: white,
+  )
+);
+
+$jordy-blue:(
+  50: #8cbcf2,
+  100: #8cbcf2,
+  200: #8cbcf2,
+  300: #8cbcf2,
+  400: #8cbcf2,
+  500: #8cbcf2,
+  600: #8cbcf2,
+  700: #8cbcf2,
+  800: #8cbcf2,
+  900: #8cbcf2,
+  A100: #8cbcf2,
+  A200: #8cbcf2,
+  A400: #8cbcf2,
+  A700: #8cbcf2,
+  contrast: (
+    50: white,
+    100: white,
+    200: white,
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: white,
+    A200: white,
+    A400: white,
+    A700: white,
+  )
+);
+
+$lavender-purple:(
+  50: #7f7caf,
+  100: #7f7caf,
+  200: #7f7caf,
+  300: #7f7caf,
+  400: #7f7caf,
+  500: #7f7caf,
+  600: #7f7caf,
+  700: #7f7caf,
+  800: #7f7caf,
+  900: #7f7caf,
+  A100: #7f7caf,
+  A200: #7f7caf,
+  A400: #7f7caf,
+  A700: #7f7caf,
+  contrast: (
+    50: white,
+    100: white,
+    200: white,
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: white,
+    A200: white,
+    A400: white,
+    A700: white,
+  )
+);
+
+$my-app-primary: mat-palette($dark-cerulean);
+$my-app-accent:  mat-palette($jordy-blue);
+$my-app-warn:    mat-palette($lavender-purple);
+$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
+
+@include angular-material-theme($my-app-theme);
+.alternate-theme {
+  $alternate-primary: mat-palette($mat-light-blue);
+  $alternate-accent:  mat-palette($mat-yellow, 400);
+  $alternate-theme: mat-light-theme($alternate-primary, $alternate-accent);
+  @include angular-material-theme($alternate-theme);
+}
