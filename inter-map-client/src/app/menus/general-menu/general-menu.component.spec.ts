@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RegisterCantidateComponent } from './register-cantidate.component';
+import { GeneralMenuComponent } from './general-menu.component';
 
-describe('RegisterCantidateComponent', () => {
-  let component: RegisterCantidateComponent;
-  let fixture: ComponentFixture<RegisterCantidateComponent>;
+describe('GeneralMenuComponent', () => {
+  let component: GeneralMenuComponent;
+  let fixture: ComponentFixture<GeneralMenuComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RegisterCantidateComponent ]
+      declarations: [ GeneralMenuComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RegisterCantidateComponent);
+    fixture = TestBed.createComponent(GeneralMenuComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

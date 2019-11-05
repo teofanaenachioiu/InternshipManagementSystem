@@ -1,0 +1,107 @@
+.step-title {
+  display: table-cell;
+  text-align: center;
+  font-size: 30px;
+  font-style: italic;
+  border-bottom: 2px solid darkgray;
+}
+
+.description-title {
+  color: dodgerblue;
+  /*font-weight: bold;*/
+}
+
+.choose-one {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  font-style: italic;
+  color: indianred;
+}
+
+.div-title {
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.p-title {
+  border-bottom: 2px solid;
+}
+
+.radio {
+  visibility: hidden;
+  border: 5px solid blue;
+}
+
+.opacity {
+  display: inline-block;
+  opacity: 0.3;
+  /*border: 3px solid red;*/
+}
+
+.radio:checked + .opacity{
+  opacity: 1;
+}
+
+.image {
+  width: 30vw;
+}
+
+.profile-div {
+  display: inline-block;
+  align-content: center;
+  align-items: center;
+  vertical-align: middle;
+  /*border: 1px solid;*/
+  padding-right: 20px;
+  /*width: 24%;*/
+  /*padding-left: 60px;*/
+}
+
+.next-button {
+  display: inline;
+  position: absolute;
+  padding-top: 14vw;
+  /*border: 1px solid;*/
+  vertical-align: middle;
+}
+
+.right {
+  float: inside;
+}
+
+.left {
+  float: left;
+}
+
+.images-div {
+  display: inline-block;
+  padding-top: 5vw;
+  width: 100%;
+  /*border: 1px solid;*/
+  margin-left: auto;
+  /*margin-right: auto;*/
+  text-align: center;
+}
+
+.profiles {
+  display: inline-block;
+  /*border: 1px solid red;*/
+}
+
+
+.icon {
+  font-size: 5em;
+}
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+  margin-left: 40%;
+  margin-top: 10%;
+}
+
+.example-container > * {
+  width: 30%;
+}

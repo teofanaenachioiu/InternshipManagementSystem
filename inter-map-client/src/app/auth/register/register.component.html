@@ -1,0 +1,109 @@
+
+<mat-horizontal-stepper [linear]="isLinear">
+  <mat-step label="Choose profile" [completed]="selectedProfile">
+    <div>
+      <div class="div-title">
+        <p class="step-title">Step 1:&nbsp;</p><p class="step-title description-title">Choose profile</p>
+      </div>
+      <p class="choose-one">{{error}}</p>
+
+      <div class="images-div">
+
+        <div class="profiles">
+          <div class="profile-div">
+            <input class="radio" type="radio" value="student" [(ngModel)]="selectedProfile" id="radioStudent">
+            <label class="opacity" for='radioStudent'>
+              <img class="image" alt='avatar' src='assets/img/student.png'>
+            </label>
+          </div>
+          <div class="profile-div">
+            <input class="radio" type="radio" value="company" [(ngModel)]="selectedProfile" id="radioCompany">
+            <label class="opacity" for="radioCompany">
+              <img alt='avatar' class="image" src="assets/img/company.png">
+            </label>
+          </div>
+        </div>
+
+        <div class="next-button">
+          <button mat-button matStepperNext (click)="clickOnNext()" >
+            <mat-icon>navigate_next</mat-icon>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+
+  </mat-step>
+  <mat-step label="Registration" [completed]="form.valid" >
+
+    <div class="div-title">
+      <p class="step-title">Step 2:&nbsp;</p><p class="step-title description-title">Registration</p>
+    </div>
+
+      <div class="example-container">
+
+          <form [formGroup]="form" >
+            <div class="form-content">
+                <div class="form-field">
+                    <mat-form-field>
+                    <input matInput formControlName="email" placeholder="Email">
+                    <mat-error *ngIf="form.get('email').hasError('required')">
+                        E-mail is mandatory.
+                    </mat-error>
+                    <mat-error *ngIf="form.get('email').hasError('email')">
+                        Invalid E-mail.
+                    </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="form-field">
+                    <mat-form-field>
+                    <input matInput formControlName="password" placeholder="Password" [type]="hidePassword ? 'password' : 'text'">
+                     <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+                    <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    <mat-hint class="ac-form-field-description">Between 6 and 24 characters.</mat-hint>
+                    <mat-error *ngIf="form.get('password').hasError('required')">
+                        Password is mandatory.
+                    </mat-error>
+                    <mat-error *ngIf="form.get('password').hasError('minlength')">
+                        Password with less than 6 characters.
+                    </mat-error>
+                    <mat-error *ngIf="form.get('password').hasError('maxlength')">
+                        Password with more than 24 characters.
+                    </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="form-field">
+                    <mat-form-field>
+                    <input matInput formControlName="passwordAgain" placeholder="Confirm the password" [type]="hideRetypePassword ? 'password' : 'text'" [errorStateMatcher]="passwordsMatcher">
+                    <button mat-icon-button matSuffix (click)="hideRetypePassword = !hideRetypePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideRetypePassword">
+                        <mat-icon>{{hideRetypePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                      </button>
+                    <mat-error *ngIf="form.hasError('passwordsNotEqual')" >Passwords are different. They should be equal!</mat-error>
+                    </mat-form-field>
+                </div>
+                <br>
+                <div class="form-field">
+                    <mat-checkbox name="acceptTerms" formControlName="acceptTerms">I accept terms and conditions</mat-checkbox>
+                </div>
+            </div>
+            <div class="form-bottom">
+                <button mat-raised-button matStepperNext [disabled]="!form.valid" (click)="clickOnAboutYou()" >Create Account</button>
+            </div>
+        </form>
+
+       </div>
+
+  </mat-step>
+  <mat-step label="About you">
+
+  </mat-step>
+  <mat-step label="Key words">
+
+  </mat-step>
+</mat-horizontal-stepper>
+
