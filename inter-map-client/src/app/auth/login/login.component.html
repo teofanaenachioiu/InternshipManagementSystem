@@ -20,6 +20,6 @@
     <mat-label class="login-error-message">{{loginMessage}}</mat-label>
     <button mat-button (click)='login()' class='input-button' value='Login'
             disabled = {{checkLoginButton()}}>Login</button>
-    <a (click)='forgetPassword()' class='text'>Forget Password?</a>
+    <a [routerLink]="'/auth/forget-password'" class='text'>Forget Password?</a>
   </form>
 </div>
