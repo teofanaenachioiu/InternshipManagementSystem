@@ -14,7 +14,6 @@ import {
   MatToolbarModule
 } from '@angular/material';
 import { GeneralMenuComponent } from './menus/general-menu/general-menu.component';
-import { InternshipsComponent } from './internship-app/internships/internships.component';
 
 const materialComponents = [
   MatButtonModule,
@@ -29,7 +28,7 @@ const materialComponents = [
 @NgModule({
   declarations: [
     AppComponent,
-    GeneralMenuComponent,
+    GeneralMenuComponent
   ],
   imports: [
     BrowserModule,
