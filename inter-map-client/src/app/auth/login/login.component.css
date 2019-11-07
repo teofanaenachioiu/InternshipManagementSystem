@@ -1,0 +1,112 @@
+.main-container {
+  position: relative;
+  height: 100%;
+}
+
+.login-circle {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 5%);
+
+  width: 38vw;
+  height: 38vw;
+  min-height: 380px;
+  min-width: 380px;
+
+  overflow: auto;
+
+  background-color: white;
+  border: solid 10px #28587B;
+  border-radius: 50%;
+}
+
+.my-form{
+  position: relative;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+}
+
+.hex-icon {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -10%);
+
+  width: 10vw;
+  height: 10vw;
+  min-height: 100px;
+  min-width: 100px;
+}
+
+.login-input {
+  width: 25vw;
+  height: 3vw;
+  min-height: 30px;
+  min-width: 250px;
+  font-size: 1vm;
+}
+
+.input-email {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+}
+
+.input-password {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -55%);
+
+}
+
+.login-error-message{
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -65%);
+
+  font-size: 12px;
+}
+
+.input-button {
+  position: absolute;
+
+  top: 75%;
+  left: 50%;
+  transform: translate(-50%, -75%);
+
+  width: 26vw;
+  height: 2.5vw;
+  min-height: 30px;
+  min-width: 260px;
+
+  background-color: #0D3c73;
+  color: white;
+  font-size: 16px;
+}
+
+.input-button:hover{
+  opacity: 0.9;
+}
+
+.input-button:active{
+  opacity: 0.8;
+}
+
+.text{
+  position: absolute;
+  top: 85%;
+  left: 50%;
+  transform: translate(-50%, -85%);
+
+  width: auto;
+  height: 2.5vw;
+  min-height: 30px;
+
+  color: #0D3c73;
+  font-size: 12px;
+}
+
