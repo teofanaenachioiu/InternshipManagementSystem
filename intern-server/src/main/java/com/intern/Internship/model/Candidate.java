@@ -29,6 +29,11 @@ enum CandidateStatus {
 @NoArgsConstructor
 @Entity
 public class Candidate implements HasID<String> {
+    /**
+     *
+     */
+    private static final long serialVersionUID = 8194448036160968436L;
+
     @Id
     @Column(name = "email")
     private String ID; // email
