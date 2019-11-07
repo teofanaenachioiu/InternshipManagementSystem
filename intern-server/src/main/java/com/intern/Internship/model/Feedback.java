@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Getter
 @Setter
@@ -21,13 +23,16 @@ public class Feedback implements HasID<String>{
     private String description;
     private Boolean anonymous;
     private int rating;
+
+    @ManyToOne
+    @JoinColumn
     private Internship internship;
 
     public Feedback(String description,Boolean anonymous,int rating,Internship internship){
         this.description=description;
         this.anonymous=anonymous;
         this.rating=rating;
-        this.internship=internship;
+        this.internship = internship;        
     }
 
     @Override

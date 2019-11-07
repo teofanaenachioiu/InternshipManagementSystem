@@ -4,13 +4,21 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.time.LocalDate;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
-enum InternshipStatus{
+import java.time.LocalDate;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+enum InternshipStatus {
     Open, Closed;
 }
 
@@ -18,7 +26,7 @@ enum InternshipStatus{
 @Setter
 @NoArgsConstructor
 @Entity
-public class Internship implements HasID<String>{
+public class Internship implements HasID<String> {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String ID;
@@ -33,10 +41,16 @@ public class Internship implements HasID<String>{
     private InternshipStatus status;
     private String location;
     private LocalDate addedDate;
+    @ManyToOne
+    @JoinColumn
     private Company company;
     private AreaOfInterest areaOfInterest;
+    @OneToMany(mappedBy = "internship", cascade = CascadeType.ALL)
+    private Set<Feedback> feedbacks;
 
-    public Internship(String name, LocalDate startTime, LocalDate endTime, Boolean paid, int nrMonths, String description, int nrApplicants, InternshipStatus status, String location, LocalDate addedDate,Company company,AreaOfInterest areaOfInterest) {
+    public Internship(String name, LocalDate startTime, LocalDate endTime, Boolean paid, int nrMonths,
+            String description, int nrApplicants, InternshipStatus status, String location, LocalDate addedDate,
+            Company company, AreaOfInterest areaOfInterest, Feedback... feedbacks) {
         this.name = name;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -47,26 +61,18 @@ public class Internship implements HasID<String>{
         this.status = status;
         this.location = location;
         this.addedDate = addedDate;
-        this.company=company;
-        this.areaOfInterest=areaOfInterest;
+        this.company = company;
+        this.areaOfInterest = areaOfInterest;
+        this.feedbacks = Stream.of(feedbacks).collect(Collectors.toSet());
+        this.feedbacks.forEach(x -> x.setInternship(this));
     }
 
     @Override
     public String toString() {
-        return "Internship{" +
-                "ID='" + ID + '\'' +
-                ", name='" + name + '\'' +
-                ", startTime=" + startTime +
-                ", endTime=" + endTime +
-                ", paid=" + paid +
-                ", nrMonths=" + nrMonths +
-                ", description='" + description + '\'' +
-                ", nrApplicants=" + nrApplicants +
-                ", status=" + status +
-                ", location='" + location + '\'' +
-                ", addedDate=" + addedDate +
-                ", employer=" + company.getID() +
-                ", areaOfInterest=" + areaOfInterest.getID() +
-                '}';
+        return "Internship{" + "ID='" + ID + '\'' + ", name='" + name + '\'' + ", startTime=" + startTime + ", endTime="
+                + endTime + ", paid=" + paid + ", nrMonths=" + nrMonths + ", description='" + description + '\''
+                + ", nrApplicants=" + nrApplicants + ", status=" + status + ", location='" + location + '\''
+                + ", addedDate=" + addedDate + ", employer=" + company.getID() + ", areaOfInterest="
+                + areaOfInterest.getID() + '}';
     }
 }
