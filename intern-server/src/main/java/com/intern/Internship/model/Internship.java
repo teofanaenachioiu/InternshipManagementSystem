@@ -27,6 +27,11 @@ enum InternshipStatus {
 @NoArgsConstructor
 @Entity
 public class Internship implements HasID<String> {
+    /**
+     *
+     */
+    private static final long serialVersionUID = -458767083520973395L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String ID;

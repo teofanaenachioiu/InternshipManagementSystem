@@ -16,6 +16,11 @@ import javax.persistence.ManyToOne;
 @NoArgsConstructor
 @Entity
 public class Feedback implements HasID<String>{
+    /**
+     *
+     */
+    private static final long serialVersionUID = -3534054198190203549L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String ID;
