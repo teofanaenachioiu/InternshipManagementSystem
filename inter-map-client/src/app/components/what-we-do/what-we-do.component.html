@@ -1,0 +1,62 @@
+<div class="second-tabs-content what-we-do">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-12">
+        <div class="section-heading">
+          <h4>Who we are?</h4>
+          <p>We are a team of 10 enthusiastic young people who have often gone through the adventure of finding the
+            perfect internship. With different passions and areas of interest, we decided that each one would be of help
+            to an application that combines the student search process with the recruitment of candidates by companies.
+            So we brought to the world "interMap".
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="wrapper">
+          <div class="col-md-12">
+            <div class="row">
+              <ul class="tabs clearfix" data-tabgroup="second-tab-group">
+
+                <li *ngFor="let item of items" class="col-md-15 col-sm-12 col-xs-12">
+                  <a routerLinkActive="active">
+                    <div class="list-item">
+                      <div class="icon">
+                        <img [src]=item.icon [alt]=item.title>
+                      </div>
+                      <h4>{{item.title}}</h4>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <section id="second-tab-group" class="tabgroup">
+              <div *ngFor="let item of items" [id]=item.tag>
+                <div class="row">
+                  <div class="tab-content-services">
+                    <div class="col-md-6">
+                      <div class="left-text">
+                        <h4>{{item.title}}</h4>
+                        <p>{{item.text}}</p>
+                        <div class="primary-button">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="right-image">
+                        <img [src]=item.icontext alt="">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
