@@ -1,4 +1,4 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-internships-general',
@@ -7,10 +7,8 @@ import {Component, HostListener, OnInit} from '@angular/core';
 })
 export class InternshipsGeneralComponent implements OnInit {
 
-  constructor() { }
-
-  CAROUSEL_BREAKPOINT = 768;
-  carouselDisplayMode = 'multiple';
+  constructor() {
+  }
 
   cards = [
     {
@@ -69,30 +67,7 @@ export class InternshipsGeneralComponent implements OnInit {
     },
   ];
   slides: any = [[]];
-  chunk(arr, chunkSize) {
-    const R = [];
-    for (let i = 0, len = arr.length; i < len; i += chunkSize) {
-      R.push(arr.slice(i, i + chunkSize));
-    }
-    return R;
-  }
-  ngOnInit() {
-    this.slides = this.chunk(this.cards, 3);
 
-    if (window.innerWidth <= this.CAROUSEL_BREAKPOINT) {
-      this.carouselDisplayMode = 'single';
-    } else {
-      this.carouselDisplayMode = 'multiple';
-    }
+  ngOnInit(): void {
   }
-
-  @HostListener('window:resize')
-  onWindowResize() {
-    if (window.innerWidth <= this.CAROUSEL_BREAKPOINT) {
-      this.carouselDisplayMode = 'single';
-    } else {
-      this.carouselDisplayMode = 'multiple';
-    }
-  }
-
 }
