@@ -29,7 +29,6 @@ public class Company implements HasID<String> {
     @Column(name = "email")
     private String ID; // email
 
-    private String password;
     private String name;
     private String address;
     private String telephone;
@@ -39,10 +38,9 @@ public class Company implements HasID<String> {
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
     private Set<Internship> internships;
 
-    public Company(String ID, String password, String name, String address, String telephone, String description,
-            String field, Blob logo, Internship... internships) {
+    public Company(String ID, String name, String address, String telephone, String description, String field,
+            Blob logo, Internship... internships) {
         this.ID = ID;
-        this.password = password;
         this.name = name;
         this.address = address;
         this.telephone = telephone;
@@ -55,8 +53,8 @@ public class Company implements HasID<String> {
 
     @Override
     public String toString() {
-        return "Company{" + "email='" + ID + '\'' + ", password='" + password + '\'' + ", name='" + name + '\''
-                + ", address='" + address + '\'' + ", telephone='" + telephone + '\'' + ", description='" + description
-                + '\'' + ", field='" + field + '\'' + ", logo=" + logo + '}';
+        return "Company{" + "email='" + ID + '\'' + ", name='" + name + '\'' + ", address='" + address + '\''
+                + ", telephone='" + telephone + '\'' + ", description='" + description + '\'' + ", field='" + field
+                + '\'' + ", logo=" + logo + '}';
     }
 }
