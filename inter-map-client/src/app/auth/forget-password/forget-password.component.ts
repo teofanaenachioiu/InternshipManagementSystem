@@ -21,7 +21,6 @@ export class ForgetPasswordComponent implements OnInit {
 
   checkResetPasswordButton() {
     return this.email.hasError('required') ||
-    
       this.email.hasError('email');
   }
 
@@ -30,7 +29,7 @@ export class ForgetPasswordComponent implements OnInit {
       this.email.hasError('email') ? 'Not a valid email' : '';
   }
 
- 
+
 
   forgetPassword() {
 
