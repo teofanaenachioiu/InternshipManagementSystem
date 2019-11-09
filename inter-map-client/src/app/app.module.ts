@@ -22,6 +22,7 @@ import { FeedbackComponent } from './components/feedback/feedback.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { StatisticsComponent } from './components/statistics/statistics.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { MatCarouselModule } from '@ngmodule/material-carousel';
 
 const materialComponents = [
   MatButtonModule,
@@ -50,7 +51,8 @@ const materialComponents = [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    materialComponents
+    materialComponents,
+    MatCarouselModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

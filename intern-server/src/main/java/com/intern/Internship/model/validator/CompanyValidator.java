@@ -5,18 +5,24 @@ import com.intern.Internship.model.Company;
 public class CompanyValidator implements Validator<Company> {
     @Override
     public void validate(Company entity) {
-        String msg="";
+        String msg = "";
 
-        if(entity.getID().equals("")) msg+="Email cannot be empty!";
-        if(entity.getName().equals("")) msg+="Name cannot be empty!";
-        if(entity.getAddress().equals("")) msg+="Address cannot be empty!";
-        if(entity.getTelephone().equals("")) msg+="Telephone cannot be empty!";
-        if(entity.getDescription().equals("")) msg+="Description cannot be empty!";
-        if(entity.getField().equals("")) msg+="Field cannot be empty!";
-        if(entity.getLogo()==null) msg+="Insert a logo!";
-        if(entity.getPassword().equals("")) msg+="Password cannot be empty!";
+        if (entity.getID().equals(""))
+            msg += "Email cannot be empty!";
+        if (entity.getName().equals(""))
+            msg += "Name cannot be empty!";
+        if (entity.getAddress().equals(""))
+            msg += "Address cannot be empty!";
+        if (entity.getTelephone().equals(""))
+            msg += "Telephone cannot be empty!";
+        if (entity.getDescription().equals(""))
+            msg += "Description cannot be empty!";
+        if (entity.getField().equals(""))
+            msg += "Field cannot be empty!";
+        if (entity.getLogo() == null)
+            msg += "Insert a logo!";
 
-        if(msg!=""){
+        if (msg != "") {
             throw new ValidationException(msg);
         }
     }
