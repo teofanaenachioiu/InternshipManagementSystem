@@ -13,11 +13,17 @@ import {
   MatSidenavModule,
   MatToolbarModule
 } from '@angular/material';
+
 import { GeneralMenuComponent } from './components/general-menu/general-menu.component';
-import { InternshipsComponent } from './internship-app/internships/internships.component';
-import { CandidateMenuComponent } from './components/candidate-menu/candidate-menu.component';
-import { CompanyMenuComponent } from './components/company-menu/company-menu.component';
 import { HomeComponent } from './components/home/home.component';
+import { IntroComponent } from './components/intro/intro.component';
+import { WhatWeDoComponent } from './components/what-we-do/what-we-do.component';
+import { InternshipsGeneralComponent } from './components/internships-general/internships-general.component';
+import { FeedbackComponent } from './components/feedback/feedback.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { StatisticsComponent } from './components/statistics/statistics.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { MatCarouselModule } from '@ngmodule/material-carousel';
 
 const materialComponents = [
   MatButtonModule,
@@ -33,13 +39,21 @@ const materialComponents = [
   declarations: [
     AppComponent,
     GeneralMenuComponent,
-    HomeComponent
+    HomeComponent,
+    IntroComponent,
+    WhatWeDoComponent,
+    InternshipsGeneralComponent,
+    FeedbackComponent,
+    ContactComponent,
+    StatisticsComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    materialComponents
+    materialComponents,
+    MatCarouselModule.forRoot(),
   ],
   providers: [],
   exports: [],

@@ -1,0 +1,108 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Source Sans Pro', sans-serif;
+  outline: none!important;
+}
+
+a {
+  text-decoration: none!important;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+ul {
+  list-style: none;
+  margin: 0px;
+}
+
+p {
+  font-size: 16px;
+  line-height: 26px;
+  letter-spacing: 0.25px;
+  font-weight: 300;
+}
+
+.col-xs-15,
+.col-sm-15,
+.col-md-15,
+.col-lg-15 {
+  position: relative;
+  min-height: 1px;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.col-xs-15 {
+  width: 20%;
+  float: left;
+}
+
+@media (min-width: 768px) {
+  .col-sm-15 {
+    width: 20%;
+    float: left;
+  }
+}
+
+@media (min-width: 992px) {
+  .col-md-15 {
+    width: 20%;
+    float: left;
+  }
+}
+
+@media (min-width: 1200px) {
+  .col-lg-15 {
+    width: 20%;
+    float: left;
+  }
+}
+.section-heading h4 {
+  margin-top: 0px;
+  font-size: 28px;
+  text-transform: uppercase;
+  font-weight: 300;
+  color: #121212;
+}
+
+.section-heading p {
+  color: #7a7a7a;
+  padding: 0px 25%;
+}
+
+
+
+
+
+#internships {
+  text-align: center;
+}
+
+#internships .item {
+  margin: 0px 5px;
+}
+
+.internships-section {
+  background-color: #363e50;
+  padding-bottom: 80px;
+}
+
+#internships .section-heading h4 {
+  color: #fff;
+}
+
+#internships .section-heading p {
+  color: #aaa;
+}
+
+#internships .internships-item img {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/*pentru carusel*/
+
+

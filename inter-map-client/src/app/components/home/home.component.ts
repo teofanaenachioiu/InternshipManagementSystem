@@ -12,11 +12,10 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
-  loggedIn() {
+loggedIn() {
     if (localStorage.getItem('token')) {
       return true;
     }
     return false;
   }
-
 }
