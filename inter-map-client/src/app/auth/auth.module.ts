@@ -14,10 +14,13 @@ import {
   MatSidenavModule,
   MatStepperModule,
   MatToolbarModule,
-   MatCheckboxModule
+  MatCheckboxModule,
+  MatChipsModule,
+  MatAutocompleteModule
 } from '@angular/material';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { KeyWordsComponent } from './register/key-words/key-words.component';
 
 
 
@@ -29,11 +32,12 @@ const materialComponents = [
   MatButtonModule,
   MatIconModule,
   MatStepperModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatChipsModule
 ];
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent, ForgetPasswordComponent, ResetPasswordComponent],
+  declarations: [LoginComponent, RegisterComponent, ForgetPasswordComponent, ResetPasswordComponent, KeyWordsComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,
@@ -42,6 +46,7 @@ const materialComponents = [
     FormsModule,
     ReactiveFormsModule,
     MatInputModule,
+    MatAutocompleteModule,
   ],
   providers: [AuthService]
 })

@@ -1,0 +1,26 @@
+<mat-form-field class="chip-list">
+  <mat-chip-list #chipList aria-label="Fruit selection">
+    <mat-chip
+      *ngFor="let keyWord of keyWords"
+      [selectable]="selectable"
+      [removable]="removable"
+      (removed)="remove(keyWord)">
+      {{keyWord}}
+      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+    </mat-chip>
+    <input
+      placeholder="Add new key words..."
+      #input
+      [formControl]="ctrl"
+      [matAutocomplete]="auto"
+      [matChipInputFor]="chipList"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      [matChipInputAddOnBlur]="addOnBlur"
+      (matChipInputTokenEnd)="add($event)">
+  </mat-chip-list>
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+    <mat-option *ngFor="let keyWord of filteredKeyWords | async" [value]="keyWord">
+      {{keyWord}}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
