@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .banner {
   background-image: url('../../../assets/img/banner-bg.jpg');
   background-repeat: no-repeat;
@@ -41,6 +42,8 @@
 }
 
 
+=======
+>>>>>>> alina_branch
 .intro {
   background-color: #46bae2;
   text-align: center;
@@ -117,7 +120,6 @@
   line-height: 74px;
   background-color: transparent;
 }
-
 a {
   text-decoration: none!important;
 }

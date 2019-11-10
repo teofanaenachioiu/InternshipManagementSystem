@@ -70,7 +70,11 @@
 
 #about {
   padding: 0px;
+<<<<<<< HEAD
   background-image: url('../../../assets/img/services-bg.jpg');
+=======
+  background-image: url('../../../assets/img/banner-bg.jpg');
+>>>>>>> alina_branch
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
