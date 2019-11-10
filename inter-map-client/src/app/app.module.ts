@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MatButtonModule,
-  MatHorizontalStepper,
+  MatCardModule,
   MatIconModule,
   MatListModule,
   MatMenuModule,
@@ -22,7 +22,6 @@ import { FeedbackComponent } from './components/feedback/feedback.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { StatisticsComponent } from './components/statistics/statistics.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { MatCarouselModule } from '@ngmodule/material-carousel';
 
 const materialComponents = [
   MatButtonModule,
@@ -31,8 +30,18 @@ const materialComponents = [
   MatListModule,
   MatButtonModule,
   MatIconModule,
-  MatMenuModule
+  MatMenuModule,
+  MatCardModule
 ];
+
+import { SwiperModule } from 'ngx-swiper-wrapper';
+import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
+import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
+
+const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
+  direction: 'horizontal',
+  slidesPerView: 'auto'
+};
 
 @NgModule({
   declarations: [
@@ -52,9 +61,12 @@ const materialComponents = [
     AppRoutingModule,
     BrowserAnimationsModule,
     materialComponents,
-    MatCarouselModule.forRoot(),
+    SwiperModule
   ],
-  providers: [],
+  providers: [{
+    provide: SWIPER_CONFIG,
+    useValue: DEFAULT_SWIPER_CONFIG
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

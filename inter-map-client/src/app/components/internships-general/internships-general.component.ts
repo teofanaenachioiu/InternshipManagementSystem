@@ -1,4 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {
+  SwiperComponent, SwiperDirective, SwiperConfigInterface,
+  SwiperScrollbarInterface, SwiperPaginationInterface, SwiperAutoplayInterface
+} from 'ngx-swiper-wrapper';
 
 @Component({
   selector: 'app-internships-general',
@@ -7,66 +11,39 @@ import {Component, OnInit} from '@angular/core';
 })
 export class InternshipsGeneralComponent implements OnInit {
 
+  public show = true;
+
+  public slides = [
+    'assets/img/feed-post-1.jpg',
+    'assets/img/feed-post-2.jpg',
+    'assets/img/feed-post-3.jpg',
+    'assets/img/feed-post-4.jpg',
+    'assets/img/feed-post-5.jpg',
+  ];
+
+  private pagination: SwiperPaginationInterface = {
+    el: '.swiper-pagination',
+    clickable: true,
+    hideOnClick: false
+  };
+
+  private autoplay: SwiperAutoplayInterface = {
+    disableOnInteraction: false,
+    delay: 1000
+  };
+
+  public config: SwiperConfigInterface = {
+    a11y: true,
+    slidesPerView: 3,
+    navigation: false,
+    pagination: this.pagination,
+    autoplay: this.autoplay,
+    spaceBetween: 20,
+    mousewheel: true,
+  };
+
   constructor() {
   }
-
-  cards = [
-    {
-      title: 'Card Title 1',
-      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
-      buttonText: 'Button',
-      img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg'
-    },
-    {
-      title: 'Card Title 2',
-      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
-      buttonText: 'Button',
-      img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg'
-    },
-    {
-      title: 'Card Title 3',
-      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
-      buttonText: 'Button',
-      img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg'
-    },
-    {
-      title: 'Card Title 4',
-      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
-      buttonText: 'Button',
-      img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg'
-    },
-    {
-      title: 'Card Title 5',
-      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
-      buttonText: 'Button',
-      img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg'
-    },
-    {
-      title: 'Card Title 6',
-      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
-      buttonText: 'Button',
-      img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg'
-    },
-    {
-      title: 'Card Title 7',
-      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
-      buttonText: 'Button',
-      img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg'
-    },
-    {
-      title: 'Card Title 8',
-      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
-      buttonText: 'Button',
-      img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg'
-    },
-    {
-      title: 'Card Title 9',
-      description: 'Some quick example text to build on the card title and make up the bulk of the card content',
-      buttonText: 'Button',
-      img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(34).jpg'
-    },
-  ];
-  slides: any = [[]];
 
   ngOnInit(): void {
   }

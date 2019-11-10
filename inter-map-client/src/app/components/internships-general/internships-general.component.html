@@ -9,9 +9,16 @@
     </p>
   </div>
 
-  <div class="row">
-
-<!--  TODO-->
-
+  <div class="content-container">
+    <swiper *ngIf="show" class="swiper-container" [config]="config">
+      <div *ngFor="let slide of slides" class="swiper-slide">
+        <div class="img" [ngStyle]="{'background-image': 'url(' + slide + ')'}">
+          <div class="text"> Internship title</div>
+        </div>
+      </div>
+    </swiper>
+    <div *ngIf="show">
+      <div class="swiper-scrollbar"></div>
+    </div>
   </div>
 </section>
