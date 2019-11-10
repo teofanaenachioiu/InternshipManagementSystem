@@ -63,7 +63,7 @@ p {
 }
 
 .section-heading h4 {
-  margin-top: 0px;
+  margin-top: 0;
   font-size: 28px;
   text-transform: uppercase;
   font-weight: 300;
@@ -72,20 +72,17 @@ p {
 
 .section-heading p {
   color: #7a7a7a;
-  padding: 0px 25%;
+  padding: 0 25%;
 }
 
 #internships {
   text-align: center;
 }
 
-#internships .item {
-  margin: 0px 5px;
-}
-
 .internships-section {
   background-color: #363e50;
-  padding-bottom: 80px;
+  padding-top: 5vw;
+  padding-bottom: 1vw;
 }
 
 #internships .section-heading h4 {
@@ -106,9 +103,9 @@ p {
 .content-container {
   position: relative;
   overflow: auto;
-  height: 20vw;
+  height: 18vw;
   min-height: 0;
-  margin: 5vw 1vw;
+  margin: 5vw 10vw;
 }
 
 .swiper-container {
@@ -120,7 +117,7 @@ p {
 }
 
 .swiper-slide .img{
-  background-size: 100%;
+  background-size: cover;
   height: inherit;
 }
 
