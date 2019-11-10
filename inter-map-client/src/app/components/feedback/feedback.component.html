@@ -12,132 +12,35 @@
       <div class="row">
         <div class="wrapper">
           <div class="col-md-6">
-            <ul class="tabs clearfix" data-tabgroup="first-tab-group">
-              <li><a href="#tab1" class="active">
-                shoreditch wolf ethical hashtag
+            <ul class="tabs clearfix" data-tabgroup="first-tab-group" *ngFor="let item of items">
+              <li (click)="toggle(items, item)">
+                {{item.title}}
                 <ul class="info-post">
                   <li>
                     <i>
-                    <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon></i>
-                    Admin</li>
-                  <li><i class="fa fa-calendar"></i>14 November 2017</li>
-                  <li><i class="fa fa-wechat"></i>Name of internship</li>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">face icon</mat-icon></i>
+                    {{item.username}}</li>
+                  <li><i class="fa fa-calendar"></i>{{item.date}}</li>
+                  <li><i class="fa fa-wechat"></i>{{item.internship}}</li>
                 </ul>
-              </a></li>
-              <li><a href="#tab2">
-                kickstarter master cleanse scenester
-                <ul class="info-post">
-                  <li><i class="fa fa-user"></i>Krist</li>
-                  <li><i class="fa fa-calendar"></i>08 November 2017</li>
-                  <li><i class="fa fa-wechat"></i>Name of internship</li>
-                </ul>
-              </a></li>
-              <li><a href="#tab3">
-                Seitan flexitarian prism shaman
-                <ul class="info-post">
-                  <li><i class="fa fa-user"></i>Nanny</li>
-                  <li><i class="fa fa-calendar"></i>02 November 2017</li>
-                  <li><i class="fa fa-wechat"></i>Name of internship</li>
-                </ul>
-              </a></li>
-              <li><a href="#tab4">
-                Fashion axe selvage everyday carry
-                <ul class="info-post">
-                  <li><i class="fa fa-user"></i>Krist</li>
-                  <li><i class="fa fa-calendar"></i>28 October 2017</li>
-                  <li><i class="fa fa-wechat"></i>Name of internship</li>
-                </ul>
-              </a></li>
-              <li><a href="#tab5">
-                chambray truffaut godard flannel
-                <ul class="info-post">
-                  <li><i class="fa fa-user"></i>Admin</li>
-                  <li><i class="fa fa-calendar"></i>22 October 2017</li>
-                  <li><i class="fa fa-wechat"></i>Name of internship</li>
-                </ul>
-              </a></li>
+              </li>
             </ul>
           </div>
           <div class="col-md-6">
-            <div id="first-tab-group" class="tabgroup">
-              <div id="tab1">
+            <div id="first-tab-group" class="tabgroup" *ngFor="let item of items">
+              <div [hidden]="item.hidden">
                 <img src="assets/img/feed-post-1.jpg" alt="">
                 <div class="text-content">
                   <h4>shoreditch wolf ethical hashtag</h4>
                   <ul class="info-post">
-                    <li><i class="fa fa-user"></i>Admin</li>
-                    <li><i class="fa fa-calendar"></i>14 November 2017</li>
+                    <li><i class="fa fa-user"></i>{{item.username}}</li>
+                    <li><i class="fa fa-calendar"></i>{{item.date}}</li>
                     <li><i class="fa fa-wechat"></i>12 Comments</li>
                   </ul>
                   <p>La croix kombucha bespoke dreamcatcher, tumeric tbh quinoa micro dosing gastro pub. 8-bit freegan
                     chartreuse synth jean shorts farm to table, cold pressed authen tic. Mixtape hella beard meditation,
                     Pok pok meh tote bag single-origin coffee, everyday carry unicorn raw denim distillery cray pork
                     belly taxidermy organic polaroid.</p>
-                  <!-- <div class="primary-button"><a href="#contact-us">Continue Reading</a></div> -->
-                </div>
-              </div>
-              <div id="tab2">
-                <img src="assets/img/feed-post-2.jpg" alt="">
-                <div class="text-content">
-                  <h4>kickstarter master cleanse scenester</h4>
-                  <ul class="info-post">
-                    <li><i class="fa fa-user"></i>Krist</li>
-                    <li><i class="fa fa-calendar"></i>08 November 2017</li>
-                    <li><i class="fa fa-wechat"></i>16 Comments</li>
-                  </ul>
-                  <p>Artisan messenger bag gochujang tote bag, leggings synth literally unicorn street art ramps
-                    slow-carb everyday carry mixtape. Tbh synth hell of kombucha hot chicken dreamcatcher gentrify
-                    organic asymmetrical gastropub VHS photo booth raw denim. Vape edison bulb glossier air plant
-                    heirloom readymade bitters air plant pug.</p>
-                  <!-- <div class="primary-button"><a href="#contact-us">Continue Reading</a></div> -->
-                </div>
-              </div>
-              <div id="tab3">
-                <img src="assets/img/feed-post-3.jpg" alt="">
-                <div class="text-content">
-                  <h4>Seitan flexitarian prism shaman</h4>
-                  <ul class="info-post">
-                    <li><i class="fa fa-user"></i>Nanny</li>
-                    <li><i class="fa fa-calendar"></i>02 November 2017</li>
-                    <li><i class="fa fa-wechat"></i>9 Comments</li>
-                  </ul>
-                  <p>Cronut slow-carb 90's irony cred fashion axe jean shorts cardigan wayfarers. Typewriter retro plaid
-                    jianbing 90's taiyaki, sriracha vegan fam. Letterpress cornhole mixtape ethical celiac distillery
-                    echo park. Selvage readymade cornhole vape. Semiotics iPhone mumblecore, sartorial succulents
-                    slow-carb offal pabst trust fund brunch.</p>
-                  <div class="primary-button"><a href="#contact-us">Continue Reading</a></div>
-                </div>
-              </div>
-              <div id="tab4">
-                <img src="assets/img/feed-post-4.jpg" alt="">
-                <div class="text-content">
-                  <h4>Fashion axe selvage everyday carry</h4>
-                  <ul class="info-post">
-                    <li><i class="fa fa-user"></i>Krist</li>
-                    <li><i class="fa fa-calendar"></i>28 October 2017</li>
-                    <li><i class="fa fa-wechat"></i>11 Comments</li>
-                  </ul>
-                  <p>La croix kombucha bespoke dreamcatcher, tumeric tbh quinoa micro dosing gastro pub. 8-bit freegan
-                    chartreuse synth jean shorts farm to table, cold pressed authen tic. Mixtape hella beard meditation,
-                    Pok pok meh tote bag single-origin coffee, everyday carry unicorn raw denim distillery cray pork
-                    belly taxidermy organic polaroid.</p>
-                  <div class="primary-button"><a href="#contact-us">Continue Reading</a></div>
-                </div>
-              </div>
-              <div id="tab5">
-                <img src="assets/img/feed-post-5.jpg" alt="">
-                <div class="text-content">
-                  <h4>chambray truffaut godard flannel</h4>
-                  <ul class="info-post">
-                    <li><i class="fa fa-user"></i>Admin</li>
-                    <li><i class="fa fa-calendar"></i>22 October 2017</li>
-                    <li><i class="fa fa-wechat"></i>24 Comments</li>
-                  </ul>
-                  <p>Cronut slow-carb 90's irony cred fashion axe jean shorts cardigan wayfarers. Typewriter retro plaid
-                    jianbing 90's taiyaki, sriracha vegan fam. Letterpress cornhole mixtape ethical celiac distillery
-                    echo park. Selvage readymade cornhole vape. Semiotics iPhone mumblecore, sartorial succulents
-                    slow-carb offal pabst trust fund brunch.</p>
-                  <div class="primary-button"><a href="#contact-us">Continue Reading</a></div>
                 </div>
               </div>
             </div>

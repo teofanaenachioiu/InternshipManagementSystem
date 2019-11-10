@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
+  MatExpansionModule,
   MatButtonModule,
   MatCardModule,
   MatIconModule,
@@ -32,7 +33,8 @@ const materialComponents = [
   MatButtonModule,
   MatIconModule,
   MatMenuModule,
-  MatCardModule
+  MatCardModule,
+  MatExpansionModule
 ];
 
 import { SwiperModule } from 'ngx-swiper-wrapper';
