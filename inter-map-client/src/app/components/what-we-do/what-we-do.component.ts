@@ -52,9 +52,7 @@ export class WhatWeDoComponent implements OnInit {
 
   toggle(items: any, item: any) {
     for (const itemm of items) {
-      if (itemm !== item) {
         itemm.hidden = true;
-      }
     }
     item.hidden = !item.hidden;
   }
