@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InternshipsComponent implements OnInit {
 
+  private candidate = true;
+
   constructor() { }
 
   ngOnInit() {

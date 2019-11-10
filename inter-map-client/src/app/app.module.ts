@@ -13,8 +13,11 @@ import {
   MatSidenavModule,
   MatToolbarModule
 } from '@angular/material';
-import { GeneralMenuComponent } from './menus/general-menu/general-menu.component';
+import { GeneralMenuComponent } from './components/general-menu/general-menu.component';
 import { InternshipsComponent } from './internship-app/internships/internships.component';
+import { CandidateMenuComponent } from './components/candidate-menu/candidate-menu.component';
+import { CompanyMenuComponent } from './components/company-menu/company-menu.component';
+import { HomeComponent } from './components/home/home.component';
 
 const materialComponents = [
   MatButtonModule,
@@ -30,6 +33,7 @@ const materialComponents = [
   declarations: [
     AppComponent,
     GeneralMenuComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +42,7 @@ const materialComponents = [
     materialComponents
   ],
   providers: [],
+  exports: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
