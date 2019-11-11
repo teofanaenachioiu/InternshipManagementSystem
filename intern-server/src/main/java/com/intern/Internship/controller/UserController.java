@@ -9,6 +9,7 @@ import com.intern.Internship.service.SecurityService;
 import com.intern.Internship.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -53,7 +54,7 @@ public class UserController {
         userService.save(userForm);
         securityService.autoLogin(userForm.getUsername(), userForm.getPassword());
 
-        return ResponseEntity.accepted().body(userForm);
+        return ResponseEntity.ok().body(userForm);
     }
 
     @GetMapping("/api/auth/login")
@@ -65,6 +66,18 @@ public class UserController {
             model.addAttribute("message", "You have been logged out successfully.");
 
         return "ana";
+    }
+
+    @PostMapping("/api/auth/login")
+    public ResponseEntity<User> login(@RequestBody User userForm) {
+        // validate userForm
+        User user = userService.findByUser(userForm.getUsername(), userForm.getPassword());
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(user);
+        }
+        String token = getJWTToken(user.getUsername());
+        user.setToken(token);
+        return ResponseEntity.ok().body(user);
     }
 
     @GetMapping({ "/", "/api/auth/welcome" })
