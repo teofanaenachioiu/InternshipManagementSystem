@@ -9,13 +9,11 @@ import com.intern.Internship.service.SecurityService;
 import com.intern.Internship.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
-// import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -46,15 +44,14 @@ public class UserController {
         // if (bindingResult.hasErrors()) {
         // return "registration";
         // }
-        System.out.println("userForm " + userForm.getUsername());
+
         String token = getJWTToken(userForm.getUsername());
         userForm.setToken(token);
-        System.out.println("token " + token);
 
         userService.save(userForm);
-        securityService.autoLogin(userForm.getUsername(), userForm.getPassword());
+        // securityService.autoLogin(userForm.getUsername(), userForm.getPassword());
 
-        return ResponseEntity.ok().body(userForm);
+        return ResponseEntity.accepted().body(userForm);
     }
 
     @GetMapping("/api/auth/login")
@@ -73,11 +70,12 @@ public class UserController {
         // validate userForm
         User user = userService.findByUser(userForm.getUsername(), userForm.getPassword());
         if (user == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(user);
+            return ResponseEntity.accepted().body(new User());
         }
+
         String token = getJWTToken(user.getUsername());
         user.setToken(token);
-        return ResponseEntity.ok().body(user);
+        return ResponseEntity.accepted().body(user);
     }
 
     @GetMapping({ "/", "/api/auth/welcome" })
