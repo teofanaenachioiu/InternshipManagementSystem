@@ -14,7 +14,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
-// import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -45,13 +44,12 @@ public class UserController {
         // if (bindingResult.hasErrors()) {
         // return "registration";
         // }
-        System.out.println("userForm " + userForm.getUsername());
+
         String token = getJWTToken(userForm.getUsername());
         userForm.setToken(token);
-        System.out.println("token " + token);
 
         userService.save(userForm);
-        securityService.autoLogin(userForm.getUsername(), userForm.getPassword());
+        // securityService.autoLogin(userForm.getUsername(), userForm.getPassword());
 
         return ResponseEntity.accepted().body(userForm);
     }
@@ -65,6 +63,19 @@ public class UserController {
             model.addAttribute("message", "You have been logged out successfully.");
 
         return "ana";
+    }
+
+    @PostMapping("/api/auth/login")
+    public ResponseEntity<User> login(@RequestBody User userForm) {
+        // validate userForm
+        User user = userService.findByUser(userForm.getUsername(), userForm.getPassword());
+        if (user == null) {
+            return ResponseEntity.accepted().body(new User());
+        }
+
+        String token = getJWTToken(user.getUsername());
+        user.setToken(token);
+        return ResponseEntity.accepted().body(user);
     }
 
     @GetMapping({ "/", "/api/auth/welcome" })
