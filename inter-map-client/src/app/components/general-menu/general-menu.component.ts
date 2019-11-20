@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
+import {Route, Router} from '@angular/router';
 
 @Component({
   selector: 'app-general-menu',
@@ -8,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 
 export class GeneralMenuComponent implements OnInit {
 
-  constructor() { }
-
   ngOnInit() {
   }
+
+  @HostListener('window:scroll', ['$event'])
+  scrollHandler(event) {
+    console.log('Scroll Event');
+  }
+
 
 }
