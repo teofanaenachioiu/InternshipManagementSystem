@@ -1,19 +1,17 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" (scroll)="scrollHandler($event)" style="position: fixed; z-index: 10">
   <span class="nav-title">interMap</span>
 
-  <!-- This fills the remaining space of the current row -->
   <span class="example-fill-remaining-space"></span>
 
-  <button mat-button color="accent" [routerLink]="'/'"> HOME </button>
-  <button mat-button [routerLink]="'/internship-app/internships'"> INTERNSHIPS </button>
-  <button mat-button [matMenuTriggerFor]="menu">JOIN</button>
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item [routerLink]="'/auth/login'"> LOGIN </button>
-    <button mat-menu-item [routerLink]="'/auth/register'"> REGISTER </button>
-  </mat-menu>
   <button mat-button [routerLink]="'/'">
-    <mat-icon>help_outline</mat-icon>
+    <mat-icon>home</mat-icon>
   </button>
+  <button mat-button [routerLink]="'/'" fragment="about">ABOUT</button>
+  <button mat-button [routerLink]="'/'" fragment="statistics">STATISTICS</button>
+  <button mat-button [routerLink]="'/'" fragment="internships">INTERNSHIPS</button>
+  <button mat-button [routerLink]="'/'" fragment="feedback">FEEDBACK</button>
+  <button mat-button [routerLink]="'/'" fragment="contact">CONTACT</button>
+  <button mat-button [routerLink]="'/auth/login'">LOGIN</button>
 </mat-toolbar>
 
 <router-outlet></router-outlet>
