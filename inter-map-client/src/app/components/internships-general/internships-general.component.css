@@ -1,12 +1,13 @@
+
 * {
   margin: 0;
   padding: 0;
   font-family: 'Source Sans Pro', sans-serif;
-  outline: none!important;
+  outline: none !important;
 }
 
 a {
-  text-decoration: none!important;
+  text-decoration: none !important;
 }
 
 body {
@@ -60,8 +61,9 @@ p {
     float: left;
   }
 }
+
 .section-heading h4 {
-  margin-top: 0px;
+  margin-top: 0;
   font-size: 28px;
   text-transform: uppercase;
   font-weight: 300;
@@ -70,24 +72,17 @@ p {
 
 .section-heading p {
   color: #7a7a7a;
-  padding: 0px 25%;
+  padding: 0 25%;
 }
-
-
-
-
 
 #internships {
   text-align: center;
 }
 
-#internships .item {
-  margin: 0px 5px;
-}
-
 .internships-section {
   background-color: #363e50;
-  padding-bottom: 80px;
+  padding-top: 5vw;
+  padding-bottom: 1vw;
 }
 
 #internships .section-heading h4 {
@@ -105,4 +100,32 @@ p {
 
 /*pentru carusel*/
 
+.content-container {
+  position: relative;
+  overflow: auto;
+  height: 18vw;
+  min-height: 0;
+  margin: 5vw 10vw;
+}
 
+.swiper-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.swiper-slide .img{
+  background-size: cover;
+  height: inherit;
+}
+
+.swiper-slide .text{
+  background-color: gray;
+  opacity: 0.5;
+  color: white;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 3vw;
+}

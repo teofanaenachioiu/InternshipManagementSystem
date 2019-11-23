@@ -5,8 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
+  MatExpansionModule,
   MatButtonModule,
-  MatHorizontalStepper,
+  MatCardModule,
   MatIconModule,
   MatListModule,
   MatMenuModule,
@@ -31,8 +32,19 @@ const materialComponents = [
   MatListModule,
   MatButtonModule,
   MatIconModule,
-  MatMenuModule
+  MatMenuModule,
+  MatCardModule,
+  MatExpansionModule
 ];
+
+import { SwiperModule } from 'ngx-swiper-wrapper';
+import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
+import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
+
+const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
+  direction: 'horizontal',
+  slidesPerView: 'auto'
+};
 
 @NgModule({
   declarations: [
@@ -52,10 +64,12 @@ const materialComponents = [
     AppRoutingModule,
     BrowserAnimationsModule,
     materialComponents,
-    MatCarouselModule.forRoot(),
+    SwiperModule
   ],
-  providers: [],
-  exports: [],
+  providers: [{
+    provide: SWIPER_CONFIG,
+    useValue: DEFAULT_SWIPER_CONFIG
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

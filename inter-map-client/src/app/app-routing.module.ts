@@ -34,7 +34,7 @@ const routes: Routes = [
   declarations: [],
   imports: [
     CommonModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes, {anchorScrolling: 'enabled'})
   ],
   exports: [RouterModule]
 })

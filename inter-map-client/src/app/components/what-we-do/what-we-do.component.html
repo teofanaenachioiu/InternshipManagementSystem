@@ -1,4 +1,4 @@
-<div class="second-tabs-content what-we-do">
+<div class="what-we-do">
   <div class="container">
     <div class="row">
 
@@ -19,23 +19,20 @@
               <ul class="tabs clearfix" data-tabgroup="second-tab-group">
 
                 <li *ngFor="let item of items" class="col-md-15 col-sm-12 col-xs-12">
-                  <a routerLinkActive="active">
-                    <div class="list-item">
+                    <div class="list-item" (click)="toggle(items, item)">
                       <div class="icon">
-                        <img [src]=item.icon [alt]=item.title>
+                        <img class="imagine" [src]=item.icon [alt]=item.title>
                       </div>
                       <h4>{{item.title}}</h4>
                     </div>
-                  </a>
                 </li>
               </ul>
             </div>
           </div>
 
           <div class="col-md-12">
-            <section id="second-tab-group" class="tabgroup">
-              <div *ngFor="let item of items" [id]=item.tag>
-                <div class="row">
+              <div *ngFor="let item of items" >
+                <div class="row" [hidden]="item.hidden">
                   <div class="tab-content-services">
                     <div class="col-md-6">
                       <div class="left-text">
@@ -53,7 +50,6 @@
                   </div>
                 </div>
               </div>
-            </section>
           </div>
         </div>
       </div>
