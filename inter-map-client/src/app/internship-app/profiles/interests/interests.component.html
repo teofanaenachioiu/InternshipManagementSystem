@@ -1,7 +1,7 @@
 <div [formGroup]="form">
   <mat-form-field class="full-width">
     <mat-chip-list #chipList>
-      <mat-chip *ngFor="let interest of form.get('interests').controls; let i = index;" [selectable]="selectable"
+      <mat-chip *ngFor="let interest of interestsControls.controls; let i = index;" [selectable]="selectable"
                 [removable]="removable" (removed)="remove(i)">
         {{ interest.value }}
         <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>

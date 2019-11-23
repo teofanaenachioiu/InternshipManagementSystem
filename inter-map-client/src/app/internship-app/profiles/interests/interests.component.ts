@@ -101,6 +101,10 @@ export class InterestsComponent implements ControlValueAccessor, OnDestroy {
     }
   }
 
+  get interestsControls() {
+    return this.form.get('interests') as FormArray;
+  }
+
   remove(index: number): void {
 
     const interests = this.form.get('interests') as FormArray;
