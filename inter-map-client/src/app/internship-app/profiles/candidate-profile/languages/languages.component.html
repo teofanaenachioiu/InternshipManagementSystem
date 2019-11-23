@@ -1,0 +1,18 @@
+
+<div class="div-form" [formGroup]="form">
+
+  <mat-form-field>
+    <mat-label>Languages</mat-label>
+    <mat-select formControlName="languages" multiple>
+      <mat-option *ngFor="let lang of languageList" [value]="lang" selected>
+        {{ lang }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <input formControlName="newLanguage"  matInput placeholder="New language">
+  </mat-form-field>
+  <mat-icon (click)="addIcon()">add</mat-icon>
+
+
+</div>

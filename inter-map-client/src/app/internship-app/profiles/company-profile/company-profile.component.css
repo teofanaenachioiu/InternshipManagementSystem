@@ -1,0 +1,18 @@
+div {
+  /*border: 1px solid;*/
+}
+
+.main-div {
+  display: flex;
+}
+
+.side-div {
+  float: left;
+}
+
+.form-div {
+  border: 1px solid;
+  padding: 1vw;
+  margin: 1vw;
+  border-radius: 2vw;
+}

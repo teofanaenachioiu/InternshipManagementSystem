@@ -1,0 +1,24 @@
+<div [formGroup]="form">
+  <mat-form-field class="full-width">
+    <mat-chip-list #chipList>
+      <mat-chip *ngFor="let interest of form.get('interests').controls; let i = index;" [selectable]="selectable"
+                [removable]="removable" (removed)="remove(i)">
+        {{ interest.value }}
+        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+      </mat-chip>
+      <input placeholder="New interest..."
+             [matChipInputFor]="chipList"
+             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+             [matChipInputAddOnBlur]="addOnBlur"
+             (matChipInputTokenEnd)="add($event)" />
+    </mat-chip-list>
+  </mat-form-field>
+
+  <mat-chip-list aria-label="Fruit selection">
+    <mat-chip *ngFor="let suggestion of suggestionList" [selectable]="selectable"
+              [removable]="removable" (removed)="addSuggestion(suggestion)">
+      {{ suggestion }}
+      <mat-icon matChipRemove *ngIf="removable">add</mat-icon>
+    </mat-chip>
+  </mat-chip-list>
+</div>

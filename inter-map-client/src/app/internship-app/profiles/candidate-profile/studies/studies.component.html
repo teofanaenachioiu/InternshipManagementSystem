@@ -1,0 +1,35 @@
+ <div [formGroup]="form">
+    <div formArrayName="studies">
+
+      <div *ngFor="let study of studiesForms.controls; let i=index" [formGroupName]="i">
+        <mat-form-field>
+          <label>
+            <input matInput placeholder="Name of institution" formControlName="nameOfInstitution">
+          </label>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <label>
+            <input matInput placeholder="Profile" formControlName="profile">
+          </label>
+        </mat-form-field>
+        <mat-form-field>
+          <label>
+            <input matInput [matDatepicker]="fromDate" placeholder="Choose a date" formControlName="fromDate">
+          </label>
+          <mat-datepicker-toggle [for]="fromDate" matSuffix></mat-datepicker-toggle>
+          <mat-datepicker #fromDate></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+          <label>
+            <input matInput [matDatepicker]="toDate" placeholder="Choose a date" formControlName="toDate">
+          </label>
+          <mat-datepicker-toggle [for]="toDate" matSuffix></mat-datepicker-toggle>
+          <mat-datepicker #toDate></mat-datepicker>
+        </mat-form-field>
+
+        <button mat-raised-button (click)="removeStudy(i)"><mat-icon>delete</mat-icon></button>
+      </div>
+      <button mat-raised-button (click)="addStudy()"><mat-icon>add</mat-icon></button>
+    </div>
+ </div>
