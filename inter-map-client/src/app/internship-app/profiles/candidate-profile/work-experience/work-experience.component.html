@@ -1,0 +1,42 @@
+
+<div [formGroup]="form">
+      <div formArrayName="workExperience">
+        <div *ngFor="let work of workExperienceForms.controls; let i=index" [formGroupName]="i">
+          <mat-form-field>
+          <label>
+            <input matInput placeholder="Where" formControlName="where">
+          </label>
+          </mat-form-field>
+
+          <mat-form-field>
+            <label>
+              <input matInput [matDatepicker]="fromDateWork" placeholder="Choose a date" formControlName="fromDate">
+            </label>
+            <mat-datepicker-toggle [for]="fromDateWork" matSuffix></mat-datepicker-toggle>
+            <mat-datepicker #fromDateWork></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field>
+            <label>
+              <input matInput [matDatepicker]="toDateWork" placeholder="Choose a date" formControlName="toDate">
+            </label>
+            <mat-datepicker-toggle [for]="toDateWork" matSuffix></mat-datepicker-toggle>
+            <mat-datepicker #toDateWork></mat-datepicker>
+          </mat-form-field>
+
+          <br>
+
+          <mat-form-field>
+            <label>
+              <input matInput placeholder="Job" formControlName="job">
+            </label>
+          </mat-form-field>
+
+          <br>
+
+          <button mat-raised-button (click)="removeWork(i)"><mat-icon>delete</mat-icon></button>
+        </div>
+        <button mat-raised-button (click)="addWork()"><mat-icon>add</mat-icon></button>
+
+      </div>
+</div>

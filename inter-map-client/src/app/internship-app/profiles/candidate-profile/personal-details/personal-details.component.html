@@ -1,0 +1,28 @@
+
+<div [formGroup]="form">
+  <mat-form-field>
+    <label>
+      <input matInput placeholder="name" formControlName="name">
+    </label>
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <label>
+      <input matInput placeholder="surname" formControlName="surname">
+    </label>
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <label>
+      <input matInput [matDatepicker]="myDatePicker" placeholder="Choose a date" formControlName="dateOfBirth">
+    </label>
+    <mat-datepicker-toggle [for]="myDatePicker" matSuffix></mat-datepicker-toggle>
+    <mat-datepicker #myDatePicker></mat-datepicker>
+  </mat-form-field>
+  <br>
+  <mat-radio-group aria-label="Select an option" formControlName="sex">
+    <mat-radio-button value="M">M</mat-radio-button>
+    <mat-radio-button value="F">F</mat-radio-button>
+    <mat-radio-button value="O">O</mat-radio-button>
+  </mat-radio-group>
+</div>
