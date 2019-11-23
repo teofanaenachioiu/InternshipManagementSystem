@@ -1,7 +1,7 @@
 footer {
   background-color: #c3d7ee;
   padding: 0px 0px;
-  height: 50px;
+  height: 100px;
 }
 
 footer a {
@@ -45,7 +45,7 @@ footer .social-icons a:hover {
     padding: 30px 0px 0px 0px;
   }
   footer .social-icons {
-    padding: 30px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
   }
 
   footer .back-to-top a {

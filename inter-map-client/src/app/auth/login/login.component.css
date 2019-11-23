@@ -6,7 +6,7 @@
 .login-circle {
   position: absolute;
   left: 50%;
-  transform: translate(-50%, 5%);
+  transform: translate(-50%, 15%);
 
   width: 38vw;
   height: 38vw;
@@ -101,6 +101,20 @@
   top: 85%;
   left: 50%;
   transform: translate(-50%, -85%);
+
+  width: auto;
+  height: 2.5vw;
+  min-height: 30px;
+
+  color: #0D3c73;
+  font-size: 12px;
+}
+
+.text1{
+  position: absolute;
+  top: 92%;
+  left: 50%;
+  transform: translate(-50%, -92%);
 
   width: auto;
   height: 2.5vw;
