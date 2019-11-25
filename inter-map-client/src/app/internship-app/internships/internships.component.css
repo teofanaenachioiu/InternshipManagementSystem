@@ -1,0 +1,27 @@
+.pull-right {
+
+    margin-top: 50px;
+    margin-right: 300px;
+}
+
+.row {
+
+    margin-top: 50px;
+}
+
+
+  
+  input[type=text] {
+    width: 130px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('https://www.greymatter.com/corporate/wp-content/themes/gm/showcases/bing-search-api/api-search-web.jpg');
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+  }
