@@ -8,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 export class InternshipsComponent implements OnInit {
 
   filteredParentCompany ='';
+  filteredMultipleCompany='';
 
+  
   constructor() { }
 
   ngOnInit() {

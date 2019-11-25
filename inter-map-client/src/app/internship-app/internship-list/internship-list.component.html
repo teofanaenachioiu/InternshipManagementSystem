@@ -2,15 +2,19 @@
   <!-- <button (click)="onClickMe()">Click me</button> -->
 
 
-
-  <div class="form-check" *ngFor="let company of getCompanyList()">
-    <input class="form-check-input" (change)="onChange(company, $event.target.checked)"name="{{ company }}" type="checkbox" id="{{company}}">
+<div class="dreapta">
+  
+  <div class="topright">
+  <div class="form-check" *ngFor="let company of getCompanyList() " >
+    <input class="form-check-input" (change)="onChange(company, $event.target.checked)" name="{{ company }}" type="checkbox" id="{{company}}">
     <label class="form-check-label" for="{{company}}">
-        {{company}}
+        {{company}}   ( {{getNumberInternshipsOfCompany(company)}} )  
     </label>
+   
+  </div>
   </div>
 
-
+  <div class="stanga">
   <div class="row">
     <div class="col-xs-12">
       <app-internship-item
@@ -19,11 +23,11 @@
         (internshipSelected)=" onInternshipSelected(internshipEl)"></app-internship-item>
     </div>
     </div>
-  
     
-  <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
   <div style="padding-left:450px;">
     <pagination-controls class="my-pagination" (pageChange)="p= $event"></pagination-controls>
   </div>
+
+  </div>
+</div>
   <!-- *ngFor="let internshipEl of internships  | filterCompany:filteredChildCompany:'company' | paginate: { itemsPerPage: 3, currentPage: p }" -->
-  <!-- *ngFor="let internshipEl of internships  | filterMultipleCompany: filteredMultipleCompany:'company' | paginate: { itemsPerPage: 3, currentPage: p }" -->

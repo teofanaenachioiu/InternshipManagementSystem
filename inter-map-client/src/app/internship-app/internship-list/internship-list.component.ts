@@ -51,7 +51,6 @@ export class InternshipListComponent implements OnInit {
   onClickMe() {
     console.log('You are my hero!');
      this.getCompanyList();
-    // console.log(this.companies);
      console.log(this.getNumberInternshipsOfCompany("Fortech"));
   }
 
@@ -77,23 +76,12 @@ getNumberInternshipsOfCompany(companyName){
 
 onChange(companyName:string, isChecked: boolean) {
   if(isChecked) {
-    // this.filteredMultipleCompany.push(companyName);
-    // var str = "Apples are round, and apples are juicy. "; 
-    // var splitted = str.split(" "); 
     this.filteredMultipleCompany += companyName + ",";
-    // this.pipeCompany.transform(this.internships,this.filteredMultipleCompany,"company");
-    //console.log(this.filteredMultipleCompany);
-
   } else {
-    //  let index = this.filteredMultipleCompany.indexOf(companyName);
-    // this.filteredMultipleCompany.splice(index,1);
-    //console.log(this.filteredMultipleCompany);
-    var const_str = companyName + ",";
-    //var str = this.filteredMultipleCompany.slice(0,7);
+    var const_str = companyName + ","
     var str = this.filteredMultipleCompany.replace(const_str,"");
     this.filteredMultipleCompany = "";
     this.filteredMultipleCompany = str;
-
     console.log(this.filteredMultipleCompany);
   }
 }
