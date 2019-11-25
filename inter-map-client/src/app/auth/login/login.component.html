@@ -1,5 +1,5 @@
 <div class='main-container'>
-  <form class='login-circle'>
+  <form class='login-circle' [formGroup]="form">
     <img class='hex-icon' alt='avatar' src='assets/img/hexagon.png'>
     <mat-form-field class="login-input input-email">
       <input matInput type='text' [formControl]='email' placeholder='Email' required>
@@ -13,9 +13,10 @@
       <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" >
         <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
-      <mat-error *ngIf="password.hasError('minLength') || password.hasError('required')">
-        {{getErrorMessagePassword()}}
+      <mat-error *ngIf="password.hasError('required') || password.hasError('minlength')">
+        {{getErrorMessagePassword()}} 
       </mat-error>
+
     </mat-form-field>
     <mat-label class="login-error-message">{{loginMessage}}</mat-label>
     <button mat-button (click)='login()' class='input-button' value='Login'

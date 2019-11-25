@@ -1,1 +1,14 @@
 <p>internships works!</p>
+
+<div class="pull-right">
+        <input type="text"  [(ngModel)]="filteredParentCompany">
+        </div>
+
+<div class="row">
+    <div class="col-md-5">
+<app-internship-list
+[filteredChildCompany]="filteredParentCompany">
+    (internshipsWasSelected)="selectedInternship = $event">
+</app-internship-list>
+</div>
+</div>

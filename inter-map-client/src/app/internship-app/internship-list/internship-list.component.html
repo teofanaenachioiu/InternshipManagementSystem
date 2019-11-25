@@ -1,0 +1,14 @@
+
+<div class="pull-right">
+
+<button (click)="onClickMe()">Click me!</button>
+</div>
+  <div class="row">
+    <div class="col-xs-12">
+      <app-internship-item
+        *ngFor="let internshipEl of internships  | filterCompany:filteredChildCompany:'company'"
+        [internship]="internshipEl"
+        (internshipSelected)=" onInternshipSelected(internshipEl)"></app-internship-item>
+    </div>
+  </div>
+  

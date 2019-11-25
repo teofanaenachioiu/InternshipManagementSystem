@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../auth.service';
-import {FormControl, Validators} from '@angular/forms';
+import {FormControl, Validators, FormBuilder} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -14,8 +14,11 @@ export class LoginComponent implements OnInit {
   password = new FormControl('', [Validators.required, Validators.minLength(5)]);
   hidePassword = true;
   loginMessage: string;
+  form: any;
 
-  constructor(private authService: AuthService, private router: Router) {
+
+  constructor(private authService: AuthService, private router: Router ) {
+  
   }
 
   ngOnInit() {
@@ -35,7 +38,7 @@ export class LoginComponent implements OnInit {
 
   getErrorMessagePassword() {
     return this.password.hasError('required') ? 'You must enter a value' :
-      this.password.hasError('minLength') ? 'Not a valid password' : '';
+      this.password.hasError('minlength') ? 'Not a valid password' : '';
   }
 
   login() {
