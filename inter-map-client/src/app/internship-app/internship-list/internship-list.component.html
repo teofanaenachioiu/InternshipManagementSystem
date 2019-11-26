@@ -2,9 +2,12 @@
   <!-- <button (click)="onClickMe()">Click me</button> -->
 
 
-<div class="dreapta">
+<div class="container">
   
-  <div class="topright">
+  <div class="right">
+      <input type="text"  [(ngModel)]="filteredChildCompany" placeholder="Search..">
+      <br><br>
+
   <div class="form-check" *ngFor="let company of getCompanyList() " >
     <input class="form-check-input" (change)="onChange(company, $event.target.checked)" name="{{ company }}" type="checkbox" id="{{company}}">
     <label class="form-check-label" for="{{company}}">
@@ -12,13 +15,35 @@
     </label>
    
   </div>
+
+  
+  <ul class="nav">
+      <div *ngFor="let item of [1,2,3,4,5];  let i = index">
+        
+        <li>
+      <mat-checkbox [checked]="selected === i+1" (change)="selected = i+1"></mat-checkbox>
+        </li>
+        <li>
+      <star-rating [value]="i+1" checkedcolor="gold" uncheckedcolor="black" size="30px"  readonly="true" (rate)="onRate($event)"></star-rating>
+        </li>
+    </div>
+   </ul>     
+     <br>
+    
+
+
   </div>
 
-  <div class="stanga">
+  <div class="left">
   <div class="row">
     <div class="col-xs-12">
       <app-internship-item
-      *ngFor="let internshipEl of internships  | filterForMultipleCompany:filteredMultipleCompany:'company' | paginate: { itemsPerPage: 3, currentPage: p }"
+      *ngFor="let internshipEl of internships
+      | orderBy:'rating'  
+      | filterForMultipleCompany:filteredMultipleCompany:'company' 
+      | filterCompany:filteredChildCompany:'location' 
+      | filterRating:selected:'rating'
+      | paginate: { itemsPerPage: 3, currentPage: p } "
         [internship]="internshipEl"
         (internshipSelected)=" onInternshipSelected(internshipEl)"></app-internship-item>
     </div>
@@ -30,4 +55,4 @@
 
   </div>
 </div>
-  <!-- *ngFor="let internshipEl of internships  | filterCompany:filteredChildCompany:'company' | paginate: { itemsPerPage: 3, currentPage: p }" -->
+

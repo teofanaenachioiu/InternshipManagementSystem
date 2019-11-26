@@ -7,7 +7,8 @@ export class Internship {
       public description : string,
       public location : string,
       public company : string,
-      public imagePath: string
+      public imagePath : string,
+      public rating : number
       ) { }
   }
 

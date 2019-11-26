@@ -1,12 +1,8 @@
 
-<div class="pull-right">
-        <input type="text"  [(ngModel)]="filteredParentCompany" placeholder="Search..">
-        </div>
 
 <div class="row">
     <div class="col-md-5">
-<app-internship-list
-[filteredChildCompany]="filteredParentCompany">
+<app-internship-list>
     (internshipsWasSelected)="selectedInternship = $event">
 </app-internship-list>
 </div>

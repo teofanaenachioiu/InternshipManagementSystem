@@ -9,16 +9,20 @@ import { FilterCompanyPipe } from './data/filter-company.pipe';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FilterForMultipleCompanyPipe } from './data/filter-for-multiple-company.pipe';
+import { RatingModule } from 'ng-starrating';
+import { FilterRatingPipe } from './data/filter-rating.pipe';
+
 
 @NgModule({
-  declarations: [InternshipsComponent, InternshipItemComponent, InternshipListComponent, FilterCompanyPipe, FilterForMultipleCompanyPipe ],
+  declarations: [InternshipsComponent, InternshipItemComponent, InternshipListComponent, FilterCompanyPipe, FilterForMultipleCompanyPipe, FilterRatingPipe ],
   imports: [
     CommonModule,
     InternshipAppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     NgxPaginationModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    RatingModule
   ]
 })
 export class InternshipAppModule { }
