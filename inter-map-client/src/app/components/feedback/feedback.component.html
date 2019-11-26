@@ -1,52 +1,48 @@
-<div class="row">
-  <section class="tabs-content" id="feed">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="section-heading">
-            <h4>What others think of interMap ?</h4>
-            <p>Take a look at some feedbacks.</p>
-          </div>
+<div id="feed">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="section-heading">
+          <h4>What others think of interMap ?</h4>
+          <p>Take a look at some feedbacks.</p>
         </div>
       </div>
-      <div class="row">
-        <div class="wrapper">
-          <div class="col-md-6">
-            <ul class="tabs clearfix" data-tabgroup="first-tab-group" *ngFor="let item of items">
-              <li (click)="toggle(items, item)">
-                {{item.title}}
-                <ul class="info-post">
-                  <li>
-                    <i>
-                    <mat-icon aria-hidden="false" aria-label="Example home icon">face icon</mat-icon></i>
-                    {{item.username}}</li>
-                  <li><i class="fa fa-calendar"></i>{{item.date}}</li>
-                  <li><i class="fa fa-wechat"></i>{{item.internship}}</li>
-                </ul>
-              </li>
+    </div>
+    <div class="row">
+      <div class="col-md-5">
+        <ul class="tabs clearfix" *ngFor="let item of items">
+          <li class="my-items" (click)="toggle(items, item)">
+            <h3>{{item.title}}</h3>
+            <ul class="info-post">
+              <li>
+                <mat-icon aria-hidden="false" aria-label="Example home icon">face icon</mat-icon>
+                {{item.username}}</li>
+              <li>
+                <mat-icon aria-hidden="false" aria-label="Example home icon">calendar_today</mat-icon>
+                {{item.date}}</li>
             </ul>
-          </div>
-          <div class="col-md-6">
-            <div id="first-tab-group" class="tabgroup" *ngFor="let item of items">
-              <div [hidden]="item.hidden">
-                <img src="assets/img/feed-post-1.jpg" alt="">
-                <div class="text-content">
-                  <h4>shoreditch wolf ethical hashtag</h4>
-                  <ul class="info-post">
-                    <li><i class="fa fa-user"></i>{{item.username}}</li>
-                    <li><i class="fa fa-calendar"></i>{{item.date}}</li>
-                    <li><i class="fa fa-wechat"></i>12 Comments</li>
-                  </ul>
-                  <p>La croix kombucha bespoke dreamcatcher, tumeric tbh quinoa micro dosing gastro pub. 8-bit freegan
-                    chartreuse synth jean shorts farm to table, cold pressed authen tic. Mixtape hella beard meditation,
-                    Pok pok meh tote bag single-origin coffee, everyday carry unicorn raw denim distillery cray pork
-                    belly taxidermy organic polaroid.</p>
-                </div>
-              </div>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-7">
+        <div class="tabgroup" *ngFor="let item of items">
+          <div [hidden]="item.hidden">
+            <img src="assets/img/feed-post-1.jpg" alt="">
+            <div class="text-content">
+              <h4>{{item.title}}</h4>
+              <ul class="info-post">
+                <li>
+                  <mat-icon aria-hidden="false" aria-label="Example home icon">face icon</mat-icon>
+                  {{item.username}}</li>
+                <li>
+                  <mat-icon aria-hidden="false" aria-label="Example home icon">calendar_today</mat-icon>
+                  {{item.date}}</li>
+              </ul>
+              <p>{{item.text}}</p>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 </div>
