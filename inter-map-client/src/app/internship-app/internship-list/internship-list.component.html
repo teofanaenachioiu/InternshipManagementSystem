@@ -1,5 +1,5 @@
 
-  <!-- <button (click)="onClickMe()">Click me</button> -->
+  <button (click)="onClickMe()">Click me</button>
 
 
 <div class="container">
@@ -8,10 +8,23 @@
       <input type="text"  [(ngModel)]="filteredChildCompany" placeholder="Search..">
       <br><br>
 
+      <mat-form-field>
+        <mat-label>Sort After</mat-label>
+        <mat-select [(value)]="sortSelected">
+          <mat-option value ="">None</mat-option>
+          <mat-option value="location">Location</mat-option>
+          <mat-option value="rating">Rating</mat-option>
+          <mat-option value="name">Name</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <br><br>
+
+
   <div class="form-check" *ngFor="let company of getCompanyList() " >
     <input class="form-check-input" (change)="onChange(company, $event.target.checked)" name="{{ company }}" type="checkbox" id="{{company}}">
     <label class="form-check-label" for="{{company}}">
-        {{company}}   ( {{getNumberInternshipsOfCompany(company)}} )  
+        {{company}}   ({{getNumberInternshipsOfCompany(company)}})  
     </label>
    
   </div>
@@ -26,6 +39,9 @@
         <li>
       <star-rating [value]="i+1" checkedcolor="gold" uncheckedcolor="black" size="30px"  readonly="true" (rate)="onRate($event)"></star-rating>
         </li>
+        <li>
+          ({{ getNumberInternshipsWithRating(i+1) }})
+        </li>
     </div>
    </ul>     
      <br>
@@ -39,7 +55,7 @@
     <div class="col-xs-12">
       <app-internship-item
       *ngFor="let internshipEl of internships
-      | orderBy:'rating'  
+      | orderBy: sortSelected 
       | filterForMultipleCompany:filteredMultipleCompany:'company' 
       | filterCompany:filteredChildCompany:'location' 
       | filterRating:selected:'rating'

@@ -11,7 +11,10 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FilterForMultipleCompanyPipe } from './data/filter-for-multiple-company.pipe';
 import { RatingModule } from 'ng-starrating';
 import { FilterRatingPipe } from './data/filter-rating.pipe';
+import { OrderModule } from 'ngx-order-pipe';
 
+import { MatFormFieldModule, MatInputModule, MatSelectModule } from 
+   '@angular/material';
 
 @NgModule({
   declarations: [InternshipsComponent, InternshipItemComponent, InternshipListComponent, FilterCompanyPipe, FilterForMultipleCompanyPipe, FilterRatingPipe ],
@@ -22,7 +25,11 @@ import { FilterRatingPipe } from './data/filter-rating.pipe';
     ReactiveFormsModule,
     NgxPaginationModule,
     MatCheckboxModule,
-    RatingModule
+    RatingModule,
+    OrderModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatSelectModule,
   ]
 })
 export class InternshipAppModule { }

@@ -15,25 +15,26 @@ export class InternshipListComponent implements OnInit {
 
   
   filteredMultipleCompany = "";
-  selected=0;
+  selected = 0;
+  sortSelected = "";
 
   internships : Internship[] = [
     new Internship('name1',true,3,'Cel mai tare intenrship jur','Manastur',
-    'Ntt Data','https://upload.wikimedia.org/wikipedia/commons/1/15/Recipe_logo.jpeg',2),
+    'Ntt Data','http://www.youngoos.com/cdn/site/images/jobs/crop_jobs/thumb-NTT-Data_logo.png',2),
     new Internship('name2',false,1,'Cel mai tare intenrship jur 2 ','Zorilor',
-    'Evozon','https://upload.wikimedia.org/wikipedia/commons/1/15/Recipe_logo.jpeg',4),
+    'Evozon','https://network.sensiolabs.com/assets/cache/partner_thumbnail/uploads/270-Logo-Evozon-(200x90)[4784].png',4),
     new Internship('name3',true,6,'Cel mai tare intenrship jur 3 ','Gheorgheni',
-    'Stratec','https://upload.wikimedia.org/wikipedia/commons/1/15/Recipe_logo.jpeg',4),
+    'Stratec','https://i0.wp.com/www.bluespoint.net/wp-content/uploads/2017/03/stratec_logo_4c-border.jpg?fit=480%2C260&ssl=1',4),
     new Internship('name4',false,2,'Cel mai tare intenrship jur 4','Grigorescu',
-    'Fortech','https://upload.wikimedia.org/wikipedia/commons/1/15/Recipe_logo.jpeg',3),
+    'Fortech','https://www.fortech.ro/wp-content/uploads/2017/11/FortechSoftwareOutsourcingCompany.jpg',3),
     new Internship('name4',false,2,'Cel mai tare intenrship jur 4','Grigorescu',
-    'Arobs','https://upload.wikimedia.org/wikipedia/commons/1/15/Recipe_logo.jpeg',4),
+    'Arobs','https://runinclujorg.files.wordpress.com/2018/08/logo-arobs-transilvania-software.png',4),
     new Internship('name4',false,2,'Cel mai tare intenrship jur 4','Grigorescu',
-    'Fortech','https://upload.wikimedia.org/wikipedia/commons/1/15/Recipe_logo.jpeg',2),
+    'Fortech','https://www.fortech.ro/wp-content/uploads/2017/11/FortechSoftwareOutsourcingCompany.jpg',2),
     new Internship('name4',false,2,'Cel mai tare intenrship jur 4','Grigorescu',
-    'Fortech','https://upload.wikimedia.org/wikipedia/commons/1/15/Recipe_logo.jpeg',3),
+    'Fortech','https://www.fortech.ro/wp-content/uploads/2017/11/FortechSoftwareOutsourcingCompany.jpg',3),
     new Internship('name3',true,6,'Cel mai tare intenrship jur 3 ','Gheorgheni',
-    'Stratec','https://upload.wikimedia.org/wikipedia/commons/1/15/Recipe_logo.jpeg',5)
+    'Stratec','https://i0.wp.com/www.bluespoint.net/wp-content/uploads/2017/03/stratec_logo_4c-border.jpg?fit=480%2C260&ssl=1',5)
   ]
 
   pageOfInternships : Array<any>;
@@ -72,6 +73,14 @@ getNumberInternshipsOfCompany(companyName){
       if(this.internships[i].company === companyName)
                 count ++;   
     return count;
+}
+
+getNumberInternshipsWithRating(rating){
+  let count = 0;
+  for( let i = 0 ; i < this.internships.length ; i++)
+    if(this.internships[i].rating >= rating)
+      count ++;
+  return count;
 }
 
 onChange(companyName:string, isChecked: boolean) {
