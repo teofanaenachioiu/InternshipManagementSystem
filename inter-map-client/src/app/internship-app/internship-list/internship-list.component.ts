@@ -12,7 +12,7 @@ export class InternshipListComponent implements OnInit {
   @Output() internshipWasSelected = new EventEmitter<Internship>();
 
   internships : Internship[] = [
-    new Internship('name1',true,3,'Cel mai tare intenrship jur','Manastur',
+    new Internship('name1',true,3,'Cel mai tare intenrship jursssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss','Manastur',
     'Ntt Data','http://www.youngoos.com/cdn/site/images/jobs/crop_jobs/thumb-NTT-Data_logo.png',2,".net,c/c++","apply"),
     new Internship('name2',false,1,'Cel mai tare intenrship jur 2 ','Zorilor',
     'Evozon','https://network.sensiolabs.com/assets/cache/partner_thumbnail/uploads/270-Logo-Evozon-(200x90)[4784].png',4,"java,.net","pending"),
