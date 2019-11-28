@@ -10,6 +10,8 @@
     <h4 class="list-group-item-text">{{ internship.company }}</h4>
     <p class="list-group-item-text">{{ internship.description }}</p>
     <p class="list-group-item-text">{{ internship.location }}</p>
+    <p class="list-group-item-text">{{ internship.interests }}</p>
+    <p class="list-group-item-text">{{ internship.status }}</p>
     <star-rating [value]="internship.rating" checkedcolor="gold" uncheckedcolor="black" 
           size="30px"  readonly="true" (rate)="onRate($event)"></star-rating>
   </div>

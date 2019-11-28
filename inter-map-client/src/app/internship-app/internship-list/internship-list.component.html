@@ -29,21 +29,42 @@
    
   </div>
 
-  
+
+  <br>
+
+  <div class="form-check" *ngFor="let technology of getTechnologyList() " >
+    <input class="form-check-input" (change)="OnChangeTechnology(technology, $event.target.checked)" name="{{ technology }}" type="checkbox" id="{{technology}}">
+    <label class="form-check-label" for="{{technology}}">
+        {{technology}}   ({{getNumberInternshipsOfTechnology(technology)}})  
+    </label>
+   
+  </div>
+
+  <br>
+
+  <div class="form-check" *ngFor="let status of statusString " >
+    <input class="form-check-input" (change)="OnChangeStatus(status.name, $event.target.checked)" [checked]="status.selected" name="{{ status.name }}" type="checkbox" id="{{status.name}}">
+    <label class="form-check-label" for="{{status.name}}">
+        {{status.name}}   
+    </label>
+  </div>
+
+
+  <br>
+
   <ul class="nav">
-      <div *ngFor="let item of [1,2,3,4,5];  let i = index">
-        
+      <div *ngFor="let rating of ratingString ;  let i = index">
+         <li>
+            <input class="form-check-input" [checked]="rating.selected" (change)="onChangeRating(i+1, $event.target.checked)" type="checkbox">
+         </li>
         <li>
-      <mat-checkbox [checked]="selected === i+1" (change)="selected = i+1"></mat-checkbox>
+            <star-rating [value]="i+1" checkedcolor="gold" uncheckedcolor="black" size="30px"  readonly="true" (rate)="onRate($event)"></star-rating>
         </li>
         <li>
-      <star-rating [value]="i+1" checkedcolor="gold" uncheckedcolor="black" size="30px"  readonly="true" (rate)="onRate($event)"></star-rating>
-        </li>
-        <li>
-          ({{ getNumberInternshipsWithRating(i+1) }})
+            ({{ getNumberInternshipsWithRating(i+1) }})
         </li>
     </div>
-   </ul>     
+   </ul>      
      <br>
     
 
@@ -57,8 +78,10 @@
       *ngFor="let internshipEl of internships
       | orderBy: sortSelected 
       | filterForMultipleCompany:filteredMultipleCompany:'company' 
+      | filterForMultipleInterest: filteredMultipleTechnology:'interests'
       | filterCompany:filteredChildCompany:'location' 
-      | filterRating:selected:'rating'
+      | filterCompany:statusSelected:'status'
+      | filterRating:ratingSelected:'rating'
       | paginate: { itemsPerPage: 3, currentPage: p } "
         [internship]="internshipEl"
         (internshipSelected)=" onInternshipSelected(internshipEl)"></app-internship-item>
@@ -68,6 +91,7 @@
   <div style="padding-left:450px;">
     <pagination-controls class="my-pagination" (pageChange)="p= $event"></pagination-controls>
   </div>
+
 
   </div>
 </div>

@@ -15,12 +15,12 @@ export class FilterForMultipleCompanyPipe implements PipeTransform {
 
   const resultArray = [];
   for(const item of value ){
-    var ok = 0;
+    var appeared = false;
     for(const string of splitted ){
       if(item[propName].toUpperCase() === string.toUpperCase())
-        ok = 1;
+      appeared = true;
     }
-    if( ok === 1)
+    if( appeared === true)
       resultArray.push(item);
   }
 

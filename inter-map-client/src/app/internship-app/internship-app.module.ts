@@ -15,9 +15,11 @@ import { OrderModule } from 'ngx-order-pipe';
 
 import { MatFormFieldModule, MatInputModule, MatSelectModule } from 
    '@angular/material';
+import { FilterForMultipleInterestPipe } from './data/filter-for-multiple-interest.pipe';
+
 
 @NgModule({
-  declarations: [InternshipsComponent, InternshipItemComponent, InternshipListComponent, FilterCompanyPipe, FilterForMultipleCompanyPipe, FilterRatingPipe ],
+  declarations: [InternshipsComponent, InternshipItemComponent, InternshipListComponent, FilterCompanyPipe, FilterForMultipleCompanyPipe, FilterRatingPipe, FilterForMultipleInterestPipe ],
   imports: [
     CommonModule,
     InternshipAppRoutingModule,
