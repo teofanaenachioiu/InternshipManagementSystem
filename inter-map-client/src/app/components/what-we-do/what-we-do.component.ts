@@ -15,7 +15,7 @@ export class WhatWeDoComponent implements OnInit {
   ngOnInit() {
     this.items = [
       {
-        hidden: false, title: 'About Intermap', icon: 'assets/img/interMAP.png', icontext: 'assets/img/intremapRight.jpg',
+        hidden: false, title: 'About Intermap', icon: 'assets/img/logo_negru_no_bg.png', icontext: 'assets/img/intremapRight.jpg',
         tag: 'what-we-offer', text: 'We aim to facilitate student access to internships, gathering all the information in one place. ' +
           'InterMap is a platform that includes dozens of intercom companies, open to the public.' +
           'To explore the map of internships all you need to do is to click the login button and after that go to create an account.' +
@@ -44,7 +44,7 @@ export class WhatWeDoComponent implements OnInit {
           ' them. This is how companies get rid of tens of emails with CVs and you get rid of the stress of creating it.'
       },
       {
-        hidden: true, title: 'Photos', icon: 'assets/img/fivth-list-icon.png', icontext: 'assets/img/right-side-image_5.jpg',
+        hidden: true, title: 'Why intermap', icon: 'assets/img/man-thinking.png', icontext: 'assets/img/right-side-image_5.jpg',
         tag: 'photos', text: ''
       },
     ];

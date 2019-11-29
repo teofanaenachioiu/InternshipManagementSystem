@@ -19,19 +19,12 @@ export class ForgetPasswordComponent implements OnInit {
   ngOnInit() {
   }
 
-  checkResetPasswordButton() {
-    return this.email.hasError('required') ||
-      this.email.hasError('email');
-  }
-
   getErrorMessageEmail() {
     return this.email.hasError('required') ? 'You must enter a value' :
       this.email.hasError('email') ? 'Not a valid email' : '';
   }
 
-
-
-  forgetPassword() {
+  sendMail() {
 
   }
 }

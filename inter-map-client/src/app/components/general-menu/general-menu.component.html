@@ -1,11 +1,11 @@
 <mat-toolbar color="primary" (scroll)="scrollHandler($event)" style="position: fixed; z-index: 10">
-  <span class="nav-title">interMap</span>
+  <span class="nav-title">
+    <img class="imagine" src='assets/img/logo_white.png' alt='logo'>
+    interMap</span>
 
   <span class="example-fill-remaining-space"></span>
 
-  <button mat-button [routerLink]="'/'">
-    <mat-icon>home</mat-icon>
-  </button>
+  <button mat-button [routerLink]="'/'">HOME</button>
   <button mat-button [routerLink]="'/'" fragment="about">ABOUT</button>
   <button mat-button [routerLink]="'/'" fragment="statistics">STATISTICS</button>
   <button mat-button [routerLink]="'/'" fragment="internships">INTERNSHIPS</button>

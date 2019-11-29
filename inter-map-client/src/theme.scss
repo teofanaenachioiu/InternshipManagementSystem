@@ -102,7 +102,8 @@ $lavender-purple:(
 
 $my-app-primary: mat-palette($dark-cerulean);
 $my-app-accent:  mat-palette($jordy-blue);
-$my-app-warn:    mat-palette($lavender-purple);
+$my-app-warn:    mat-palette($mat-red);
+//$my-app-warn:    mat-palette($lavender-purple);
 $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
 
 @include angular-material-theme($my-app-theme);

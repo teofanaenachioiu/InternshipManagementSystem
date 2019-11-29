@@ -10,40 +10,38 @@
     </div>
     <div class="row">
       <div class="col-md-6">
-        <form id="contact" action="#" method="post">
+        <form id="contact">
           <div class="row">
             <div class="col-md-6">
-              <fieldset>
-                <input name="name" type="text" class="form-control" id="name" placeholder="Name..." required>
-              </fieldset>
+              <mat-form-field>
+                <input matInput [(ngModel)]="name"  name="name" type="text" id="name" placeholder="Name" required>
+              </mat-form-field>
             </div>
             <div class="col-md-6">
-              <fieldset>
-                <input name="email" type="email" class="form-control" id="email" placeholder="Email..." required>
-              </fieldset>
+              <mat-form-field>
+                <input matInput [(ngModel)]="email" name="email" type="email" id="email" placeholder="Email" required>
+              </mat-form-field>
             </div>
             <div class="col-md-6">
-              <fieldset>
-                <input name="subject" type="text" class="form-control" id="subject" placeholder="Subject..." required>
-              </fieldset>
+              <mat-form-field>
+                <input matInput [(ngModel)]="subject" name="subject" type="text" id="subject" placeholder="Subject" required>
+              </mat-form-field>
             </div>
             <div class="col-md-6">
-              <fieldset>
-                <input name="phone" type="phone" class="form-control" id="phone" placeholder="Phone..." required>
-              </fieldset>
+              <mat-form-field>
+                <input matInput [(ngModel)]="phone" name="phone" type="phone" id="phone" placeholder="Phone" required>
+              </mat-form-field>
             </div>
             <div class="col-md-12">
-              <fieldset>
-                <textarea name="message" rows="6" class="form-control" id="message" placeholder="Message..." required></textarea>
-              </fieldset>
-            </div>
-            <div class="col-md-12">
-              <fieldset>
-                <button type="submit" id="form-submit" class="btn">Send your message</button>
-              </fieldset>
+              <mat-form-field style="width: 85%">
+                <textarea matInput (resize)="message" [(ngModel)]="message" name="message" rows="6"  id="message" placeholder="Message" required></textarea>
+              </mat-form-field>
             </div>
           </div>
         </form>
+        <div class="col-md-12">
+          <button color="accent" mat-button (click)="sendMessage()" id="form-submit" class="btn">Send your message</button>
+        </div>
       </div>
       <div class="col-md-6">
         <div id="map">

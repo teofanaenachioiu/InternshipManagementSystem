@@ -44,22 +44,14 @@
   height: 3vw;
   min-height: 30px;
   min-width: 250px;
-  font-size: 1vm;
+  font-size: 14px;
 }
 
-.input-email {
+.input-position {
   position: absolute;
-  top: 40%;
+  top: 50%;
   left: 50%;
-  transform: translate(-50%, -40%);
-}
-
-.input-password {
-  position: absolute;
-  top: 55%;
-  left: 50%;
-  transform: translate(-50%, -55%);
-
+  transform: translate(-50%, -50%);
 }
 
 .login-error-message{
@@ -85,7 +77,7 @@
 
   background-color: #0D3c73;
   color: white;
-  font-size: 16px;
+  font-size: 1.2vm;
 }
 
 .input-button:hover{

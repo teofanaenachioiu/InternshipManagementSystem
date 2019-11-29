@@ -1,9 +1,9 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
   MatExpansionModule,
   MatButtonModule,
@@ -12,18 +12,19 @@ import {
   MatListModule,
   MatMenuModule,
   MatSidenavModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatDialogModule, MatInputModule
 } from '@angular/material';
 
-import { GeneralMenuComponent } from './components/general-menu/general-menu.component';
-import { HomeComponent } from './components/home/home.component';
-import { IntroComponent } from './components/intro/intro.component';
-import { WhatWeDoComponent } from './components/what-we-do/what-we-do.component';
-import { InternshipsGeneralComponent } from './components/internships-general/internships-general.component';
-import { FeedbackComponent } from './components/feedback/feedback.component';
-import { ContactComponent } from './components/contact/contact.component';
-import { StatisticsComponent } from './components/statistics/statistics.component';
-import { FooterComponent } from './components/footer/footer.component';
+import {GeneralMenuComponent} from './components/general-menu/general-menu.component';
+import {HomeComponent} from './components/home/home.component';
+import {IntroComponent} from './components/intro/intro.component';
+import {WhatWeDoComponent} from './components/what-we-do/what-we-do.component';
+import {InternshipsGeneralComponent} from './components/internships-general/internships-general.component';
+import {FeedbackComponent} from './components/feedback/feedback.component';
+import {ContactComponent} from './components/contact/contact.component';
+import {StatisticsComponent} from './components/statistics/statistics.component';
+import {FooterComponent} from './components/footer/footer.component';
 
 const materialComponents = [
   MatButtonModule,
@@ -34,12 +35,16 @@ const materialComponents = [
   MatIconModule,
   MatMenuModule,
   MatCardModule,
-  MatExpansionModule
+  MatExpansionModule,
+  MatDialogModule,
+  MatInputModule
 ];
 
-import { SwiperModule } from 'ngx-swiper-wrapper';
-import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
-import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
+import {SwiperModule} from 'ngx-swiper-wrapper';
+import {SWIPER_CONFIG} from 'ngx-swiper-wrapper';
+import {SwiperConfigInterface} from 'ngx-swiper-wrapper';
+import {LogoutDialog} from './components/logout-dialog/logout-dialog';
+import {FormsModule} from '@angular/forms';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -57,19 +62,23 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     FeedbackComponent,
     ContactComponent,
     StatisticsComponent,
-    FooterComponent
+    FooterComponent,
+    LogoutDialog
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     materialComponents,
-    SwiperModule
+    SwiperModule,
+    FormsModule
   ],
   providers: [{
-    provide: SWIPER_CONFIG,
-    useValue: DEFAULT_SWIPER_CONFIG
+    provide: {SWIPER_CONFIG },
+    useValue: DEFAULT_SWIPER_CONFIG,
   }],
+  entryComponents: [LogoutDialog],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

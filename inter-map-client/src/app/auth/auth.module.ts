@@ -8,7 +8,6 @@ import {HttpClientModule} from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
 import {
   MatButtonModule,
-  MatHorizontalStepper,
   MatIconModule, MatInputModule,
   MatListModule,
   MatSidenavModule,

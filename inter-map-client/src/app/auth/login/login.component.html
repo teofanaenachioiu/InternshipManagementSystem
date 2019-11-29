@@ -1,15 +1,17 @@
 <div class='main-container'>
   <form class='login-circle'>
-    <img class='hex-icon' alt='avatar' src='assets/img/hexagon.png'>
-    <mat-form-field class="login-input input-email">
+    <img class='hex-icon' alt='avatar' src='assets/img/user.png'>
+    <div class = 'input-position'>
+    <mat-form-field class="login-input">
       <input matInput type='text' [formControl]='email' placeholder='Email' required>
       <mat-error *ngIf="email.hasError('email') || email.hasError('required')">
         {{getErrorMessageEmail()}}
       </mat-error>
     </mat-form-field>
-    <mat-form-field class="login-input input-password">
+    <br><br>
+    <mat-form-field class="login-input">
       <input matInput [type]="hidePassword ? 'password' : 'text'"
-             [formControl]='password' placeholder='Password' required minlength="5">
+             [formControl]='password' placeholder='Password' required minlength="6">
       <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" >
         <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
@@ -17,9 +19,10 @@
         {{getErrorMessagePassword()}}
       </mat-error>
     </mat-form-field>
+    </div>
     <mat-label class="login-error-message">{{loginMessage}}</mat-label>
     <button mat-button (click)='login()' class='input-button' value='Login'
-            >Login</button>
+            >LOGIN</button>
     <a [routerLink]="'/auth/forget-password'" class='text'>Forget Password?</a>
     <a [routerLink]="'/auth/register'" class='text1'>Don't have an account?</a>
   </form>
