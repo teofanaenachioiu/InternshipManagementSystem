@@ -13,7 +13,9 @@ export class RegisterComponent implements OnInit {
   @Input()
   selectedProfile: string;
 
-  isLinear = true;
+  keywords = [];
+
+  isLinear = false;
   private error = '';
   hidePassword = true;
   hideRetypePassword = true;

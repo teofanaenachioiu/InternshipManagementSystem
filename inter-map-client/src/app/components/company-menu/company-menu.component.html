@@ -1,0 +1,16 @@
+<mat-toolbar color="primary">
+  <span class="nav-title">interMap</span>
+
+  <!-- This fills the remaining space of the current row -->
+  <span class="example-fill-remaining-space"></span>
+
+  <button mat-button color="accent" [routerLink]="'/'"> HOME </button>
+  <button mat-button [routerLink]="'/internship-app/internships'"> INTERNSHIPS </button>
+  <button mat-button>MY INTERNSHIPS</button>
+  <button mat-button>LOG OUT</button>
+  <button mat-button [routerLink]="'/'">
+    <mat-icon>account_box</mat-icon>
+  </button>
+</mat-toolbar>
+
+<router-outlet></router-outlet>

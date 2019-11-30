@@ -105,3 +105,11 @@
 .example-container > * {
   width: 30%;
 }
+
+.div-key-words {
+  text-align: center;
+  width: 50vw;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10vw;
+}

@@ -1,0 +1,25 @@
+<section id="internships" class="internships-section">
+  <div class="section-heading">
+    <h4>
+      Most appreciated internships
+    </h4>
+    <p>
+      When an internship ends, we give the students who applyed, the opportunity to leave a feedback so the younger
+      ones who will follow their steps could find out easier what should they expect.
+    </p>
+  </div>
+  <div class="row">
+    <div class="content-container">
+      <swiper *ngIf="show" class="swiper-container" [config]="config">
+        <div *ngFor="let slide of slides" class="swiper-slide">
+          <div class="img" [ngStyle]="{'background-image': 'url(' + slide + ')'}">
+            <div class="text"> Internship title</div>
+          </div>
+        </div>
+      </swiper>
+      <div *ngIf="show">
+        <div class="swiper-scrollbar"></div>
+      </div>
+    </div>
+  </div>
+</section>
