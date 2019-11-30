@@ -12,6 +12,8 @@ import javax.persistence.OneToMany;
 
 import java.sql.Blob;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -46,12 +48,19 @@ public class Candidate implements HasID<String> {
     private Sex sex;
     private CandidateStatus candidateStatus;
     private Blob avatar;
-    private Blob CVPdf;
+    private String linkLinkedin;
+    private String linkGithub;
+    private String description;
+    private String languages;
     @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL)
     private Set<Application> applications;
+    @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL)
+    private Set<Studies> studies;
+    @OneToMany(mappedBy = "candidate",cascade = CascadeType.ALL)
+    private Set<Experience> experiences;
 
     public Candidate(String ID, String lastName, String firstName, String address, String telephone,
-            LocalDate birthDate, Sex sex, CandidateStatus candidateStatus, Blob avatar, Blob CVPdf,
+                     LocalDate birthDate, Sex sex, CandidateStatus candidateStatus, Blob avatar,String linkLinkedin,String linkGithub,String description,String languages,Set<Studies> studies,Set<Experience> experiences,
             Application... applications) {
         this.ID = ID;
         this.lastName = lastName;
@@ -62,16 +71,39 @@ public class Candidate implements HasID<String> {
         this.sex = sex;
         this.candidateStatus = candidateStatus;
         this.avatar = avatar;
-        this.CVPdf = CVPdf;
+        this.linkLinkedin=linkLinkedin;
+        this.linkGithub=linkGithub;
+        this.description=description;
+        this.languages=languages;
+
+        this.studies=new HashSet<>();
+        this.studies.addAll(studies);
+        this.studies.forEach(x->x.setCandidate(this));
+
+        this.experiences=new HashSet<>();
+        this.experiences.addAll(experiences);
+        this.experiences.forEach(x->x.setCandidate(this));
+
         this.applications = Stream.of(applications).collect(Collectors.toSet());
         this.applications.forEach(x -> x.setCandidate(this));
     }
 
     @Override
     public String toString() {
-        return "Candidate{" + "email='" + ID + '\'' + ", lastName='" + lastName + '\'' + ", firstName='" + firstName
-                + '\'' + ", address='" + address + '\'' + ", telephone='" + telephone + '\'' + ", birthDate="
-                + birthDate + ", sex=" + sex + ", candidateStatus=" + candidateStatus + ", avatar=" + avatar
-                + ", CVPdf=" + CVPdf + '}';
+        return "Candidate{" +
+                "ID='" + ID + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", address='" + address + '\'' +
+                ", telephone='" + telephone + '\'' +
+                ", birthDate=" + birthDate +
+                ", sex=" + sex +
+                ", candidateStatus=" + candidateStatus +
+                ", avatar=" + avatar +
+                ", linkLinkedin='" + linkLinkedin + '\'' +
+                ", linkGithub='" + linkGithub + '\'' +
+                ", description='" + description + '\'' +
+                ", languages='" + languages + '\'' +
+                '}';
     }
 }
