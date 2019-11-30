@@ -19,6 +19,6 @@ public class StudiesValidator implements Validator<Studies> {
 
         if(msg!="")
             throw new ValidationException(msg);
-
     }
+
 }

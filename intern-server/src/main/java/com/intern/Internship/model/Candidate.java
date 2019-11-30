@@ -106,4 +106,5 @@ public class Candidate implements HasID<String> {
                 ", languages='" + languages + '\'' +
                 '}';
     }
+
 }

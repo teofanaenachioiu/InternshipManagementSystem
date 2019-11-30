@@ -35,4 +35,5 @@ public class CandidateValidator implements Validator<Candidate> {
             throw new ValidationException(msg);
         }
     }
+
 }
