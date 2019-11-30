@@ -26,11 +26,14 @@ public class CandidateValidator implements Validator<Candidate> {
             msg += "Status cannot be empty!";
         if (entity.getAvatar() == null)
             msg += "Insert an avatar!";
-        if (entity.getCVPdf() == null)
-            msg += "Insert CV!";
+        if(entity.getLanguages().equals(""))
+            msg+="Languages cannot be empty!";
+        if(entity.getStudies().size()<1)
+            msg+="Specify your studies!";
 
         if (msg != "") {
             throw new ValidationException(msg);
         }
     }
+
 }
