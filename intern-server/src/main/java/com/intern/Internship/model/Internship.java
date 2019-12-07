@@ -1,5 +1,6 @@
 package com.intern.Internship.model;
 
+import com.intern.Internship.model.enums.InternshipStatus.InternshipStatus;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,10 +18,6 @@ import java.time.LocalDate;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
-enum InternshipStatus {
-    Open, Closed;
-}
 
 @Getter
 @Setter
@@ -49,6 +46,8 @@ public class Internship implements HasID<String> {
     @ManyToOne
     @JoinColumn
     private Company company;
+    @ManyToOne
+    @JoinColumn
     private AreaOfInterest areaOfInterest;
     @OneToMany(mappedBy = "internship", cascade = CascadeType.ALL)
     private Set<Feedback> feedbacks;
@@ -77,7 +76,7 @@ public class Internship implements HasID<String> {
         return "Internship{" + "ID='" + ID + '\'' + ", name='" + name + '\'' + ", startTime=" + startTime + ", endTime="
                 + endTime + ", paid=" + paid + ", nrMonths=" + nrMonths + ", description='" + description + '\''
                 + ", nrApplicants=" + nrApplicants + ", status=" + status + ", location='" + location + '\''
-                + ", addedDate=" + addedDate + ", employer=" + company.getID() + ", areaOfInterest="
-                + areaOfInterest.getID() + '}';
+                + ", addedDate=" + addedDate + ", employer=" + company.getID() + ", areaOfInterest=";
+                //+ areaOfInterest.getID() + '}';
     }
 }
