@@ -48,14 +48,14 @@ export class RegisterComponent implements OnInit {
 
 
   clickOnAboutYou() {
-    console.log("Write about you");
+    console.log('Write about you');
 
     const email = this.form.get('email').value;
     const password = this.form.get('password').value;
     const passwordAgain = this.form.get('passwordAgain').value;
 
     if (password === passwordAgain) {
-      this.authService.register(email, password)
+      this.authService.register(email, password, this.selectedProfile)
         .subscribe((res) => {
           console.log(res);
         }, (error) => {

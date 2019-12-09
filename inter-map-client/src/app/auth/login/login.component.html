@@ -21,8 +21,9 @@
     </mat-form-field>
     </div>
     <mat-label class="login-error-message">{{loginMessage}}</mat-label>
-    <button mat-button (click)='login()' class='input-button' value='Login'
-            >LOGIN</button>
+    <button (click)='login()' class='input-button' mat-button value='Login'>
+      LOGIN
+    </button>
     <a [routerLink]="'/auth/forget-password'" class='text'>Forget Password?</a>
     <a [routerLink]="'/auth/register'" class='text1'>Don't have an account?</a>
   </form>

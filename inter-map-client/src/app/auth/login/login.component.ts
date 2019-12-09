@@ -9,7 +9,6 @@ import {FormControl, Validators} from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
   email = new FormControl('', [Validators.required, Validators.email]);
   password = new FormControl('', [Validators.required, Validators.minLength(5)]);
   hidePassword = true;
@@ -21,7 +20,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  checkLoginButton() {
+  isLoginInvalid() {
     return this.email.hasError('required') ||
       this.password.hasError('required') ||
       this.email.hasError('email') ||
@@ -41,17 +40,15 @@ export class LoginComponent implements OnInit {
   login() {
     console.log(this.email.value);
     console.log(this.password.value);
-    this.authService.authenticate(this.email.value, this.password.value)
-      .subscribe((res) => {
-        this.loginMessage = null;
-        console.log(res);
-      }, (error) => {
-        this.loginMessage = error.statusText;
-        console.log(error.statusText);
-      });
-  }
-
-  forgetPassword() {
-      this.router.navigate(['/forget-password']);
+    if (!this.isLoginInvalid()) {
+      this.authService.authenticate(this.email.value, this.password.value)
+        .subscribe((res) => {
+          this.loginMessage = null;
+          console.log(res);
+        }, (error) => {
+          console.log(error);
+          this.loginMessage = 'Wrong credentials';
+        });
+    }
   }
 }
