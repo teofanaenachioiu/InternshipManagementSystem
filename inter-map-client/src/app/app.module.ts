@@ -1,6 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-
+import { HttpClientModule } from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -45,6 +45,9 @@ import {SWIPER_CONFIG} from 'ngx-swiper-wrapper';
 import {SwiperConfigInterface} from 'ngx-swiper-wrapper';
 import {LogoutDialog} from './components/logout-dialog/logout-dialog';
 import {FormsModule} from '@angular/forms';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {JwtInterceptor} from './auth/JwtInterceptor';
+import {ErrorInterceptor} from './auth/ErrorInterceptor';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -71,12 +74,14 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     BrowserAnimationsModule,
     materialComponents,
     SwiperModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [{
-    provide: {SWIPER_CONFIG },
-    useValue: DEFAULT_SWIPER_CONFIG,
-  }],
+    provide: {SWIPER_CONFIG},
+    useValue: DEFAULT_SWIPER_CONFIG},
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }],
   entryComponents: [LogoutDialog],
   bootstrap: [AppComponent]
 })

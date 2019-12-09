@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from '../auth.service';
 import {FormControl, Validators} from '@angular/forms';
+import {Role} from '../../core/Role';
 
 @Component({
   selector: 'app-login',
@@ -10,11 +11,11 @@ import {FormControl, Validators} from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   email = new FormControl('', [Validators.required, Validators.email]);
-  password = new FormControl('', [Validators.required, Validators.minLength(5)]);
+  password = new FormControl('', [Validators.required, Validators.minLength(6)]);
   hidePassword = true;
   loginMessage: string;
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -40,15 +41,25 @@ export class LoginComponent implements OnInit {
   login() {
     console.log(this.email.value);
     console.log(this.password.value);
-    if (!this.isLoginInvalid()) {
-      this.authService.authenticate(this.email.value, this.password.value)
-        .subscribe((res) => {
-          this.loginMessage = null;
-          console.log(res);
-        }, (error) => {
-          console.log(error);
-          this.loginMessage = 'Wrong credentials';
-        });
+
+    // stop here if form is invalid
+    if (this.isLoginInvalid()) {
+      return;
     }
+
+    this.authService.login(this.email.value, this.password.value)
+      .subscribe((res) => {
+        this.loginMessage = null;
+
+        if (res.role.name === Role.COMPANY) {
+          this.router.navigate(['/internship-app/company-profile']);
+        } else if (res.role.name === Role.CANDIDATE) {
+          this.router.navigate(['/internship-app/candidate-profile']);
+        } else {
+          console.log('m-am logat insa nu stiu unde sa merg');
+        }
+      }, (error) => {
+        this.loginMessage = 'Wrong credentials';
+      });
   }
 }

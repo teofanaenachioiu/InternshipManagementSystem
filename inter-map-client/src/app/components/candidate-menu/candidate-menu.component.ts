@@ -2,6 +2,8 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {Router} from '@angular/router';
 import {LogoutDialog} from '../logout-dialog/logout-dialog';
+import {User} from '../../core/User';
+import {AuthService} from '../../auth/auth.service';
 
 export interface DialogData {
   logoutConfirmed: boolean;
@@ -13,11 +15,22 @@ export interface DialogData {
   styleUrls: ['./candidate-menu.component.css']
 })
 export class CandidateMenuComponent implements OnInit {
+  currentUser: User;
 
-  constructor(public dialog: MatDialog, public router: Router) {
+  constructor(
+    public dialog: MatDialog,
+    private router: Router,
+    private authService: AuthService
+  ) {
+    this.authService.currentUser.subscribe(x => this.currentUser = x);
   }
 
   ngOnInit() {
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/']);
   }
 
   openDialog(): void {
@@ -29,7 +42,7 @@ export class CandidateMenuComponent implements OnInit {
       console.log('The dialog was closed');
       if (result === true) {
         console.log('have to make logout');
-        this.router.navigate(['/']);
+        this.logout();
       } else {
         console.log('logout canceled');
       }

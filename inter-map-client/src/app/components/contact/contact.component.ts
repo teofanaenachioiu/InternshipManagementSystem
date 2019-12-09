@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {ContactService} from './contact.service';
+import {Message} from '../../core/Message';
 
 @Component({
   selector: 'app-contact',
@@ -12,7 +14,7 @@ export class ContactComponent implements OnInit {
   phone: string;
   message: string;
 
-  constructor() { }
+  constructor(private contactService: ContactService) { }
 
   ngOnInit() {
   }
@@ -23,5 +25,8 @@ export class ContactComponent implements OnInit {
     console.log(this.subject);
     console.log(this.phone);
     console.log(this.message);
+    const message = new Message(this.name, this.email, this.subject, this.phone, this.message);
+
+    this.contactService.sendMessageContact(message);
   }
 }
