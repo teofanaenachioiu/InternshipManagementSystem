@@ -1,7 +1,20 @@
-.div-check {
-  float: left;
+.fields{
+  margin-left: 2vw;
+  margin-right: 2vw;
+  width: 50%;
 }
+/*.div-check {*/
+/*  float: left;*/
+/*}*/
 
-.div-form {
-  display: flex;
-}
+/*.div-form {*/
+/*  display: flex;*/
+/*  margin-left: 40px;*/
+/*}*/
+
+/*.i{*/
+/*  !*position: relative;*!*/
+/*  margin-left: 40px;*/
+/*  !*font-size: 14px;*!*/
+/*}*/
+

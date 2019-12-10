@@ -1,28 +1,27 @@
-
-<div [formGroup]="form">
-  <mat-form-field>
-    <label>
+<div [formGroup]="form" class="div2">
+  <mat-form-field  class="fields" id="address">
+    <label >
       <input matInput placeholder="address" formControlName="address">
     </label>
-  </mat-form-field>
+  </mat-form-field >
   <br>
-  <mat-form-field>
+  <mat-form-field class="fields" >
     <label>
       <input matInput placeholder="phone" formControlName="phone">
     </label>
   </mat-form-field>
-  <mat-form-field>
+  <mat-form-field class="fields">
     <label>
       <input matInput placeholder="email" formControlName="email">
     </label>
   </mat-form-field>
   <br>
-  <mat-form-field>
+  <mat-form-field class="fields">
     <label>
-      <input matInput placeholder="LinkedIn" formControlName="linkedIn">
+      <input matInput  placeholder="LinkedIn" formControlName="linkedIn">
     </label>
   </mat-form-field>
-  <mat-form-field>
+  <mat-form-field class="fields">
     <label>
       <input matInput placeholder="GitHub" formControlName="github">
     </label>

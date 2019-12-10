@@ -1,22 +1,28 @@
 
 <div [formGroup]="form">
-      <div formArrayName="workExperience">
+      <div class="div2" formArrayName="workExperience">
         <div *ngFor="let work of workExperienceForms.controls; let i=index" [formGroupName]="i">
-          <mat-form-field>
+          <mat-form-field class="fields">
           <label>
-            <input matInput placeholder="Where" formControlName="where">
+            <input class="inputs" matInput placeholder="Where" formControlName="where">
           </label>
           </mat-form-field>
+          <mat-form-field class="fields">
+            <label>
+              <input matInput placeholder="Job" formControlName="job">
+            </label>
+          </mat-form-field>
+          <br>
 
-          <mat-form-field>
+          <mat-form-field class="fields">
             <label>
               <input matInput [matDatepicker]="fromDateWork" placeholder="Choose a date" formControlName="fromDate">
             </label>
             <mat-datepicker-toggle [for]="fromDateWork" matSuffix></mat-datepicker-toggle>
             <mat-datepicker #fromDateWork></mat-datepicker>
-          </mat-form-field>
+          </mat-form-field >
 
-          <mat-form-field>
+          <mat-form-field class="fields">
             <label>
               <input matInput [matDatepicker]="toDateWork" placeholder="Choose a date" formControlName="toDate">
             </label>
@@ -26,17 +32,13 @@
 
           <br>
 
-          <mat-form-field>
-            <label>
-              <input matInput placeholder="Job" formControlName="job">
-            </label>
-          </mat-form-field>
+
 
           <br>
 
-          <button mat-raised-button (click)="removeWork(i)"><mat-icon>delete</mat-icon></button>
+          <button id="delete-button" mat-raised-button (click)="removeWork(i)"><mat-icon>delete</mat-icon></button>
         </div>
-        <button mat-raised-button (click)="addWork()"><mat-icon>add</mat-icon></button>
+        <button id="add-button" mat-raised-button (click)="addWork()"><mat-icon>add</mat-icon></button>
 
       </div>
 </div>

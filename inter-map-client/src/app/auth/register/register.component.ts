@@ -48,7 +48,7 @@ export class RegisterComponent implements OnInit {
 
 
   clickOnAboutYou() {
-    console.log("Write about you");
+    console.log('Write about you');
 
     const email = this.form.get('email').value;
     const password = this.form.get('password').value;

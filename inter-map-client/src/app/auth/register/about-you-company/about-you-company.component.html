@@ -1,0 +1,42 @@
+<div class="example-container">
+  <form [formGroup]="form" >
+    <div class="main-div">
+      <div class="form-div">
+        <label class="upload-image-div">
+          <span>Add a profile picture</span>
+          <input #imageInput
+                 type="file"
+                 accept="image/*"
+                 (change)="processFile(imageInput)" formControlName="avatar">
+        </label>
+        <br>
+        <!--      </div>-->
+        <mat-form-field class="fields" >
+          <label>
+            <input matInput placeholder="company name" formControlName="companyName">
+          </label>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="fields" >
+          <label>
+            <input matInput placeholder="phone" formControlName="phone">
+          </label>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="fields" >
+          <label>
+            <input matInput placeholder="address" formControlName="address">
+          </label>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="fields" >
+          <label>
+            <textarea matInput placeholder="company description" formControlName="companyDescription"></textarea>
+          </label>
+        </mat-form-field>
+        <br>
+      </div>
+    </div>
+
+  </form>
+</div>

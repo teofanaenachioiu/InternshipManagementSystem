@@ -92,26 +92,44 @@
                 </div>
             </div>
             <div class="form-bottom">
-                <button mat-raised-button matStepperNext [disabled]="!form.valid" (click)="clickOnAboutYou()" >Create Account</button>
+               <button mat-raised-button matStepperNext [disabled]="!form.valid" (click)="clickOnAboutYou()"  >Create Account</button>-->
             </div>
         </form>
-
        </div>
 
   </mat-step>
-  <mat-step label="About you">
-
+  <mat-step label="About you candidate">
+    <div class="div-title">
+      <p class="step-title">Step 2:&nbsp;</p><p class="step-title description-title">About you</p>
+    </div>
+    <div class="div-key-words">
+      <app-about-you-candidate></app-about-you-candidate>
+      <div class="form-bottom">
+        <button mat-raised-button matStepperNext [disabled]="!form.valid" (click)="clickOnAboutYou()"  >Skip</button>-->
+        <button mat-raised-button matStepperNext [disabled]="!form.valid" (click)="clickOnAboutYou()"  >Next Step</button>-->
+      </div>
+    </div>
+  </mat-step>
+  <mat-step label="About you company">
+    <div class="div-title">
+      <p class="step-title">Step 2:&nbsp;</p><p class="step-title description-title">About you</p>
+    </div>
+    <div class="div-key-words">
+      <app-about-you-company></app-about-you-company>
+      <div class="form-bottom">
+        <button mat-raised-button matStepperNext [disabled]="!form.valid" (click)="clickOnAboutYou()"  >Skip</button>-->
+        <button mat-raised-button matStepperNext [disabled]="!form.valid" (click)="clickOnAboutYou()"  >Next Step</button>-->
+      </div>
+    </div>
   </mat-step>
   <mat-step label="Key words">
     <div class="div-title">
-      <p class="step-title">Step 2:&nbsp;</p><p class="step-title description-title">Key words</p>
+      <p class="step-title">Step 3:&nbsp;</p><p class="step-title description-title">Key words</p>
     </div>
-
     <div class="div-key-words">
       <app-key-words></app-key-words>
     </div>
-
-
   </mat-step>
 </mat-horizontal-stepper>
 
+<router-outlet></router-outlet>

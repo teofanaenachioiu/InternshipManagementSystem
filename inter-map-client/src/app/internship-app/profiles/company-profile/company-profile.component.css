@@ -1,3 +1,10 @@
+.nav-title {
+  padding-left: 1rem;
+}
+.imagine{
+  height: 50px;
+}
+
 div {
   /*border: 1px solid;*/
 }
@@ -12,7 +19,30 @@ div {
 
 .form-div {
   border: 1px solid;
-  padding: 1vw;
-  margin: 1vw;
+  padding: 2vw;
+  margin-top: 5vw;
+  margin-left: 13vw;
   border-radius: 2vw;
+}
+#about-div{
+  /*border: 1px solid;*/
+  /*padding: 2vw;*/
+  /*margin-top: 5vw;*/
+  margin-left: 10%;
+  /*border-radius: 2vw;*/
+  width: 500px;
+  /*position: absolute;*/
+
+}
+
+#interests-div{
+  margin-left: 10%;
+
+  margin-top: 2vw;
+  /*margin-left: 2.5vw;*/
+}
+
+.add-photo-div {
+  padding: 2vw;
+  margin-left: 2.5vw;
 }

@@ -1,3 +1,9 @@
+.nav-title {
+  padding-left: 1rem;
+}
+.imagine{
+  height: 50px;
+}
 div {
   /*border: 1px solid;*/
 }
@@ -12,7 +18,117 @@ div {
 
 .form-div {
   border: 1px solid;
-  padding: 1vw;
-  margin: 1vw;
+  padding: 2vw;
+  margin-top: 5vw;
+  margin-left: 5vw;
   border-radius: 2vw;
 }
+.help-s {
+  margin-left: 95%;
+}
+
+.help-l {
+  margin-left: 95%;
+}
+
+.help-w {
+  margin-left: 95%;
+}
+/*.contact-div{*/
+/*  !*text-align: center;*!*/
+/*  right: 100px;*/
+/*  width: 700px;*/
+/*  height: 500px;*/
+/*  float: left;*/
+/*  margin-left: 25px;*/
+/*  !*bgcolor: #555555;*!*/
+/*}*/
+
+/*div {*/
+/*  !*border: 1px solid;*!*/
+/*}*/
+
+/*.main-div {*/
+/*  display: flex;*/
+/*}*/
+
+/*.side-div {*/
+/*  float: left;*/
+/*}*/
+
+
+/*.form-div {*/
+/*  border: 1px solid;*/
+/*  padding: 2vw;*/
+/*  margin-top: 1vw;*/
+/*  margin-left: 10vw;*/
+/*  border-radius: 2vw;*/
+/*}*/
+/*.personal-details-div{*/
+/*  right: 100px;*/
+/*  width: 350px;*/
+/*  height: 500px;*/
+/*  float: left;*/
+/*}*/
+
+
+
+/*.studies-div{*/
+/*  !*text-align: center;*!*/
+/* !*padding: 30px;*!*/
+/*  background-color: #aaaaaa;*/
+
+/*  border: 1px solid;*/
+/*  padding: 1vw;*/
+/*  margin: 1vw;*/
+/*  border-radius: 2vw;*/
+
+/*}*/
+
+/*.work-experience-div{*/
+/*  !*text-align: center;*!*/
+/*  !*padding: 30px;*!*/
+
+/*  background-color: #aaaaaa;*/
+/*  border: 1px solid;*/
+/*  padding: 1vw;*/
+/*  margin: 1vw;*/
+/*  border-radius: 2vw;*/
+
+/*}*/
+/*#studies{*/
+/*  padding: 30px;*/
+/*  font-size: 20px;*/
+/*}*/
+
+
+/*!*.form-div {*!*/
+/*!*  !*border: 1px solid;*!*!*/
+/*!*  !*!*background-color: #aaaaaa;*!*!*!*/
+/*!*  !*padding: 1vw;*!*!*/
+/*!*  !*margin: 1vw;*!*!*/
+/*!*  !*border-radius: 2vw;*!*!*/
+/*!*}*!*/
+
+
+/*.info {*/
+/*  margin-left: 550px;*/
+/*}*/
+
+/*.info1 {*/
+/*  margin-left: 590px;*/
+/*}*/
+
+/*#parent {*/
+/*  white-space: nowrap;*/
+/*  overflow-x: auto;*/
+/*}*/
+
+/*#id1{*/
+/*  display: inline-block;*/
+/*  margin-left: 20px;*/
+/*}*/
+/*#id2{*/
+/*  display: inline-block;*/
+/*  margin-left: 20px;*/
+/*}*/

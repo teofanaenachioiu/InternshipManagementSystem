@@ -1,0 +1,31 @@
+.add-photo-div {
+  padding: 1vw;
+  /*margin-left: 2.5vw;*/
+}
+.main-div {
+  display: flex;
+  /*padding-top: 10vw;*/
+}
+
+/*.side-div {*/
+/*  !*display: flex;*!*/
+/*  float: left;*/
+/*}*/
+
+.form-div {
+  /*border: 1px solid;*/
+  /*padding: 2vw;*/
+  /*margin-top: 5vw;*/
+  margin-left: 15vw;
+  border-radius: 2vw;
+}
+
+.radioB{
+  margin-right: 3vw !important;
+}
+.fields{
+  /*margin-left: 2vw;*/
+  /*margin-right: 2vw;*/
+  /*width: 40%;*/
+
+}

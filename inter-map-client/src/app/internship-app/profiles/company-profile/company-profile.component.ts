@@ -21,4 +21,6 @@ export class CompanyProfileComponent implements OnInit {
   ngOnInit() {
   }
 
+  processFile(imageInput: HTMLInputElement) {
+  }
 }

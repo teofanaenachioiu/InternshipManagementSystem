@@ -1,22 +1,35 @@
-
+<mat-toolbar color="primary" (scroll)="scrollHandler($event)" style="position: absolute; z-index: 1">
+  <span class="nav-title">
+    <img class="imagine" src='assets/img/logo_white.png' alt='logo'>
+    interMap
+  </span>
+</mat-toolbar>
 <div class="main-div">
   <form [formGroup]="profileForm">
     Value: {{ profileForm.value | json }} <br>
-
     <div class="side-div">
-      <div class="form-div">
+      <div class="form-div" >
         <app-profile formControlName="profile"></app-profile>
       </div>
     </div>
-
     <div class="side-div">
-      <div class="form-div">
+      <div class="form-div" id="about-div">
         <app-about formControlName="about"></app-about>
       </div>
-      <div class="form-div">
+      <br>
+      <div class="form-div" id="interests-div">
         <app-interests formControlName="interests"></app-interests>
       </div>
-    </div>
-
+      <br>
+      <div class="add-photo-div" >
+        <label class="upload-image-div">
+          <span>Add photos</span>
+          <input #imageInput
+                 type="file"
+                 accept="image/*"
+                 (change)="processFile(imageInput)">
+        </label>
+      </div>
+      </div>
   </form>
 </div>
