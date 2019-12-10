@@ -4,12 +4,17 @@ import {Route, RouterModule, Routes} from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {ForgetPasswordComponent} from './forget-password/forget-password.component';
+import {AboutYouCandidateComponent} from './register/about-you-candidate/about-you-candidate.component';
+import {AboutYouCompanyComponent} from './register/about-you-company/about-you-company.component';
+
 
 const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'forget-password', component: ForgetPasswordComponent}
+  {path: 'forget-password', component: ForgetPasswordComponent},
+  {path: 'register/about-you-candidate', component: AboutYouCandidateComponent},
+  {path: 'register/about-you-company', component: AboutYouCompanyComponent}
 ];
 
 @NgModule({

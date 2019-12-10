@@ -65,7 +65,9 @@ export class WorkExperienceComponent implements ControlValueAccessor, OnDestroy 
   }
 
   removeWork(i) {
-    this.workExperienceForms.removeAt(i);
+    if (i > 0) {
+      this.workExperienceForms.removeAt(i);
+    }
   }
 
   onChange: any = () => {};

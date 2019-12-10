@@ -20,6 +20,13 @@ import {
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { KeyWordsComponent } from './register/key-words/key-words.component';
+import { AboutYouCandidateComponent } from './register/about-you-candidate/about-you-candidate.component';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatSelectModule} from '@angular/material/select';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import { AboutYouCompanyComponent } from './register/about-you-company/about-you-company.component';
+
 
 
 
@@ -32,11 +39,13 @@ const materialComponents = [
   MatIconModule,
   MatStepperModule,
   MatCheckboxModule,
-  MatChipsModule
+  MatChipsModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
 ];
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent, ForgetPasswordComponent, ResetPasswordComponent, KeyWordsComponent],
+  declarations: [LoginComponent, RegisterComponent, ForgetPasswordComponent, ResetPasswordComponent, KeyWordsComponent, AboutYouCandidateComponent, AboutYouCompanyComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,
@@ -46,6 +55,9 @@ const materialComponents = [
     ReactiveFormsModule,
     MatInputModule,
     MatAutocompleteModule,
+    MatRadioModule,
+    MatSelectModule,
+    MatDatepickerModule,
   ],
   providers: [AuthService]
 })

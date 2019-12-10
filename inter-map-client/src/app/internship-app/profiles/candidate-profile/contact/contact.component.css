@@ -1,0 +1,27 @@
+.fields{
+  margin-left: 2vw;
+  margin-right: 2vw;
+  width: 40%;
+}
+#address{
+  margin-left: 12vw;
+}
+/*.i1{*/
+/*  border: 1px solid;*/
+/*  border-radius: 9vw;*/
+/*  padding: 0.5vw;*/
+/*  margin: 1vw;*/
+
+/*}*/
+
+/*.div2{*/
+/*  margin-left: 10px ;*/
+/*  flex-direction: column-reverse;*/
+/*  !*background-color: #aaaaaa;*!*/
+
+/*}*/
+/*!*.mat-form-field-label{*!*/
+/*!*  width: 65px;*!*/
+/*!*  height: 45px;*!*/
+/*!*  line-height: 1.725;*!*/
+/*!*}*!*/

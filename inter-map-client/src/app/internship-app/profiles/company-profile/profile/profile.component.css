@@ -1,0 +1,14 @@
+.profileImg {
+  width: 250px;
+  height: 200px;
+  margin-left: 0.5vw;
+  margin-right: 0.5vw;
+  border-radius: 50%;
+}
+
+.fields{
+  margin-left: 2vw;
+  margin-right: 2vw;
+  width: 80%;
+}
+

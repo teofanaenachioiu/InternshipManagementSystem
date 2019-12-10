@@ -1,0 +1,29 @@
+#profileImg {
+  width: 250px;
+  height: 250px;
+  /*margin-left: 0.5vw;*/
+  /*margin-right: 0.5vw;*/
+  margin: 2.5vw;
+  border-radius: 50%;
+}
+
+.fields{
+  margin-left: 2vw;
+  margin-right: 2vw;
+  width: 80%;
+}
+
+.radioB{
+  margin-right: 3vw !important;
+}
+
+/*!*input{*!*/
+/*!*  !*position: relative;*!*!*/
+/*!*  margin: 0 ;*!*/
+/*!*  font-size: 14px;*!*/
+/*!*}*!*/
+
+/*!*.div1{*!*/
+/*!*  margin-left: 40px;*!*/
+/*!*}*!*/
+

@@ -1,0 +1,49 @@
+
+.fields{
+  margin-left: 1vw;
+  /*margin-right 2vw;*/
+  width: 45%;
+}
+.div2{
+  /*margin-left: 35px ;*/
+  /*flex-direction: column-reverse;*/
+}
+#delete-button{
+  margin-left: 85%;
+  /*margin-left: 25vw;*/
+}
+#add-button{
+}
+
+
+.desc1{
+  position: relative;
+  width:450px;
+}
+
+textarea{
+  width: 450px;
+  /*width:75%;*/
+
+}
+
+.inputs{
+  width: 40%;
+}
+
+/*.div4{*/
+/*  margin-left: 35px ;*/
+/*  flex-direction: column-reverse;*/
+/*}*/
+
+/*.i{*/
+/*  !*position: relative;*!*/
+/*  margin-left: 40px;*/
+/*  !*font-size: 14px;*!*/
+/*}*/
+/*#delete-button{*/
+/*  margin-left: 525px;*/
+/*}*/
+/*#add-button{*/
+/*}*/
+

@@ -1,18 +1,19 @@
+<img id="profileImg" src="https://image.flaticon.com/icons/png/512/21/21294.png" alt="ProfilePicture">
 
-<div [formGroup]="form">
-  <mat-form-field>
+<div class="div1" [formGroup]="form">
+  <mat-form-field class="fields">
     <label>
       <input matInput placeholder="name" formControlName="name">
     </label>
   </mat-form-field>
   <br>
-  <mat-form-field>
+  <mat-form-field class="fields">
     <label>
       <input matInput placeholder="surname" formControlName="surname">
     </label>
   </mat-form-field>
   <br>
-  <mat-form-field>
+  <mat-form-field class="fields">
     <label>
       <input matInput [matDatepicker]="myDatePicker" placeholder="Choose a date" formControlName="dateOfBirth">
     </label>
@@ -20,9 +21,9 @@
     <mat-datepicker #myDatePicker></mat-datepicker>
   </mat-form-field>
   <br>
-  <mat-radio-group aria-label="Select an option" formControlName="sex">
-    <mat-radio-button value="M">M</mat-radio-button>
-    <mat-radio-button value="F">F</mat-radio-button>
-    <mat-radio-button value="O">O</mat-radio-button>
+  <mat-radio-group aria-label="Select an option" formControlName="sex" class="fields">
+    <mat-radio-button value="M" class="radioB">M</mat-radio-button>
+    <mat-radio-button value="F" class="radioB">F</mat-radio-button>
+    <mat-radio-button value="NO" class="radioB">NO</mat-radio-button>
   </mat-radio-group>
 </div>
