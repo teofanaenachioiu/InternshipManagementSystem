@@ -19,7 +19,8 @@ public class MailController {
 
     @PostMapping("/api/home/email")
     public String registration(@RequestBody Message message) {
-
+        System.out.println("A ajuns mesajul??");
+        System.out.println(message);
         messageService.save(message);
         String subject = "Thanks for your feedback!";
         String body = "Have a nice day!";

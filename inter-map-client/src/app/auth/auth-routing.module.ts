@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {Route, RouterModule, Routes} from '@angular/router';
-import { LoginComponent } from './login/login.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {RouterModule, Routes} from '@angular/router';
+import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {ForgetPasswordComponent} from './forget-password/forget-password.component';
 import {AboutYouCandidateComponent} from './register/about-you-candidate/about-you-candidate.component';
@@ -23,6 +23,7 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes)
   ],
-  exports: [ RouterModule ]
+  exports: [RouterModule]
 })
-export class AuthRoutingModule { }
+export class AuthRoutingModule {
+}

@@ -17,7 +17,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @Entity
 @ToString
-public class Message implements HasID<String> {
+public class namenMessage implements HasID<String> {
 
     /**
      *

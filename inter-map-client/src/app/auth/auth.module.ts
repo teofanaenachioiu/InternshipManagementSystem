@@ -4,7 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthRoutingModule } from './auth-routing.module';
 import {AuthService} from './auth.service';
 import {FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
 import {
   MatButtonModule,
@@ -26,8 +26,6 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import { AboutYouCompanyComponent } from './register/about-you-company/about-you-company.component';
-
-
 
 
 const materialComponents = [
@@ -59,6 +57,7 @@ const materialComponents = [
     MatSelectModule,
     MatDatepickerModule,
   ],
-  providers: [AuthService]
+  providers: [
+    AuthService]
 })
 export class AuthModule { }

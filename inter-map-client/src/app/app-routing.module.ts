@@ -27,7 +27,8 @@ const routes: Routes = [
   {
     path: 'internship-app',
     loadChildren: () => import('./internship-app/internship-app.module').then(m => m.InternshipAppModule)
-  }
+  },
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

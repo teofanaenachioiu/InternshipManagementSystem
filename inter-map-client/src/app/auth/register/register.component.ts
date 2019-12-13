@@ -55,7 +55,7 @@ export class RegisterComponent implements OnInit {
     const passwordAgain = this.form.get('passwordAgain').value;
 
     if (password === passwordAgain) {
-      this.authService.register(email, password)
+      this.authService.register(email, password, this.selectedProfile)
         .subscribe((res) => {
           console.log(res);
         }, (error) => {

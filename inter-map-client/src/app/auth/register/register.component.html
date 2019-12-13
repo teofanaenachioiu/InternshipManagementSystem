@@ -11,13 +11,13 @@
 
         <div class="profiles">
           <div class="profile-div">
-            <input class="radio" type="radio" value="student" [(ngModel)]="selectedProfile" id="radioStudent">
+            <input class="radio" type="radio" value="CANDIDATE" [(ngModel)]="selectedProfile" id="radioStudent">
             <label class="opacity" for='radioStudent'>
               <img class="image" alt='avatar' src='assets/img/student.png'>
             </label>
           </div>
           <div class="profile-div">
-            <input class="radio" type="radio" value="company" [(ngModel)]="selectedProfile" id="radioCompany">
+            <input class="radio" type="radio" value="COMPANY" [(ngModel)]="selectedProfile" id="radioCompany">
             <label class="opacity" for="radioCompany">
               <img alt='avatar' class="image" src="assets/img/company.png">
             </label>
@@ -131,5 +131,4 @@
     </div>
   </mat-step>
 </mat-horizontal-stepper>
-
 <router-outlet></router-outlet>

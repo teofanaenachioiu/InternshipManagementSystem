@@ -1,9 +1,7 @@
-export class User {
-  email: string;
-  password: string;
+import {UserRole} from './UserRole';
 
-  constructor(email, password) {
-    this.email = email;
-    this.password = password;
-  }
+export class User {
+  username: string;
+  token?: string;
+  role?: UserRole;
 }

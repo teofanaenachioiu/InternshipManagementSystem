@@ -6,8 +6,8 @@ import javax.mail.internet.*;
 
 public class Email {
 
-    private static String username = "sender"; // GMail user name (just the part before "@gmail.com")
-    private static String password = "pass"; // GMail password
+    private static String username = "proiect.map.teo"; // GMail user name (just the part before "@gmail.com")
+    private static String password = "admin@catalog"; // GMail password
 
     /**
      * Send mail from a default adress (username@gamil.com) to recipient
