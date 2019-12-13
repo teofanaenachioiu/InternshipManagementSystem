@@ -16,5 +16,4 @@ public class InternshipApplication extends SpringBootServletInitializer {
 	public static void main(String[] args) {
 		SpringApplication.run(InternshipApplication.class, args);
 	}
-
 }
