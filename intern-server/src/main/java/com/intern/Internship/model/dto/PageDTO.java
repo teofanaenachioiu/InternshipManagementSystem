@@ -1,8 +1,5 @@
 package com.intern.Internship.model.dto;
 
-import com.intern.Internship.model.Internship;
-import org.springframework.data.domain.Page;
-
 import java.util.List;
 
 public class PageDTO<T> {
@@ -14,7 +11,6 @@ public class PageDTO<T> {
     public PageDTO() {
 
     }
-
 
     public Boolean getHasNext() {
         return hasNext;

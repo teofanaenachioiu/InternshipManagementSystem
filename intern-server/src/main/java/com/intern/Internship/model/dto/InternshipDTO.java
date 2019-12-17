@@ -1,17 +1,15 @@
 package com.intern.Internship.model.dto;
 
-import com.intern.Internship.model.*;
+import java.time.LocalDate;
+import java.util.Map;
+
+import com.intern.Internship.model.Feedback;
+import com.intern.Internship.model.Internship;
 import com.intern.Internship.model.enums.InternshipStatus.InternshipStatus;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import javax.persistence.*;
-import java.time.LocalDate;
-import java.util.Map;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Getter
 @Setter
@@ -35,8 +33,8 @@ public class InternshipDTO {
     private Double averageOfFeedbacks;
 
     public InternshipDTO(String name, LocalDate startTime, LocalDate endTime, Boolean paid, int nrMonths,
-                      String description, int nrApplicants, InternshipStatus status, String location, LocalDate addedDate,
-                      String company, String areaOfInterest, Long numberOfFeedbacks,Double averageOfFeedbacks) {
+            String description, int nrApplicants, InternshipStatus status, String location, LocalDate addedDate,
+            String company, String areaOfInterest, Long numberOfFeedbacks, Double averageOfFeedbacks) {
         this.name = name;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -49,12 +47,12 @@ public class InternshipDTO {
         this.addedDate = addedDate;
         this.company = company;
         this.areaOfInterest = areaOfInterest;
-        this.averageOfFeedbacks=averageOfFeedbacks;
-        this.numberOfFeedbacks =numberOfFeedbacks;
+        this.averageOfFeedbacks = averageOfFeedbacks;
+        this.numberOfFeedbacks = numberOfFeedbacks;
     }
 
     public InternshipDTO(Internship internship) {
-        this.ID=internship.getID();
+        this.ID = internship.getID();
         this.name = internship.getName();
         this.startTime = internship.getStartTime();
         this.endTime = internship.getEndTime();
@@ -67,12 +65,13 @@ public class InternshipDTO {
         this.addedDate = internship.getAddedDate();
         this.company = internship.getCompany().getName();
         this.areaOfInterest = internship.getAreaOfInterest().getName();
-        this.averageOfFeedbacks=(internship.getFeedbacks().stream().mapToDouble(Feedback::getRating).sum())/internship.getFeedbacks().size();
+        this.averageOfFeedbacks = (internship.getFeedbacks().stream().mapToDouble(Feedback::getRating).sum())
+                / internship.getFeedbacks().size();
         this.numberOfFeedbacks = Long.valueOf(internship.getFeedbacks().size());
     }
 
     public InternshipDTO(Map map) {
-        this.ID= (String) map.get("id");
+        this.ID = (String) map.get("id");
         this.name = (String) map.get("name");
         this.startTime = (LocalDate) map.get("startTime");
         this.endTime = (LocalDate) map.get("endTime");
@@ -85,29 +84,18 @@ public class InternshipDTO {
         this.addedDate = (LocalDate) map.get("addedDate");
         this.company = (String) map.get("company");
         this.areaOfInterest = (String) map.get("areaOfInterest");
-        this.averageOfFeedbacks= (Double) map.get("averageOfFeedbacks");
+        this.averageOfFeedbacks = (Double) map.get("averageOfFeedbacks");
         this.numberOfFeedbacks = (Long) map.get("numberOfFeedbacks");
 
     }
 
     @Override
     public String toString() {
-        return "InternshipDTO{" +
-                "ID='" + ID + '\'' +
-                ", name='" + name + '\'' +
-                ", startTime=" + startTime +
-                ", endTime=" + endTime +
-                ", paid=" + paid +
-                ", nrMonths=" + nrMonths +
-                ", description='" + description + '\'' +
-                ", nrApplicants=" + nrApplicants +
-                ", status=" + status +
-                ", location='" + location + '\'' +
-                ", addedDate=" + addedDate +
-                ", company='" + company + '\'' +
-                ", areaOfInterest='" + areaOfInterest + '\'' +
-                ", numberOfFeedbacks=" + numberOfFeedbacks +
-                ", averageOfFeedbacks=" + averageOfFeedbacks +
-                '}';
+        return "InternshipDTO{" + "ID='" + ID + '\'' + ", name='" + name + '\'' + ", startTime=" + startTime
+                + ", endTime=" + endTime + ", paid=" + paid + ", nrMonths=" + nrMonths + ", description='" + description
+                + '\'' + ", nrApplicants=" + nrApplicants + ", status=" + status + ", location='" + location + '\''
+                + ", addedDate=" + addedDate + ", company='" + company + '\'' + ", areaOfInterest='" + areaOfInterest
+                + '\'' + ", numberOfFeedbacks=" + numberOfFeedbacks + ", averageOfFeedbacks=" + averageOfFeedbacks
+                + '}';
     }
 }

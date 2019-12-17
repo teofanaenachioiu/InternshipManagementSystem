@@ -2,7 +2,6 @@ package com.intern.Internship.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -17,7 +16,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @Entity
 @ToString
-public class namenMessage implements HasID<String> {
+public class Message implements HasID<String> {
 
     /**
      *
