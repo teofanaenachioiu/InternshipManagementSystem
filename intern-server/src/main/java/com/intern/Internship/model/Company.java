@@ -8,9 +8,9 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 
-import java.sql.Blob;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -34,12 +34,14 @@ public class Company implements HasID<String> {
     private String telephone;
     private String description;
     private String field;
-    private Blob logo;
+    @Lob
+    @Column(name = "logo", columnDefinition = "BLOB")
+    private byte[] logo;
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
     private Set<Internship> internships;
 
     public Company(String ID, String name, String address, String telephone, String description, String field,
-            Blob logo, Internship... internships) {
+            byte[] logo, Internship... internships) {
         this.ID = ID;
         this.name = name;
         this.address = address;
