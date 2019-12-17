@@ -1,5 +1,7 @@
 package com.intern.Internship.service.implementation;
 
+import javax.validation.ValidationException;
+
 import com.intern.Internship.model.User;
 import com.intern.Internship.repository.UserRepository;
 import com.intern.Internship.service.UserService;
@@ -18,6 +20,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public void save(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        if (userRepository.existsById(user.getUsername()))
+            throw new ValidationException("user already exists");
         userRepository.save(user);
     }
 
