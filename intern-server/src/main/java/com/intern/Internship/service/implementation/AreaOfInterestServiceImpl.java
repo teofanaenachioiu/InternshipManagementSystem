@@ -1,9 +1,10 @@
-package com.intern.Internship.service;
+package com.intern.Internship.service.implementation;
 
 import java.util.List;
 
 import com.intern.Internship.model.AreaOfInterest;
 import com.intern.Internship.repository.AreaOfInterestRepository;
+import com.intern.Internship.service.AreaOfInterestService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

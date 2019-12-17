@@ -1,4 +1,4 @@
-package com.intern.Internship.service;
+package com.intern.Internship.service.implementation;
 
 import java.util.HashSet;
 import java.util.Set;

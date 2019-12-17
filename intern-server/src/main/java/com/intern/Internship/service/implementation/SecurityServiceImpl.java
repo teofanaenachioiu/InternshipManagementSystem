@@ -1,4 +1,6 @@
-package com.intern.Internship.service;
+package com.intern.Internship.service.implementation;
+
+import com.intern.Internship.service.SecurityService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

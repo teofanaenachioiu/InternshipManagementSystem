@@ -1,4 +1,4 @@
-package com.intern.Internship.service;
+package com.intern.Internship.service.implementation;
 
 import java.util.List;
 import java.util.Map;
@@ -10,6 +10,7 @@ import com.intern.Internship.model.dto.PageDTO;
 import com.intern.Internship.model.enums.Direction;
 import com.intern.Internship.model.enums.OrderBy;
 import com.intern.Internship.repository.InternshipRepository;
+import com.intern.Internship.service.InternshipService;
 import com.intern.Internship.utils.Converters;
 
 import org.springframework.beans.factory.annotation.Autowired;

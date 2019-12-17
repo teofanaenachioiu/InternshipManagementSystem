@@ -1,7 +1,8 @@
-package com.intern.Internship.service;
+package com.intern.Internship.service.implementation;
 
 import com.intern.Internship.model.User;
 import com.intern.Internship.repository.UserRepository;
+import com.intern.Internship.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -29,7 +30,8 @@ public class UserServiceImpl implements UserService {
     public User findByUser(String username, String password) {
         User user = userRepository.findByUsername(username);
 
-        if(user==null) return null;
+        if (user == null)
+            return null;
 
         if (bCryptPasswordEncoder.matches(password, user.getPassword())) {
             return user;
