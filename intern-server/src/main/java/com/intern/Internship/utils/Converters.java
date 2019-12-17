@@ -10,15 +10,17 @@ import java.util.List;
 import java.util.Map;
 
 public class Converters {
-    public static PageDTO<InternshipDTO> mapPageToInternshipDTOPage(Page<Map> page){
+    public static PageDTO<InternshipDTO> mapPageToInternshipDTOPage(Page<Map> page) {
         PageDTO<InternshipDTO> pageDTO = new PageDTO<>();
         List<InternshipDTO> internshipDTOS = new ArrayList<>();
-        for(Map map :page.getContent()){
+        for (Map map : page.getContent()) {
             InternshipDTO internshipDTO = new InternshipDTO(map);
             internshipDTOS.add(internshipDTO);
         }
-        return getInternshipDTOPageDTO(pageDTO, internshipDTOS, page.hasNext(), page.hasPrevious(), page.getTotalPages(), page);
+        return getInternshipDTOPageDTO(pageDTO, internshipDTOS, page.hasNext(), page.hasPrevious(),
+                page.getTotalPages(), page);
     }
+
     public static PageDTO<InternshipDTO> internshipPageToInternshipDTOPage(Page<Internship> page) {
         PageDTO<InternshipDTO> pageDTO = new PageDTO<>();
         List<Internship> internships = page.getContent();
@@ -27,10 +29,12 @@ public class Converters {
             InternshipDTO internshipDTO = new InternshipDTO(internship1);
             internshipDTOS.add(internshipDTO);
         }
-        return getInternshipDTOPageDTO(pageDTO, internshipDTOS, page.hasNext(), page.hasPrevious(), page.getTotalPages(), page);
+        return getInternshipDTOPageDTO(pageDTO, internshipDTOS, page.hasNext(), page.hasPrevious(),
+                page.getTotalPages(), page);
     }
 
-    private static<T> PageDTO<InternshipDTO> getInternshipDTOPageDTO(PageDTO<InternshipDTO> pageDTO, List<InternshipDTO> internshipDTOS, boolean hasNext, boolean hasPrevious, int totalPages, Page<T> page) {
+    private static <T> PageDTO<InternshipDTO> getInternshipDTOPageDTO(PageDTO<InternshipDTO> pageDTO,
+            List<InternshipDTO> internshipDTOS, boolean hasNext, boolean hasPrevious, int totalPages, Page<T> page) {
         pageDTO.setContent(internshipDTOS);
         pageDTO.setHasNext(hasNext);
         pageDTO.setHasPrevious(hasPrevious);
