@@ -70,7 +70,7 @@ public class InternshipDTO {
         this.numberOfFeedbacks = Long.valueOf(internship.getFeedbacks().size());
     }
 
-    public InternshipDTO(Map map) {
+    public InternshipDTO(Map<String, ?> map) {
         this.ID = (String) map.get("id");
         this.name = (String) map.get("name");
         this.startTime = (LocalDate) map.get("startTime");

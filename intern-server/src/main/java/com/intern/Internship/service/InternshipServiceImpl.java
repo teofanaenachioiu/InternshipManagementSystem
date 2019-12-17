@@ -41,7 +41,7 @@ public class InternshipServiceImpl implements InternshipService {
             pageDTO = Converters.internshipPageToInternshipDTOPage(page);
 
         } else {
-            Page<Map> mapPage = internshipRepository
+            Page<Map<String, ?>> mapPage = internshipRepository
                     .getInternshipsDTO(PageRequest.of(pageNumber, pageSize, Sort.by(order)));
             pageDTO = Converters.mapPageToInternshipDTOPage(mapPage);
         }

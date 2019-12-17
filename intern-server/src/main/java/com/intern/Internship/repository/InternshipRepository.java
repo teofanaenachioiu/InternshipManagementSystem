@@ -18,7 +18,6 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 
 public interface InternshipRepository extends JpaRepository<Internship, String>, JpaSpecificationExecutor<Internship> {
-    @SuppressWarnings("serial")
     static Specification<Internship> multiLikeAreaOfInterest(List<AreaOfInterest> likePatterns) {
         return (Specification<Internship>) (root, query, criteriaBuilder) -> {
             Path<String> column1 = root.get("areaOfInterest").get("name");
@@ -37,5 +36,5 @@ public interface InternshipRepository extends JpaRepository<Internship, String>,
             + "i.addedDate as addedDate," + "i.company.name as company," + "i.areaOfInterest.id as areaOfInterest,"
             + "avg(f.rating) as averageOfFeedbacks," + "count(i.ID) as numberOfFeedbacks"
             + " from Internship as i INNER join Feedback f  on i.ID=f.internship.id " + "group by i.ID")
-    Page<Map> getInternshipsDTO(Pageable pageable);
+    Page<Map<String, ?>> getInternshipsDTO(Pageable pageable);
 }

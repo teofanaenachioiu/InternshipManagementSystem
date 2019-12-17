@@ -10,10 +10,10 @@ import java.util.List;
 import java.util.Map;
 
 public class Converters {
-    public static PageDTO<InternshipDTO> mapPageToInternshipDTOPage(Page<Map> page) {
+    public static PageDTO<InternshipDTO> mapPageToInternshipDTOPage(Page<Map<String, ?>> page) {
         PageDTO<InternshipDTO> pageDTO = new PageDTO<>();
         List<InternshipDTO> internshipDTOS = new ArrayList<>();
-        for (Map map : page.getContent()) {
+        for (Map<String, ?> map : page.getContent()) {
             InternshipDTO internshipDTO = new InternshipDTO(map);
             internshipDTOS.add(internshipDTO);
         }
