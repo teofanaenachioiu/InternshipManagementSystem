@@ -41,9 +41,9 @@ public class UserController {
     @PostMapping("/api/auth/signup")
     public ResponseEntity<User> registration(@RequestBody User userForm) { // , BindingResult bindingResult
 
-        // if (bindingResult.hasErrors()) {
-        // return "registration";
-        // }
+        if (userForm == null) {
+            return ResponseEntity.badRequest().body(new User());
+        }
 
         String token = getJWTToken(userForm.getUsername());
         userForm.setToken(token);
@@ -51,7 +51,7 @@ public class UserController {
         userService.save(userForm);
         // securityService.autoLogin(userForm.getUsername(), userForm.getPassword());
 
-        return ResponseEntity.accepted().body(userForm);
+        return ResponseEntity.ok().body(userForm);
     }
 
     @GetMapping("/api/auth/login")
@@ -75,7 +75,7 @@ public class UserController {
 
         String token = getJWTToken(user.getUsername());
         user.setToken(token);
-        return ResponseEntity.accepted().body(user);
+        return ResponseEntity.ok().body(user);
     }
 
     @GetMapping({ "/", "/api/auth/welcome" })
