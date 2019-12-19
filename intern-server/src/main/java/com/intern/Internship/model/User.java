@@ -1,19 +1,12 @@
 package com.intern.Internship.model;
 
-import java.io.Serializable;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import com.intern.Internship.model.Role;
-
 import org.hibernate.annotations.ColumnDefault;
+
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Getter
 @Setter
