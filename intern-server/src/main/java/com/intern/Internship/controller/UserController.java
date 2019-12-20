@@ -4,7 +4,11 @@ import java.sql.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.intern.Internship.model.Candidate;
+import com.intern.Internship.model.Company;
 import com.intern.Internship.model.User;
+import com.intern.Internship.service.CandidateService;
+import com.intern.Internship.service.CompanyService;
 import com.intern.Internship.service.SecurityService;
 import com.intern.Internship.service.UserService;
 
@@ -27,6 +31,10 @@ import io.jsonwebtoken.SignatureAlgorithm;
 public class UserController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private CandidateService candidateService;
+    @Autowired
+    private CompanyService companyService;
 
     @Autowired
     private SecurityService securityService;
@@ -40,8 +48,12 @@ public class UserController {
 
     @PostMapping("/api/auth/signup")
     public ResponseEntity<User> registration(@RequestBody User userForm) { // , BindingResult bindingResult
-
         if (userForm == null) {
+            return ResponseEntity.badRequest().body(new User());
+        }
+        // if user already exists
+        User user = userService.findByUsername(userForm.getUsername());
+        if (user != null) {
             return ResponseEntity.badRequest().body(new User());
         }
 
@@ -49,6 +61,15 @@ public class UserController {
         userForm.setToken(token);
 
         userService.save(userForm);
+        if (userForm.getRole().getName().equals("CANDIDATE")) {
+            Candidate candidate = new Candidate();
+            candidate.setID(userForm.getUsername());
+            candidateService.save(candidate);
+        } else {
+            Company company = new Company();
+            company.setID(userForm.getUsername());
+            companyService.save(company);
+        }
         // securityService.autoLogin(userForm.getUsername(), userForm.getPassword());
 
         return ResponseEntity.ok().body(userForm);
@@ -75,6 +96,7 @@ public class UserController {
 
         String token = getJWTToken(user.getUsername());
         user.setToken(token);
+
         return ResponseEntity.ok().body(user);
     }
 
