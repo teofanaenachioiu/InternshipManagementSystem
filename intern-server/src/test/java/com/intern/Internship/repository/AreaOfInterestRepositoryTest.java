@@ -1,12 +1,14 @@
 package com.intern.Internship.repository;
 
 import com.intern.Internship.model.AreaOfInterest;
+import org.hibernate.annotations.Any;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -26,7 +28,8 @@ class AreaOfInterestRepositoryTest {
         assert (areaOfInterestRepository.count() == countBefore + 2);
         assert (areaOfInterestRepository.findAll().contains(areaOfInterest1));
         assert (areaOfInterestRepository.findAll().contains(areaOfInterest2));
-        System.out.println(areaOfInterestRepository.findAll());
+        AreaOfInterest fromRepository = areaOfInterestRepository.getOne(areaOfInterest1.getID());
+        assert (fromRepository.getName() != null);
         areaOfInterestRepository.delete(areaOfInterest1);
         areaOfInterestRepository.delete(areaOfInterest2);
         assert (areaOfInterestRepository.count() == countBefore);
