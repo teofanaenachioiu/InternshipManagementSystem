@@ -1,44 +1,43 @@
-<!--<app-candidate-menu></app-candidate-menu>-->
+<app-candidate-menu></app-candidate-menu>
 
 <div class="main-div">
-  <mat-toolbar color="primary" (scroll)="scrollHandler($event)" style="position: absolute; z-index: 1">
-  <span class="nav-title">
-    <img class="imagine" src='assets/img/logo_white.png' alt='logo'>
-    interMap
-  </span>
-  </mat-toolbar>
   <form [formGroup]="profileForm">
     Value: {{ profileForm.value | json }} <br>
-    <div class="side-div">
-      <div class="form-div">
-        <app-personal-details formControlName="personalDetails"></app-personal-details>
+    <div class="form-profile-content">
+      <div class="side-div sticky">
+
+        <div class="form-div">
+          <app-personal-details formControlName="personalDetails"></app-personal-details>
+        </div>
+
+        <div class="form-div">
+          <app-interests formControlName="interests"></app-interests>
+        </div>
+
       </div>
-      <div class="form-div">
-        <app-interests formControlName="interests"></app-interests>
-      </div>
-    </div>
-    <div class="side-div">
-      <div class="form-div" >
-        <app-contact formControlName="contact"></app-contact>
-      </div>
-      <div class="form-div">
-        Studies
-        <mat-icon class="help-s" matTooltip="Info about studies">help</mat-icon>
-        <app-studies formControlName="studies"></app-studies>
-      </div>
-      <div class="form-div">
-        Languages
-        <mat-icon  class="help-l" matTooltip="Info about languages">help</mat-icon>
-        <app-languages formControlName="languages"></app-languages>
-      </div>
-      <div class="form-div">
-        Work experience
-        <mat-icon class="help-w" matTooltip="Info about work experience">help</mat-icon>
-        <app-work-experience formControlName="workExperience"></app-work-experience>
-      </div>
-      <div class="form-div">
-        Tell us more
-        <app-tell-us-more formControlName="tellUsMore"></app-tell-us-more>
+      <div class="side-div sticky">
+        <div class="form-div">
+          <app-contact formControlName="contact"></app-contact>
+        </div>
+<!--        <div class="form-div">-->
+<!--          Studies-->
+<!--          <mat-icon class="help-s" matTooltip="Info about studies">help</mat-icon>-->
+<!--          <app-studies formControlName="studies"></app-studies>-->
+<!--        </div>-->
+        <div class="form-div">
+          Languages
+          <mat-icon class="help-l" matTooltip="Info about languages">help</mat-icon>
+          <app-languages formControlName="languages"></app-languages>
+        </div>
+        <div class="form-div">
+          Work experience
+          <mat-icon class="help-w" matTooltip="Info about work experience">help</mat-icon>
+          <app-work-experience formControlName="workExperience"></app-work-experience>
+        </div>
+        <div class="form-div">
+          Tell us more
+          <app-tell-us-more formControlName="tellUsMore"></app-tell-us-more>
+        </div>
       </div>
     </div>
   </form>

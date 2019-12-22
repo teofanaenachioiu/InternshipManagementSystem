@@ -1,12 +1,10 @@
 import {Component, forwardRef, OnDestroy, OnInit} from '@angular/core';
 import {ControlValueAccessor, FormBuilder, FormControl, FormGroup, NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {Subscription} from 'rxjs';
-
-enum Sex {
-  M,
-  F,
-  O
-}
+import {Sex} from '../../../../core/Sex';
+import {Candidat} from '../../../../core/Candidat';
+import {CandidateService} from '../../../candidate.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-personal-details',
@@ -25,8 +23,9 @@ enum Sex {
     }
   ]
 })
-export class PersonalDetailsComponent implements ControlValueAccessor, OnDestroy {
-
+export class PersonalDetailsComponent implements ControlValueAccessor, OnDestroy, OnInit {
+  name: string;
+  surname: string;
   form: FormGroup;
   subscriptions: Subscription[] = [];
 
@@ -83,6 +82,9 @@ export class PersonalDetailsComponent implements ControlValueAccessor, OnDestroy
 
   ngOnDestroy() {
     this.subscriptions.forEach(s => s.unsubscribe());
+  }
+
+  ngOnInit(): void {
   }
 
 }

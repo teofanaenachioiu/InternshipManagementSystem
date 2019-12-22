@@ -25,7 +25,6 @@ import {FeedbackComponent} from './components/feedback/feedback.component';
 import {ContactComponent} from './components/contact/contact.component';
 import {StatisticsComponent} from './components/statistics/statistics.component';
 import {FooterComponent} from './components/footer/footer.component';
-
 const materialComponents = [
   MatButtonModule,
   MatToolbarModule,
@@ -37,7 +36,13 @@ const materialComponents = [
   MatCardModule,
   MatExpansionModule,
   MatDialogModule,
-  MatInputModule
+  MatInputModule,
+  MatToolbarModule,
+  MatSidenavModule,
+  MatListModule,
+  MatIconModule,
+  MatButtonModule,
+
 ];
 
 import {SwiperModule} from 'ngx-swiper-wrapper';

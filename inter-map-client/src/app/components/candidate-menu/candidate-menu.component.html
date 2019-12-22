@@ -1,23 +1,23 @@
-<mat-toolbar color="primary" style="position: fixed; z-index: 10">
+<div>
+  <mat-toolbar color="primary" style="position: fixed; z-index: 10">
   <span class="nav-title">
     <img class="imagine" src='assets/img/logo_white.png' alt='logo'>
     interMap</span>
 
-  <!-- This fills the remaining space of the current row -->
-  <span class="example-fill-remaining-space"></span>
+    <span class="example-fill-remaining-space"></span>
 
-  <button mat-button [routerLink]="'/'"> HOME </button>
-  <button mat-button [routerLink]="'/internship-app/internships'"> INTERNSHIPS </button>
-  <button mat-button [routerLink]="'/internship-app/internships'"> COMPANIES </button>
+    <button mat-button [routerLink]="'/'"> HOME </button>
+    <button mat-button [routerLink]="'/internship-app/internships'"> MY INTERNSHIPS </button>
 
 
-  <button mat-button [matMenuTriggerFor]="beforeMenu"><mat-icon>account_circle</mat-icon></button>
-  <mat-menu #beforeMenu="matMenu" xPosition="before">
-    <button mat-menu-item [routerLink]="'/'">My applications</button>
-    <button mat-menu-item [routerLink]="'/internship-app/candidate-profile'">Profile</button>
-    <button mat-menu-item (click)="openDialog()">Logout</button>
-  </mat-menu>
+    <button mat-button [matMenuTriggerFor]="beforeMenu"><mat-icon>account_circle</mat-icon></button>
+    <mat-menu #beforeMenu="matMenu" xPosition="before">
+      <button mat-menu-item [routerLink]="'/internship-app/company-profile'">Profile</button>
+      <button mat-menu-item (click)="openDialog()">Logout</button>
+    </mat-menu>
+  </mat-toolbar>
 
-</mat-toolbar>
+  <div class="spacer"></div>
+</div>
 
 <router-outlet></router-outlet>
