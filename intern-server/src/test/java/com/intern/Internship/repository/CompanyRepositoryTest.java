@@ -83,8 +83,6 @@ class CompanyRepositoryTest {
                 company1,
                 areaOfInterest2
         );
-        System.out.println(internship11.getAreaOfInterest());
-        System.out.println(internship12.getAreaOfInterest());
         Feedback feedback111 = new Feedback(
                 "Description1",
                 true,
@@ -113,6 +111,10 @@ class CompanyRepositoryTest {
         feedbackRepository.save(feedback112);
         feedbackRepository.save(feedback121);
         feedbackRepository.save(feedback122);
+
+        Feedback fromRepositoryFeedback1 = feedbackRepository.getOne(feedback111.getID());
+        assert (fromRepositoryFeedback1.getInternship() != null);
+
         HashSet<Feedback> hashSet1 = new HashSet<>();
         hashSet1.add(feedback111);
         hashSet1.add(feedback112);
@@ -123,11 +125,18 @@ class CompanyRepositoryTest {
         internship12.setFeedbacks(hashSet2);
         internshipRepository.save(internship11);
         internshipRepository.save(internship12);
+
+        Internship fromRepositoryInternship11 = internshipRepository.getOne(internship11.getID());
+        assert (internship11.getFeedbacks().size() != 0);
+
         HashSet<Internship> hashSet3 = new HashSet<>();
         hashSet3.add(internship11);
         hashSet3.add(internship12);
         company1.setInternships(hashSet3);
         companyRepository.save(company1);
+
+        Company fromRepositoryCompany = companyRepository.getOne(company1.getID());
+        assert (company1.getInternships().size() != 0);
 
         assert(companyRepository.count() == countBefore + 1);
         companyRepository.delete(company1);
