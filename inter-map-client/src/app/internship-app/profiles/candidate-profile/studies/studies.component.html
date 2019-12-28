@@ -29,14 +29,13 @@
         <br>
         <mat-form-field class="desc1">
           <label >
-                    <textarea matInput placeholder="Tell us more about what you have studied" formControlName="description">
-                    </textarea>
+            <textarea matInput placeholder="Tell us more about what you have studied" formControlName="more">
+            </textarea>
           </label>
         </mat-form-field>
         <button id="delete-button" mat-raised-button (click)="removeStudy(i)"><mat-icon>delete</mat-icon></button>
 
-
       </div>
-      <button id="add-button" mat-raised-button (click)="addStudy()"><mat-icon>add</mat-icon></button>
+      <button id="add-button-study" mat-raised-button (click)="addStudy()"><mat-icon>add</mat-icon></button>
     </div>
  </div>

@@ -46,8 +46,6 @@ export class WorkExperienceComponent implements ControlValueAccessor, OnDestroy 
         this.onTouched();
       })
     );
-
-    this.addWork();
   }
 
   get workExperienceForms() {

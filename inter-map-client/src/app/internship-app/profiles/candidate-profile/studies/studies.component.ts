@@ -46,8 +46,6 @@ export class StudiesComponent implements ControlValueAccessor, OnDestroy {
         this.onTouched();
       })
     );
-
-    this.addStudy();
   }
 
   get studiesForms() {
