@@ -2,21 +2,27 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {InternshipsComponent} from './internships/internships.component';
 import {InternshipAppRoutingModule} from './internship-app-routing.module';
-import {CandidateMenuComponent} from '../components/candidate-menu/candidate-menu.component';
-import {
-  MatButtonModule, MatCheckboxModule, MatChipsModule, MatDatepickerModule,
-  MatIconModule,
-  MatInputModule,
-  MatListModule,
-  MatMenuModule, MatNativeDateModule, MatRadioModule, MatSelectModule,
-  MatSidenavModule,
-  MatToolbarModule, MatTooltipModule
-} from '@angular/material';
-import {CompanyMenuComponent} from '../components/company-menu/company-menu.component';
+
+
+import { InternshipItemComponent } from './internship-list/internship-item/internship-item.component';
+import { InternshipListComponent } from './internship-list/internship-list.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FilterCompanyPipe } from './data/filter-company.pipe';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { FilterForMultipleCompanyPipe } from './data/filter-for-multiple-company.pipe';
+import { RatingModule } from 'ng-starrating';
+import { FilterRatingPipe } from './data/filter-rating.pipe';
+import { OrderModule } from 'ngx-order-pipe';
+
+import { MatFormFieldModule, MatInputModule, MatSelectModule, MatButtonModule, MatToolbarModule, MatSidenavModule, MatListModule, MatIconModule, MatMenuModule, MatDatepickerModule, MatNativeDateModule, MatRadioModule, MatChipsModule, MatTooltipModule } from
+   '@angular/material';
+import { FilterForMultipleInterestPipe } from './data/filter-for-multiple-interest.pipe';
 import { CandidateProfileComponent } from './profiles/candidate-profile/candidate-profile.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { CandidateMenuComponent } from '../components/candidate-menu/candidate-menu.component';
+import { CompanyMenuComponent } from '../components/company-menu/company-menu.component';
 import { PersonalDetailsComponent } from './profiles/candidate-profile/personal-details/personal-details.component';
-import { ContactComponent } from './profiles/candidate-profile/contact/contact.component';
+import { ContactComponent } from './profiles/candidate-profile/contact/contact.component'
 import { StudiesComponent } from './profiles/candidate-profile/studies/studies.component';
 import { WorkExperienceComponent } from './profiles/candidate-profile/work-experience/work-experience.component';
 import { LanguagesComponent } from './profiles/candidate-profile/languages/languages.component';
@@ -59,18 +65,28 @@ const materialComponents = [
     ProfileComponent,
     TellUsMoreComponent,
     InterestsComponent,
-    CompanyInternshipsComponent
-  ],
-  exports: [
-    CompanyMenuComponent
+    InternshipsComponent,
+    InternshipItemComponent,
+    InternshipListComponent,
+    FilterCompanyPipe,
+    FilterForMultipleCompanyPipe,
+    FilterRatingPipe,
+    FilterForMultipleInterestPipe,
+    CompanyInternshipsComponent,
   ],
   imports: [
     CommonModule,
     InternshipAppRoutingModule,
+    FormsModule,
     ReactiveFormsModule,
-    materialComponents,
-    MatDatepickerModule,
-    FormsModule
+    NgxPaginationModule,
+    MatCheckboxModule,
+    RatingModule,
+    OrderModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    materialComponents
   ]
 })
 export class InternshipAppModule { }

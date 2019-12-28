@@ -106,6 +106,9 @@ public class UserController {
     }
 
     private String getJWTToken(String username) {
+        if (username.length() > 19) {
+            username = username.substring(0, 19);
+        }
         String secretKey = "mySecretKey";
         List<GrantedAuthority> grantedAuthorities = AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_USER");
 

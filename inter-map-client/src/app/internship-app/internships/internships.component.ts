@@ -7,8 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InternshipsComponent implements OnInit {
 
-  private candidate = true;
+  filteredParentCompany ='';
+  filteredMultipleCompany='';
 
+  
   constructor() { }
 
   ngOnInit() {
