@@ -25,6 +25,7 @@ import { AboutComponent } from './profiles/company-profile/about/about.component
 import { ProfileComponent } from './profiles/company-profile/profile/profile.component';
 import { TellUsMoreComponent } from './profiles/candidate-profile/tell-us-more/tell-us-more.component';
 import { InterestsComponent } from './profiles/interests/interests.component';
+import { CompanyInternshipsComponent } from './company-internships/company-internships.component';
 
 const materialComponents = [
   MatButtonModule,
@@ -57,7 +58,8 @@ const materialComponents = [
     AboutComponent,
     ProfileComponent,
     TellUsMoreComponent,
-    InterestsComponent
+    InterestsComponent,
+    CompanyInternshipsComponent
   ],
   exports: [
     CompanyMenuComponent

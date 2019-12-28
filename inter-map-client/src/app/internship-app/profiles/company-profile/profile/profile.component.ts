@@ -1,6 +1,7 @@
 import {Component, forwardRef, OnDestroy, OnInit} from '@angular/core';
 import {ControlValueAccessor, FormBuilder, FormControl, FormGroup, NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {Subscription} from 'rxjs';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -34,7 +35,7 @@ export class ProfileComponent implements ControlValueAccessor, OnDestroy {
     this.onTouched();
   }
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private router: Router) {
     this.form = this.formBuilder.group({
       name: '',
       phone: '',
@@ -78,4 +79,7 @@ export class ProfileComponent implements ControlValueAccessor, OnDestroy {
     this.subscriptions.forEach(s => s.unsubscribe());
   }
 
+  addInternshipHandler() {
+    this.router.navigate(['internship-app/company-internships']).then();
+  }
 }
