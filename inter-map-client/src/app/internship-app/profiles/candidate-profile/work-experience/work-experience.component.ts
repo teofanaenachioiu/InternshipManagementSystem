@@ -47,7 +47,6 @@ export class WorkExperienceComponent implements ControlValueAccessor, OnDestroy 
       })
     );
 
-    this.addWork();
   }
 
   get workExperienceForms() {
