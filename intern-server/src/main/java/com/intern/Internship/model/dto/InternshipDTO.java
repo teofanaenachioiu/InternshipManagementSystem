@@ -76,9 +76,9 @@ public class InternshipDTO {
         this.startTime = (LocalDate) map.get("startTime");
         this.endTime = (LocalDate) map.get("endTime");
         this.paid = (Boolean) map.get("paid");
-        this.nrMonths = (int) map.get("nrMonths");
+        this.nrMonths = (Integer) map.get("nrMonths");
         this.description = (String) map.get("description");
-        this.nrApplicants = (int) map.get("nrApplicants");
+        this.nrApplicants = (Integer) map.get("nrApplicants");
         this.status = (InternshipStatus) map.get("status");
         this.location = (String) map.get("location");
         this.addedDate = (LocalDate) map.get("addedDate");
