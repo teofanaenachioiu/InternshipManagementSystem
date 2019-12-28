@@ -65,7 +65,8 @@ export class StudiesComponent implements ControlValueAccessor, OnDestroy {
   }
 
   removeStudy(i) {
-    if (i > 0) {
+    if (i >= 0) {
+      console.log('remove');
       this.studiesForms.removeAt(i);
     }
   }
