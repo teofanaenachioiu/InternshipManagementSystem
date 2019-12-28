@@ -26,6 +26,7 @@ import {ContactComponent} from './components/contact/contact.component';
 import {StatisticsComponent} from './components/statistics/statistics.component';
 import {FooterComponent} from './components/footer/footer.component';
 
+
 const materialComponents = [
   MatButtonModule,
   MatToolbarModule,

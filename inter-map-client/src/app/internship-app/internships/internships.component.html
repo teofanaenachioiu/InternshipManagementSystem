@@ -1,4 +1,11 @@
-<app-candidate-menu *ngIf="candidate"></app-candidate-menu>
-<app-company-menu *ngIf="!candidate"></app-company-menu>
 
 <p>internships works!</p>
+
+
+<div class="row">
+    <div class="col-md-5">
+<app-internship-list>
+    (internshipsWasSelected)="selectedInternship = $event">
+</app-internship-list>
+</div>
+</div>

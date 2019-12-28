@@ -8,8 +8,8 @@ import {AuthCandidateGuard} from '../auth/auth-candidate.guard';
 import {AuthCompanyGuard} from '../auth/auth-company.guard';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'internships', pathMatch: 'full', canActivate: [AuthCandidateGuard] },
-  {path: 'internships', component: InternshipsComponent, canActivate: [AuthCandidateGuard] },
+  {path: '', redirectTo: 'internships', pathMatch: 'full' },
+  {path: 'internships', component: InternshipsComponent },
   {path: 'candidate-profile', component: CandidateProfileComponent, canActivate: [AuthCandidateGuard] },
   {path: 'company-profile', component: CompanyProfileComponent, canActivate: [AuthCompanyGuard] }
 ];
