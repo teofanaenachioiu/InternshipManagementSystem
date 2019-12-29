@@ -1,49 +1,46 @@
 import {Component, forwardRef, OnDestroy, OnInit} from '@angular/core';
 import {ControlValueAccessor, FormBuilder, FormControl, FormGroup, NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {Subscription} from 'rxjs';
-import {Router} from '@angular/router';
-import {MatDialog} from '@angular/material';
-import {AddModalComponent} from '../add-modal/add-modal.component';
-
-
+import {CompanyProfileService} from '../../company-profile.service';
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css'],
+  selector: 'app-edit-form',
+  templateUrl: './edit-form.component.html',
+  styleUrls: ['./edit-form.component.css'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => ProfileComponent),
+      useExisting: forwardRef(() => EditFormComponent),
       multi: true
     },
     {
       provide: NG_VALIDATORS,
-      useExisting: forwardRef(() => ProfileComponent),
+      useExisting: forwardRef(() => EditFormComponent),
       multi: true,
     }
   ]
 })
-export class ProfileComponent implements ControlValueAccessor, OnDestroy {
+export class EditFormComponent implements ControlValueAccessor, OnDestroy {
 
   form: FormGroup;
   subscriptions: Subscription[] = [];
 
-  get value(): ProfileComponent {
+  get value(): EditFormComponent {
     return this.form.value;
   }
 
-  set value(value: ProfileComponent) {
+  set value(value: EditFormComponent) {
     this.form.setValue(value);
     this.onChange(value);
     this.onTouched();
   }
 
-  constructor(private formBuilder: FormBuilder, private router: Router, public dialog: MatDialog) {
+  constructor(private formBuilder: FormBuilder,
+              private companyService: CompanyProfileService) {
     this.form = this.formBuilder.group({
       name: '',
-      phone: '',
-      email: ''
+      description: '',
+      status: '',
     });
 
     this.subscriptions.push(
@@ -83,11 +80,4 @@ export class ProfileComponent implements ControlValueAccessor, OnDestroy {
     this.subscriptions.forEach(s => s.unsubscribe());
   }
 
-  addInternshipHandler() {
-    this.dialog.open(AddModalComponent, {
-      data: {
-        action: 'add'
-      }
-    });
-  }
 }

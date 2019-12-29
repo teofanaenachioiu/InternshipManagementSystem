@@ -15,14 +15,30 @@ import { RatingModule } from 'ng-starrating';
 import { FilterRatingPipe } from './data/filter-rating.pipe';
 import { OrderModule } from 'ngx-order-pipe';
 
-import { MatFormFieldModule, MatInputModule, MatSelectModule, MatButtonModule, MatToolbarModule, MatSidenavModule, MatListModule, MatIconModule, MatMenuModule, MatDatepickerModule, MatNativeDateModule, MatRadioModule, MatChipsModule, MatTooltipModule } from
-   '@angular/material';
+import {
+  MatFormFieldModule,
+  MatInputModule,
+  MatSelectModule,
+  MatButtonModule,
+  MatToolbarModule,
+  MatSidenavModule,
+  MatListModule,
+  MatIconModule,
+  MatMenuModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatRadioModule,
+  MatChipsModule,
+  MatTooltipModule,
+  MatDialogModule
+} from
+    '@angular/material';
 import { FilterForMultipleInterestPipe } from './data/filter-for-multiple-interest.pipe';
 import { CandidateProfileComponent } from './profiles/candidate-profile/candidate-profile.component';
 import { CandidateMenuComponent } from '../components/candidate-menu/candidate-menu.component';
 import { CompanyMenuComponent } from '../components/company-menu/company-menu.component';
 import { PersonalDetailsComponent } from './profiles/candidate-profile/personal-details/personal-details.component';
-import { ContactComponent } from './profiles/candidate-profile/contact/contact.component'
+import { ContactComponent } from './profiles/candidate-profile/contact/contact.component';
 import { StudiesComponent } from './profiles/candidate-profile/studies/studies.component';
 import { WorkExperienceComponent } from './profiles/candidate-profile/work-experience/work-experience.component';
 import { LanguagesComponent } from './profiles/candidate-profile/languages/languages.component';
@@ -31,7 +47,12 @@ import { AboutComponent } from './profiles/company-profile/about/about.component
 import { ProfileComponent } from './profiles/company-profile/profile/profile.component';
 import { TellUsMoreComponent } from './profiles/candidate-profile/tell-us-more/tell-us-more.component';
 import { InterestsComponent } from './profiles/interests/interests.component';
-import { CompanyInternshipsComponent } from './company-internships/company-internships.component';
+import { CompanyInternshipsComponent } from './profiles/company-profile/company-internships/company-internships.component';
+import { AddModalComponent } from './profiles/company-profile/add-modal/add-modal.component';
+import { ConfirmRemoveInternshipComponent } from './profiles/company-profile/company-internships/confirm-remove-internship/confirm-remove-internship.component';
+import { AddFormComponent } from './profiles/company-profile/add-modal/add-form/add-form.component';
+import { EditModalComponent } from './profiles/company-profile/edit-modal/edit-modal.component';
+import { EditFormComponent } from './profiles/company-profile/edit-modal/edit-form/edit-form.component';
 
 const materialComponents = [
   MatButtonModule,
@@ -73,6 +94,16 @@ const materialComponents = [
     FilterRatingPipe,
     FilterForMultipleInterestPipe,
     CompanyInternshipsComponent,
+    AddModalComponent,
+    ConfirmRemoveInternshipComponent,
+    AddFormComponent,
+    EditModalComponent,
+    EditFormComponent,
+  ],
+  entryComponents: [
+    AddModalComponent,
+    EditModalComponent,
+    ConfirmRemoveInternshipComponent,
   ],
   imports: [
     CommonModule,
@@ -86,7 +117,9 @@ const materialComponents = [
     MatInputModule,
     MatFormFieldModule,
     MatSelectModule,
-    materialComponents
+    materialComponents,
+    MatDialogModule,
+    MatCheckboxModule
   ]
 })
 export class InternshipAppModule { }

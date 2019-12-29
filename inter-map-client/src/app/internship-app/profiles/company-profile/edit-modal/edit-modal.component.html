@@ -1,0 +1,12 @@
+<mat-dialog-content class="mat-typography">
+  <h3>EDIT INTERNSHIP</h3>
+  <form [formGroup]="form">
+    <div>
+      <app-edit-form formControlName="internshipForm"></app-edit-form>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>CANCEL</button>
+  <button mat-button [mat-dialog-close]="true" (click)="buttonHandler()">EDIT</button>
+</mat-dialog-actions>

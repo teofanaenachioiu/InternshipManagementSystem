@@ -1,49 +1,50 @@
 import {Component, forwardRef, OnDestroy, OnInit} from '@angular/core';
 import {ControlValueAccessor, FormBuilder, FormControl, FormGroup, NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {Subscription} from 'rxjs';
-import {Router} from '@angular/router';
-import {MatDialog} from '@angular/material';
-import {AddModalComponent} from '../add-modal/add-modal.component';
-
-
+import {CompanyProfileService} from '../../company-profile.service';
 
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css'],
+  selector: 'app-add-form',
+  templateUrl: './add-form.component.html',
+  styleUrls: ['./add-form.component.css'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => ProfileComponent),
+      useExisting: forwardRef(() => AddFormComponent),
       multi: true
     },
     {
       provide: NG_VALIDATORS,
-      useExisting: forwardRef(() => ProfileComponent),
+      useExisting: forwardRef(() => AddFormComponent),
       multi: true,
     }
   ]
 })
-export class ProfileComponent implements ControlValueAccessor, OnDestroy {
+export class AddFormComponent implements ControlValueAccessor, OnDestroy {
 
   form: FormGroup;
   subscriptions: Subscription[] = [];
 
-  get value(): ProfileComponent {
+  get value(): AddFormComponent {
     return this.form.value;
   }
 
-  set value(value: ProfileComponent) {
+  set value(value: AddFormComponent) {
     this.form.setValue(value);
     this.onChange(value);
     this.onTouched();
   }
 
-  constructor(private formBuilder: FormBuilder, private router: Router, public dialog: MatDialog) {
+  constructor(private formBuilder: FormBuilder,
+              private companyService: CompanyProfileService) {
     this.form = this.formBuilder.group({
       name: '',
-      phone: '',
-      email: ''
+      description: '',
+      paid: new FormControl(false),
+      fromDate: '',
+      toDate: '',
+      status: 'open',
+      location: '',
     });
 
     this.subscriptions.push(
@@ -83,11 +84,4 @@ export class ProfileComponent implements ControlValueAccessor, OnDestroy {
     this.subscriptions.forEach(s => s.unsubscribe());
   }
 
-  addInternshipHandler() {
-    this.dialog.open(AddModalComponent, {
-      data: {
-        action: 'add'
-      }
-    });
-  }
 }

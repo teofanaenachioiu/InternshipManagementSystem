@@ -6,7 +6,7 @@ import {CandidateProfileComponent} from './profiles/candidate-profile/candidate-
 import {CompanyProfileComponent} from './profiles/company-profile/company-profile.component';
 import {AuthCandidateGuard} from '../auth/auth-candidate.guard';
 import {AuthCompanyGuard} from '../auth/auth-company.guard';
-import {CompanyInternshipsComponent} from './company-internships/company-internships.component';
+import {CompanyInternshipsComponent} from './profiles/company-profile/company-internships/company-internships.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'internships', pathMatch: 'full' },
