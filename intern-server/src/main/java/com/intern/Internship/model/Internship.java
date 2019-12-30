@@ -4,6 +4,7 @@ import com.intern.Internship.model.enums.InternshipStatus.InternshipStatus;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -30,7 +31,8 @@ public class Internship implements HasID<String> {
     private static final long serialVersionUID = -458767083520973395L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid")
     private String ID;
 
     private String name;
@@ -76,7 +78,7 @@ public class Internship implements HasID<String> {
         return "Internship{" + "ID='" + ID + '\'' + ", name='" + name + '\'' + ", startTime=" + startTime + ", endTime="
                 + endTime + ", paid=" + paid + ", nrMonths=" + nrMonths + ", description='" + description + '\''
                 + ", nrApplicants=" + nrApplicants + ", status=" + status + ", location='" + location + '\''
-                + ", addedDate=" + addedDate + ", employer=" + company.getID() + ", areaOfInterest=";
-                //+ areaOfInterest.getID() + '}';
+                + ", addedDate=" + addedDate + ", employer=" + company.getID() + ", areaOfInterest="
+                + areaOfInterest.getID() + '}';
     }
 }

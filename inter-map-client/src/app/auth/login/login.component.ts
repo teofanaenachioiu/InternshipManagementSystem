@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   password = new FormControl('', [Validators.required, Validators.minLength(6)]);
   hidePassword = true;
   loginMessage: string;
+  form: any;
 
   constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) {
   }
@@ -35,7 +36,7 @@ export class LoginComponent implements OnInit {
 
   getErrorMessagePassword() {
     return this.password.hasError('required') ? 'You must enter a value' :
-      this.password.hasError('minLength') ? 'Not a valid password' : '';
+      this.password.hasError('minlength') ? 'Not a valid password' : '';
   }
 
   login() {

@@ -15,9 +15,10 @@
       <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" >
         <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
-      <mat-error *ngIf="password.hasError('minLength') || password.hasError('required')">
-        {{getErrorMessagePassword()}}
+      <mat-error *ngIf="password.hasError('required') || password.hasError('minlength')">
+        {{getErrorMessagePassword()}} 
       </mat-error>
+
     </mat-form-field>
     </div>
     <mat-label class="login-error-message">{{loginMessage}}</mat-label>

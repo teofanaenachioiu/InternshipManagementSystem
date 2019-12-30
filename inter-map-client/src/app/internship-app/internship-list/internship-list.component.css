@@ -1,0 +1,42 @@
+
+  .my-pagination /deep/ .ngx-pagination {
+    font-size: 20px;
+  }
+  .my-pagination /deep/ .ngx-pagination .current {
+    background: rgb(13, 6, 73)  !important;
+    border: transparent !important;
+  }
+
+
+
+  .container {
+    width: 1500px;
+    height: 700px;
+
+}
+ .right {
+  font-size: 15px;
+  float : right;
+  margin-right: 50px;
+  margin-top: 50px;
+ }
+ .left {
+   margin-top: 50px;
+   margin-left: 50px;
+  float: left;
+  list-style: none;
+ }
+
+ .left-2 {
+   float: left;
+   list-style: none;
+ }
+
+ .right-2 {
+  float: right;
+
+}
+.nav li {
+  display: inline-block;
+  font-size: 20px;
+}

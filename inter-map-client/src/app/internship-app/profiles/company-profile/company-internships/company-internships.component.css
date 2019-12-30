@@ -1,0 +1,82 @@
+.main-div {
+  border: 1px solid black;
+  border-radius: 1vw;
+}
+
+.top-div {
+  display: flex;
+  width: 100%;
+}
+
+.img-logo {
+  width: 11vw;
+  height: 11vw;
+  margin: 2vw;
+}
+
+.img-div {
+}
+
+.rating-div {
+  width: 11vw;
+  margin-left: 2vw;
+}
+
+.details-div {
+  margin: 2vw;
+  float: left;
+  /*border: 1px solid black;*/
+  width: 100%;
+}
+
+.name-status-div {
+  display: flex;
+  justify-content: space-between;
+  text-align: justify;
+  width: 100%;
+  /*border: 1px solid red;*/
+}
+
+.name-div {
+  font-size: 2vw;
+}
+
+.status-edit-div {
+  float: left;
+  display: flex;
+}
+
+.status-div {
+  border: 2px solid black;
+  padding-left: 1vw;
+  padding-right: 1vw;
+  vertical-align: middle;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: 1vw;
+}
+
+.paid-div {
+  background-color: greenyellow;
+}
+
+.edit-div {
+  float: left;
+  margin-right: 1vw;
+}
+
+.yellow-color {
+  color: yellow;
+}
+
+.star {
+  width: 2vw;
+}
+
+.posted-div {
+  font-size: 1vw;
+}
+
+.feedbacks-div {
+  margin: 2vw;
+}

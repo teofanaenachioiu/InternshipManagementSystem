@@ -1,6 +1,11 @@
 import {Component, forwardRef, OnDestroy, OnInit} from '@angular/core';
 import {ControlValueAccessor, FormBuilder, FormControl, FormGroup, NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {Subscription} from 'rxjs';
+import {Router} from '@angular/router';
+import {MatDialog} from '@angular/material';
+import {AddModalComponent} from '../add-modal/add-modal.component';
+
+
 
 @Component({
   selector: 'app-profile',
@@ -34,7 +39,7 @@ export class ProfileComponent implements ControlValueAccessor, OnDestroy {
     this.onTouched();
   }
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private router: Router, public dialog: MatDialog) {
     this.form = this.formBuilder.group({
       name: '',
       phone: '',
@@ -78,4 +83,11 @@ export class ProfileComponent implements ControlValueAccessor, OnDestroy {
     this.subscriptions.forEach(s => s.unsubscribe());
   }
 
+  addInternshipHandler() {
+    this.dialog.open(AddModalComponent, {
+      data: {
+        action: 'add'
+      }
+    });
+  }
 }
