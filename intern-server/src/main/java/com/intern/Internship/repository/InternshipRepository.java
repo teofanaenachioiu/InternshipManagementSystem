@@ -9,6 +9,7 @@ import javax.persistence.criteria.Predicate;
 
 import com.intern.Internship.model.AreaOfInterest;
 import com.intern.Internship.model.Internship;
+import com.intern.Internship.model.dto.InternshipDTO;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -29,6 +30,28 @@ public interface InternshipRepository extends JpaRepository<Internship, String>,
             return criteriaBuilder.or(predicates.toArray(new Predicate[] {}));
         };
     }
+
+    static Specification<Internship> likeCompany(String companyName) {
+        return (Specification<Internship>) (root, query, criteriaBuilder) -> {
+            Path<String> column1 = root.get("company").get("name");
+            // create a Predicate for each "column1 like 'xy%az%' you need
+            Predicate predicate = criteriaBuilder.like(column1, companyName);
+           
+            return criteriaBuilder.or(predicate);
+        };
+    }
+    // @Query("select i.ID as id," + " i.name as name," + " i.startTime as
+    // startTime," + "i.endTime as endTime,"
+    // + "i.paid as paid," + "i.nrMonths as nrMonths," + "i.description as
+    // description,"
+    // + "i.nrApplicants as nrApplicants," + "i.status as status," + "i.location as
+    // location,"
+    // + "i.addedDate as addedDate," + "i.company.name as company," +
+    // "i.areaOfInterest.id as areaOfInterest,"
+    // + "avg(f.rating) as averageOfFeedbacks," + "count(i.ID) as numberOfFeedbacks"
+    // + " from Internship as i INNER join Feedback f on i.ID=f.internship.id " +
+    // "group by i.ID")
+    // Page<Map<String, ?>> findInternshipsByCompany(Pageable pageable);
 
     @Query("select i.ID as id," + " i.name as name," + " i.startTime as startTime," + "i.endTime as endTime,"
             + "i.paid as paid," + "i.nrMonths as nrMonths," + "i.description as description,"

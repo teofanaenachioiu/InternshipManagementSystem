@@ -6,4 +6,6 @@ public interface CompanyService {
     Company findByEmail(String email);
 
     Company save(Company company);
+
+    Company findByName(String name);
 }
