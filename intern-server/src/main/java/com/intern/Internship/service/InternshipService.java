@@ -9,4 +9,6 @@ import com.intern.Internship.model.dto.PageDTO;
 public interface InternshipService {
     PageDTO<InternshipDTO> getInternships(int pageNumber, int pageSize, List<AreaOfInterest> areaOfInterestList,
             String sortCriteria, String sortDirection);
+
+    PageDTO<InternshipDTO> getInternshipsByCompany(int pageNumber, int pageSize, String companyName);
 }

@@ -49,4 +49,16 @@ public class InternshipServiceImpl implements InternshipService {
         return pageDTO;
 
     }
+
+    public PageDTO<InternshipDTO> getInternshipsByCompany(int pageNumber, int pageSize, String companyName) {
+
+        PageDTO<InternshipDTO> pageDTO;
+        Page<Internship> page = internshipRepository.findAll(InternshipRepository.likeCompany(companyName),
+                PageRequest.of(pageNumber, pageSize));
+        pageDTO = Converters.internshipPageToInternshipDTOPage(page);
+
+        return pageDTO;
+
+    }
+
 }

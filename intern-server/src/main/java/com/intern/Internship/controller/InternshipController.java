@@ -9,16 +9,20 @@ import com.intern.Internship.model.dto.PageDTO;
 import com.intern.Internship.model.enums.Direction;
 import com.intern.Internship.model.enums.OrderBy;
 import com.intern.Internship.service.AreaOfInterestService;
+import com.intern.Internship.service.CompanyService;
 import com.intern.Internship.service.InternshipService;
 import com.intern.Internship.service.exceptions.PaginationSortingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping(value = "/api/internship")
 @CrossOrigin(origins = "http://localhost:4200")
 public class InternshipController {
     @Autowired
@@ -27,8 +31,11 @@ public class InternshipController {
     @Autowired
     private AreaOfInterestService areaOfInterestService;
 
-    @GetMapping("/api/home/internships")
-    public PageDTO<InternshipDTO> findJsonDataByPageAndSize(@RequestParam("filter") String filter,
+    @Autowired
+    private CompanyService companyService;
+
+    @GetMapping("/areaofinterest")
+    public PageDTO<InternshipDTO> findInternshipByAreaOfInterest(@RequestParam("filter") String filter,
             @RequestParam("orderBy") String orderBy, @RequestParam("direction") String direction,
             @RequestParam("page") int page, @RequestParam("size") int size) {
 
@@ -51,5 +58,15 @@ public class InternshipController {
         PageDTO<InternshipDTO> pageInternship = internshipService.getInternships(page, size, areasOfInterest, orderBy,
                 direction);
         return pageInternship;
+    }
+
+    @GetMapping("/company")
+    public ResponseEntity<PageDTO<InternshipDTO>> findInternshipsByCompany(@RequestParam("company") String companyName,
+            @RequestParam("page") int page, @RequestParam("size") int size) {
+        if (companyService.findByName(companyName) == null) {
+            return ResponseEntity.badRequest().body(new PageDTO<InternshipDTO>());
+        }
+        PageDTO<InternshipDTO> pageInternship = internshipService.getInternshipsByCompany(page, size, companyName);
+        return ResponseEntity.ok().body(pageInternship);
     }
 }
