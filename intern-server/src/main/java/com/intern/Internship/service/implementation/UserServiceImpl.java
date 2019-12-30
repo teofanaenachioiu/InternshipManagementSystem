@@ -33,10 +33,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByUser(String username, String password) {
         User user = userRepository.findByUsername(username);
-
-        if (user == null)
-            return null;
-
         if (bCryptPasswordEncoder.matches(password, user.getPassword())) {
             return user;
         }

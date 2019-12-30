@@ -47,20 +47,19 @@ public class UserController {
     }
 
     @PostMapping("/api/auth/signup")
-    public ResponseEntity<User> registration(@RequestBody User userForm) { // , BindingResult bindingResult
+    public ResponseEntity<User> registration(@RequestBody User userForm) {
         if (userForm == null) {
-            return ResponseEntity.badRequest().body(new User());
-        }
-        // if user already exists
-        User user = userService.findByUsername(userForm.getUsername());
-        if (user != null) {
             return ResponseEntity.badRequest().body(new User());
         }
 
         String token = getJWTToken(userForm.getUsername());
         userForm.setToken(token);
 
-        userService.save(userForm);
+        try {
+            userService.save(userForm);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(new User());
+        }
         if (userForm.getRole().getName().equals("CANDIDATE")) {
             Candidate candidate = new Candidate();
             candidate.setID(userForm.getUsername());
@@ -71,7 +70,6 @@ public class UserController {
             companyService.save(company);
         }
         // securityService.autoLogin(userForm.getUsername(), userForm.getPassword());
-
         return ResponseEntity.ok().body(userForm);
     }
 
@@ -88,16 +86,14 @@ public class UserController {
 
     @PostMapping("/api/auth/login")
     public ResponseEntity<User> login(@RequestBody User userForm) {
-        // validate userForm
-        User user = userService.findByUser(userForm.getUsername(), userForm.getPassword());
-        if (user == null) {
+        try {
+            User user = userService.findByUser(userForm.getUsername(), userForm.getPassword());
+            String token = getJWTToken(user.getUsername());
+            user.setToken(token);
+            return ResponseEntity.ok().body(user);
+        } catch (Exception e) {
             return ResponseEntity.badRequest().body(new User());
         }
-
-        String token = getJWTToken(user.getUsername());
-        user.setToken(token);
-
-        return ResponseEntity.ok().body(user);
     }
 
     @GetMapping({ "/", "/api/auth/welcome" })
