@@ -3,6 +3,8 @@ package com.intern.Internship.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
+
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
@@ -12,6 +14,7 @@ import java.io.Serializable;
 @Setter
 @NoArgsConstructor
 @Entity
+@ToString
 public class User implements Serializable {
     private static final long serialVersionUID = -8413271848855656581L;
 
@@ -20,7 +23,7 @@ public class User implements Serializable {
     private String username; // email
     private String password;
 
-    @ColumnDefault("-1")
+    @ColumnDefault("''")
     private String token;
 
     @ManyToOne
