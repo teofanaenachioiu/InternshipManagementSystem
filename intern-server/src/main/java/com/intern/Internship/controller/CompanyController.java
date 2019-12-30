@@ -25,14 +25,10 @@ public class CompanyController {
     @GetMapping()
     public ResponseEntity<Company> findByEmail(@RequestParam String email) {
         try {
-            System.out.println("EMAIL: " + email);
             Company company = companyService.findByEmail(email);
-            System.out.println(company);
             return ResponseEntity.accepted().body(company);
-            // return ResponseEntity.ok().body("test");
         } catch (EntityNotFoundException e) {
             return ResponseEntity.badRequest().body(new Company());
-            // return ResponseEntity.ok().body("failed");
         }
     }
 

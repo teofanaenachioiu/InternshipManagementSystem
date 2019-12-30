@@ -20,8 +20,6 @@ public class CandidateValidator implements Validator<Candidate> {
             msg += "Telephone cannot be empty!";
         if (entity.getBirthDate() == null)
             msg += "Birth date cannot be empty!";
-        // if(entity.getSex()==null) msg+="Sex cannot be empty!"; !!!sunt unii care nu
-        // vor sa precizeze
         if (entity.getCandidateStatus() == null)
             msg += "Status cannot be empty!";
         if (entity.getAvatar() == null)

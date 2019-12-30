@@ -20,9 +20,6 @@ import java.util.stream.Stream;
 @NoArgsConstructor
 @Entity
 public class Company implements HasID<String> {
-    /**
-     *
-     */
     private static final long serialVersionUID = -9090476835116308556L;
 
     @Id

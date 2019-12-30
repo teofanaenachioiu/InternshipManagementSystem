@@ -25,14 +25,10 @@ public class CandidateController {
     @GetMapping()
     public ResponseEntity<Candidate> findByEmail(@RequestParam String email) {
         try {
-            System.out.println("EMAIL: " + email);
             Candidate candidate = candidateService.findByEmail(email);
-            System.out.println(candidate);
             return ResponseEntity.accepted().body(candidate);
-            // return ResponseEntity.ok().body("test");
         } catch (EntityNotFoundException e) {
             return ResponseEntity.badRequest().body(new Candidate());
-            // return ResponseEntity.ok().body("failed");
         }
     }
 

@@ -12,9 +12,6 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Entity
 public class Studies implements HasID<String>{
-    /**
-     *
-     */
     private static final long serialVersionUID=1230476547116308556L;
 
     @Id

@@ -20,9 +20,6 @@ enum ApplicationStatus {
 @NoArgsConstructor
 @Entity
 public class Application implements HasID<String> {
-    /**
-     *
-     */
     private static final long serialVersionUID = -5767568983912334912L;
 
     @Id

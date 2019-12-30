@@ -12,9 +12,6 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Entity
 public class Experience implements HasID<String> {
-    /**
-     *
-     */
     private static final long serialVersionUID=-8091428983912332212L;
 
     @Id

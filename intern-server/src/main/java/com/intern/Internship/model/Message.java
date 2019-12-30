@@ -17,10 +17,6 @@ import lombok.ToString;
 @Entity
 @ToString
 public class Message implements HasID<String> {
-
-    /**
-     *
-     */
     private static final long serialVersionUID = -3198996830497946136L;
 
     public Message(String name, String email, String subject, String phone, String message) {

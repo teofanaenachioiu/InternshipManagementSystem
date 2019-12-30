@@ -14,9 +14,6 @@ import org.hibernate.annotations.GenericGenerator;
 @NoArgsConstructor
 @Entity
 public class AreaOfInterest implements HasID<String> {
-    /**
-     *
-     */
     private static final long serialVersionUID = 4036466047949229704L;
 
     @Id

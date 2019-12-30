@@ -14,9 +14,6 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @Entity
 public class CandidateAreaOfInterest implements HasID<String> {
-    /**
-     *
-     */
     private static final long serialVersionUID = -4717317832931776150L;
 
     @Id

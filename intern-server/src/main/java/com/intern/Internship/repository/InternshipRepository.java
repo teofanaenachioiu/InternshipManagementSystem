@@ -9,7 +9,6 @@ import javax.persistence.criteria.Predicate;
 
 import com.intern.Internship.model.AreaOfInterest;
 import com.intern.Internship.model.Internship;
-import com.intern.Internship.model.dto.InternshipDTO;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -36,7 +35,7 @@ public interface InternshipRepository extends JpaRepository<Internship, String>,
             Path<String> column1 = root.get("company").get("name");
             // create a Predicate for each "column1 like 'xy%az%' you need
             Predicate predicate = criteriaBuilder.like(column1, companyName);
-           
+
             return criteriaBuilder.or(predicate);
         };
     }
