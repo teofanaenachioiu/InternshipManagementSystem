@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.intern.Internship.model.AreaOfInterest;
 import com.intern.Internship.model.Company;
+import com.intern.Internship.model.Internship;
 import com.intern.Internship.model.dto.InternshipDTO;
 import com.intern.Internship.model.dto.PageDTO;
 import com.intern.Internship.model.enums.Direction;
@@ -17,6 +18,7 @@ import com.intern.Internship.service.exceptions.PaginationSortingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -71,6 +73,17 @@ public class InternshipController {
         PageDTO<InternshipDTO> pageInternship = internshipService.getInternshipsByCompany(page, size, company);
 
         return ResponseEntity.ok().body(pageInternship);
+    }
+
+    @DeleteMapping()
+    public ResponseEntity<InternshipDTO> delete(@RequestParam("id") String internshipId) {
+        Internship internship = internshipService.findById(internshipId);
+        if (internship == null) {
+            return ResponseEntity.badRequest().body(new InternshipDTO());
+        }
+        internshipService.delete(internship);
+
+        return ResponseEntity.ok().body(new InternshipDTO(internship));
     }
 
 }
