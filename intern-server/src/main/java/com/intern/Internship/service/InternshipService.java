@@ -2,6 +2,7 @@ package com.intern.Internship.service;
 
 import java.util.List;
 
+import com.intern.Internship.model.Internship;
 import com.intern.Internship.model.AreaOfInterest;
 import com.intern.Internship.model.Company;
 import com.intern.Internship.model.dto.InternshipDTO;
@@ -13,4 +14,7 @@ public interface InternshipService {
 
     PageDTO<InternshipDTO> getInternshipsByCompany(int pageNumber, int pageSize, Company company);
 
+    Internship findById(String internshipId);
+
+    void delete(Internship internship);
 }

@@ -2,6 +2,7 @@ package com.intern.Internship.service.implementation;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import com.intern.Internship.model.AreaOfInterest;
 import com.intern.Internship.model.Company;
@@ -60,5 +61,14 @@ public class InternshipServiceImpl implements InternshipService {
             e.printStackTrace();
             return new PageDTO<InternshipDTO>();
         }
+    }
+
+    public Internship findById(String internshipId) {
+        Optional<Internship> result = internshipRepository.findById(internshipId);
+        return (result.isPresent()) ? result.get() : null;
+    }
+    
+    public void delete(Internship internship) {
+        internshipRepository.delete(internship);
     }
 }
