@@ -3,6 +3,8 @@ package com.intern.Internship.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
+
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Entity;
@@ -15,6 +17,7 @@ import javax.persistence.ManyToOne;
 @Setter
 @NoArgsConstructor
 @Entity
+@ToString
 public class Feedback implements HasID<String>{
     private static final long serialVersionUID = -3534054198190203549L;
 
@@ -36,16 +39,5 @@ public class Feedback implements HasID<String>{
         this.anonymous=anonymous;
         this.rating=rating;
         this.internship = internship;        
-    }
-
-    @Override
-    public String toString() {
-        return "Feedback{" +
-                "ID='" + ID + '\'' +
-                ", description='" + description + '\'' +
-                ", anonymous=" + anonymous +
-                ", rating=" + rating +
-                ", internship=" + internship.getID() +
-                '}';
     }
 }

@@ -3,6 +3,7 @@ package com.intern.Internship.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +14,7 @@ import javax.persistence.Id;
 @Setter
 @NoArgsConstructor
 @Entity
+@ToString
 public class CandidateAreaOfInterest implements HasID<String> {
     private static final long serialVersionUID = -4717317832931776150L;
 
@@ -22,13 +24,4 @@ public class CandidateAreaOfInterest implements HasID<String> {
 
     private Candidate candidate;
     private AreaOfInterest areaOfInterest;
-
-    @Override
-    public String toString() {
-        return "CandidateAreaOfInterest{" +
-                "ID='" + ID + '\'' +
-                ", candidate=" + candidate.getID() +
-                ", areaOfInterest=" + areaOfInterest.getID() +
-                '}';
-    }
 }

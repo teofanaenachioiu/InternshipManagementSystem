@@ -3,6 +3,7 @@ package com.intern.Internship.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -11,6 +12,7 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @Entity
+@ToString
 public class Studies implements HasID<String>{
     private static final long serialVersionUID=1230476547116308556L;
 
@@ -35,18 +37,4 @@ public class Studies implements HasID<String>{
         this.description = description;
         this.candidate = candidate;
     }
-
-    @Override
-    public String toString() {
-        return "Studies{" +
-                "ID='" + ID + '\'' +
-                ", nameOfInstitution='" + nameOfInstitution + '\'' +
-                ", profile='" + profile + '\'' +
-                ", startDate=" + startDate +
-                ", endDate=" + endDate +
-                ", description='" + description + '\'' +
-                ", candidate=" + candidate.getID() +
-                '}';
-    }
-
 }

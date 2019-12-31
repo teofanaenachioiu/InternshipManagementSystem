@@ -3,6 +3,7 @@ package com.intern.Internship.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -19,6 +20,7 @@ import java.util.stream.Stream;
 @Setter
 @NoArgsConstructor
 @Entity
+@ToString
 public class Company implements HasID<String> {
     private static final long serialVersionUID = -9090476835116308556L;
 
@@ -48,12 +50,5 @@ public class Company implements HasID<String> {
         this.logo = logo;
         this.internships = Stream.of(internships).collect(Collectors.toSet());
         this.internships.forEach(x -> x.setCompany(this));
-    }
-
-    @Override
-    public String toString() {
-        return "Company{" + "email='" + ID + '\'' + ", name='" + name + '\'' + ", address='" + address + '\''
-                + ", telephone='" + telephone + '\'' + ", description='" + description + '\'' + ", field='" + field
-                + '\'' + ", logo=" + logo + '}';
     }
 }

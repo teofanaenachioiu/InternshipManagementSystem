@@ -3,6 +3,7 @@ package com.intern.Internship.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -11,8 +12,9 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @Entity
+@ToString
 public class Experience implements HasID<String> {
-    private static final long serialVersionUID=-8091428983912332212L;
+    private static final long serialVersionUID = -8091428983912332212L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,17 +35,4 @@ public class Experience implements HasID<String> {
         this.jobName = jobName;
         this.candidate = candidate;
     }
-
-    @Override
-    public String toString() {
-        return "Experience{" +
-                "ID='" + ID + '\'' +
-                ", companyName='" + companyName + '\'' +
-                ", startDate=" + startDate +
-                ", endDate=" + endDate +
-                ", jobName='" + jobName + '\'' +
-                ", candidate=" + candidate.getID() +
-                '}';
-    }
-
 }
