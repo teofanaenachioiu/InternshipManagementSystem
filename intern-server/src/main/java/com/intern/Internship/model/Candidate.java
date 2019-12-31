@@ -3,6 +3,7 @@ package com.intern.Internship.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -29,6 +30,7 @@ enum CandidateStatus {
 @Setter
 @NoArgsConstructor
 @Entity
+@ToString
 public class Candidate implements HasID<String> {
     private static final long serialVersionUID = 8194448036160968436L;
 
@@ -85,15 +87,6 @@ public class Candidate implements HasID<String> {
 
         this.applications = Stream.of(applications).collect(Collectors.toSet());
         this.applications.forEach(x -> x.setCandidate(this));
-    }
-
-    @Override
-    public String toString() {
-        return "Candidate{" + "ID='" + ID + '\'' + ", lastName='" + lastName + '\'' + ", firstName='" + firstName + '\''
-                + ", address='" + address + '\'' + ", telephone='" + telephone + '\'' + ", birthDate=" + birthDate
-                + ", sex=" + sex + ", candidateStatus=" + candidateStatus + ", avatar=" + avatar + ", linkLinkedin='"
-                + linkLinkedin + '\'' + ", linkGithub='" + linkGithub + '\'' + ", description='" + description + '\''
-                + ", languages='" + languages + '\'' + '}';
     }
 
 }

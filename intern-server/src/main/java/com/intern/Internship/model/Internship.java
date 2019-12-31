@@ -4,6 +4,8 @@ import com.intern.Internship.model.enums.InternshipStatus.InternshipStatus;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
+
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.CascadeType;
@@ -23,6 +25,7 @@ import java.util.stream.Stream;
 @Setter
 @NoArgsConstructor
 @Entity
+@ToString
 public class Internship implements HasID<String> {
     private static final long serialVersionUID = -458767083520973395L;
 
@@ -67,14 +70,5 @@ public class Internship implements HasID<String> {
         this.areaOfInterest = areaOfInterest;
         this.feedbacks = Stream.of(feedbacks).collect(Collectors.toSet());
         this.feedbacks.forEach(x -> x.setInternship(this));
-    }
-
-    @Override
-    public String toString() {
-        return "Internship{" + "ID='" + ID + '\'' + ", name='" + name + '\'' + ", startTime=" + startTime + ", endTime="
-                + endTime + ", paid=" + paid + ", nrMonths=" + nrMonths + ", description='" + description + '\''
-                + ", nrApplicants=" + nrApplicants + ", status=" + status + ", location='" + location + '\''
-                + ", addedDate=" + addedDate + ", employer=" + company.getID() + ", areaOfInterest="
-                + areaOfInterest.getID() + '}';
     }
 }

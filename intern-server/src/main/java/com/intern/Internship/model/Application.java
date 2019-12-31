@@ -3,6 +3,8 @@ package com.intern.Internship.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
+
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Entity;
@@ -19,6 +21,7 @@ enum ApplicationStatus {
 @Setter
 @NoArgsConstructor
 @Entity
+@ToString
 public class Application implements HasID<String> {
     private static final long serialVersionUID = -5767568983912334912L;
 
@@ -44,9 +47,4 @@ public class Application implements HasID<String> {
         this.candidate = candidate;
     }
 
-    @Override
-    public String toString() {
-        return "Application{" + "ID='" + ID + '\'' + ", applicationStatus=" + applicationStatus + ", extraMessage='"
-                + extraMessage + '\'' + ", internship=" + internship.getID() + ", candidate=" + candidate.getID() + '}';
-    }
 }
