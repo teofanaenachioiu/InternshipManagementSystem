@@ -19,123 +19,70 @@ import java.util.HashSet;
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class InternshipRepositoryTest {
-    @Autowired
-    AreaOfInterestRepository areaOfInterestRepository;
+        @Autowired
+        AreaOfInterestRepository areaOfInterestRepository;
 
-    @Autowired
-    CompanyRepository companyRepository;
+        @Autowired
+        CompanyRepository companyRepository;
 
-    @Autowired
-    FeedbackRepository feedbackRepository;
+        @Autowired
+        FeedbackRepository feedbackRepository;
 
-    @Autowired
-    InternshipRepository internshipRepository;
+        @Autowired
+        InternshipRepository internshipRepository;
 
-    @Test
-    public void test() {
-        long countBefore = internshipRepository.count();
-        byte[] bytes = "BLOB GOES HERE".getBytes();
-        Company company1 = new Company(
-                "tudor@ginga.com",
-                "Company1",
-                "Zambilei 12",
-                "0700000000",
-                "Description1",
-                "Intenships",
-                bytes
-        );
-        AreaOfInterest areaOfInterest1 = new AreaOfInterest(
-                "AreaOfInterest1",
-                "SAP"
-        );
-        AreaOfInterest areaOfInterest2 = new AreaOfInterest(
-                "AreaOfInterest2",
-                "Java"
-        );
-        areaOfInterestRepository.save(areaOfInterest1);
-        areaOfInterestRepository.save(areaOfInterest2);
-        Internship internship11 = new Internship(
-                "Internship11",
-                LocalDate.now(),
-                LocalDate.now(),
-                false,
-                3,
-                "Company 1 Internship 1",
-                5,
-                InternshipStatus.Closed,
-                "Zambilei 14",
-                LocalDate.now(),
-                company1,
-                areaOfInterest1
-        );
-        Internship internship12 = new Internship(
-                "Internship12",
-                LocalDate.now(),
-                LocalDate.now(),
-                true,
-                4,
-                "Company 1 Internship 2",
-                3,
-                InternshipStatus.Open,
-                "Zambilei 15",
-                LocalDate.now(),
-                company1,
-                areaOfInterest2
-        );
-        Feedback feedback111 = new Feedback(
-                "Description1",
-                true,
-                5,
-                internship11
-        );
-        Feedback feedback112 = new Feedback(
-                "Description2",
-                false,
-                4,
-                internship11
-        );
-        Feedback feedback121 = new Feedback(
-                "Description3",
-                true,
-                6,
-                internship12
-        );
-        Feedback feedback122 = new Feedback(
-                "Description4",
-                false,
-                7,
-                internship12
-        );
-        feedbackRepository.save(feedback111);
-        feedbackRepository.save(feedback112);
-        feedbackRepository.save(feedback121);
-        feedbackRepository.save(feedback122);
+        @Test
+        public void test() {
+                long countBefore = internshipRepository.count();
+                byte[] bytes = "BLOB GOES HERE".getBytes();
+                Company company1 = new Company("tudor@ginga.com", "Company1", "Zambilei 12", "0700000000",
+                                "Description1", "Intenships", bytes);
+                AreaOfInterest areaOfInterest1 = new AreaOfInterest("AreaOfInterest1", "SAP");
+                AreaOfInterest areaOfInterest2 = new AreaOfInterest("AreaOfInterest2", "Java");
+                areaOfInterestRepository.save(areaOfInterest1);
+                areaOfInterestRepository.save(areaOfInterest2);
+                Internship internship11 = new Internship("Internship11", LocalDate.now(), LocalDate.now(), false, 3,
+                                "Company 1 Internship 1", 5, InternshipStatus.Closed, "Zambilei 14", LocalDate.now(),
+                                company1, areaOfInterest1);
+                Internship internship12 = new Internship("Internship12", LocalDate.now(), LocalDate.now(), true, 4,
+                                "Company 1 Internship 2", 3, InternshipStatus.Open, "Zambilei 15", LocalDate.now(),
+                                company1, areaOfInterest2);
+                Feedback feedback111 = new Feedback("Description1", true, 5, internship11);
+                Feedback feedback112 = new Feedback("Description2", false, 4, internship11);
+                Feedback feedback121 = new Feedback("Description3", true, 6, internship12);
+                Feedback feedback122 = new Feedback("Description4", false, 7, internship12);
+                feedbackRepository.save(feedback111);
+                feedbackRepository.save(feedback112);
+                feedbackRepository.save(feedback121);
+                feedbackRepository.save(feedback122);
 
-        Feedback fromRepositoryFeedback1 = feedbackRepository.getOne(feedback111.getID());
-        assert (fromRepositoryFeedback1.getInternship() != null);
+                Feedback fromRepositoryFeedback1 = feedbackRepository.getOne(feedback111.getID());
+                assert (fromRepositoryFeedback1.getInternship() != null);
 
-        HashSet<Feedback> hashSet1 = new HashSet<>();
-        hashSet1.add(feedback111);
-        hashSet1.add(feedback112);
-        internship11.setFeedbacks(hashSet1);
-        HashSet<Feedback> hashSet2 = new HashSet<>();
-        hashSet2.add(feedback121);
-        hashSet2.add(feedback122);
-        internship12.setFeedbacks(hashSet2);
-        internshipRepository.save(internship11);
-        internshipRepository.save(internship12);
+                HashSet<Feedback> hashSet1 = new HashSet<>();
+                hashSet1.add(feedback111);
+                hashSet1.add(feedback112);
+                internship11.setFeedbacks(hashSet1);
+                HashSet<Feedback> hashSet2 = new HashSet<>();
+                hashSet2.add(feedback121);
+                hashSet2.add(feedback122);
+                internship12.setFeedbacks(hashSet2);
+                internshipRepository.save(internship11);
+                internshipRepository.save(internship12);
 
-        Internship fromRepositoryInternship11 = internshipRepository.getOne(internship11.getID());
-        assert (internship11.getFeedbacks().size() != 0);
+                Internship fromRepositoryInternship11 = internshipRepository.getOne(internship11.getID());
+                assert (fromRepositoryInternship11 != null);
+                assert (internship11.getFeedbacks().size() != 0);
+                assert (internshipRepository.findAll().size() > 2);
 
-        HashSet<Internship> hashSet3 = new HashSet<>();
-        hashSet3.add(internship11);
-        hashSet3.add(internship12);
-        company1.setInternships(hashSet3);
-        companyRepository.save(company1);
+                HashSet<Internship> hashSet3 = new HashSet<>();
+                hashSet3.add(internship11);
+                hashSet3.add(internship12);
+                company1.setInternships(hashSet3);
+                companyRepository.save(company1);
 
-        assert (internshipRepository.count() == countBefore + 2);
-        assert (internship12.getCompany().getID() != null);
-        assert (internship12.getAreaOfInterest() != null);
-    }
+                assert (internshipRepository.count() == countBefore + 2);
+                assert (internship12.getCompany().getID() != null);
+                assert (internship12.getAreaOfInterest() != null);
+        }
 }

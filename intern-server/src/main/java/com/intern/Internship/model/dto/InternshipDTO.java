@@ -10,10 +10,12 @@ import com.intern.Internship.model.enums.InternshipStatus.InternshipStatus;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@ToString
 public class InternshipDTO {
     private String ID;
 
@@ -63,11 +65,24 @@ public class InternshipDTO {
         this.status = internship.getStatus();
         this.location = internship.getLocation();
         this.addedDate = internship.getAddedDate();
-        this.company = internship.getCompany().getName();
-        this.areaOfInterest = internship.getAreaOfInterest().getName();
-        this.averageOfFeedbacks = (internship.getFeedbacks().stream().mapToDouble(Feedback::getRating).sum())
-                / internship.getFeedbacks().size();
-        this.numberOfFeedbacks = Long.valueOf(internship.getFeedbacks().size());
+        if (internship.getCompany() == null) {
+            this.company = null;
+        } else {
+            this.company = internship.getCompany().getName();
+        }
+        if (internship.getAreaOfInterest() == null) {
+            this.areaOfInterest = null;
+        } else {
+            this.areaOfInterest = internship.getAreaOfInterest().getName();
+        }
+        if (internship.getFeedbacks() == null) {
+            this.averageOfFeedbacks = 0.0;
+            this.numberOfFeedbacks = 0l;
+        } else {
+            this.averageOfFeedbacks = (internship.getFeedbacks().stream().mapToDouble(Feedback::getRating).sum())
+                    / internship.getFeedbacks().size();
+            this.numberOfFeedbacks = Long.valueOf(internship.getFeedbacks().size());
+        }
     }
 
     public InternshipDTO(Map<String, ?> map) {
@@ -89,13 +104,4 @@ public class InternshipDTO {
 
     }
 
-    @Override
-    public String toString() {
-        return "InternshipDTO{" + "ID='" + ID + '\'' + ", name='" + name + '\'' + ", startTime=" + startTime
-                + ", endTime=" + endTime + ", paid=" + paid + ", nrMonths=" + nrMonths + ", description='" + description
-                + '\'' + ", nrApplicants=" + nrApplicants + ", status=" + status + ", location='" + location + '\''
-                + ", addedDate=" + addedDate + ", company='" + company + '\'' + ", areaOfInterest='" + areaOfInterest
-                + '\'' + ", numberOfFeedbacks=" + numberOfFeedbacks + ", averageOfFeedbacks=" + averageOfFeedbacks
-                + '}';
-    }
 }

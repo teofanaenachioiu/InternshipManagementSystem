@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.intern.Internship.model.AreaOfInterest;
+import com.intern.Internship.model.Company;
 import com.intern.Internship.model.Internship;
 import com.intern.Internship.model.dto.InternshipDTO;
 import com.intern.Internship.model.dto.PageDTO;
@@ -50,15 +51,14 @@ public class InternshipServiceImpl implements InternshipService {
 
     }
 
-    public PageDTO<InternshipDTO> getInternshipsByCompany(int pageNumber, int pageSize, String companyName) {
-
-        PageDTO<InternshipDTO> pageDTO;
-        Page<Internship> page = internshipRepository.findAll(InternshipRepository.likeCompany(companyName),
-                PageRequest.of(pageNumber, pageSize));
-        pageDTO = Converters.internshipPageToInternshipDTOPage(page);
-
-        return pageDTO;
-
+    public PageDTO<InternshipDTO> getInternshipsByCompany(int pageNumber, int pageSize, Company company) {
+        try {
+            Page<Internship> page = internshipRepository.findAllByCompanyName(company.getName(),
+                    PageRequest.of(pageNumber, pageSize));
+            return Converters.internshipPageToInternshipDTOPage(page);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new PageDTO<InternshipDTO>();
+        }
     }
-
 }

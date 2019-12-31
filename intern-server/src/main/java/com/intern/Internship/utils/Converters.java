@@ -25,6 +25,7 @@ public class Converters {
         PageDTO<InternshipDTO> pageDTO = new PageDTO<>();
         List<Internship> internships = page.getContent();
         List<InternshipDTO> internshipDTOS = new ArrayList<>();
+
         for (Internship internship1 : internships) {
             InternshipDTO internshipDTO = new InternshipDTO(internship1);
             internshipDTOS.add(internshipDTO);

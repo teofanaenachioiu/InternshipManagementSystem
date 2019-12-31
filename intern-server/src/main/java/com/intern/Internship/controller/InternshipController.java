@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.intern.Internship.model.AreaOfInterest;
+import com.intern.Internship.model.Company;
 import com.intern.Internship.model.dto.InternshipDTO;
 import com.intern.Internship.model.dto.PageDTO;
 import com.intern.Internship.model.enums.Direction;
@@ -63,10 +64,13 @@ public class InternshipController {
     @GetMapping("/company")
     public ResponseEntity<PageDTO<InternshipDTO>> findInternshipsByCompany(@RequestParam("company") String companyName,
             @RequestParam("page") int page, @RequestParam("size") int size) {
-        if (companyService.findByName(companyName) == null) {
+        Company company = companyService.findByName(companyName);
+        if (company == null) {
             return ResponseEntity.badRequest().body(new PageDTO<InternshipDTO>());
         }
-        PageDTO<InternshipDTO> pageInternship = internshipService.getInternshipsByCompany(page, size, companyName);
+        PageDTO<InternshipDTO> pageInternship = internshipService.getInternshipsByCompany(page, size, company);
+
         return ResponseEntity.ok().body(pageInternship);
     }
+
 }
