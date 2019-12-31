@@ -1,5 +1,7 @@
 package com.intern.Internship.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.intern.Internship.model.enums.InternshipStatus.InternshipStatus;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,7 +33,7 @@ public class Internship implements HasID<String> {
 
     @Id
     @GeneratedValue(generator = "system-uuid")
-    @GenericGenerator(name = "system-uuid", strategy = "uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid2")
     private String ID;
 
     private String name;
@@ -46,6 +48,7 @@ public class Internship implements HasID<String> {
     private LocalDate addedDate;
     @ManyToOne
     @JoinColumn
+    @JsonIdentityInfo(generator = ObjectIdGenerators.StringIdGenerator.class, property = "@ID")
     private Company company;
     @ManyToOne
     @JoinColumn
