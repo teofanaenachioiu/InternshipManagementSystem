@@ -38,4 +38,12 @@ public class UserServiceImpl implements UserService {
         }
         return null;
     }
+
+    @Override
+    public void changePassword(String username, String newPassword) {
+        User user = userRepository.findByUsername(username);
+        userRepository.delete(user);
+        user.setPassword(bCryptPasswordEncoder.encode(newPassword));
+        userRepository.save(user);
+    }
 }

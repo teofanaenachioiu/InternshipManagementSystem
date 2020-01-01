@@ -12,10 +12,13 @@ import com.intern.Internship.service.CompanyService;
 import com.intern.Internship.service.SecurityService;
 import com.intern.Internship.service.UserService;
 
+import com.intern.Internship.utils.Email;
+import com.intern.Internship.utils.Encryption;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.parameters.P;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -94,6 +97,27 @@ public class UserController {
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(new User());
         }
+    }
+
+    @PostMapping("/api/auth/forgot")
+    public ResponseEntity<User> forgot(@RequestBody User userForm) {
+        try {
+            User user = userService.findByUsername(userForm.getUsername());
+            String subject = "Reset password request";
+            String body = "You received this e-mail because you requested a password request for your InterMAP account. Please enter the following address to get started: http://localhost:4200/reset/" + Encryption.encrypt(user.getUsername());
+            Email.sendMail(subject, body, userForm.getUsername());
+            return ResponseEntity.ok().body(user);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(new User());
+        }
+    }
+
+    @PostMapping("/api/auth/reset")
+    public ResponseEntity<User> reset(@RequestBody User userForm) {
+        String username = Encryption.decrypt(userForm.getUsername());
+        userService.changePassword(username, userForm.getPassword());
+        User user = userService.findByUsername(username);
+        return ResponseEntity.ok().body(user);
     }
 
     @GetMapping({ "/", "/api/auth/welcome" })

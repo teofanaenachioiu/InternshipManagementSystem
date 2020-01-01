@@ -8,6 +8,7 @@ insert into user values('candidate2@test.com', '$2a$10$zf0bW6kgIIiSQLjngsjH4uONB
 insert into user values('candidate@test.com', '$2a$10$acZpcj5lOAgv0LhJvNvR5.3WcqNjXxhKhgiYssz5s5TlX1AImInzi', '', 'CANDIDATE');
 insert into user values('company@test.com', '$2a$10$PqNblYEcJTtMXmKiP3kLae4v5i/dvklkYrQwjHw3KyMRlbr0EsIwO', '', 'COMPANY');
 insert into user values('company2@test.com', '$2a$10$hHLVs61e9zCDaxqZ7Q/IQuEDueWnY8PvieODHw72SzzFJE0el05Za', '', 'COMPANY');
+insert into user values('contact.biru.software@gmail.com', 'parolaOarecare', '', 'CANDIDATE');
 
 insert into candidate(email) values('candidate@test.com');
 insert into candidate(email) values('candidate2@test.com');
