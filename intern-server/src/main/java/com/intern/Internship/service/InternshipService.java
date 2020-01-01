@@ -13,6 +13,8 @@ public interface InternshipService {
 
     PageDTO<InternshipDTO> getInternshipsByCompany(int pageNumber, int pageSize, String companyName);
 
+    PageDTO<InternshipDTO> getInternshipsByCandidate(int page,int size,String companyName);
+
     Internship findById(String internshipId);
 
     void delete(Internship internship);

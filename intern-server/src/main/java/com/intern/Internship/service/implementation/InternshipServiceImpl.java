@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import com.intern.Internship.model.AreaOfInterest;
+import com.intern.Internship.model.Candidate;
 import com.intern.Internship.model.Company;
 import com.intern.Internship.model.Internship;
 import com.intern.Internship.model.dto.InternshipDTO;
@@ -12,6 +13,7 @@ import com.intern.Internship.model.dto.PageDTO;
 import com.intern.Internship.model.enums.Direction;
 import com.intern.Internship.model.enums.OrderBy;
 import com.intern.Internship.repository.AreaOfInterestRepository;
+import com.intern.Internship.repository.CandidateRepository;
 import com.intern.Internship.repository.CompanyRepository;
 import com.intern.Internship.repository.InternshipRepository;
 import com.intern.Internship.service.InternshipService;
@@ -35,6 +37,9 @@ public class InternshipServiceImpl implements InternshipService {
 
     @Autowired
     private CompanyRepository companyRepository;
+
+    @Autowired
+    private CandidateRepository candidateRepository;
 
     public PageDTO<InternshipDTO> getInternships(int pageNumber, int pageSize, List<AreaOfInterest> areaOfInterestList,
             String sortCriteria, String direction) {
@@ -61,10 +66,17 @@ public class InternshipServiceImpl implements InternshipService {
     }
 
     public PageDTO<InternshipDTO> getInternshipsByCompany(int pageNumber, int pageSize, String companyName) {
-            Company company = companyRepository.findByName(companyName);
-            Page<Internship> page = internshipRepository.findAllByCompanyName(company.getName(),
-                    PageRequest.of(pageNumber, pageSize));
-            return Converters.internshipPageToInternshipDTOPage(page);
+        Company company = companyRepository.findByName(companyName);
+        Page<Internship> page = internshipRepository.findAllByCompanyName(company.getName(),
+                PageRequest.of(pageNumber, pageSize));
+        return Converters.internshipPageToInternshipDTOPage(page);
+    }
+
+    public PageDTO<InternshipDTO> getInternshipsByCandidate(int pageNumber, int size, String candidateId) {
+        Page<Internship> page = internshipRepository.findAllByCandidateId(candidateId,
+                PageRequest.of(pageNumber, size));
+
+        return Converters.internshipPageToInternshipDTOPage(page);
     }
 
     public Internship findById(String internshipId) {

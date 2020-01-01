@@ -65,6 +65,19 @@ public class InternshipController {
         }
     }
 
+    @GetMapping("/candidate")
+    public ResponseEntity<PageDTO<InternshipDTO>> findInternshipsByCandidate(@RequestParam("candidate") String candidateId,
+            @RequestParam("page") int page, @RequestParam("size") int size) {
+
+        try {
+            PageDTO<InternshipDTO> pageInternship = internshipService.getInternshipsByCandidate(page, size, candidateId);
+            return ResponseEntity.ok().body(pageInternship);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(new PageDTO<InternshipDTO>());
+        }
+    }
+
     @DeleteMapping()
     public ResponseEntity<InternshipDTO> delete(@RequestParam("id") String internshipId) {
         Internship internship = internshipService.findById(internshipId);
