@@ -11,7 +11,6 @@ import com.intern.Internship.model.dto.PageDTO;
 import com.intern.Internship.model.enums.Direction;
 import com.intern.Internship.model.enums.OrderBy;
 import com.intern.Internship.service.AreaOfInterestService;
-import com.intern.Internship.service.CompanyService;
 import com.intern.Internship.service.InternshipService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +18,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,9 +34,6 @@ public class InternshipController {
 
     @Autowired
     private AreaOfInterestService areaOfInterestService;
-
-    @Autowired
-    private CompanyService companyService;
 
     @GetMapping("/areaofinterest")
     public ResponseEntity<PageDTO<InternshipDTO>> findInternshipByAreaOfInterest(@RequestParam("filter") String filter,
@@ -56,13 +55,14 @@ public class InternshipController {
     @GetMapping("/company")
     public ResponseEntity<PageDTO<InternshipDTO>> findInternshipsByCompany(@RequestParam("company") String companyName,
             @RequestParam("page") int page, @RequestParam("size") int size) {
-        Company company = companyService.findByName(companyName);
-        if (company == null) {
+
+        try {
+            PageDTO<InternshipDTO> pageInternship = internshipService.getInternshipsByCompany(page, size, companyName);
+            return ResponseEntity.ok().body(pageInternship);
+        } catch (Exception e) {
+            e.printStackTrace();
             return ResponseEntity.badRequest().body(new PageDTO<InternshipDTO>());
         }
-        PageDTO<InternshipDTO> pageInternship = internshipService.getInternshipsByCompany(page, size, company);
-
-        return ResponseEntity.ok().body(pageInternship);
     }
 
     @DeleteMapping()
@@ -76,4 +76,28 @@ public class InternshipController {
         return ResponseEntity.ok().body(new InternshipDTO(internship));
     }
 
+    @PostMapping()
+    public ResponseEntity<InternshipDTO> save(@RequestBody InternshipDTO internshipDTO) {
+        if (internshipDTO == null) {
+            return ResponseEntity.badRequest().body(new InternshipDTO());
+        }
+        Internship internship = internshipService.save(internshipDTO);
+        if (internship == null) {
+            return ResponseEntity.badRequest().body(new InternshipDTO());
+        }
+
+        return ResponseEntity.ok().body(new InternshipDTO(internship));
+    }
+
+    @PutMapping()
+    public ResponseEntity<InternshipDTO> update(@RequestBody InternshipDTO internshipDTO) {
+        if (internshipDTO == null) {
+            return ResponseEntity.badRequest().body(new InternshipDTO());
+        }
+        Internship internship = internshipService.update(internshipDTO);
+        if (internship == null) {
+            return ResponseEntity.badRequest().body(new InternshipDTO());
+        }
+        return ResponseEntity.ok().body(new InternshipDTO(internship));
+    }
 }

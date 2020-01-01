@@ -23,4 +23,6 @@ public interface AreaOfInterestRepository
             return criteriaBuilder.or(predicates.toArray(new Predicate[] {}));
         };
     }
+
+    AreaOfInterest findByName(String name);
 }
