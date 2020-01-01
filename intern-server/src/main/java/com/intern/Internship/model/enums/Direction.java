@@ -8,12 +8,20 @@ public enum Direction {
 
     private final String directionCode;
 
+    /**
+     * Direction constructor
+     * @param direction: String
+     */
     private Direction(String direction) {
 
         this.directionCode = direction;
 
     }
 
+    /**
+     * directionCode getter
+     * @return String, directionCode
+     */
     public String getDirectionCode() {
 
         return this.directionCode;

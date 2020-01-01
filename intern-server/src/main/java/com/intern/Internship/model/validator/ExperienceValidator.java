@@ -3,7 +3,11 @@ package com.intern.Internship.model.validator;
 import com.intern.Internship.model.Experience;
 
 public class ExperienceValidator implements Validator<Experience> {
-
+    /**
+     * Experience validator
+     * @param entity: Experience
+     * @throws ValidationException if entity is invalid
+     */
     @Override
     public void validate(Experience entity){
         String msg="";

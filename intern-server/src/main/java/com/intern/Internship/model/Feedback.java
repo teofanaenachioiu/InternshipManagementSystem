@@ -34,6 +34,13 @@ public class Feedback implements HasID<String>{
     @JoinColumn
     private Internship internship;
 
+    /**
+     * Feedback constructor
+     * @param description: String
+     * @param anonymous: Boolean
+     * @param rating: int
+     * @param internship: Internship
+     */
     public Feedback(String description,Boolean anonymous,int rating,Internship internship){
         this.description=description;
         this.anonymous=anonymous;

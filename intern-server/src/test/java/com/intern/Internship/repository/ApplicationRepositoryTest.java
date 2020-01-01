@@ -1,10 +1,10 @@
 package com.intern.Internship.repository;
 
-import com.intern.Internship.model.AreaOfInterest;
-import com.intern.Internship.model.Company;
-import com.intern.Internship.model.Feedback;
-import com.intern.Internship.model.Internship;
+import com.intern.Internship.model.*;
+import com.intern.Internship.model.enums.ApplicationStatus;
+import com.intern.Internship.model.enums.CandidateStatus;
 import com.intern.Internship.model.enums.InternshipStatus;
+import com.intern.Internship.model.enums.Sex;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +18,12 @@ import java.util.HashSet;
 @RunWith(SpringRunner.class)
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-class FeedbackRepositoryTest {
+class ApplicationRepositoryTest {
     @Autowired
-    AreaOfInterestRepository areaOfInterestRepository;
+    ApplicationRepository applicationRepository;
 
     @Autowired
-    CompanyRepository companyRepository;
+    AreaOfInterestRepository areaOfInterestRepository;
 
     @Autowired
     FeedbackRepository feedbackRepository;
@@ -31,9 +31,24 @@ class FeedbackRepositoryTest {
     @Autowired
     InternshipRepository internshipRepository;
 
+    @Autowired
+    CompanyRepository companyRepository;
+
+    @Autowired
+    StudiesRepository studiesRepository;
+
+    @Autowired
+    ExperienceRepository experienceRepository;
+
     @Test
     public void test() {
-        long countBefore = feedbackRepository.count();
+        Application application = new Application(
+                ApplicationStatus.Applied,
+                "Extra message",
+                null,
+                null
+        );
+
         byte[] bytes = "BLOB GOES HERE".getBytes();
         Company company1 = new Company(
                 "tudor@ginga.com",
@@ -111,9 +126,6 @@ class FeedbackRepositoryTest {
         feedbackRepository.save(feedback121);
         feedbackRepository.save(feedback122);
 
-        Feedback fromRepositoryFeedback1 = feedbackRepository.getOne(feedback111.getID());
-        assert (fromRepositoryFeedback1.getInternship().getAreaOfInterest() != null);
-
         HashSet<Feedback> hashSet1 = new HashSet<>();
         hashSet1.add(feedback111);
         hashSet1.add(feedback112);
@@ -124,11 +136,83 @@ class FeedbackRepositoryTest {
         internship12.setFeedbacks(hashSet2);
         internshipRepository.save(internship11);
         internshipRepository.save(internship12);
+
         HashSet<Internship> hashSet3 = new HashSet<>();
         hashSet3.add(internship11);
         hashSet3.add(internship12);
         company1.setInternships(hashSet3);
         companyRepository.save(company1);
-        assert (feedbackRepository.count() == countBefore + 4);
+
+        application.setInternship(internship11);
+
+        Candidate candidate = new Candidate(
+                "utilizator@domeniu.com",
+                "Popescu",
+                "Ion",
+                "Zambilei 12",
+                "0700123456",
+                LocalDate.now(),
+                Sex.M,
+                CandidateStatus.Open,
+                new byte[10],
+                "LinkedIn goes here",
+                "Github goes here",
+                "Description goes here",
+                "Languages go here",
+                new HashSet<>(),
+                new HashSet<>()
+        );
+
+        HashSet<Studies> studiesHashSet = new HashSet<>();
+        Studies studies1 = new Studies(
+                "Liceul de Chimie Cucuietii din Dealu Mare",
+                "Matematica-Muzica",
+                LocalDate.now(),
+                LocalDate.now(),
+                "Descriere 1",
+                candidate
+        );
+        studiesHashSet.add(studies1);
+        Studies studies2 = new Studies(
+                "UBB CJ",
+                "FMI",
+                LocalDate.now(),
+                LocalDate.now(),
+                "Descriere 2",
+                candidate
+        );
+        studiesHashSet.add(studies2);
+        studiesRepository.save(studies1);
+        studiesRepository.save(studies2);
+        candidate.setStudies(studiesHashSet);
+
+        HashSet<Experience> experienceHashSet = new HashSet<>();
+        Experience experience1 = new Experience(
+                "Company 1",
+                LocalDate.now(),
+                LocalDate.now(),
+                "Junior programmer",
+                candidate
+        );
+        experienceHashSet.add(experience1);
+        Experience experience2 = new Experience(
+                "Company 2",
+                LocalDate.now(),
+                LocalDate.now(),
+                "Senior programmer",
+                candidate
+        );
+        experienceHashSet.add(experience2);
+        experienceRepository.save(experience1);
+        experienceRepository.save(experience2);
+        candidate.setExperiences(experienceHashSet);
+
+        application.setCandidate(candidate);
+
+        applicationRepository.save(application);
+
+        Application fromRepository = applicationRepository.getOne(application.getID());
+        assert (fromRepository.getCandidate().getExperiences().size() == 2);
+        assert (fromRepository.getCandidate().getStudies().size() == 2);
     }
 }

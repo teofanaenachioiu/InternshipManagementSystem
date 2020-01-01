@@ -1,5 +1,6 @@
 package com.intern.Internship.model;
 
+import com.intern.Internship.model.enums.ApplicationStatus;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,10 +13,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-
-enum ApplicationStatus {
-    Applied, Replied, Accepted
-}
 
 @Getter
 @Setter
@@ -39,6 +36,13 @@ public class Application implements HasID<String> {
     @JoinColumn
     private Candidate candidate;
 
+    /**
+     * Application constructor
+     * @param applicationStatus: ApplicationStatus, may be Applied, Replied or Accepted
+     * @param extraMessage: String
+     * @param internship: Internship
+     * @param candidate: Candidate
+     */
     public Application(ApplicationStatus applicationStatus, String extraMessage, Internship internship,
             Candidate candidate) {
         this.applicationStatus = applicationStatus;

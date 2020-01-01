@@ -3,7 +3,11 @@ package com.intern.Internship.model.validator;
 import com.intern.Internship.model.Feedback;
 
 public class FeedbackValidator implements Validator<Feedback> {
-
+    /**
+     * Feedback validator
+     * @param entity: Feedback
+     * @throws ValidationException if entity is invalid
+     */
     @Override
     public void validate(Feedback entity) {
         String msg="";

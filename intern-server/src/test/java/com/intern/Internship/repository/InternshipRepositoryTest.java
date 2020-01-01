@@ -4,7 +4,7 @@ import com.intern.Internship.model.AreaOfInterest;
 import com.intern.Internship.model.Company;
 import com.intern.Internship.model.Feedback;
 import com.intern.Internship.model.Internship;
-import com.intern.Internship.model.enums.InternshipStatus.InternshipStatus;
+import com.intern.Internship.model.enums.InternshipStatus;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,16 +70,16 @@ class InternshipRepositoryTest {
                 internshipRepository.save(internship11);
                 internshipRepository.save(internship12);
 
-                Internship fromRepositoryInternship11 = internshipRepository.getOne(internship11.getID());
-                assert (fromRepositoryInternship11 != null);
-                assert (internship11.getFeedbacks().size() != 0);
-                assert (internshipRepository.findAll().size() > 2);
-
                 HashSet<Internship> hashSet3 = new HashSet<>();
                 hashSet3.add(internship11);
                 hashSet3.add(internship12);
                 company1.setInternships(hashSet3);
                 companyRepository.save(company1);
+
+                Internship fromRepositoryInternship11 = internshipRepository.getOne(internship11.getID());
+                assert (fromRepositoryInternship11 != null);
+                assert (internship11.getFeedbacks().size() != 0);
+                assert (internshipRepository.findAll().size() > 2);
 
                 assert (internshipRepository.count() == countBefore + 2);
                 assert (internship12.getCompany().getID() != null);

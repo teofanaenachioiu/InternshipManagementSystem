@@ -19,6 +19,14 @@ import lombok.ToString;
 public class Message implements HasID<String> {
     private static final long serialVersionUID = -3198996830497946136L;
 
+    /**
+     * Message constructor
+     * @param name: String
+     * @param email: String
+     * @param subject: String
+     * @param phone: String
+     * @param message: String
+     */
     public Message(String name, String email, String subject, String phone, String message) {
         this.name = name;
         this.email = email;

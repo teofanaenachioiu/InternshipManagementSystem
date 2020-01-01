@@ -4,7 +4,7 @@ import com.intern.Internship.model.AreaOfInterest;
 import com.intern.Internship.model.Company;
 import com.intern.Internship.model.Feedback;
 import com.intern.Internship.model.Internship;
-import com.intern.Internship.model.enums.InternshipStatus.InternshipStatus;
+import com.intern.Internship.model.enums.InternshipStatus;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

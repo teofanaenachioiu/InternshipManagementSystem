@@ -1,5 +1,7 @@
 package com.intern.Internship.model;
 
+import com.intern.Internship.model.enums.CandidateStatus;
+import com.intern.Internship.model.enums.Sex;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,14 +19,6 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
-enum Sex {
-    M, F
-}
-
-enum CandidateStatus {
-    Open, Pending, Uninterested;
-}
 
 @Getter
 @Setter
@@ -59,6 +53,25 @@ public class Candidate implements HasID<String> {
     @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL)
     private Set<Experience> experiences;
 
+    /**
+     * Candidate constructor
+     * @param ID: String
+     * @param lastName: String, numele de familie
+     * @param firstName: String, prenumele
+     * @param address: String
+     * @param telephone: String
+     * @param birthDate: LocalDate
+     * @param sex: Sex, may be M or F
+     * @param candidateStatus: CandidateStatus, may be Open, Pending or Uninterested
+     * @param avatar: Blob
+     * @param linkLinkedin: String
+     * @param linkGithub: String
+     * @param description: String
+     * @param languages: String
+     * @param studies: Set<Studies>
+     * @param experiences: Set<Experience>
+     * @param applications: Application...
+     */
     public Candidate(String ID, String lastName, String firstName, String address, String telephone,
             LocalDate birthDate, Sex sex, CandidateStatus candidateStatus, byte[] avatar, String linkLinkedin,
             String linkGithub, String description, String languages, Set<Studies> studies, Set<Experience> experiences,

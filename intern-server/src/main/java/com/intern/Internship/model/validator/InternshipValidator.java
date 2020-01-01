@@ -3,6 +3,11 @@ package com.intern.Internship.model.validator;
 import com.intern.Internship.model.Internship;
 
 public class InternshipValidator implements Validator<Internship> {
+    /**
+     * Internship validator
+     * @param entity: Internship
+     * @throws ValidationException if entity is invalid
+     */
     @Override
     public void validate(Internship entity) {
         String msg="";

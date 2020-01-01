@@ -2,7 +2,7 @@ package com.intern.Internship.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import com.intern.Internship.model.enums.InternshipStatus.InternshipStatus;
+import com.intern.Internship.model.enums.InternshipStatus;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -56,6 +56,22 @@ public class Internship implements HasID<String> {
     @OneToMany(mappedBy = "internship", cascade = CascadeType.ALL)
     private Set<Feedback> feedbacks;
 
+    /**
+     * Internship constructor
+     * @param name: String
+     * @param startTime: LocalDate
+     * @param endTime: LocalDate
+     * @param paid: Boolean
+     * @param nrMonths: int
+     * @param description: String
+     * @param nrApplicants: int
+     * @param status: InternshipStatus, can be Open or Closed
+     * @param location: String
+     * @param addedDate: LocalDate
+     * @param company: Company
+     * @param areaOfInterest: AreaOfInterest
+     * @param feedbacks: Feedback...
+     */
     public Internship(String name, LocalDate startTime, LocalDate endTime, Boolean paid, int nrMonths,
             String description, int nrApplicants, InternshipStatus status, String location, LocalDate addedDate,
             Company company, AreaOfInterest areaOfInterest, Feedback... feedbacks) {

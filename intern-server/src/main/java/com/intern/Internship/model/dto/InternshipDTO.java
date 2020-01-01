@@ -5,7 +5,7 @@ import java.util.Map;
 
 import com.intern.Internship.model.Feedback;
 import com.intern.Internship.model.Internship;
-import com.intern.Internship.model.enums.InternshipStatus.InternshipStatus;
+import com.intern.Internship.model.enums.InternshipStatus;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,6 +34,23 @@ public class InternshipDTO {
     private Long numberOfFeedbacks;
     private Double averageOfFeedbacks;
 
+    /**
+     * InternshipDTO constructor
+     * @param name: String
+     * @param startTime: LocalDate
+     * @param endTime: LocalDate
+     * @param paid: Boolean
+     * @param nrMonths: int
+     * @param description: String
+     * @param nrApplicants: int
+     * @param status: InternshipStatus, can be Open or Closed
+     * @param location: String
+     * @param addedDate: LocalDate
+     * @param company: String
+     * @param areaOfInterest: String
+     * @param numberOfFeedbacks: Long
+     * @param averageOfFeedbacks: Double
+     */
     public InternshipDTO(String name, LocalDate startTime, LocalDate endTime, Boolean paid, int nrMonths,
             String description, int nrApplicants, InternshipStatus status, String location, LocalDate addedDate,
             String company, String areaOfInterest, Long numberOfFeedbacks, Double averageOfFeedbacks) {
@@ -53,6 +70,11 @@ public class InternshipDTO {
         this.numberOfFeedbacks = numberOfFeedbacks;
     }
 
+    /**
+     * InternshipDTO constructor
+     * @param internship: Internship
+     * Creates InternshipDTO from Internship data
+     */
     public InternshipDTO(Internship internship) {
         this.ID = internship.getID();
         this.name = internship.getName();
@@ -85,6 +107,11 @@ public class InternshipDTO {
         }
     }
 
+    /**
+     * InternshipDTO constructor
+     * @param map: Map
+     * Creates InternshipDTO from Internship represented as Map
+     */
     public InternshipDTO(Map<String, ?> map) {
         this.ID = (String) map.get("id");
         this.name = (String) map.get("name");
