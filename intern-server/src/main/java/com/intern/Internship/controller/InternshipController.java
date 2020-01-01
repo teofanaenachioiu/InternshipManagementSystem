@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.intern.Internship.model.AreaOfInterest;
-import com.intern.Internship.model.Company;
 import com.intern.Internship.model.Internship;
 import com.intern.Internship.model.dto.InternshipDTO;
 import com.intern.Internship.model.dto.PageDTO;
