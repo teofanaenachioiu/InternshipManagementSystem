@@ -42,4 +42,36 @@ public class Converters {
         pageDTO.setNbPages(totalPages);
         return pageDTO;
     }
+
+    public static Internship dtoToInternshipUpdate(Internship intern, InternshipDTO internDTO) {
+        intern.setName(internDTO.getName() == null ? intern.getName() : internDTO.getName());
+        intern.setStartTime(internDTO.getStartTime() == null ? intern.getStartTime() : internDTO.getStartTime());
+        intern.setEndTime(internDTO.getEndTime() == null ? intern.getEndTime() : internDTO.getEndTime());
+        intern.setPaid(internDTO.getPaid() == null ? intern.getPaid() : internDTO.getPaid());
+        intern.setNrMonths(internDTO.getNrMonths() == 0 ? intern.getNrMonths() : internDTO.getNrMonths());
+        intern.setDescription(
+                internDTO.getDescription() == null ? intern.getDescription() : internDTO.getDescription());
+        intern.setNrApplicants(
+                internDTO.getNrApplicants() == 0 ? intern.getNrApplicants() : internDTO.getNrApplicants());
+        intern.setStatus(internDTO.getStatus() == null ? intern.getStatus() : internDTO.getStatus());
+        intern.setLocation(internDTO.getLocation() == null ? intern.getLocation() : internDTO.getLocation());
+        intern.setAddedDate(internDTO.getAddedDate() == null ? intern.getAddedDate() : internDTO.getAddedDate());
+
+        return intern;
+    }
+
+    public static Internship toInternship(InternshipDTO internshipDTO) {
+        Internship internship = new Internship();
+        internship.setName(internshipDTO.getName());
+        internship.setStartTime(internshipDTO.getStartTime());
+        internship.setEndTime(internshipDTO.getEndTime());
+        internship.setPaid(internshipDTO.getPaid());
+        internship.setNrMonths(internshipDTO.getNrMonths());
+        internship.setDescription(internshipDTO.getDescription());
+        internship.setNrApplicants(internshipDTO.getNrApplicants());
+        internship.setStatus(internshipDTO.getStatus());
+        internship.setLocation(internshipDTO.getLocation());
+        internship.setAddedDate(internshipDTO.getAddedDate());
+        return internship;
+    }
 }
