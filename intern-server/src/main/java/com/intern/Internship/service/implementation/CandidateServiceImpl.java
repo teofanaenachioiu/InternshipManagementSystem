@@ -24,4 +24,11 @@ public class CandidateServiceImpl implements CandidateService {
         return candidateRepository.save(candidate);
     }
 
+    @Override
+    public Candidate update(Candidate candidate) {
+        if (candidate == null || findByEmail(candidate.getID()) == null) {
+            throw new IllegalArgumentException();
+        }
+        return save(candidate);
+    }
 }

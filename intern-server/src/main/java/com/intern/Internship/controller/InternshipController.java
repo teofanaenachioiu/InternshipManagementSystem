@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.intern.Internship.model.AreaOfInterest;
-import com.intern.Internship.model.Company;
 import com.intern.Internship.model.Internship;
 import com.intern.Internship.model.dto.InternshipDTO;
 import com.intern.Internship.model.dto.PageDTO;
@@ -58,6 +57,19 @@ public class InternshipController {
 
         try {
             PageDTO<InternshipDTO> pageInternship = internshipService.getInternshipsByCompany(page, size, companyName);
+            return ResponseEntity.ok().body(pageInternship);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(new PageDTO<InternshipDTO>());
+        }
+    }
+
+    @GetMapping("/candidate")
+    public ResponseEntity<PageDTO<InternshipDTO>> findInternshipsByCandidate(@RequestParam("candidate") String candidateId,
+            @RequestParam("page") int page, @RequestParam("size") int size) {
+
+        try {
+            PageDTO<InternshipDTO> pageInternship = internshipService.getInternshipsByCandidate(page, size, candidateId);
             return ResponseEntity.ok().body(pageInternship);
         } catch (Exception e) {
             e.printStackTrace();

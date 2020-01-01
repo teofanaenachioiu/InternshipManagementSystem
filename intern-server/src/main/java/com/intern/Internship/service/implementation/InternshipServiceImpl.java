@@ -61,10 +61,17 @@ public class InternshipServiceImpl implements InternshipService {
     }
 
     public PageDTO<InternshipDTO> getInternshipsByCompany(int pageNumber, int pageSize, String companyName) {
-            Company company = companyRepository.findByName(companyName);
-            Page<Internship> page = internshipRepository.findAllByCompanyName(company.getName(),
-                    PageRequest.of(pageNumber, pageSize));
-            return Converters.internshipPageToInternshipDTOPage(page);
+        Company company = companyRepository.findByName(companyName);
+        Page<Internship> page = internshipRepository.findAllByCompanyName(company.getName(),
+                PageRequest.of(pageNumber, pageSize));
+        return Converters.internshipPageToInternshipDTOPage(page);
+    }
+
+    public PageDTO<InternshipDTO> getInternshipsByCandidate(int pageNumber, int size, String candidateId) {
+        Page<Internship> page = internshipRepository.findAllByCandidateId(candidateId,
+                PageRequest.of(pageNumber, size));
+
+        return Converters.internshipPageToInternshipDTOPage(page);
     }
 
     public Internship findById(String internshipId) {
