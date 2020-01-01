@@ -67,7 +67,7 @@ public class InternshipServiceImpl implements InternshipService {
         Optional<Internship> result = internshipRepository.findById(internshipId);
         return (result.isPresent()) ? result.get() : null;
     }
-    
+
     public void delete(Internship internship) {
         internshipRepository.delete(internship);
     }
