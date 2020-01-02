@@ -15,7 +15,6 @@ public class InternshipDTOValidator implements Validator<InternshipDTO> {
         if(entity.getName().equals("")) msg+="Name cannot be empty!";
         if(entity.getStartTime()==null) msg+="Start time has to be specified!";
         if(entity.getEndTime()==null) msg+="End time has to be specified!";
-        if(entity.getStartTime().isAfter(entity.getEndTime()) || entity.getStartTime().equals(entity.getEndTime())) msg+="Start and end dates are invalid!";
         if(entity.getPaid()==null) msg+="You need to specify if the internship is paid or not!";
         if(entity.getNrMonths()<0) msg+="The number of months has to be >0!";
         if(entity.getDescription().equals("")) msg+="Description cannot be empty!";
