@@ -6,12 +6,14 @@ import {CandidateProfileComponent} from './profiles/candidate-profile/candidate-
 import {CompanyProfileComponent} from './profiles/company-profile/company-profile.component';
 import {AuthCandidateGuard} from '../auth/auth-candidate.guard';
 import {AuthCompanyGuard} from '../auth/auth-company.guard';
+import {CompanyInternshipsComponent} from './profiles/company-profile/company-internships/company-internships.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'internships', pathMatch: 'full', canActivate: [AuthCandidateGuard] },
-  {path: 'internships', component: InternshipsComponent, canActivate: [AuthCandidateGuard] },
-  {path: 'candidate-profile', component: CandidateProfileComponent},
-  {path: 'company-profile', component: CompanyProfileComponent, canActivate: [AuthCompanyGuard] }
+  {path: '', redirectTo: 'internships', pathMatch: 'full' },
+  {path: 'internships', component: InternshipsComponent },
+  {path: 'candidate-profile', component: CandidateProfileComponent, canActivate: [AuthCandidateGuard] },
+  {path: 'company-profile', component: CompanyProfileComponent, canActivate: [AuthCompanyGuard] },
+  {path: 'company-internships', component: CompanyInternshipsComponent, canActivate: [AuthCompanyGuard] },
 ];
 
 @NgModule({

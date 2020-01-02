@@ -5,15 +5,17 @@ import java.util.Map;
 
 import com.intern.Internship.model.Feedback;
 import com.intern.Internship.model.Internship;
-import com.intern.Internship.model.enums.InternshipStatus.InternshipStatus;
+import com.intern.Internship.model.enums.InternshipStatus;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@ToString
 public class InternshipDTO {
     private String ID;
 
@@ -32,6 +34,23 @@ public class InternshipDTO {
     private Long numberOfFeedbacks;
     private Double averageOfFeedbacks;
 
+    /**
+     * InternshipDTO constructor
+     * @param name: String
+     * @param startTime: LocalDate
+     * @param endTime: LocalDate
+     * @param paid: Boolean
+     * @param nrMonths: int
+     * @param description: String
+     * @param nrApplicants: int
+     * @param status: InternshipStatus, can be Open or Closed
+     * @param location: String
+     * @param addedDate: LocalDate
+     * @param company: String
+     * @param areaOfInterest: String
+     * @param numberOfFeedbacks: Long
+     * @param averageOfFeedbacks: Double
+     */
     public InternshipDTO(String name, LocalDate startTime, LocalDate endTime, Boolean paid, int nrMonths,
             String description, int nrApplicants, InternshipStatus status, String location, LocalDate addedDate,
             String company, String areaOfInterest, Long numberOfFeedbacks, Double averageOfFeedbacks) {
@@ -51,6 +70,11 @@ public class InternshipDTO {
         this.numberOfFeedbacks = numberOfFeedbacks;
     }
 
+    /**
+     * InternshipDTO constructor
+     * @param internship: Internship
+     * Creates InternshipDTO from Internship data
+     */
     public InternshipDTO(Internship internship) {
         this.ID = internship.getID();
         this.name = internship.getName();
@@ -63,22 +87,40 @@ public class InternshipDTO {
         this.status = internship.getStatus();
         this.location = internship.getLocation();
         this.addedDate = internship.getAddedDate();
-        this.company = internship.getCompany().getName();
-        this.areaOfInterest = internship.getAreaOfInterest().getName();
-        this.averageOfFeedbacks = (internship.getFeedbacks().stream().mapToDouble(Feedback::getRating).sum())
-                / internship.getFeedbacks().size();
-        this.numberOfFeedbacks = Long.valueOf(internship.getFeedbacks().size());
+        if (internship.getCompany() == null) {
+            this.company = null;
+        } else {
+            this.company = internship.getCompany().getName();
+        }
+        if (internship.getAreaOfInterest() == null) {
+            this.areaOfInterest = null;
+        } else {
+            this.areaOfInterest = internship.getAreaOfInterest().getName();
+        }
+        if (internship.getFeedbacks() == null) {
+            this.averageOfFeedbacks = 0.0;
+            this.numberOfFeedbacks = 0l;
+        } else {
+            this.averageOfFeedbacks = (internship.getFeedbacks().stream().mapToDouble(Feedback::getRating).sum())
+                    / internship.getFeedbacks().size();
+            this.numberOfFeedbacks = Long.valueOf(internship.getFeedbacks().size());
+        }
     }
 
+    /**
+     * InternshipDTO constructor
+     * @param map: Map
+     * Creates InternshipDTO from Internship represented as Map
+     */
     public InternshipDTO(Map<String, ?> map) {
         this.ID = (String) map.get("id");
         this.name = (String) map.get("name");
         this.startTime = (LocalDate) map.get("startTime");
         this.endTime = (LocalDate) map.get("endTime");
         this.paid = (Boolean) map.get("paid");
-        this.nrMonths = (int) map.get("nrMonths");
+        this.nrMonths = (Integer) map.get("nrMonths");
         this.description = (String) map.get("description");
-        this.nrApplicants = (int) map.get("nrApplicants");
+        this.nrApplicants = (Integer) map.get("nrApplicants");
         this.status = (InternshipStatus) map.get("status");
         this.location = (String) map.get("location");
         this.addedDate = (LocalDate) map.get("addedDate");
@@ -89,13 +131,4 @@ public class InternshipDTO {
 
     }
 
-    @Override
-    public String toString() {
-        return "InternshipDTO{" + "ID='" + ID + '\'' + ", name='" + name + '\'' + ", startTime=" + startTime
-                + ", endTime=" + endTime + ", paid=" + paid + ", nrMonths=" + nrMonths + ", description='" + description
-                + '\'' + ", nrApplicants=" + nrApplicants + ", status=" + status + ", location='" + location + '\''
-                + ", addedDate=" + addedDate + ", company='" + company + '\'' + ", areaOfInterest='" + areaOfInterest
-                + '\'' + ", numberOfFeedbacks=" + numberOfFeedbacks + ", averageOfFeedbacks=" + averageOfFeedbacks
-                + '}';
-    }
 }

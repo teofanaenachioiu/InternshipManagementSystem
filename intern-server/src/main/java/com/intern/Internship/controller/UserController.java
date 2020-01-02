@@ -12,10 +12,13 @@ import com.intern.Internship.service.CompanyService;
 import com.intern.Internship.service.SecurityService;
 import com.intern.Internship.service.UserService;
 
+import com.intern.Internship.utils.Email;
+import com.intern.Internship.utils.Encryption;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.parameters.P;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,20 +50,19 @@ public class UserController {
     }
 
     @PostMapping("/api/auth/signup")
-    public ResponseEntity<User> registration(@RequestBody User userForm) { // , BindingResult bindingResult
+    public ResponseEntity<User> registration(@RequestBody User userForm) {
         if (userForm == null) {
-            return ResponseEntity.badRequest().body(new User());
-        }
-        // if user already exists
-        User user = userService.findByUsername(userForm.getUsername());
-        if (user != null) {
             return ResponseEntity.badRequest().body(new User());
         }
 
         String token = getJWTToken(userForm.getUsername());
         userForm.setToken(token);
 
-        userService.save(userForm);
+        try {
+            userService.save(userForm);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(new User());
+        }
         if (userForm.getRole().getName().equals("CANDIDATE")) {
             Candidate candidate = new Candidate();
             candidate.setID(userForm.getUsername());
@@ -71,7 +73,6 @@ public class UserController {
             companyService.save(company);
         }
         // securityService.autoLogin(userForm.getUsername(), userForm.getPassword());
-
         return ResponseEntity.ok().body(userForm);
     }
 
@@ -88,15 +89,34 @@ public class UserController {
 
     @PostMapping("/api/auth/login")
     public ResponseEntity<User> login(@RequestBody User userForm) {
-        // validate userForm
-        User user = userService.findByUser(userForm.getUsername(), userForm.getPassword());
-        if (user == null) {
+        try {
+            User user = userService.findByUser(userForm.getUsername(), userForm.getPassword());
+            String token = getJWTToken(user.getUsername());
+            user.setToken(token);
+            return ResponseEntity.ok().body(user);
+        } catch (Exception e) {
             return ResponseEntity.badRequest().body(new User());
         }
+    }
 
-        String token = getJWTToken(user.getUsername());
-        user.setToken(token);
+    @PostMapping("/api/auth/forgot")
+    public ResponseEntity<User> forgot(@RequestBody User userForm) {
+        try {
+            User user = userService.findByUsername(userForm.getUsername());
+            String subject = "Reset password request";
+            String body = "You received this e-mail because you requested a password request for your InterMAP account. Please enter the following address to get started: http://localhost:4200/reset/" + Encryption.encrypt(user.getUsername());
+            Email.sendMail(subject, body, userForm.getUsername());
+            return ResponseEntity.ok().body(user);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(new User());
+        }
+    }
 
+    @PostMapping("/api/auth/reset")
+    public ResponseEntity<User> reset(@RequestBody User userForm) {
+        String username = Encryption.decrypt(userForm.getUsername());
+        userService.changePassword(username, userForm.getPassword());
+        User user = userService.findByUsername(username);
         return ResponseEntity.ok().body(user);
     }
 
@@ -106,6 +126,9 @@ public class UserController {
     }
 
     private String getJWTToken(String username) {
+        if (username.length() > 19) {
+            username = username.substring(0, 19);
+        }
         String secretKey = "mySecretKey";
         List<GrantedAuthority> grantedAuthorities = AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_USER");
 

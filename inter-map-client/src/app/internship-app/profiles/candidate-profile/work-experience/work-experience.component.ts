@@ -47,7 +47,6 @@ export class WorkExperienceComponent implements ControlValueAccessor, OnDestroy 
       })
     );
 
-    this.addWork();
   }
 
   get workExperienceForms() {
@@ -65,7 +64,7 @@ export class WorkExperienceComponent implements ControlValueAccessor, OnDestroy 
   }
 
   removeWork(i) {
-    if (i > 0) {
+    if (i >= 0) {
       this.workExperienceForms.removeAt(i);
     }
   }

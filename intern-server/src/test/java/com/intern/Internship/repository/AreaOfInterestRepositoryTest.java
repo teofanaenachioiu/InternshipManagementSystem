@@ -26,7 +26,8 @@ class AreaOfInterestRepositoryTest {
         assert (areaOfInterestRepository.count() == countBefore + 2);
         assert (areaOfInterestRepository.findAll().contains(areaOfInterest1));
         assert (areaOfInterestRepository.findAll().contains(areaOfInterest2));
-        System.out.println(areaOfInterestRepository.findAll());
+        AreaOfInterest fromRepository = areaOfInterestRepository.getOne(areaOfInterest1.getID());
+        assert (fromRepository.getName() != null);
         areaOfInterestRepository.delete(areaOfInterest1);
         areaOfInterestRepository.delete(areaOfInterest2);
         assert (areaOfInterestRepository.count() == countBefore);

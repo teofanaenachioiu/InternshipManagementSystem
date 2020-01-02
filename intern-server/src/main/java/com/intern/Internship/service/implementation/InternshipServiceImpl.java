@@ -2,13 +2,18 @@ package com.intern.Internship.service.implementation;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import com.intern.Internship.model.AreaOfInterest;
+import com.intern.Internship.model.Company;
 import com.intern.Internship.model.Internship;
 import com.intern.Internship.model.dto.InternshipDTO;
 import com.intern.Internship.model.dto.PageDTO;
 import com.intern.Internship.model.enums.Direction;
 import com.intern.Internship.model.enums.OrderBy;
+import com.intern.Internship.model.validator.Validator;
+import com.intern.Internship.repository.AreaOfInterestRepository;
+import com.intern.Internship.repository.CompanyRepository;
 import com.intern.Internship.repository.InternshipRepository;
 import com.intern.Internship.service.InternshipService;
 import com.intern.Internship.utils.Converters;
@@ -25,6 +30,15 @@ public class InternshipServiceImpl implements InternshipService {
 
     @Autowired
     private InternshipRepository internshipRepository;
+
+    @Autowired
+    private AreaOfInterestRepository areaOfInterestRepository;
+
+    @Autowired
+    private CompanyRepository companyRepository;
+
+    @Autowired
+    private Validator<InternshipDTO> validator;
 
     public PageDTO<InternshipDTO> getInternships(int pageNumber, int pageSize, List<AreaOfInterest> areaOfInterestList,
             String sortCriteria, String direction) {
@@ -48,5 +62,59 @@ public class InternshipServiceImpl implements InternshipService {
         }
         return pageDTO;
 
+    }
+
+    public PageDTO<InternshipDTO> getInternshipsByCompany(int pageNumber, int pageSize, String companyName) {
+        Company company = companyRepository.findByName(companyName);
+        Page<Internship> page = internshipRepository.findAllByCompanyName(company.getName(),
+                PageRequest.of(pageNumber, pageSize));
+        return Converters.internshipPageToInternshipDTOPage(page);
+    }
+
+    public PageDTO<InternshipDTO> getInternshipsByCandidate(int pageNumber, int size, String candidateId) {
+        Page<Internship> page = internshipRepository.findAllByCandidateId(candidateId,
+                PageRequest.of(pageNumber, size));
+
+        return Converters.internshipPageToInternshipDTOPage(page);
+    }
+
+    public Internship findById(String internshipId) {
+        Optional<Internship> result = internshipRepository.findById(internshipId);
+        return (result.isPresent()) ? result.get() : null;
+    }
+
+    public void delete(Internship internship) {
+        internshipRepository.delete(internship);
+    }
+
+    public Internship save(InternshipDTO internshipDTO) {
+        validator.validate(internshipDTO);
+
+        Internship internship = findById(internshipDTO.getID());
+        if (internship == null) {
+            Company company = companyRepository.findByName(internshipDTO.getCompany());
+            AreaOfInterest areaOfInterest = areaOfInterestRepository.findByName(internshipDTO.getAreaOfInterest());
+
+            internship = Converters.toInternship(internshipDTO);
+            internship.setCompany(company);
+            internship.setAreaOfInterest(areaOfInterest);
+            return internshipRepository.save(internship);
+        }
+        return null;
+    }
+
+    public Internship update(InternshipDTO internshipDTO) {
+        validator.validate(internshipDTO);
+
+        Internship intern = findById(internshipDTO.getID());
+        if (intern != null) {
+            intern = Converters.dtoToInternshipUpdate(intern, internshipDTO);
+            if (internshipDTO.getAreaOfInterest() != null) {
+                AreaOfInterest areaOfInterest = areaOfInterestRepository.findByName(internshipDTO.getAreaOfInterest());
+                intern.setAreaOfInterest(areaOfInterest);
+            }
+            return internshipRepository.save(intern);
+        }
+        return intern;
     }
 }

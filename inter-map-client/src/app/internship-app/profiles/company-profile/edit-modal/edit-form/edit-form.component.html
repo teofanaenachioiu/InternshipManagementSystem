@@ -1,0 +1,11 @@
+<div [formGroup]="form">
+  <mat-form-field>
+    <mat-label>Status</mat-label>
+    <mat-select formControlName="status">
+      <mat-option *ngFor="let status of this.companyService.statuses" [value]="status">
+        {{status}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br>
+</div>

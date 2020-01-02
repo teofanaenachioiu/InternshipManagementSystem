@@ -1,14 +1,18 @@
 package com.intern.Internship.model;
 
-import com.intern.Internship.model.enums.InternshipStatus.InternshipStatus;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.intern.Internship.model.enums.InternshipStatus;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
+
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -23,14 +27,13 @@ import java.util.stream.Stream;
 @Setter
 @NoArgsConstructor
 @Entity
+@ToString
 public class Internship implements HasID<String> {
-    /**
-     *
-     */
     private static final long serialVersionUID = -458767083520973395L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid2")
     private String ID;
 
     private String name;
@@ -45,6 +48,7 @@ public class Internship implements HasID<String> {
     private LocalDate addedDate;
     @ManyToOne
     @JoinColumn
+    @JsonIdentityInfo(generator = ObjectIdGenerators.StringIdGenerator.class, property = "@ID")
     private Company company;
     @ManyToOne
     @JoinColumn
@@ -52,6 +56,22 @@ public class Internship implements HasID<String> {
     @OneToMany(mappedBy = "internship", cascade = CascadeType.ALL)
     private Set<Feedback> feedbacks;
 
+    /**
+     * Internship constructor
+     * @param name: String
+     * @param startTime: LocalDate
+     * @param endTime: LocalDate
+     * @param paid: Boolean
+     * @param nrMonths: int
+     * @param description: String
+     * @param nrApplicants: int
+     * @param status: InternshipStatus, can be Open or Closed
+     * @param location: String
+     * @param addedDate: LocalDate
+     * @param company: Company
+     * @param areaOfInterest: AreaOfInterest
+     * @param feedbacks: Feedback...
+     */
     public Internship(String name, LocalDate startTime, LocalDate endTime, Boolean paid, int nrMonths,
             String description, int nrApplicants, InternshipStatus status, String location, LocalDate addedDate,
             Company company, AreaOfInterest areaOfInterest, Feedback... feedbacks) {
@@ -69,14 +89,5 @@ public class Internship implements HasID<String> {
         this.areaOfInterest = areaOfInterest;
         this.feedbacks = Stream.of(feedbacks).collect(Collectors.toSet());
         this.feedbacks.forEach(x -> x.setInternship(this));
-    }
-
-    @Override
-    public String toString() {
-        return "Internship{" + "ID='" + ID + '\'' + ", name='" + name + '\'' + ", startTime=" + startTime + ", endTime="
-                + endTime + ", paid=" + paid + ", nrMonths=" + nrMonths + ", description='" + description + '\''
-                + ", nrApplicants=" + nrApplicants + ", status=" + status + ", location='" + location + '\''
-                + ", addedDate=" + addedDate + ", employer=" + company.getID() + ", areaOfInterest=";
-                //+ areaOfInterest.getID() + '}';
     }
 }

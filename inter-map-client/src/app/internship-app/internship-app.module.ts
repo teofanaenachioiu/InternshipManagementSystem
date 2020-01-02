@@ -2,19 +2,41 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {InternshipsComponent} from './internships/internships.component';
 import {InternshipAppRoutingModule} from './internship-app-routing.module';
-import {CandidateMenuComponent} from '../components/candidate-menu/candidate-menu.component';
+
+
+import { InternshipItemComponent } from './internship-list/internship-item/internship-item.component';
+import { InternshipListComponent } from './internship-list/internship-list.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FilterCompanyPipe } from './data/filter-company.pipe';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { FilterForMultipleCompanyPipe } from './data/filter-for-multiple-company.pipe';
+import { RatingModule } from 'ng-starrating';
+import { FilterRatingPipe } from './data/filter-rating.pipe';
+import { OrderModule } from 'ngx-order-pipe';
+
 import {
-  MatButtonModule, MatCheckboxModule, MatChipsModule, MatDatepickerModule,
-  MatIconModule,
+  MatFormFieldModule,
   MatInputModule,
-  MatListModule,
-  MatMenuModule, MatNativeDateModule, MatRadioModule, MatSelectModule,
+  MatSelectModule,
+  MatButtonModule,
+  MatToolbarModule,
   MatSidenavModule,
-  MatToolbarModule, MatTooltipModule
-} from '@angular/material';
-import {CompanyMenuComponent} from '../components/company-menu/company-menu.component';
+  MatListModule,
+  MatIconModule,
+  MatMenuModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatRadioModule,
+  MatChipsModule,
+  MatTooltipModule,
+  MatDialogModule
+} from
+    '@angular/material';
+import { FilterForMultipleInterestPipe } from './data/filter-for-multiple-interest.pipe';
 import { CandidateProfileComponent } from './profiles/candidate-profile/candidate-profile.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { CandidateMenuComponent } from '../components/candidate-menu/candidate-menu.component';
+import { CompanyMenuComponent } from '../components/company-menu/company-menu.component';
 import { PersonalDetailsComponent } from './profiles/candidate-profile/personal-details/personal-details.component';
 import { ContactComponent } from './profiles/candidate-profile/contact/contact.component';
 import { StudiesComponent } from './profiles/candidate-profile/studies/studies.component';
@@ -25,6 +47,12 @@ import { AboutComponent } from './profiles/company-profile/about/about.component
 import { ProfileComponent } from './profiles/company-profile/profile/profile.component';
 import { TellUsMoreComponent } from './profiles/candidate-profile/tell-us-more/tell-us-more.component';
 import { InterestsComponent } from './profiles/interests/interests.component';
+import { CompanyInternshipsComponent } from './profiles/company-profile/company-internships/company-internships.component';
+import { AddModalComponent } from './profiles/company-profile/add-modal/add-modal.component';
+import { ConfirmRemoveInternshipComponent } from './profiles/company-profile/company-internships/confirm-remove-internship/confirm-remove-internship.component';
+import { AddFormComponent } from './profiles/company-profile/add-modal/add-form/add-form.component';
+import { EditModalComponent } from './profiles/company-profile/edit-modal/edit-modal.component';
+import { EditFormComponent } from './profiles/company-profile/edit-modal/edit-form/edit-form.component';
 
 const materialComponents = [
   MatButtonModule,
@@ -57,18 +85,41 @@ const materialComponents = [
     AboutComponent,
     ProfileComponent,
     TellUsMoreComponent,
-    InterestsComponent
+    InterestsComponent,
+    InternshipsComponent,
+    InternshipItemComponent,
+    InternshipListComponent,
+    FilterCompanyPipe,
+    FilterForMultipleCompanyPipe,
+    FilterRatingPipe,
+    FilterForMultipleInterestPipe,
+    CompanyInternshipsComponent,
+    AddModalComponent,
+    ConfirmRemoveInternshipComponent,
+    AddFormComponent,
+    EditModalComponent,
+    EditFormComponent,
   ],
-  exports: [
-    CompanyMenuComponent
+  entryComponents: [
+    AddModalComponent,
+    EditModalComponent,
+    ConfirmRemoveInternshipComponent,
   ],
   imports: [
     CommonModule,
     InternshipAppRoutingModule,
+    FormsModule,
     ReactiveFormsModule,
+    NgxPaginationModule,
+    MatCheckboxModule,
+    RatingModule,
+    OrderModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatSelectModule,
     materialComponents,
-    MatDatepickerModule,
-    FormsModule
+    MatDialogModule,
+    MatCheckboxModule
   ]
 })
 export class InternshipAppModule { }

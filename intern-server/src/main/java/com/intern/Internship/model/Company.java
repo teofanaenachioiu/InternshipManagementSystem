@@ -3,6 +3,7 @@ package com.intern.Internship.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -19,10 +20,8 @@ import java.util.stream.Stream;
 @Setter
 @NoArgsConstructor
 @Entity
+@ToString
 public class Company implements HasID<String> {
-    /**
-     *
-     */
     private static final long serialVersionUID = -9090476835116308556L;
 
     @Id
@@ -40,6 +39,17 @@ public class Company implements HasID<String> {
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
     private Set<Internship> internships;
 
+    /**
+     * Company constructor
+     * @param ID: String, e-mail address
+     * @param name: String, full name
+     * @param address: String
+     * @param telephone: String
+     * @param description: String
+     * @param field: String
+     * @param logo: Blob
+     * @param internships: Internships...
+     */
     public Company(String ID, String name, String address, String telephone, String description, String field,
             byte[] logo, Internship... internships) {
         this.ID = ID;
@@ -51,12 +61,5 @@ public class Company implements HasID<String> {
         this.logo = logo;
         this.internships = Stream.of(internships).collect(Collectors.toSet());
         this.internships.forEach(x -> x.setCompany(this));
-    }
-
-    @Override
-    public String toString() {
-        return "Company{" + "email='" + ID + '\'' + ", name='" + name + '\'' + ", address='" + address + '\''
-                + ", telephone='" + telephone + '\'' + ", description='" + description + '\'' + ", field='" + field
-                + '\'' + ", logo=" + logo + '}';
     }
 }

@@ -21,15 +21,21 @@
         <app-interests formControlName="interests"></app-interests>
       </div>
       <br>
-      <div class="add-photo-div" >
-        <label class="upload-image-div">
-          <span>Add photos</span>
-          <input #imageInput
-                 type="file"
-                 accept="image/*"
-                 (change)="processFile(imageInput)">
-        </label>
-      </div>
+<!--      <div class="add-photo-div" >-->
+<!--        <label class="upload-image-div">-->
+<!--          <span>Add photos</span>-->
+<!--          <input #imageInput-->
+<!--                 type="file"-->
+<!--                 accept="image/*"-->
+<!--                 (change)="processFile(imageInput)">-->
+<!--        </label>-->
+<!--      </div>-->
       </div>
   </form>
+</div>
+
+<div>
+  <div *ngFor="let internship of getInternships(); let i=index" class="internship-item">
+    <app-company-internships [internship]="internship" [index]="i"></app-company-internships>
+  </div>
 </div>

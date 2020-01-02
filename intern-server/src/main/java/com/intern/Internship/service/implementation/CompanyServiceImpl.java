@@ -18,9 +18,22 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
+    public Company findByName(String name) {
+        return companyRepository.findCompany(name);
+    }
+
+    @Override
     public Company save(Company company) {
         if (company == null)
             throw new IllegalArgumentException();
         return companyRepository.save(company);
+    }
+
+    @Override
+    public Company update(Company company) {     
+        if (company == null || findByEmail(company.getID()) == null) {
+            throw new IllegalArgumentException();
+        }
+        return save(company);
     }
 }

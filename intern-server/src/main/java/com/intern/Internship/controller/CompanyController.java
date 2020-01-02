@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,14 +26,10 @@ public class CompanyController {
     @GetMapping()
     public ResponseEntity<Company> findByEmail(@RequestParam String email) {
         try {
-            System.out.println("EMAIL: " + email);
             Company company = companyService.findByEmail(email);
-            System.out.println(company);
             return ResponseEntity.accepted().body(company);
-            // return ResponseEntity.ok().body("test");
         } catch (EntityNotFoundException e) {
             return ResponseEntity.badRequest().body(new Company());
-            // return ResponseEntity.ok().body("failed");
         }
     }
 
@@ -42,9 +39,17 @@ public class CompanyController {
             Company result = companyService.save(company);
             return ResponseEntity.ok().body(result);
         } catch (IllegalArgumentException e) {
-            e.printStackTrace();
             return ResponseEntity.badRequest().body(new Company());
         }
     }
 
+    @PutMapping()
+    public ResponseEntity<Company> update(@RequestBody Company company) {
+        try {
+            Company result = companyService.update(company);
+            return ResponseEntity.ok().body(result);
+        } catch (IllegalArgumentException | EntityNotFoundException e) {
+            return ResponseEntity.badRequest().body(new Company());
+        }
+    }
 }

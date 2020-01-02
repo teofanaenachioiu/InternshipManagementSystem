@@ -3,10 +3,12 @@ package com.intern.Internship.model;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
+
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -15,14 +17,13 @@ import javax.persistence.ManyToOne;
 @Setter
 @NoArgsConstructor
 @Entity
+@ToString
 public class Feedback implements HasID<String>{
-    /**
-     *
-     */
     private static final long serialVersionUID = -3534054198190203549L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid2")
     private String ID;
 
     private String description;
@@ -33,21 +34,17 @@ public class Feedback implements HasID<String>{
     @JoinColumn
     private Internship internship;
 
+    /**
+     * Feedback constructor
+     * @param description: String
+     * @param anonymous: Boolean
+     * @param rating: int
+     * @param internship: Internship
+     */
     public Feedback(String description,Boolean anonymous,int rating,Internship internship){
         this.description=description;
         this.anonymous=anonymous;
         this.rating=rating;
         this.internship = internship;        
-    }
-
-    @Override
-    public String toString() {
-        return "Feedback{" +
-                "ID='" + ID + '\'' +
-                ", description='" + description + '\'' +
-                ", anonymous=" + anonymous +
-                ", rating=" + rating +
-                ", internship=" + internship.getID() +
-                '}';
     }
 }

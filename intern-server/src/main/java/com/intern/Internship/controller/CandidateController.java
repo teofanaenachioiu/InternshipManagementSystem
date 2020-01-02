@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,14 +26,10 @@ public class CandidateController {
     @GetMapping()
     public ResponseEntity<Candidate> findByEmail(@RequestParam String email) {
         try {
-            System.out.println("EMAIL: " + email);
             Candidate candidate = candidateService.findByEmail(email);
-            System.out.println(candidate);
             return ResponseEntity.accepted().body(candidate);
-            // return ResponseEntity.ok().body("test");
         } catch (EntityNotFoundException e) {
             return ResponseEntity.badRequest().body(new Candidate());
-            // return ResponseEntity.ok().body("failed");
         }
     }
 
@@ -43,6 +40,16 @@ public class CandidateController {
             return ResponseEntity.ok().body(result);
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
+            return ResponseEntity.badRequest().body(new Candidate());
+        }
+    }
+
+    @PutMapping()
+    public ResponseEntity<Candidate> update(@RequestBody Candidate candidate) {
+        try {
+            Candidate result = candidateService.update(candidate);
+            return ResponseEntity.ok().body(result);
+        } catch (Exception e) {
             return ResponseEntity.badRequest().body(new Candidate());
         }
     }
