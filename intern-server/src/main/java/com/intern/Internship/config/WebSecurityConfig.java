@@ -25,15 +25,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
-    public UserValidator userValidator(){return new UserValidator();}
-
-    @Bean
-    public InternshipDTOValidator internshipDTOValidator(){return new InternshipDTOValidator();}
-
-    @Bean
-    public MessageValidator messageValidator(){return new MessageValidator();}
-
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
