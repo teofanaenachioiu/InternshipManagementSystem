@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void save(User user) {
-        validator.validate(user); //validates the given user
+        validator.validate(user);
 
         if (userRepository.existsById(user.getUsername()))
             throw new ServiceException("user already exists");
