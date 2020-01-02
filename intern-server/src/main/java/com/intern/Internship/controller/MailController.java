@@ -30,8 +30,7 @@ public class MailController {
             String body = "Have a nice day!";
             Email.sendMail(subject, body, message.getEmail());
             return "done";
-        }
-        catch (ValidationException ex){
+        } catch (ValidationException ex) {
             return null;
         }
     }
