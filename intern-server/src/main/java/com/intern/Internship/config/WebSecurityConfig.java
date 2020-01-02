@@ -1,8 +1,5 @@
 package com.intern.Internship.config;
 
-import com.intern.Internship.model.validator.InternshipDTOValidator;
-import com.intern.Internship.model.validator.MessageValidator;
-import com.intern.Internship.model.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,11 +22,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
-                .antMatchers("/api/auth/login", "/api/auth/signup", "/api/auth/forgot", "/api/auth/reset", "/api/home/email", "/api/internship/*",
+                .antMatchers("/api/auth/login", "/api/auth/signup", "/api/home/email", "/api/internship/*",
                         "/api/internship/", "/api/company", "/api/candidate")
                 .permitAll().anyRequest().authenticated().and().logout().permitAll();
     }
@@ -37,7 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public AuthenticationManager customAuthenticationManager() throws Exception {
         return authenticationManager();
-    }// company=Bosch&page
+    }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
