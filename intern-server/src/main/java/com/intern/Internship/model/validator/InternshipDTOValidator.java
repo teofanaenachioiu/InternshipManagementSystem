@@ -4,8 +4,8 @@ import com.intern.Internship.model.dto.InternshipDTO;
 
 public class InternshipDTOValidator implements Validator<InternshipDTO> {
     /**
-     * Internship validator
-     * @param entity: Internship
+     * InternshipDTO validator
+     * @param entity: InternshipDTO
      * @throws ValidationException if entity is invalid
      */
     @Override
@@ -21,6 +21,7 @@ public class InternshipDTOValidator implements Validator<InternshipDTO> {
         if(entity.getDescription().length()>255) msg+="Description is too long!";
         if(entity.getStatus()==null) msg+="Status has to be specified!";
         if(entity.getLocation().equals("")) msg+="Location has to be specified!";
+        if(entity.getLocation().length()>255) msg+="Location is too long!";
         if(entity.getAddedDate()==null) msg+="The added date has to be specified!";
         if(entity.getCompany()==null) msg+="Company has to be specified!";
 

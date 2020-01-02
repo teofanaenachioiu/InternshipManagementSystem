@@ -4,6 +4,12 @@ import com.intern.Internship.model.User;
 import org.apache.commons.validator.routines.EmailValidator;
 
 public class UserValidator implements Validator<User> {
+    /**
+     * User validator
+     * @param entity: User
+     * @throws ValidationException if entity is invalid
+     */
+
     @Override
     public void validate(User entity) {
         String msg="";
