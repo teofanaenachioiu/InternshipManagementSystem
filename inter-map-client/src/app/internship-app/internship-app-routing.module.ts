@@ -11,7 +11,8 @@ import {CompanyInternshipsComponent} from './profiles/company-profile/company-in
 const routes: Routes = [
   {path: '', redirectTo: 'internships', pathMatch: 'full' },
   {path: 'internships', component: InternshipsComponent },
-  {path: 'candidate-profile', component: CandidateProfileComponent, canActivate: [AuthCandidateGuard] },
+  {path: 'candidate-profile', component: CandidateProfileComponent},
+  // {path: 'candidate-profile', component: CandidateProfileComponent, canActivate: [AuthCandidateGuard] },
   {path: 'company-profile', component: CompanyProfileComponent, canActivate: [AuthCompanyGuard] },
   {path: 'company-internships', component: CompanyInternshipsComponent, canActivate: [AuthCompanyGuard] },
 ];

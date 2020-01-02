@@ -1,21 +1,17 @@
 <app-candidate-menu></app-candidate-menu>
 
 <div class="main-div">
-<<<<<<< HEAD
-=======
-<!--  <mat-toolbar color="primary" (scroll)="scrollHandler($event)" style="position: absolute; z-index: 1">-->
-<!--  <span class="nav-title">-->
-<!--    <img class="imagine" src='assets/img/logo_white.png' alt='logo'>-->
-<!--    interMap-->
-<!--  </span>-->
-<!--  </mat-toolbar>-->
->>>>>>> master
+
   <form [formGroup]="profileForm">
     Value: {{ profileForm.value | json }} <br>
     <div class="form-profile-content">
       <div class="side-div sticky">
 
-        <div class="form-div">
+        <div class="form-div" *ngIf="!service.isEditPersonalDetails">
+          <app-personal-details-view></app-personal-details-view>
+        </div>
+
+        <div class="form-div" *ngIf="service.isEditPersonalDetails">
           <app-personal-details formControlName="personalDetails"></app-personal-details>
         </div>
 
@@ -28,11 +24,11 @@
         <div class="form-div">
           <app-contact formControlName="contact"></app-contact>
         </div>
-<!--        <div class="form-div">-->
-<!--          Studies-->
-<!--          <mat-icon class="help-s" matTooltip="Info about studies">help</mat-icon>-->
-<!--          <app-studies formControlName="studies"></app-studies>-->
-<!--        </div>-->
+        <!--        <div class="form-div">-->
+        <!--          Studies-->
+        <!--          <mat-icon class="help-s" matTooltip="Info about studies">help</mat-icon>-->
+        <!--          <app-studies formControlName="studies"></app-studies>-->
+        <!--        </div>-->
         <div class="form-div">
           Languages
           <mat-icon class="help-l" matTooltip="Info about languages">help</mat-icon>
