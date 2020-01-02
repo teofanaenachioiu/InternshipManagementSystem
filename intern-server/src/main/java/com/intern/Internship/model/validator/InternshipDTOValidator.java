@@ -15,7 +15,6 @@ public class InternshipDTOValidator implements Validator<InternshipDTO> {
     @Override
     public void validate(InternshipDTO entity) {
         String msg = "";
-
         if (entity.getName().equals(""))
             msg += "Name cannot be empty!";
         if (entity.getStartTime() == null)

@@ -1,8 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, FormArray, FormControl} from '@angular/forms';
-import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {MatChipInputEvent, MatChipSelectionChange} from '@angular/material';
-import {PersonalDetailsComponent} from './personal-details/personal-details.component';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup} from '@angular/forms';
+
+import {Candidat} from '../../../core/Candidat';
+
 
 @Component({
   selector: 'app-candidate-profile',
@@ -10,7 +10,8 @@ import {PersonalDetailsComponent} from './personal-details/personal-details.comp
   styleUrls: ['./candidate-profile.component.css']
 })
 export class CandidateProfileComponent implements OnInit {
-
+  email: string;
+  private candidate: Candidat;
   profileForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {
@@ -27,5 +28,9 @@ export class CandidateProfileComponent implements OnInit {
 
 
   ngOnInit() {
+    this.candidate = new Candidat();
+    this.candidate.firstName = 'Teofana';
+    this.candidate.lastName = 'Enachioiu';
   }
+
 }
