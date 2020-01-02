@@ -47,30 +47,34 @@ public class Candidate implements HasID<String> {
     private String description;
     private String languages;
     @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL)
+    @ToString.Exclude
     private Set<Application> applications;
     @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL)
+    @ToString.Exclude
     private Set<Studies> studies;
     @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL)
+    @ToString.Exclude
     private Set<Experience> experiences;
 
     /**
      * Candidate constructor
-     * @param ID: String
-     * @param lastName: String, numele de familie
-     * @param firstName: String, prenumele
-     * @param address: String
-     * @param telephone: String
-     * @param birthDate: LocalDate
-     * @param sex: Sex, may be M or F
+     * 
+     * @param ID:              String
+     * @param lastName:        String, numele de familie
+     * @param firstName:       String, prenumele
+     * @param address:         String
+     * @param telephone:       String
+     * @param birthDate:       LocalDate
+     * @param sex:             Sex, may be M or F
      * @param candidateStatus: CandidateStatus, may be Open, Pending or Uninterested
-     * @param avatar: Blob
-     * @param linkLinkedin: String
-     * @param linkGithub: String
-     * @param description: String
-     * @param languages: String
-     * @param studies: Set<Studies>
-     * @param experiences: Set<Experience>
-     * @param applications: Application...
+     * @param avatar:          Blob
+     * @param linkLinkedin:    String
+     * @param linkGithub:      String
+     * @param description:     String
+     * @param languages:       String
+     * @param studies:         Set<Studies>
+     * @param experiences:     Set<Experience>
+     * @param applications:    Application...
      */
     public Candidate(String ID, String lastName, String firstName, String address, String telephone,
             LocalDate birthDate, Sex sex, CandidateStatus candidateStatus, byte[] avatar, String linkLinkedin,
