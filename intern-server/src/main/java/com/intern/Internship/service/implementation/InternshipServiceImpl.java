@@ -11,6 +11,7 @@ import com.intern.Internship.model.dto.InternshipDTO;
 import com.intern.Internship.model.dto.PageDTO;
 import com.intern.Internship.model.enums.Direction;
 import com.intern.Internship.model.enums.OrderBy;
+import com.intern.Internship.model.validator.Validator;
 import com.intern.Internship.repository.AreaOfInterestRepository;
 import com.intern.Internship.repository.CompanyRepository;
 import com.intern.Internship.repository.InternshipRepository;
@@ -35,6 +36,9 @@ public class InternshipServiceImpl implements InternshipService {
 
     @Autowired
     private CompanyRepository companyRepository;
+
+    @Autowired
+    private Validator<InternshipDTO> validator;
 
     public PageDTO<InternshipDTO> getInternships(int pageNumber, int pageSize, List<AreaOfInterest> areaOfInterestList,
             String sortCriteria, String direction) {
@@ -84,6 +88,8 @@ public class InternshipServiceImpl implements InternshipService {
     }
 
     public Internship save(InternshipDTO internshipDTO) {
+        validator.validate(internshipDTO);
+
         Internship internship = findById(internshipDTO.getID());
         if (internship == null) {
             Company company = companyRepository.findByName(internshipDTO.getCompany());
@@ -98,6 +104,8 @@ public class InternshipServiceImpl implements InternshipService {
     }
 
     public Internship update(InternshipDTO internshipDTO) {
+        validator.validate(internshipDTO);
+
         Internship intern = findById(internshipDTO.getID());
         if (intern != null) {
             intern = Converters.dtoToInternshipUpdate(intern, internshipDTO);

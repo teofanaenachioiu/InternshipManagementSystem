@@ -1,9 +1,9 @@
 package com.intern.Internship.service.implementation;
 
-import javax.validation.ValidationException;
-
 import com.intern.Internship.model.User;
+import com.intern.Internship.model.validator.Validator;
 import com.intern.Internship.repository.UserRepository;
+import com.intern.Internship.service.ServiceException;
 import com.intern.Internship.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +16,18 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Autowired
+    private Validator<User> validator;
 
     @Override
     public void save(User user) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        validator.validate(user); //validates the given user
+
         if (userRepository.existsById(user.getUsername()))
-            throw new ValidationException("user already exists");
+            throw new ServiceException("user already exists");
+
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+
         userRepository.save(user);
     }
 
@@ -41,6 +47,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void changePassword(String username, String newPassword) {
+        if(newPassword.length()<6 || newPassword.length()>24) throw new ServiceException("Your password is invalid!");
+
         User user = userRepository.findByUsername(username);
         userRepository.delete(user);
         user.setPassword(bCryptPasswordEncoder.encode(newPassword));

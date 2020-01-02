@@ -9,6 +9,7 @@ import com.intern.Internship.model.dto.InternshipDTO;
 import com.intern.Internship.model.dto.PageDTO;
 import com.intern.Internship.model.enums.Direction;
 import com.intern.Internship.model.enums.OrderBy;
+import com.intern.Internship.model.validator.ValidationException;
 import com.intern.Internship.service.AreaOfInterestService;
 import com.intern.Internship.service.InternshipService;
 
@@ -93,12 +94,17 @@ public class InternshipController {
         if (internshipDTO == null) {
             return ResponseEntity.badRequest().body(new InternshipDTO());
         }
-        Internship internship = internshipService.save(internshipDTO);
-        if (internship == null) {
+        try {
+            Internship internship = internshipService.save(internshipDTO);
+            if (internship == null) {
+                return ResponseEntity.badRequest().body(new InternshipDTO());
+            }
+
+            return ResponseEntity.ok().body(new InternshipDTO(internship));
+        }
+        catch (ValidationException ex){
             return ResponseEntity.badRequest().body(new InternshipDTO());
         }
-
-        return ResponseEntity.ok().body(new InternshipDTO(internship));
     }
 
     @PutMapping()
@@ -106,10 +112,16 @@ public class InternshipController {
         if (internshipDTO == null) {
             return ResponseEntity.badRequest().body(new InternshipDTO());
         }
-        Internship internship = internshipService.update(internshipDTO);
-        if (internship == null) {
+
+        try {
+            Internship internship = internshipService.update(internshipDTO);
+            if (internship == null) {
+                return ResponseEntity.badRequest().body(new InternshipDTO());
+            }
+            return ResponseEntity.ok().body(new InternshipDTO(internship));
+        }
+        catch (ValidationException ex){
             return ResponseEntity.badRequest().body(new InternshipDTO());
         }
-        return ResponseEntity.ok().body(new InternshipDTO(internship));
     }
 }
