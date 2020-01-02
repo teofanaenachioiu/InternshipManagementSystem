@@ -17,7 +17,8 @@ public class MessageValidator implements Validator<Message> {
     public void validate(Message entity) {
         String phoneFormat = "07\\d+";
         String msg = "";
-
+        if (entity == null)
+            throw new ValidationException("A message must be passed");
         if (entity.getName().equals(""))
             msg += "Name cannot be empty!";
         if (!EmailValidator.getInstance().isValid(entity.getEmail()))
