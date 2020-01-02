@@ -20,18 +20,15 @@ public class MailController {
     private MessageService messageService;
 
     @PostMapping("/api/home/email")
-    public String registration(@RequestBody Message message) {
-        System.out.println("A ajuns mesajul??");
-        System.out.println(message);
-
+    public ResponseEntity<String> registration(@RequestBody Message message) {
         try {
             messageService.save(message);
             String subject = "Thanks for your feedback!";
             String body = "Have a nice day!";
             Email.sendMail(subject, body, message.getEmail());
-            return "done";
+            return ResponseEntity.ok().body("Successfully sent email.");
         } catch (ValidationException ex) {
-            return null;
+            return ResponseEntity.badRequest().body(ex.getMessage());
         }
     }
 
