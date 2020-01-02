@@ -2,7 +2,7 @@ set global FOREIGN_KEY_CHECKS=0;
 
 insert into role values ('CANDIDATE'),('COMPANY');
 
-insert into area_of_interest(id, name, tag_type) values('id1', 'SAP', 'frontend'), ('id2', 'AreaOfInterest2', 'Java'), ('id3', 'AreaOfInterest3', 'C#'), ('id4', 'AreaOfInterest4', 'C'), ('id5', 'AreaOfInterest5', 'Python'), ('id6', 'AreaOfInterest6', 'Javascript');
+insert into area_of_interest(id, name) values('id1', 'SAP'), ('id2', 'AreaOfInterest2'), ('id3', 'AreaOfInterest3'), ('id4', 'AreaOfInterest4'), ('id5', 'AreaOfInterest5'), ('id6', 'AreaOfInterest6');
 
 insert into user values('candidate2@test.com', '$2a$10$zf0bW6kgIIiSQLjngsjH4uONBP0Gd6unxXMK94zDE5gTQW9YDAGpm', '', 'CANDIDATE');
 insert into user values('candidate@test.com', '$2a$10$acZpcj5lOAgv0LhJvNvR5.3WcqNjXxhKhgiYssz5s5TlX1AImInzi', '', 'CANDIDATE');
