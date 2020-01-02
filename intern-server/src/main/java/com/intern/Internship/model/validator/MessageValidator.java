@@ -21,7 +21,8 @@ public class MessageValidator implements Validator<Message> {
         String phoneNumber=entity.getPhone();
         String regex="\\d+";
         if(!phoneNumber.equals("") && (phoneNumber.length()!=10 || phoneNumber.charAt(0) != '0' || !phoneNumber.matches(regex))) msg+="Phone number is invalid!";
-        if(entity.getMessage().equals("") || entity.getMessage().length()>255) msg+="Message is too long!";
+        if(entity.getMessage().equals("")) msg+="Message cannot be empty!";
+        if(entity.getMessage().length()>255) msg+="Message is too long!";
 
         if (msg != "") {
             throw new ValidationException(msg);

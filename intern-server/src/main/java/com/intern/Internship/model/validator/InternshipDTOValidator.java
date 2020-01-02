@@ -23,7 +23,6 @@ public class InternshipDTOValidator implements Validator<InternshipDTO> {
         if(entity.getLocation().equals("")) msg+="Location has to be specified!";
         if(entity.getLocation().length()>255) msg+="Location is too long!";
         if(entity.getAddedDate()==null) msg+="The added date has to be specified!";
-        if(entity.getCompany()==null) msg+="Company has to be specified!";
 
         if(msg!=""){
             throw new ValidationException(msg);
