@@ -57,6 +57,7 @@ import {MaterialFileInputModule} from 'ngx-material-file-input';
 import { PersonalDetailsViewComponent } from './profiles/candidate-profile/personal-details-view/personal-details-view.component';
 import { CandidateApplicationsListComponent } from './candidate-applications-list/candidate-applications-list.component';
 import { CandidateApplicationsListItemComponent } from './candidate-applications-list/candidate-applications-list-item/candidate-applications-list-item.component';
+import { ProfileViewComponent } from './profiles/company-profile/profile-view/profile-view.component';
 
 const materialComponents = [
   MatButtonModule,
@@ -106,6 +107,7 @@ const materialComponents = [
     PersonalDetailsViewComponent,
     CandidateApplicationsListComponent,
     CandidateApplicationsListItemComponent,
+    ProfileViewComponent,
   ],
   entryComponents: [
     AddModalComponent,

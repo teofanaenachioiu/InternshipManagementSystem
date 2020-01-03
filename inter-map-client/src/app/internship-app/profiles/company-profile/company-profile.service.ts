@@ -4,6 +4,7 @@ import {InternshipDTO} from '../../data/InternshipDTO';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {catchError, tap, map} from 'rxjs/operators';
+import {Company} from '../../../core/Company';
 
 const apiUrl = 'http://localhost:3000/api/internship';
 
@@ -17,12 +18,20 @@ export class CompanyProfileService {
   companyUsername: string;
   statuses: string[] = ['Open', 'Closed'];
 
+  company: Company = new Company();
+
+  isEditProfile = false;
+
   private internshipsSubject: BehaviorSubject<InternshipDTO[]> = new BehaviorSubject<InternshipDTO[]>([]);
 
   constructor(private httpClient: HttpClient) {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.companyUsername = currentUser.username;
     this.loadInternships();
+
+    this.company.name = 'BIRU SFTW';
+    this.company.email = this.companyUsername;
+    this.company.phone = '0777777777';
   }
 
   httpHeaders() {
@@ -95,5 +104,9 @@ export class CompanyProfileService {
         }
       },
         error => console.log(error));
+  }
+
+  public updateCompany(company: Company) {
+    this.company = company;
   }
 }

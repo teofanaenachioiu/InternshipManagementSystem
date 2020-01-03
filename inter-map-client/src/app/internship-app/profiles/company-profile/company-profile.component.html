@@ -10,7 +10,10 @@
   <form [formGroup]="profileForm">
     Value: {{ profileForm.value | json }} <br>
     <div class="side-div">
-      <div class="form-div" >
+      <div class="form-div" *ngIf="!companyService.isEditProfile">
+        <app-profile-view></app-profile-view>
+      </div>
+      <div class="form-div" *ngIf="companyService.isEditProfile">
         <app-profile formControlName="profile"></app-profile>
       </div>
     </div>
