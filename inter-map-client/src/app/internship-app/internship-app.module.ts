@@ -53,6 +53,10 @@ import { ConfirmRemoveInternshipComponent } from './profiles/company-profile/com
 import { AddFormComponent } from './profiles/company-profile/add-modal/add-form/add-form.component';
 import { EditModalComponent } from './profiles/company-profile/edit-modal/edit-modal.component';
 import { EditFormComponent } from './profiles/company-profile/edit-modal/edit-form/edit-form.component';
+import {MaterialFileInputModule} from 'ngx-material-file-input';
+import { PersonalDetailsViewComponent } from './profiles/candidate-profile/personal-details-view/personal-details-view.component';
+import { CandidateApplicationsListComponent } from './candidate-applications-list/candidate-applications-list.component';
+import { CandidateApplicationsListItemComponent } from './candidate-applications-list/candidate-applications-list-item/candidate-applications-list-item.component';
 
 const materialComponents = [
   MatButtonModule,
@@ -99,6 +103,9 @@ const materialComponents = [
     AddFormComponent,
     EditModalComponent,
     EditFormComponent,
+    PersonalDetailsViewComponent,
+    CandidateApplicationsListComponent,
+    CandidateApplicationsListItemComponent,
   ],
   entryComponents: [
     AddModalComponent,
@@ -119,7 +126,8 @@ const materialComponents = [
     MatSelectModule,
     materialComponents,
     MatDialogModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MaterialFileInputModule
   ]
 })
 export class InternshipAppModule { }

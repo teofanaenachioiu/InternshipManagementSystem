@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnChanges, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 
 import {Candidat} from '../../../core/Candidat';
+import {CandidateService} from '../../candidate.service';
 
 
 @Component({
@@ -10,13 +11,14 @@ import {Candidat} from '../../../core/Candidat';
   styleUrls: ['./candidate-profile.component.css']
 })
 export class CandidateProfileComponent implements OnInit {
+
   email: string;
-  private candidate: Candidat;
   profileForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private service: CandidateService) {
     this.profileForm = this.formBuilder.group({
       personalDetails: [],
+      personalDetailsView: [],
       interests: [],
       contact: [],
       studies: [],
@@ -28,9 +30,5 @@ export class CandidateProfileComponent implements OnInit {
 
 
   ngOnInit() {
-    this.candidate = new Candidat();
-    this.candidate.firstName = 'Teofana';
-    this.candidate.lastName = 'Enachioiu';
   }
-
 }

@@ -1,32 +1,46 @@
-<img id="profileImg" src="https://image.flaticon.com/icons/png/512/21/21294.png" alt="ProfilePicture">
+<div class="container-details">
+  <img id="profileImg" [src]="previewUrl" alt="ProfilePicture">
+  <br>
+  <div class="div1" [formGroup]="form">
+    <mat-form-field class="fields">
+      <ngx-mat-file-input formControlName="file" placeholder="file" accept="'.jpg'"
+                          (change)="fileProgress($event)">
+      </ngx-mat-file-input>
+      <mat-icon matSuffix>photo</mat-icon>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="fields">
+      <label>
+        <input matInput placeholder="name" formControlName="name" value="{{candidate.firstName}}"
+        >
+      </label>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="fields">
+      <label>
+        <input matInput placeholder="surname" formControlName="surname" value="{{candidate.lastName}}"
+        >
+      </label>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="fields">
+      <label>
+        <input matInput [matDatepicker]="myDatePicker" placeholder="Choose a date"
+               formControlName="dateOfBirth" [value]="startDate">
+      </label>
+      <mat-datepicker-toggle [for]="myDatePicker" matSuffix></mat-datepicker-toggle>
+      <mat-datepicker [disabled]="false" #myDatePicker></mat-datepicker>
+    </mat-form-field>
+    <br>
+    <mat-radio-group aria-label="Select an option" formControlName="sex" class="fields">
+      <mat-radio-button value="0" [checked]="candidate.sex.toString()== '0'" class="radioB">M</mat-radio-button>
+      <mat-radio-button value="1" [checked]="candidate.sex.toString()== '1'" class="radioB">F</mat-radio-button>
+      <mat-radio-button value="2" [checked]="candidate.sex.toString()== '2'" class="radioB">NO</mat-radio-button>
+    </mat-radio-group>
 
-<div class="div1" [formGroup]="form">
-  <mat-form-field class="fields">
-    <label>
-      <input matInput placeholder="name" formControlName="name">
-    </label>
-  </mat-form-field>
-  <br>
-  <mat-form-field class="fields">
-    <label>
-      <input matInput placeholder="surname" formControlName="surname">
-    </label>
-  </mat-form-field>
-  <br>
-  <mat-form-field class="fields">
-    <label>
-      <input matInput [matDatepicker]="myDatePicker" placeholder="Choose a date" formControlName="dateOfBirth">
-    </label>
-    <mat-datepicker-toggle [for]="myDatePicker" matSuffix></mat-datepicker-toggle>
-    <mat-datepicker #myDatePicker></mat-datepicker>
-  </mat-form-field>
-  <br>
-  <mat-radio-group aria-label="Select an option" formControlName="sex" class="fields">
-    <mat-radio-button value="M" class="radioB">M</mat-radio-button>
-    <mat-radio-button value="F" class="radioB">F</mat-radio-button>
-    <mat-radio-button value="NO" class="radioB">NO</mat-radio-button>
-  </mat-radio-group>
+  </div>
 </div>
-<button mat-button style="float: right">
-  <mat-icon>edit</mat-icon>
+<button mat-button style="float: right" (click)="submitForm()">
+  <mat-icon>save</mat-icon>
 </button>
+

@@ -25,6 +25,7 @@ import {FeedbackComponent} from './components/feedback/feedback.component';
 import {ContactComponent} from './components/contact/contact.component';
 import {StatisticsComponent} from './components/statistics/statistics.component';
 import {FooterComponent} from './components/footer/footer.component';
+import { MaterialFileInputModule } from 'ngx-material-file-input';
 const materialComponents = [
   MatButtonModule,
   MatToolbarModule,
@@ -80,7 +81,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     materialComponents,
     SwiperModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MaterialFileInputModule
   ],
   providers: [{
     provide: {SWIPER_CONFIG},

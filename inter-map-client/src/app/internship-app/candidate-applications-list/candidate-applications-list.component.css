@@ -1,0 +1,12 @@
+.container-applications{
+  display: flex;
+  flex-direction: row;
+  align-content: space-evenly;
+}
+
+.left{
+  flex-grow: 3;
+}
+.right{
+  flex-grow: 1;
+}

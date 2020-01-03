@@ -22,7 +22,6 @@ export class CompanyProfileService {
   constructor(private httpClient: HttpClient) {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.companyUsername = currentUser.username;
-
     this.loadInternships();
   }
 
