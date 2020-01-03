@@ -6,13 +6,15 @@
 
     <span class="example-fill-remaining-space"></span>
 
-    <button mat-button [routerLink]="'/'"> HOME </button>
-    <button mat-button [routerLink]="'/internship-app/internships'"> MY INTERNSHIPS </button>
+    <button mat-button> HOME </button>
+    <button mat-button [routerLink]="'/internship-app/internships'"> INTERNSHIPS </button>
+    <button mat-button [routerLink]="'/internship-app/applications'"> APPLICATIONS </button>
 
 
     <button mat-button [matMenuTriggerFor]="beforeMenu"><mat-icon>account_circle</mat-icon></button>
     <mat-menu #beforeMenu="matMenu" xPosition="before">
-      <button mat-menu-item [routerLink]="'/internship-app/company-profile'">Profile</button>
+      <button mat-menu-item [routerLink]="'/internship-app/candidate-profile'">Profile</button>
+      <button mat-menu-item>Settings</button>
       <button mat-menu-item (click)="openDialog()">Logout</button>
     </mat-menu>
   </mat-toolbar>

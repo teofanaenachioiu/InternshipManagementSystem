@@ -8,7 +8,7 @@ export class Candidat {
   firstName: string;
   address: string;
   telephone: string;
-  birthDate: string;
+  birthDate: Date;
   sex: Sex;
   candidateStatus: CandidateStatus;
   avatar: any; // byte[]

@@ -28,6 +28,8 @@ export class PersonalDetailsComponent implements ControlValueAccessor, OnDestroy
   fileData: File = null;
   previewUrl: any = null;
 
+  startDate: Date = null;
+
   get value(): PersonalDetailsComponent {
     return this.form.value;
   }
@@ -39,7 +41,6 @@ export class PersonalDetailsComponent implements ControlValueAccessor, OnDestroy
   }
 
   constructor(private formBuilder: FormBuilder, private service: CandidateService) {
-
   }
 
   onChange: any = () => {
@@ -77,13 +78,14 @@ export class PersonalDetailsComponent implements ControlValueAccessor, OnDestroy
 
   ngOnInit(): void {
     this.candidate = this.service.candidate;
+    this.startDate = new Date(this.candidate.birthDate);
     this.previewUrl = 'https://image.flaticon.com/icons/png/512/21/21294.png';
 
     this.form = this.formBuilder.group({
       file: new FormControl({value: ''}, Validators.required),
       name: new FormControl({value: ''}, Validators.required),
       surname: new FormControl({value: ''}, Validators.required),
-      dateOfBirth: new FormControl({value: new Date(2000, 0, 12), disabled: true},
+      dateOfBirth: new FormControl({value: new Date(2000, 0, 12), disabled: false},
         Validators.required),
       sex: new FormControl({value: ''})
     });
@@ -111,11 +113,13 @@ export class PersonalDetailsComponent implements ControlValueAccessor, OnDestroy
     }
 
     if (this.form.get('sex').value != null || '') {
+      this.service.candidate.sex = this.form.get('sex').value;
       console.log('gender: ' + this.form.get('sex').value);
       doUpdate = true;
     }
 
     if (this.form.get('dateOfBirth').value != null || '') {
+      this.service.candidate.birthDate = this.form.get('dateOfBirth').value.toString();
       console.log('dateOfBirth: ' + this.form.get('dateOfBirth').value);
       doUpdate = true;
     }
@@ -123,7 +127,7 @@ export class PersonalDetailsComponent implements ControlValueAccessor, OnDestroy
     if (doUpdate) {
       this.service.updateCandidate();
     }
-    
+
     this.service.isEditPersonalDetails = false;
   }
 

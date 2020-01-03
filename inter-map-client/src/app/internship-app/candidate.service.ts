@@ -44,7 +44,7 @@ export class CandidateService {
     this.candidate.firstName = 'Teofana';
     this.candidate.lastName = 'Enachioiu';
     this.candidate.sex = Sex.F;
-    this.candidate.birthDate = '2010/10/10';
+    this.candidate.birthDate = new Date(1988, 0, 11);
   }
 
   getCandidateByEmail(email: any): Observable<Candidat> {
@@ -53,7 +53,7 @@ export class CandidateService {
   }
 
   updateCandidate() {
-      console.log('doUpdate');
-      console.log(this.candidate);
+    console.log('doUpdate');
+    console.log(this.candidate);
   }
 }

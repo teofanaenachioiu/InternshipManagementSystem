@@ -1,0 +1,25 @@
+<div style="border: solid 1px black">
+
+  <span>
+    <img [src]="internship.imagePath"
+         alt="{{ internship.name }}"
+         style="height: 120px; width: 150px;"/>
+    <star-rating [value]="internship.rating"
+                 checkedcolor="gold"
+                 uncheckedcolor="black"
+                 readonly="false"
+                 size="30px" (rate)="onRate($event)"></star-rating>
+  </span>
+
+
+  <div (click)="onInternshipSelected()">
+    <h3>
+      {{internship.status}}:
+      {{ internship.name }}</h3>
+    <h4>Posted on by {{ internship.company }}</h4>
+    <p> {{ internship.description }}</p>
+    <p>{{ internship.location }}</p>
+    <p>{{ internship.interests }}</p>
+    <p>{{ internship.status }}</p>
+  </div>
+</div>

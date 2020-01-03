@@ -17,7 +17,7 @@ export class CompanyProfileService {
     this.internships.push(new InternshipDTO(
       '1',
       'Java',
-      'Become a Java dev',
+      'Become a Java devaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
       'open',
       new Date(Date.now()),
       new Date(Date.UTC(2020, 1, 15)),

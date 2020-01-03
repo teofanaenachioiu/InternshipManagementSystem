@@ -26,7 +26,7 @@
     <mat-form-field class="fields">
       <label>
         <input matInput [matDatepicker]="myDatePicker" placeholder="Choose a date"
-               formControlName="dateOfBirth" value="{{candidate.birthDate}}">
+               formControlName="dateOfBirth" [value]="startDate">
       </label>
       <mat-datepicker-toggle [for]="myDatePicker" matSuffix></mat-datepicker-toggle>
       <mat-datepicker [disabled]="false" #myDatePicker></mat-datepicker>

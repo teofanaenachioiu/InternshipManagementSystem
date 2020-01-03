@@ -7,13 +7,16 @@ import {CompanyProfileComponent} from './profiles/company-profile/company-profil
 import {AuthCandidateGuard} from '../auth/auth-candidate.guard';
 import {AuthCompanyGuard} from '../auth/auth-company.guard';
 import {CompanyInternshipsComponent} from './profiles/company-profile/company-internships/company-internships.component';
+import {InternshipListComponent} from './internship-list/internship-list.component';
+import {CandidateApplicationsListComponent} from './candidate-applications-list/candidate-applications-list.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'internships', pathMatch: 'full' },
-  {path: 'internships', component: InternshipsComponent },
+  {path: 'internships', component: InternshipListComponent },
   {path: 'candidate-profile', component: CandidateProfileComponent},
   // {path: 'candidate-profile', component: CandidateProfileComponent, canActivate: [AuthCandidateGuard] },
-  {path: 'company-profile', component: CompanyProfileComponent, canActivate: [AuthCompanyGuard] },
+  {path: 'company-profile', component: CompanyProfileComponent},
+  {path: 'applications', component: CandidateApplicationsListComponent },
   {path: 'company-internships', component: CompanyInternshipsComponent, canActivate: [AuthCompanyGuard] },
 ];
 

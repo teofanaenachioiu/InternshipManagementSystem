@@ -55,6 +55,8 @@ import { EditModalComponent } from './profiles/company-profile/edit-modal/edit-m
 import { EditFormComponent } from './profiles/company-profile/edit-modal/edit-form/edit-form.component';
 import {MaterialFileInputModule} from 'ngx-material-file-input';
 import { PersonalDetailsViewComponent } from './profiles/candidate-profile/personal-details-view/personal-details-view.component';
+import { CandidateApplicationsListComponent } from './candidate-applications-list/candidate-applications-list.component';
+import { CandidateApplicationsListItemComponent } from './candidate-applications-list/candidate-applications-list-item/candidate-applications-list-item.component';
 
 const materialComponents = [
   MatButtonModule,
@@ -102,6 +104,8 @@ const materialComponents = [
     EditModalComponent,
     EditFormComponent,
     PersonalDetailsViewComponent,
+    CandidateApplicationsListComponent,
+    CandidateApplicationsListItemComponent,
   ],
   entryComponents: [
     AddModalComponent,

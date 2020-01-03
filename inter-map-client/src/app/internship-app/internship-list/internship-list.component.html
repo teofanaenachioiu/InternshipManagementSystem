@@ -1,96 +1,100 @@
-
-  <button (click)="onClickMe()">Click me</button>
+<app-candidate-menu></app-candidate-menu>
+<button (click)="onClickMe()">Click me</button>
 
 
 <div class="container">
-  
+
   <div class="right">
-      <input type="text"  [(ngModel)]="filteredChildCompany" placeholder="Search..">
-      <br><br>
+    <input type="text" [(ngModel)]="filteredChildCompany" placeholder="Search..">
+    <br><br>
 
-      <mat-form-field>
-        <mat-label>Sort After</mat-label>
-        <mat-select [(value)]="sortSelected">
-          <mat-option value ="">None</mat-option>
-          <mat-option value="location">Location</mat-option>
-          <mat-option value="rating">Rating</mat-option>
-          <mat-option value="name">Name</mat-option>
-        </mat-select>
-      </mat-form-field>
+    <mat-form-field>
+      <mat-label>Sort After</mat-label>
+      <mat-select [(value)]="sortSelected">
+        <mat-option value="">None</mat-option>
+        <mat-option value="location">Location</mat-option>
+        <mat-option value="rating">Rating</mat-option>
+        <mat-option value="name">Name</mat-option>
+      </mat-select>
+    </mat-form-field>
 
-      <br><br>
-
-
-  <div class="form-check" *ngFor="let company of getCompanyList() " >
-    <input class="form-check-input" (change)="onChange(company, $event.target.checked)" name="{{ company }}" type="checkbox" id="{{company}}">
-    <label class="form-check-label" for="{{company}}">
-        {{company}}   ({{getNumberInternshipsOfCompany(company)}})  
-    </label>
-   
-  </div>
+    <br><br>
 
 
-  <br>
+    <div class="form-check" *ngFor="let company of getCompanyList() ">
+      <input class="form-check-input" (change)="onChange(company, $event.target.checked)" name="{{ company }}"
+             type="checkbox" id="{{company}}">
+      <label class="form-check-label" for="{{company}}">
+        {{company}}   ({{getNumberInternshipsOfCompany(company)}})
+      </label>
 
-  <div class="form-check" *ngFor="let technology of getTechnologyList() " >
-    <input class="form-check-input" (change)="OnChangeTechnology(technology, $event.target.checked)" name="{{ technology }}" type="checkbox" id="{{technology}}">
-    <label class="form-check-label" for="{{technology}}">
-        {{technology}}   ({{getNumberInternshipsOfTechnology(technology)}})  
-    </label>
-   
-  </div>
-
-  <br>
-
-  <div class="form-check" *ngFor="let status of statusString " >
-    <input class="form-check-input" (change)="OnChangeStatus(status.name, $event.target.checked)" [checked]="status.selected" name="{{ status.name }}" type="checkbox" id="{{status.name}}">
-    <label class="form-check-label" for="{{status.name}}">
-        {{status.name}}   
-    </label>
-  </div>
-
-
-  <br>
-
-  <ul class="nav">
-      <div *ngFor="let rating of ratingString ;  let i = index">
-         <li>
-            <input class="form-check-input" [checked]="rating.selected" (change)="onChangeRating(i+1, $event.target.checked)" type="checkbox">
-         </li>
-        <li>
-            <star-rating [value]="i+1" checkedcolor="gold" uncheckedcolor="black" size="30px"  readonly="true" (rate)="onRate($event)"></star-rating>
-        </li>
-        <li>
-            ({{ getNumberInternshipsWithRating(i+1) }})
-        </li>
     </div>
-   </ul>      
-     <br>
-    
+
+
+    <br>
+
+    <div class="form-check" *ngFor="let technology of getTechnologyList() ">
+      <input class="form-check-input" (change)="OnChangeTechnology(technology, $event.target.checked)"
+             name="{{ technology }}" type="checkbox" id="{{technology}}">
+      <label class="form-check-label" for="{{technology}}">
+        {{technology}}   ({{getNumberInternshipsOfTechnology(technology)}})
+      </label>
+
+    </div>
+
+    <br>
+
+    <div class="form-check" *ngFor="let status of statusString ">
+      <input class="form-check-input" (change)="OnChangeStatus(status.name, $event.target.checked)"
+             [checked]="status.selected" name="{{ status.name }}" type="checkbox" id="{{status.name}}">
+      <label class="form-check-label" for="{{status.name}}">
+        {{status.name}}
+      </label>
+    </div>
+
+
+    <br>
+
+    <ul class="nav">
+      <div *ngFor="let rating of ratingString ;  let i = index">
+        <li>
+          <input class="form-check-input" [checked]="rating.selected"
+                 (change)="onChangeRating(i+1, $event.target.checked)" type="checkbox">
+        </li>
+        <li>
+          <star-rating [value]="i+1" checkedcolor="gold" uncheckedcolor="black" size="30px" readonly="true"
+                       (rate)="onRate($event)"></star-rating>
+        </li>
+        <li>
+          ({{ getNumberInternshipsWithRating(i + 1) }})
+        </li>
+      </div>
+    </ul>
+    <br>
 
 
   </div>
 
   <div class="left">
-  <div class="row">
-    <div class="col-xs-12">
-      <app-internship-item
-      *ngFor="let internshipEl of internships
-      | orderBy: sortSelected 
-      | filterForMultipleCompany:filteredMultipleCompany:'company' 
+    <div class="row">
+      <div class="col-xs-12">
+        <app-internship-item
+          *ngFor="let internshipEl of internships
+      | orderBy: sortSelected
+      | filterForMultipleCompany:filteredMultipleCompany:'company'
       | filterForMultipleInterest: filteredMultipleTechnology:'interests'
-      | filterCompany:filteredChildCompany:'location' 
+      | filterCompany:filteredChildCompany:'location'
       | filterCompany:statusSelected:'status'
       | filterRating:ratingSelected:'rating'
       | paginate: { itemsPerPage: 3, currentPage: p } "
-        [internship]="internshipEl"
-        (internshipSelected)=" onInternshipSelected(internshipEl)"></app-internship-item>
+          [internship]="internshipEl"
+          (internshipSelected)=" onInternshipSelected(internshipEl)"></app-internship-item>
+      </div>
     </div>
+
+    <div style="padding-left:450px;">
+      <pagination-controls class="my-pagination" (pageChange)="p= $event"></pagination-controls>
     </div>
-    
-  <div style="padding-left:450px;">
-    <pagination-controls class="my-pagination" (pageChange)="p= $event"></pagination-controls>
-  </div>
 
 
   </div>
