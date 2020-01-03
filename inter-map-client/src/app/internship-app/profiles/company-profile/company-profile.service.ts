@@ -15,31 +15,14 @@ export class CompanyProfileService {
 
   internships: InternshipDTO[] = [];
   companyUsername: string;
-  statuses: string[] = ['open', 'pending', 'closed'];
+  statuses: string[] = ['Open', 'Closed'];
 
   private internshipsSubject: BehaviorSubject<InternshipDTO[]> = new BehaviorSubject<InternshipDTO[]>([]);
 
   constructor(private httpClient: HttpClient) {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.companyUsername = currentUser.username;
-    // this.internships.push(new InternshipDTO(
-    //   '1',
-    //   'Java',
-    //   'Become a Java dev',
-    //   'open',
-    //   new Date(Date.now()),
-    //   new Date(Date.UTC(2020, 1, 15)),
-    //   new Date(Date.UTC(2020, 3, 15)),
-    //   3,
-    //   'Cluj-Napoca',
-    //   0,
-    //   true,
-    //   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoWE3zHTMlhOEI2JgXAOS8p8vD2yZObgDylJsAJzJDA6fZuXfF&s',
-    //   4,
-    //   'asdsa',
-    //   '1',
-    //   this.companyUsername
-    // ));
+
     this.loadInternships();
   }
 
@@ -52,7 +35,7 @@ export class CompanyProfileService {
 
   loadInternships() {
     const params = new HttpParams()
-      .set('company', 'company');
+      .set('company', this.companyUsername);
 
     this.httpClient.get(`${apiUrl}/company/all`, {params, headers: this.httpHeaders()})
       .subscribe(
@@ -73,7 +56,7 @@ export class CompanyProfileService {
     const params = new HttpParams()
       .set('id', internshipDTO.id);
 
-    this.httpClient.delete(`${apiUrl}/`, {params, headers: this.httpHeaders()})
+    this.httpClient.delete(`${apiUrl}`, {params, headers: this.httpHeaders()})
       .subscribe((resp: InternshipDTO)  => {
           const internships = this.internshipsSubject.value;
           for (let i = 0; i < internships.length; i++) {
@@ -88,20 +71,30 @@ export class CompanyProfileService {
   }
 
   public addInternship(internship: InternshipDTO) {
+    console.log('service add');
+    console.log(internship);
 
-    this.httpClient.post(`${apiUrl}/`, internship, {headers: this.httpHeaders()});
-
-    const internships = this.internshipsSubject.value;
-    internships.push(internship);
-    this.internshipsSubject.next(internships);
+    this.httpClient.post(`${apiUrl}`, internship, {headers: this.httpHeaders()})
+      .subscribe((resp: InternshipDTO) => {
+        console.log('resp');
+        console.log(resp);
+        const internships = this.internshipsSubject.value;
+        internships.push(resp);
+        this.internshipsSubject.next(internships);
+      },
+        error => console.log(error));
   }
 
   public updateInternship(internship: InternshipDTO) {
-    for (let i = 0; i < this.internships.length; i++) {
-      if (this.internships[i].name === internship.name) {
-        this.internships[i] = internship;
-        return;
-      }
-    }
+    this.httpClient.put(`${apiUrl}`, internship, {headers: this.httpHeaders()})
+      .subscribe((resp: InternshipDTO) => {
+        for (let i = 0; i < this.internships.length; i++) {
+          if (this.internships[i].id === internship.id) {
+            this.internships[i] = internship;
+            return;
+          }
+        }
+      },
+        error => console.log(error));
   }
 }

@@ -40,10 +40,10 @@ export class AddFormComponent implements ControlValueAccessor, OnDestroy {
     this.form = this.formBuilder.group({
       name: '',
       description: '',
-      paid: new FormControl(false),
+      paid: '',
       fromDate: '',
       toDate: '',
-      status: 'open',
+      status: 'Open',
       location: '',
     });
 
