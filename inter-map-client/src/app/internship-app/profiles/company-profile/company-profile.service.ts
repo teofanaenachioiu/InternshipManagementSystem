@@ -24,9 +24,6 @@ export class CompanyProfileService {
   statuses: string[] = ['open', 'pending', 'closed'];
 
   private internshipsSubject: BehaviorSubject<InternshipDTO[]> = new BehaviorSubject<InternshipDTO[]>([]);
-  private hasNext = true;
-  private pageNumber = 1;
-  private pageSize = 2;
 
   constructor(private httpClient: HttpClient) {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -60,26 +57,18 @@ export class CompanyProfileService {
   }
 
   loadInternships() {
-    // while (this.hasNext.value) {
-      const params = new HttpParams()
-        .set('company', 'company')
-        .set('page', this.pageNumber.toString())
-        .set('size', this.pageSize.toString());
+    const params = new HttpParams()
+      .set('company', 'company');
 
-      this.httpClient.get(`${apiUrl}/company`, {params, headers: this.httpHeaders()})
-        .subscribe(
-          (resp: Response) => {
-            console.log(resp);
-            this.internshipsSubject.next(resp.content);
-            this.hasNext = resp.hasNext;
-            console.log('has next', this.hasNext);
-            this.pageNumber++;
-        },
-          error => {
-            console.log(error);
-            this.hasNext = false;
-          });
-    // }
+    this.httpClient.get(`${apiUrl}/company/all/`, {params, headers: this.httpHeaders()})
+      .subscribe(
+        (resp: Response) => {
+          console.log(resp);
+          this.internshipsSubject.next(resp.content);
+      },
+        error => {
+          console.log(error);
+        });
   }
 
   public getAllInternships(): Observable<InternshipDTO[]> {
