@@ -17,6 +17,5 @@ export class InternshipDTO {
     public areaOfInterests: string,
     public areaOfInterestId: string,
     public company: string,
-
 ) { }
 }

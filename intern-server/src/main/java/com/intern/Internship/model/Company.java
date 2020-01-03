@@ -41,13 +41,14 @@ public class Company implements HasID<String> {
 
     /**
      * Company constructor
-     * @param ID: String, e-mail address
-     * @param name: String, full name
-     * @param address: String
-     * @param telephone: String
+     * 
+     * @param ID:          String, e-mail address
+     * @param name:        String, full name
+     * @param address:     String
+     * @param telephone:   String
      * @param description: String
-     * @param field: String
-     * @param logo: Blob
+     * @param field:       String
+     * @param logo:        Blob
      * @param internships: Internships...
      */
     public Company(String ID, String name, String address, String telephone, String description, String field,

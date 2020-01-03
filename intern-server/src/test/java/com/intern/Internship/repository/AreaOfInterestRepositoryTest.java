@@ -18,10 +18,10 @@ class AreaOfInterestRepositoryTest {
     @Test
     public void test() {
         long countBefore = areaOfInterestRepository.count();
-        AreaOfInterest areaOfInterest1 = new AreaOfInterest("Programming1", "Type1");
+        AreaOfInterest areaOfInterest1 = new AreaOfInterest("Type1");
         areaOfInterestRepository.saveAndFlush(areaOfInterest1);
         assert (areaOfInterestRepository.count() == countBefore + 1);
-        AreaOfInterest areaOfInterest2 = new AreaOfInterest("Programming2", "Type2");
+        AreaOfInterest areaOfInterest2 = new AreaOfInterest("Type2");
         areaOfInterestRepository.saveAndFlush(areaOfInterest2);
         assert (areaOfInterestRepository.count() == countBefore + 2);
         assert (areaOfInterestRepository.findAll().contains(areaOfInterest1));

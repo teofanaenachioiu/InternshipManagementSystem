@@ -37,8 +37,8 @@ class InternshipRepositoryTest {
                 byte[] bytes = "BLOB GOES HERE".getBytes();
                 Company company1 = new Company("tudor@ginga.com", "Company1", "Zambilei 12", "0700000000",
                                 "Description1", "Intenships", bytes);
-                AreaOfInterest areaOfInterest1 = new AreaOfInterest("AreaOfInterest1", "SAP");
-                AreaOfInterest areaOfInterest2 = new AreaOfInterest("AreaOfInterest2", "Java");
+                AreaOfInterest areaOfInterest1 = new AreaOfInterest( "SAP");
+                AreaOfInterest areaOfInterest2 = new AreaOfInterest("Java");
                 areaOfInterestRepository.save(areaOfInterest1);
                 areaOfInterestRepository.save(areaOfInterest2);
                 Internship internship11 = new Internship("Internship11", LocalDate.now(), LocalDate.now(), false, 3,

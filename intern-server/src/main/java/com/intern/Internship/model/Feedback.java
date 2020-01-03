@@ -18,7 +18,7 @@ import javax.persistence.ManyToOne;
 @NoArgsConstructor
 @Entity
 @ToString
-public class Feedback implements HasID<String>{
+public class Feedback implements HasID<String> {
     private static final long serialVersionUID = -3534054198190203549L;
 
     @Id
@@ -32,19 +32,21 @@ public class Feedback implements HasID<String>{
 
     @ManyToOne
     @JoinColumn
+    @ToString.Exclude
     private Internship internship;
 
     /**
      * Feedback constructor
+     * 
      * @param description: String
-     * @param anonymous: Boolean
-     * @param rating: int
-     * @param internship: Internship
+     * @param anonymous:   Boolean
+     * @param rating:      int
+     * @param internship:  Internship
      */
-    public Feedback(String description,Boolean anonymous,int rating,Internship internship){
-        this.description=description;
-        this.anonymous=anonymous;
-        this.rating=rating;
-        this.internship = internship;        
+    public Feedback(String description, Boolean anonymous, int rating, Internship internship) {
+        this.description = description;
+        this.anonymous = anonymous;
+        this.rating = rating;
+        this.internship = internship;
     }
 }
