@@ -1,6 +1,18 @@
 import { Injectable } from '@angular/core';
 import {Internship} from '../../data/Internship';
 import {InternshipDTO} from '../../data/InternshipDTO';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {BehaviorSubject, Observable} from 'rxjs';
+import {catchError, tap, map} from 'rxjs/operators';
+
+const apiUrl = 'http://localhost:3000/api/internship';
+
+interface Response {
+  hasNext: boolean;
+  hasPrevious: boolean;
+  nbPages: number;
+  content: InternshipDTO[];
+}
 
 @Injectable({
   providedIn: 'root'
@@ -11,39 +23,86 @@ export class CompanyProfileService {
   companyUsername: string;
   statuses: string[] = ['open', 'pending', 'closed'];
 
-  constructor() {
+  private internshipsSubject: BehaviorSubject<InternshipDTO[]> = new BehaviorSubject<InternshipDTO[]>([]);
+  private hasNext = true;
+  private pageNumber = 1;
+  private pageSize = 2;
+
+  constructor(private httpClient: HttpClient) {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.companyUsername = currentUser.username;
-    this.internships.push(new InternshipDTO(
-      '1',
-      'Java',
-      'Become a Java dev',
-      'open',
-      new Date(Date.now()),
-      new Date(Date.UTC(2020, 1, 15)),
-      new Date(Date.UTC(2020, 3, 15)),
-      3,
-      'Cluj-Napoca',
-      0,
-      true,
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoWE3zHTMlhOEI2JgXAOS8p8vD2yZObgDylJsAJzJDA6fZuXfF&s',
-      4,
-      'asdsa',
-      '1',
-      this.companyUsername
-    ));
+    // this.internships.push(new InternshipDTO(
+    //   '1',
+    //   'Java',
+    //   'Become a Java dev',
+    //   'open',
+    //   new Date(Date.now()),
+    //   new Date(Date.UTC(2020, 1, 15)),
+    //   new Date(Date.UTC(2020, 3, 15)),
+    //   3,
+    //   'Cluj-Napoca',
+    //   0,
+    //   true,
+    //   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoWE3zHTMlhOEI2JgXAOS8p8vD2yZObgDylJsAJzJDA6fZuXfF&s',
+    //   4,
+    //   'asdsa',
+    //   '1',
+    //   this.companyUsername
+    // ));
+    this.loadInternships();
   }
 
-  public getInternships() {
-    return this.internships;
+  httpHeaders() {
+    return new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('token')}`
+    });
   }
 
-  public removeInternship(index) {
-    this.internships.splice(index, 1);
+  loadInternships() {
+    // while (this.hasNext.value) {
+      const params = new HttpParams()
+        .set('company', 'company')
+        .set('page', this.pageNumber.toString())
+        .set('size', this.pageSize.toString());
+
+      this.httpClient.get(`${apiUrl}/company`, {params, headers: this.httpHeaders()})
+        .subscribe(
+          (resp: Response) => {
+            console.log(resp);
+            this.internshipsSubject.next(resp.content);
+            this.hasNext = resp.hasNext;
+            console.log('has next', this.hasNext);
+            this.pageNumber++;
+        },
+          error => {
+            console.log(error);
+            this.hasNext = false;
+          });
+    // }
+  }
+
+  public getAllInternships(): Observable<InternshipDTO[]> {
+    return this.internshipsSubject.asObservable();
+  }
+
+  public removeInternship(internshipDTO: InternshipDTO, index) {
+    const params = new HttpParams()
+      .set('id', internshipDTO.id);
+
+    this.httpClient.delete(apiUrl, {params, headers: this.httpHeaders()})
+      .subscribe(resp => console.log(resp),
+        error => console.log(error));
+
+    // const internships = this.internshipsSubject.value;
+    // internships.splice(index, 1);
+    // this.internshipsSubject.next(internships);
   }
 
   public addInternship(internship: InternshipDTO) {
-    this.internships.push(internship);
+    const internships = this.internshipsSubject.value;
+    internships.push(internship);
+    this.internshipsSubject.next(internships);
   }
 
   public updateInternship(internship: InternshipDTO) {
