@@ -72,9 +72,12 @@ public class InternshipServiceImpl implements InternshipService {
     }
 
     public List<InternshipDTO> getInternshipsByCompany(String companyName) {
-        Company company = companyRepository.findByName(companyName);
-        List<Internship> page = internshipRepository.findAllByCompanyName(company.getName());
-        return Converters.internshipPageToInternshipDTOPage(page);
+        Optional<Company> company = companyRepository.findById(companyName);
+        if (company.isPresent()) {
+            List<Internship> page = internshipRepository.findAllByCompanyUsername(company.get().getID());
+            return Converters.internshipPageToInternshipDTOPage(page);
+        }
+        return null;
     }
 
     public PageDTO<InternshipDTO> getInternshipsByCandidate(int pageNumber, int size, String candidateId) {
@@ -98,13 +101,15 @@ public class InternshipServiceImpl implements InternshipService {
 
         Internship internship = findById(internshipDTO.getID());
         if (internship == null) {
-            Company company = companyRepository.findByName(internshipDTO.getCompany());
-            AreaOfInterest areaOfInterest = areaOfInterestRepository.findByName(internshipDTO.getAreaOfInterest());
+            Optional<Company> company = companyRepository.findById(internshipDTO.getCompany());
+            if (company.isPresent()) {
+                AreaOfInterest areaOfInterest = areaOfInterestRepository.findByName(internshipDTO.getAreaOfInterest());
 
-            internship = Converters.toInternship(internshipDTO);
-            internship.setCompany(company);
-            internship.setAreaOfInterest(areaOfInterest);
-            return internshipRepository.save(internship);
+                internship = Converters.toInternship(internshipDTO);
+                internship.setCompany(company.get());
+                internship.setAreaOfInterest(areaOfInterest);
+                return internshipRepository.save(internship);
+            }
         }
         return null;
     }
