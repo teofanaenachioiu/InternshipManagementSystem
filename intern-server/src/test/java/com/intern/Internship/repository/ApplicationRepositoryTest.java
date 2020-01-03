@@ -60,11 +60,9 @@ class ApplicationRepositoryTest {
                 bytes
         );
         AreaOfInterest areaOfInterest1 = new AreaOfInterest(
-                "AreaOfInterest1",
                 "SAP"
         );
         AreaOfInterest areaOfInterest2 = new AreaOfInterest(
-                "AreaOfInterest2",
                 "Java"
         );
         areaOfInterestRepository.save(areaOfInterest1);

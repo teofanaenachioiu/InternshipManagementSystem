@@ -34,6 +34,16 @@ public class Converters {
                 page.getTotalPages(), page);
     }
 
+    public static List<InternshipDTO> internshipPageToInternshipDTOPage(List<Internship> internships) {
+        List<InternshipDTO> internshipDTOS = new ArrayList<>();
+
+        for (Internship internship1 : internships) {
+            InternshipDTO internshipDTO = new InternshipDTO(internship1);
+            internshipDTOS.add(internshipDTO);
+        }
+        return internshipDTOS;
+    }
+
     private static <T> PageDTO<InternshipDTO> getInternshipDTOPageDTO(PageDTO<InternshipDTO> pageDTO,
             List<InternshipDTO> internshipDTOS, boolean hasNext, boolean hasPrevious, int totalPages, Page<T> page) {
         pageDTO.setContent(internshipDTOS);
