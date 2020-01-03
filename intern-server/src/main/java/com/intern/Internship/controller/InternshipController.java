@@ -139,4 +139,15 @@ public class InternshipController {
             return ResponseEntity.badRequest().body(new InternshipDTO());
         }
     }
+    @GetMapping("/all")
+    public ResponseEntity<List<InternshipDTO>> findInternships() {
+
+        try {
+            List<InternshipDTO> internships = internshipService.getInternships();
+            return ResponseEntity.ok().body(internships);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(new ArrayList<InternshipDTO>());
+        }
+    }
 }

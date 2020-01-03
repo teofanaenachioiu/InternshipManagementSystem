@@ -114,6 +114,12 @@ public class InternshipServiceImpl implements InternshipService {
         return null;
     }
 
+    @Override
+    public List<InternshipDTO> getInternships() {
+        List<Internship> internships = internshipRepository.findAll();
+        return Converters.internshipPageToInternshipDTOPage(internships);
+    }
+
     public Internship update(InternshipDTO internshipDTO) {
         validator.validate(internshipDTO);
 
