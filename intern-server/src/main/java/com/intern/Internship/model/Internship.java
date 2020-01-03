@@ -35,7 +35,7 @@ public class Internship implements HasID<String> {
     private LocalDate endTime;
     private Boolean paid;
     private int nrMonths;
-    @Column(length = 3000)
+    @Column(length = 5000)
     private String description;
     private int nrApplicants;
     private InternshipStatus status;
