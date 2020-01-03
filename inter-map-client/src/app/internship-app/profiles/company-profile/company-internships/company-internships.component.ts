@@ -37,7 +37,7 @@ export class CompanyInternshipsComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
       if (result) {
-        this.companyService.removeInternship(this.internship, this.index);
+        this.companyService.removeInternship(this.internship);
       }
     });
   }

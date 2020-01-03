@@ -7,12 +7,6 @@ import {catchError, tap, map} from 'rxjs/operators';
 
 const apiUrl = 'http://localhost:3000/api/internship';
 
-interface Response {
-  hasNext: boolean;
-  hasPrevious: boolean;
-  nbPages: number;
-  content: InternshipDTO[];
-}
 
 @Injectable({
   providedIn: 'root'
@@ -60,11 +54,11 @@ export class CompanyProfileService {
     const params = new HttpParams()
       .set('company', 'company');
 
-    this.httpClient.get(`${apiUrl}/company/all/`, {params, headers: this.httpHeaders()})
+    this.httpClient.get(`${apiUrl}/company/all`, {params, headers: this.httpHeaders()})
       .subscribe(
-        (resp: Response) => {
+        (resp: InternshipDTO[]) => {
           console.log(resp);
-          this.internshipsSubject.next(resp.content);
+          this.internshipsSubject.next(resp);
       },
         error => {
           console.log(error);
@@ -75,20 +69,28 @@ export class CompanyProfileService {
     return this.internshipsSubject.asObservable();
   }
 
-  public removeInternship(internshipDTO: InternshipDTO, index) {
+  public removeInternship(internshipDTO: InternshipDTO) {
     const params = new HttpParams()
       .set('id', internshipDTO.id);
 
-    this.httpClient.delete(apiUrl, {params, headers: this.httpHeaders()})
-      .subscribe(resp => console.log(resp),
+    this.httpClient.delete(`${apiUrl}/`, {params, headers: this.httpHeaders()})
+      .subscribe((resp: InternshipDTO)  => {
+          const internships = this.internshipsSubject.value;
+          for (let i = 0; i < internships.length; i++) {
+            if (internships[i].id === resp.id) {
+              internships.splice(i, 1);
+              break;
+            }
+          }
+          this.internshipsSubject.next(internships);
+        },
         error => console.log(error));
-
-    // const internships = this.internshipsSubject.value;
-    // internships.splice(index, 1);
-    // this.internshipsSubject.next(internships);
   }
 
   public addInternship(internship: InternshipDTO) {
+
+    this.httpClient.post(`${apiUrl}/`, internship, {headers: this.httpHeaders()});
+
     const internships = this.internshipsSubject.value;
     internships.push(internship);
     this.internshipsSubject.next(internships);
