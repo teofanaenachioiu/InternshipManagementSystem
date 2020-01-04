@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Candidat} from '../../../../core/Candidat';
-import {CandidateService} from '../../../candidate.service';
+import {CandidateProfileService} from '../candidate-profile.service';
 import {formatDate} from '@angular/common';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-personal-details-view',
@@ -10,18 +11,20 @@ import {formatDate} from '@angular/common';
 })
 export class PersonalDetailsViewComponent implements OnInit {
   private candidate: Candidat;
-  private isEditMode: boolean;
-  previewUrl: any = null;
+  private previewUrl: any = 'assets/img/no-photo.png';
   dateFormatted: string;
-  constructor( private service: CandidateService) {
+
+  constructor(private service: CandidateProfileService) {
   }
+
   ngOnInit(): void {
-    this.isEditMode = false;
     this.candidate = this.service.candidate;
+    if (this.candidate.avatar != null) {
+      this.previewUrl = 'data:image/jpeg;base64,' + this.candidate.avatar;
+    }
     const format = 'dd/MM/yyyy';
     const locale = 'en-US';
-    this.dateFormatted =  formatDate(this.candidate.birthDate, format, locale);
-    this.previewUrl = 'https://image.flaticon.com/icons/png/512/21/21294.png';
+    this.dateFormatted = formatDate(this.candidate.birthDate, format, locale);
   }
 
   makeEditable() {

@@ -1,18 +1,33 @@
+<mat-icon class="help-l" matTooltip="Info about languages" style="float: right">help</mat-icon>
 
-<div class="div-form" [formGroup]="form">
+<p> Languages</p>
 
-  <mat-form-field class = "fields">
-    <mat-label>Languages</mat-label>
-    <mat-select formControlName="languages" multiple>
-      <mat-option *ngFor="let lang of languageList" [value]="lang" selected>
-        {{ lang }}
-      </mat-option>
-    </mat-select>
+<div [formGroup]="form">
+  <mat-chip-list #chipList aria-label="Fruit selection">
+    <mat-chip
+      *ngFor="let language of languageList"
+      [selectable]="selectable"
+      [removable]="removable"
+      (removed)="remove(language)">
+      {{language}}
+      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+    </mat-chip>
+  </mat-chip-list>
+
+  <br>
+  <mat-form-field>
+    <input matInput
+           placeholder="Languages..."
+           formControlName="newLanguage"
+           [matChipInputFor]="chipList"
+           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+           [matChipInputAddOnBlur]="addOnBlur"
+           (matChipInputTokenEnd)="add($event)">
+    <mat-icon matSuffix (click)="addLanguage()" style="cursor: pointer">add</mat-icon>
   </mat-form-field>
-  <mat-form-field class="field">
-    <input formControlName="newLanguage"  matInput placeholder="New language">
-  </mat-form-field>
-  <mat-icon (click)="addIcon()">add</mat-icon>
-
 
 </div>
+
+<button mat-button style="float: right" (click)="submitForm()">
+  <mat-icon>save</mat-icon>
+</button>

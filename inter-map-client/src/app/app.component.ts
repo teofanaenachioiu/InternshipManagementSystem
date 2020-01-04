@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {User} from './core/User';
 import {Router} from '@angular/router';
-import {AuthService} from './auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -9,5 +8,6 @@ import {AuthService} from './auth/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
   title = 'angular-material';
 }

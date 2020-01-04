@@ -3,7 +3,7 @@ import {Studies} from './Studies';
 import {Experience} from './Experience';
 
 export class Candidat {
-  ID: string; // email
+  id: string; // email
   lastName: string;
   firstName: string;
   address: string;
