@@ -47,4 +47,9 @@ public class FeedbackServiceImpl implements FeedbackService {
         Set<Feedback> feedbacks =feedbackRepository.getFeedbackByInternship(internshipId);
         return Converters.feedbacktoFeedbackDTO(feedbacks);
     }
+
+    @Override
+    public FeedbackDTO getFeedback(String id) {
+        return new FeedbackDTO(feedbackRepository.getOne(id));
+    }
 }

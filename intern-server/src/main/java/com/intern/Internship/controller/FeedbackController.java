@@ -39,8 +39,8 @@ public class FeedbackController {
 
         return ResponseEntity.ok().body(new FeedbackDTO(feedback));
     }
-    @GetMapping
-    public ResponseEntity<Set<FeedbackDTO>> findInternships(@RequestParam("id") String internshipId) {
+    @GetMapping("/internship")
+    public ResponseEntity<Set<FeedbackDTO>> getFeedbacks(@RequestParam("id") String internshipId) {
 
         try {
             Set<FeedbackDTO> feedbacks = feedbackService.getFeedbacks(internshipId);
@@ -48,6 +48,17 @@ public class FeedbackController {
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.badRequest().body(new HashSet<>());
+        }
+    }
+    @GetMapping
+    public ResponseEntity<FeedbackDTO> getFeedback(@RequestParam("id") String id) {
+
+        try {
+            FeedbackDTO feedbacks = feedbackService.getFeedback(id);
+            return ResponseEntity.ok().body(feedbacks);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(new FeedbackDTO());
         }
     }
 }
