@@ -60,6 +60,10 @@ import { CandidateApplicationsListItemComponent } from './candidate-applications
 import { ProfileViewComponent } from './profiles/company-profile/profile-view/profile-view.component';
 import { InternshipModalDetailsComponent } from './internship-modal-details/internship-modal-details.component';
 import { CreateApplicationComponent } from './create-application/create-application.component';
+import {TruncateModule} from '@yellowspot/ng-truncate';
+import {AppModule} from '../app.module';
+import {ShowMoreLessTextComponent} from '../components/show-more-less-text/show-more-less-text.component';
+import { ExtraMessageDialogComponent } from './candidate-applications-list/candidate-applications-list-item/extra-message-dialog/extra-message-dialog.component';
 
 
 const materialComponents = [
@@ -114,12 +118,15 @@ const materialComponents = [
     ProfileViewComponent,
     InternshipModalDetailsComponent,
     CreateApplicationComponent,
+    ShowMoreLessTextComponent,
+    ExtraMessageDialogComponent
   ],
   entryComponents: [
     AddModalComponent,
     EditModalComponent,
     ConfirmRemoveInternshipComponent,
-    InternshipModalDetailsComponent
+    InternshipModalDetailsComponent,
+    ExtraMessageDialogComponent
   ],
   imports: [
     CommonModule,
@@ -137,7 +144,9 @@ const materialComponents = [
     MatDialogModule,
     MatCheckboxModule,
     MaterialFileInputModule,
-    HttpClientModule
+    HttpClientModule,
+    MatCardModule,
+    TruncateModule,
   ]
 })
 export class InternshipAppModule { }

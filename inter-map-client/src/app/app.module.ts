@@ -54,6 +54,8 @@ import {FormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {JwtInterceptor} from './auth/JwtInterceptor';
 import {ErrorInterceptor} from './auth/ErrorInterceptor';
+import { ShowMoreLessTextComponent } from './components/show-more-less-text/show-more-less-text.component';
+import {TruncateModule} from '@yellowspot/ng-truncate';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -72,7 +74,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ContactComponent,
     StatisticsComponent,
     FooterComponent,
-    LogoutDialog
+    LogoutDialog,
   ],
   imports: [
     BrowserModule,
@@ -82,13 +84,15 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     SwiperModule,
     FormsModule,
     HttpClientModule,
-    MaterialFileInputModule
+    MaterialFileInputModule,
+    TruncateModule
   ],
   providers: [{
     provide: {SWIPER_CONFIG},
-    useValue: DEFAULT_SWIPER_CONFIG},
+    useValue: DEFAULT_SWIPER_CONFIG
+  },
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
-    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }],
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}],
   entryComponents: [LogoutDialog],
   bootstrap: [AppComponent]
 })
