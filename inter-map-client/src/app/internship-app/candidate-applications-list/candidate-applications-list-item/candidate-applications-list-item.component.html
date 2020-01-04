@@ -1,25 +1,56 @@
-<div style="border: solid 1px black">
+<!--<div style="border: solid 1px black">-->
 
-  <span>
-    <img [src]="internship.imagePath"
-         alt="{{ internship.name }}"
-         style="height: 120px; width: 150px;"/>
-    <star-rating [value]="internship.rating"
-                 checkedcolor="gold"
-                 uncheckedcolor="black"
-                 readonly="false"
-                 size="30px" (rate)="onRate($event)"></star-rating>
-  </span>
+<!--  <span>-->
+<!--    <img [src]="internship.imagePath"-->
+<!--         alt="{{ internship.name }}"-->
+<!--         style="height: 120px; width: 150px;"/>-->
+<!--    <star-rating [value]="internship.rating"-->
+<!--                 checkedcolor="gold"-->
+<!--                 uncheckedcolor="black"-->
+<!--                 readonly="false"-->
+<!--                 size="30px" (rate)="onRate($event)"></star-rating>-->
+<!--  </span>-->
 
 
-  <div (click)="onInternshipSelected()">
-    <h3>
-      {{internship.status}}:
-      {{ internship.name }}</h3>
-    <h4>Posted on by {{ internship.company }}</h4>
-    <p> {{ internship.description }}</p>
-    <p>{{ internship.location }}</p>
-    <p>{{ internship.interests }}</p>
-    <p>{{ internship.status }}</p>
-  </div>
+<!--  <div (click)="onInternshipSelected()">-->
+<!--    <h3>-->
+<!--      {{internship.status}}:-->
+<!--      {{ internship.name }}</h3>-->
+<!--    <h4>Posted on by {{ internship.company }}</h4>-->
+<!--    <p> {{ internship.description }}</p>-->
+<!--    <p>{{ internship.location }}</p>-->
+<!--    <p>{{ internship.interests }}</p>-->
+<!--    <p>{{ internship.status }}</p>-->
+<!--  </div>-->
+<!--</div>-->
+
+<div class="main-div">
+
+  <mat-card>
+    <mat-card-header>
+      <div class="header-image" mat-card-avatar>
+        <img class="avatar-img" src="{{internship.imagePath}}">
+      </div>
+      <mat-card-title>
+        {{internship.name}}
+      </mat-card-title>
+      <mat-card-subtitle>
+        {{internship.status}}
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      wdwqd
+    </mat-card-content>
+    <mat-card-footer>
+        <span>
+          <star-rating [value]="internship.rating"
+                       checkedcolor="gold"
+                       uncheckedcolor="black"
+                       readonly="false"
+                       size="30px" (rate)="onRate($event)"></star-rating>
+        </span>
+    </mat-card-footer>
+
+  </mat-card>
+
 </div>

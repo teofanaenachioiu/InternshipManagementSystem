@@ -7,3 +7,15 @@
   float: left;
 }
 
+.main-div {
+  margin: 3vw;
+}
+
+.header-image {
+  background-size: cover;
+  border: 1px solid blue;
+}
+
+.avatar-img {
+  width: 100%;
+}

@@ -16,23 +16,23 @@ import { FilterRatingPipe } from './data/filter-rating.pipe';
 import { OrderModule } from 'ngx-order-pipe';
 
 import {
-  MatFormFieldModule,
-  MatInputModule,
-  MatSelectModule,
-  MatButtonModule,
-  MatToolbarModule,
-  MatSidenavModule,
-  MatListModule,
-  MatIconModule,
-  MatMenuModule,
-  MatDatepickerModule,
-  MatNativeDateModule,
-  MatRadioModule,
-  MatChipsModule,
-  MatTooltipModule,
-  MatDialogModule
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
+    MatIconModule,
+    MatMenuModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatRadioModule,
+    MatChipsModule,
+    MatTooltipModule,
+    MatDialogModule, MatCardModule
 } from
-    '@angular/material';
+        '@angular/material';
 import { FilterForMultipleInterestPipe } from './data/filter-for-multiple-interest.pipe';
 import { CandidateProfileComponent } from './profiles/candidate-profile/candidate-profile.component';
 import { CandidateMenuComponent } from '../components/candidate-menu/candidate-menu.component';
@@ -114,22 +114,23 @@ const materialComponents = [
     EditModalComponent,
     ConfirmRemoveInternshipComponent,
   ],
-  imports: [
-    CommonModule,
-    InternshipAppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NgxPaginationModule,
-    MatCheckboxModule,
-    RatingModule,
-    OrderModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    materialComponents,
-    MatDialogModule,
-    MatCheckboxModule,
-    MaterialFileInputModule
-  ]
+    imports: [
+        CommonModule,
+        InternshipAppRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NgxPaginationModule,
+        MatCheckboxModule,
+        RatingModule,
+        OrderModule,
+        MatInputModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        materialComponents,
+        MatDialogModule,
+        MatCheckboxModule,
+        MaterialFileInputModule,
+        MatCardModule
+    ]
 })
 export class InternshipAppModule { }
