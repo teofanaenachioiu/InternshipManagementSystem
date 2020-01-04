@@ -1,6 +1,7 @@
 import {Component, forwardRef, OnDestroy, OnInit} from '@angular/core';
 import {ControlValueAccessor, FormArray, FormBuilder, FormControl, FormGroup, NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {Subscription} from 'rxjs';
+import {CandidateProfileService} from '../candidate-profile.service';
 
 @Component({
   selector: 'app-studies',
@@ -34,7 +35,7 @@ export class StudiesComponent implements ControlValueAccessor, OnDestroy {
     this.onTouched();
   }
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private service: CandidateProfileService) {
     this.form = this.formBuilder.group({
       studies: this.formBuilder.array([])
     });
@@ -99,4 +100,7 @@ export class StudiesComponent implements ControlValueAccessor, OnDestroy {
     this.subscriptions.forEach(s => s.unsubscribe());
   }
 
+  submitForm() {
+    this.service.isEditStudies = false;
+  }
 }

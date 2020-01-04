@@ -13,7 +13,7 @@ import {
   MatMenuModule,
   MatSidenavModule,
   MatToolbarModule,
-  MatDialogModule, MatInputModule
+  MatDialogModule, MatInputModule, MatProgressSpinnerModule
 } from '@angular/material';
 
 import {GeneralMenuComponent} from './components/general-menu/general-menu.component';
@@ -43,7 +43,7 @@ const materialComponents = [
   MatListModule,
   MatIconModule,
   MatButtonModule,
-
+  MatProgressSpinnerModule
 ];
 
 import {SwiperModule} from 'ngx-swiper-wrapper';
@@ -56,6 +56,7 @@ import {JwtInterceptor} from './auth/JwtInterceptor';
 import {ErrorInterceptor} from './auth/ErrorInterceptor';
 import { ShowMoreLessTextComponent } from './components/show-more-less-text/show-more-less-text.component';
 import {TruncateModule} from '@yellowspot/ng-truncate';
+
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -94,6 +95,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}],
   entryComponents: [LogoutDialog],
+  exports: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

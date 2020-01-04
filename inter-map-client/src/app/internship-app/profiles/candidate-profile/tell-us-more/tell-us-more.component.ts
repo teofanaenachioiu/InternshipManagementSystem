@@ -1,6 +1,7 @@
 import {Component, forwardRef, OnDestroy, OnInit} from '@angular/core';
 import {ControlValueAccessor, FormArray, FormBuilder, FormControl, FormGroup, NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {Subscription} from 'rxjs';
+import {CandidateProfileService} from '../candidate-profile.service';
 
 @Component({
   selector: 'app-tell-us-more',
@@ -19,10 +20,11 @@ import {Subscription} from 'rxjs';
     }
   ]
 })
-export class TellUsMoreComponent implements ControlValueAccessor, OnDestroy {
+export class TellUsMoreComponent implements ControlValueAccessor, OnDestroy, OnInit {
 
   form: FormGroup;
   subscriptions: Subscription[] = [];
+  private description: string;
 
   get value(): TellUsMoreComponent {
     return this.form.value;
@@ -34,7 +36,7 @@ export class TellUsMoreComponent implements ControlValueAccessor, OnDestroy {
     this.onTouched();
   }
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private service: CandidateProfileService) {
     this.form = this.formBuilder.group({
       description: ''
     });
@@ -76,4 +78,13 @@ export class TellUsMoreComponent implements ControlValueAccessor, OnDestroy {
     this.subscriptions.forEach(s => s.unsubscribe());
   }
 
+  submitForm() {
+    this.service.candidate.description = this.form.controls.description.value;
+    this.service.updateCandidate();
+    this.service.isEditDescription = false;
+  }
+
+  ngOnInit(): void {
+    this.description = this.service.candidate.description;
+  }
 }
