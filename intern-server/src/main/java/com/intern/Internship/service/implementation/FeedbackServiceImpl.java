@@ -10,6 +10,9 @@ import com.intern.Internship.utils.Converters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Set;
+
 @Service
 public class FeedbackServiceImpl implements FeedbackService {
     @Autowired
@@ -37,5 +40,11 @@ public class FeedbackServiceImpl implements FeedbackService {
     @Override
     public void delete(Feedback feedback) {
         feedbackRepository.delete(feedback);
+    }
+
+    @Override
+    public Set<FeedbackDTO> getFeedbacks(String internshipId) {
+        Set<Feedback> feedbacks =feedbackRepository.getFeedbackByInternship(internshipId);
+        return Converters.feedbacktoFeedbackDTO(feedbacks);
     }
 }

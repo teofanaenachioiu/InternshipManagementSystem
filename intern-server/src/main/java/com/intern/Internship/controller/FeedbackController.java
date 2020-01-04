@@ -7,6 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 @RestController
 @RequestMapping(value = "/api/feedback")
 @CrossOrigin(origins = "http://localhost:4200")
@@ -33,5 +38,16 @@ public class FeedbackController {
         feedbackService.delete(feedback);
 
         return ResponseEntity.ok().body(new FeedbackDTO(feedback));
+    }
+    @GetMapping
+    public ResponseEntity<Set<FeedbackDTO>> findInternships(@RequestParam("id") String internshipId) {
+
+        try {
+            Set<FeedbackDTO> feedbacks = feedbackService.getFeedbacks(internshipId);
+            return ResponseEntity.ok().body(feedbacks);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(new HashSet<>());
+        }
     }
 }
