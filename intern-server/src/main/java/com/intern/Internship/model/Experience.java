@@ -7,6 +7,10 @@ import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import java.time.LocalDate;
 
 @Getter
@@ -28,15 +32,17 @@ public class Experience implements HasID<String> {
     private String jobName;
     @ManyToOne
     @JoinColumn
+    @JsonIdentityInfo(generator = ObjectIdGenerators.StringIdGenerator.class, property = "@ID")
     private Candidate candidate;
 
     /**
      * Experience constructor
+     * 
      * @param companyName: String
-     * @param startDate: LocalDate
-     * @param endDate: LocalDate
-     * @param jobName: String
-     * @param candidate: Candidate
+     * @param startDate:   LocalDate
+     * @param endDate:     LocalDate
+     * @param jobName:     String
+     * @param candidate:   Candidate
      */
     public Experience(String companyName, LocalDate startDate, LocalDate endDate, String jobName, Candidate candidate) {
         this.companyName = companyName;
