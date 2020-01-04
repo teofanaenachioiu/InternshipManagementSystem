@@ -16,6 +16,7 @@ export class Internship {
       public interests: string,
       public numberOfFeedbacks: number,
       public averageOfFeedbacks: number,
+      public rating: number
       ) { }
   }
 
