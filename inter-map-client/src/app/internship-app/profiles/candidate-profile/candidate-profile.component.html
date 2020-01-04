@@ -1,6 +1,8 @@
 <app-candidate-menu></app-candidate-menu>
 
-<div class="main-div">
+<app-custom-spinner *ngIf="service.isLoading || serviceInt.isLoading"></app-custom-spinner>
+
+<div class="main-div" *ngIf="!service.isLoading && !serviceInt.isLoading">
 
   <form [formGroup]="profileForm">
     Value: {{ profileForm.value | json }} <br>
@@ -15,13 +17,22 @@
           <app-personal-details formControlName="personalDetails"></app-personal-details>
         </div>
 
-        <div class="form-div">
+        <div class="form-div" *ngIf="!serviceInt.isEditInterests">
+          <app-interests-view></app-interests-view>
+        </div>
+
+        <div class="form-div" *ngIf="serviceInt.isEditInterests">
           <app-interests formControlName="interests"></app-interests>
         </div>
 
       </div>
       <div class="side-div sticky">
-        <div class="form-div">
+
+        <div class="form-div" *ngIf="!service.isEditContact">
+          <app-contact-view></app-contact-view>
+        </div>
+
+        <div class="form-div" *ngIf="service.isEditContact">
           <app-contact formControlName="contact"></app-contact>
         </div>
         <!--        <div class="form-div">-->
@@ -29,61 +40,32 @@
         <!--          <mat-icon class="help-s" matTooltip="Info about studies">help</mat-icon>-->
         <!--          <app-studies formControlName="studies"></app-studies>-->
         <!--        </div>-->
-        <div class="form-div">
-          Languages
-          <mat-icon class="help-l" matTooltip="Info about languages">help</mat-icon>
+
+        <div class="form-div" *ngIf="!service.isEditLanguage">
+          <app-languages-view></app-languages-view>
+        </div>
+
+        <div class="form-div" *ngIf="service.isEditLanguage">
           <app-languages formControlName="languages"></app-languages>
         </div>
-        <div class="form-div">
-          Work experience
-          <mat-icon class="help-w" matTooltip="Info about work experience">help</mat-icon>
+
+        <div class="form-div" *ngIf="!service.isEditWorkExperience">
+          <app-work-experience-view></app-work-experience-view>
+        </div>
+
+        <div class="form-div" *ngIf="service.isEditWorkExperience">
           <app-work-experience formControlName="workExperience"></app-work-experience>
         </div>
-        <div class="form-div">
-          Tell us more
+
+        <div class="form-div" *ngIf="!service.isEditDescription">
+          <app-tell-us-more-view></app-tell-us-more-view>
+        </div>
+
+        <div class="form-div" *ngIf="service.isEditDescription">
           <app-tell-us-more formControlName="tellUsMore"></app-tell-us-more>
         </div>
+
       </div>
     </div>
   </form>
 </div>
-<!--&lt;!&ndash;<app-candidate-menu></app-candidate-menu>&ndash;&gt;-->
-
-<!--<div class="main-div">-->
-<!--  <form [formGroup]="profileForm">-->
-<!--    Value: {{ profileForm.value | json }} <br>-->
-
-<!--    <div class="personal-details-div" >-->
-<!--      <div class="form-div">-->
-<!--        <app-personal-details formControlName="personalDetails"></app-personal-details>-->
-<!--      </div>-->
-<!--      <div class="form-div">-->
-<!--        <app-interests formControlName="interests"></app-interests>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <div class="contact-div">-->
-<!--      <div class="form-div">-->
-<!--        <app-contact formControlName="contact"></app-contact>-->
-<!--      </div>-->
-<!--      <div class="studies-div">-->
-<!--        Studies-->
-<!--        <mat-icon matTooltip="Info about studies" class="info">help</mat-icon>-->
-<!--        <app-studies formControlName="studies"></app-studies>-->
-<!--      </div>-->
-<!--      <div class="form-div">-->
-<!--        Languages-->
-<!--        <mat-icon matTooltip="Info about languages" class="info1">help</mat-icon>-->
-<!--        <app-languages formControlName="languages"></app-languages>-->
-<!--      </div>-->
-<!--      <div class="work-experience-div">-->
-<!--        Work experience-->
-<!--        <mat-icon matTooltip="Info about work experience" class="info2">help</mat-icon>-->
-<!--        <app-work-experience formControlName="workExperience"></app-work-experience>-->
-<!--      </div>-->
-<!--      <div class="form-div">-->
-<!--        Tell us more-->
-<!--        <app-tell-us-more formControlName="tellUsMore"></app-tell-us-more>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </form>-->
-<!--</div>-->

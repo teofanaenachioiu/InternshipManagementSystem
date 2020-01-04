@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output , EventEmitter} from '@angular/core';
 import { Internship } from '../../data/Internship';
+import { MatDialog } from '@angular/material';
+import { InternshipModalDetailsComponent } from '../../internship-modal-details/internship-modal-details.component';
 
 
 
@@ -18,12 +20,15 @@ export class InternshipItemComponent implements OnInit {
   "companiile isi recruteaza viitori angajati. Pentru tine, internship-ul reprezinta o oportunitate de invatare,"+ 
   "o modalitate prin care poti obtine experienta practica in domeniul de interes*.";
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
   }
 
-  onInternshipSelected(){
+  openDialog() {
+    this.dialog.open(InternshipModalDetailsComponent, { data : this.internship });
+  }
+  onSelected(){
     this.internshipSelected.emit();
   }
 

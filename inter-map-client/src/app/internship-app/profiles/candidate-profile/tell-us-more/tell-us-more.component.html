@@ -1,8 +1,13 @@
+<p> Tell us more</p>
 <div [formGroup]="form">
-  <mat-form-field class="desc1">
+  <mat-form-field>
     <label>
-      <textarea matInput placeholder="Description" formControlName="description">
+      <textarea matInput placeholder="Description" formControlName="description" value="{{description}}">
       </textarea>
     </label>
   </mat-form-field>
 </div>
+
+<button mat-button style="float: right" (click)="submitForm()">
+  <mat-icon>save</mat-icon>
+</button>
