@@ -29,7 +29,7 @@ public class InternshipDTOValidator implements Validator<InternshipDTO> {
             msg += "The number of months has to be >0!";
         if (entity.getDescription().equals(""))
             msg += "Description cannot be empty!";
-        if (entity.getDescription().length() > 255)
+        if (entity.getDescription().length() > 5000)
             msg += "Description is too long!";
         if (entity.getStatus() == null)
             msg += "Status has to be specified!";
