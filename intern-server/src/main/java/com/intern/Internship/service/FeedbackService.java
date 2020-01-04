@@ -14,4 +14,6 @@ public interface FeedbackService {
     void delete(Feedback feedback);
 
     Set<FeedbackDTO> getFeedbacks(String internshipId);
+
+    FeedbackDTO getFeedback(String id);
 }
