@@ -21,26 +21,26 @@
     <br><br>
 
 
-    <div class="form-check" *ngFor="let company of getCompanyList() ">
+    <!-- <div class="form-check" *ngFor="let company of getCompanyList() ">
       <input class="form-check-input" (change)="onChange(company, $event.target.checked)" name="{{ company }}"
              type="checkbox" id="{{company}}">
       <label class="form-check-label" for="{{company}}">
         {{company}}   ({{getNumberInternshipsOfCompany(company)}})
       </label>
 
-    </div>
+    </div> -->
 
 
     <br>
 
-    <div class="form-check" *ngFor="let technology of getTechnologyList() ">
+    <!-- <div class="form-check" *ngFor="let technology of getTechnologyList() ">
       <input class="form-check-input" (change)="OnChangeTechnology(technology, $event.target.checked)"
              name="{{ technology }}" type="checkbox" id="{{technology}}">
       <label class="form-check-label" for="{{technology}}">
         {{technology}}   ({{getNumberInternshipsOfTechnology(technology)}})
       </label>
 
-    </div>
+    </div> -->
 
     <br>
 
@@ -55,7 +55,7 @@
 
     <br>
 
-    <ul class="nav">
+    <!-- <ul class="nav">
       <div *ngFor="let rating of ratingString ;  let i = index">
         <li>
           <input class="form-check-input" [checked]="rating.selected"
@@ -70,7 +70,7 @@
         </li>
       </div>
     </ul>
-    <br>
+    <br> -->
 
 
   </div>
@@ -80,15 +80,10 @@
       <div class="col-xs-12">
         <app-internship-item
           *ngFor="let internshipEl of internships
-      | orderBy: sortSelected
-      | filterForMultipleCompany:filteredMultipleCompany:'company'
-      | filterForMultipleInterest: filteredMultipleTechnology:'interests'
-      | filterCompany:filteredChildCompany:'location'
-      | filterCompany:statusSelected:'status'
-      | filterRating:ratingSelected:'rating'
+     
       | paginate: { itemsPerPage: 3, currentPage: p } "
           [internship]="internshipEl"
-          (internshipSelected)=" onInternshipSelected(internshipEl)"></app-internship-item>
+       ></app-internship-item>
       </div>
     </div>
 
@@ -100,3 +95,19 @@
   </div>
 </div>
 
+<!-- <div class="left">
+  <div class="row">
+    <div class="col-xs-12">
+      <app-internship-item
+        *ngFor="let internshipEl of internships
+    | orderBy: sortSelected
+    | filterForMultipleCompany:filteredMultipleCompany:'company'
+    | filterForMultipleInterest: filteredMultipleTechnology:'interests'
+    | filterCompany:filteredChildCompany:'location'
+    | filterCompany:statusSelected:'status'
+    | filterRating:ratingSelected:'rating'
+    | paginate: { itemsPerPage: 3, currentPage: p } "
+        [internship]="internshipEl"
+        (internshipSelected)=" onInternshipSelected(internshipEl)"></app-internship-item>
+    </div>
+  </div> -->
