@@ -2,6 +2,9 @@ package com.intern.Internship.model;
 
 import com.intern.Internship.model.enums.CandidateStatus;
 import com.intern.Internship.model.enums.Sex;
+
+import org.hibernate.annotations.Type;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -40,7 +43,8 @@ public class Candidate implements HasID<String> {
     private Sex sex;
     private CandidateStatus candidateStatus;
     @Lob
-    @Column(name = "avatar", columnDefinition = "BLOB")
+    @Column(name = "avatar")
+    @Type(type = "org.hibernate.type.BinaryType")
     private byte[] avatar;
     private String linkLinkedin;
     private String linkGithub;
