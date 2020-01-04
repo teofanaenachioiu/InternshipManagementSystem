@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {InternshipsComponent} from './internships/internships.component';
 import {InternshipAppRoutingModule} from './internship-app-routing.module';
-
+import {HttpClientModule} from '@angular/common/http';
 
 import { InternshipItemComponent } from './internship-list/internship-item/internship-item.component';
 import { InternshipListComponent } from './internship-list/internship-list.component';
@@ -58,6 +58,9 @@ import { PersonalDetailsViewComponent } from './profiles/candidate-profile/perso
 import { CandidateApplicationsListComponent } from './candidate-applications-list/candidate-applications-list.component';
 import { CandidateApplicationsListItemComponent } from './candidate-applications-list/candidate-applications-list-item/candidate-applications-list-item.component';
 import { ProfileViewComponent } from './profiles/company-profile/profile-view/profile-view.component';
+import { InternshipModalDetailsComponent } from './internship-modal-details/internship-modal-details.component';
+import { CreateApplicationComponent } from './create-application/create-application.component';
+
 
 const materialComponents = [
   MatButtonModule,
@@ -73,7 +76,8 @@ const materialComponents = [
   MatNativeDateModule,
   MatRadioModule,
   MatChipsModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatDialogModule
 ];
 
 @NgModule({
@@ -108,11 +112,14 @@ const materialComponents = [
     CandidateApplicationsListComponent,
     CandidateApplicationsListItemComponent,
     ProfileViewComponent,
+    InternshipModalDetailsComponent,
+    CreateApplicationComponent,
   ],
   entryComponents: [
     AddModalComponent,
     EditModalComponent,
     ConfirmRemoveInternshipComponent,
+    InternshipModalDetailsComponent
   ],
   imports: [
     CommonModule,
@@ -129,7 +136,8 @@ const materialComponents = [
     materialComponents,
     MatDialogModule,
     MatCheckboxModule,
-    MaterialFileInputModule
+    MaterialFileInputModule,
+    HttpClientModule
   ]
 })
 export class InternshipAppModule { }
