@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { InternshipService } from '../internship.service';
 import { Application } from '../data/Application';
 import { catchError } from 'rxjs/operators';
+import { AuthService } from 'src/app/auth/auth.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-create-application',
@@ -9,17 +11,20 @@ import { catchError } from 'rxjs/operators';
   styleUrls: ['./create-application.component.css']
 })
 export class CreateApplicationComponent implements OnInit {
-  handleError: any;
-
-  constructor(private internshipService: InternshipService) { }
+  coverLetter : string;
+  id : string;
+  constructor(private internshipService: InternshipService,private authService : AuthService,private route: ActivatedRoute) { }
 
   ngOnInit() {
-    
+    this.id = this.route.snapshot.paramMap.get('id');
   }
 
   createApplication(){
-    // let application = new Application("candidate2@test.com","126","ok123");
-    return this.internshipService.addApplication();
+    console.log(this.coverLetter);
+    console.log(this.authService.currentUserValue.username);
+    console.log(this.id);
+    let application = new Application(this.authService.currentUserValue.username,this.id,this.coverLetter);
+    this.internshipService.addApplication(application);
   }
 
 }

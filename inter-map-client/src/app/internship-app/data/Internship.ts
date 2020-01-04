@@ -1,16 +1,21 @@
 
 export class Internship {
-    constructor(
+    constructor(                                                
       public name: string,
+      public startTime: Date,
+      public endTime: Date,
       public paid: boolean ,
       public nrMonths: number,
       public description: string,
+      public nrApplicant: number,
+      public status: string,
       public location: string,
+      public addedDate: Date,
       public company: string,
       public imagePath: string,
-      public rating: number,
       public interests: string,
-      public status: string
+      public numberOfFeedbacks: number,
+      public averageOfFeedbacks: number,
       ) { }
   }
 
