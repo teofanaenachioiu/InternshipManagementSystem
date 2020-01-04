@@ -1,12 +1,18 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
 import {Internship} from '../data/Internship';
+import {ApplicationDTO} from '../data/ApplicationDTO';
+import {InternshipService} from '../internship.service';
 
 @Component({
   selector: 'app-candidate-applications-list',
   templateUrl: './candidate-applications-list.component.html',
   styleUrls: ['./candidate-applications-list.component.css']
 })
-export class CandidateApplicationsListComponent implements OnInit {
+export class CandidateApplicationsListComponent implements OnInit, OnDestroy {
+
+  subscriptions = [];
+  applications: ApplicationDTO[];
+  error: Error;
 
   @Output() internshipWasSelected = new EventEmitter<Internship>();
 
@@ -41,10 +47,18 @@ export class CandidateApplicationsListComponent implements OnInit {
     {value: 4, selected: false},
     {value: 5, selected: false},];
 
-  constructor() {
+  constructor(private service: InternshipService) {
   }
 
   ngOnInit() {
+    this.loadApplications();
+  }
+
+  loadApplications() {
+    const username = JSON.parse(localStorage.getItem('currentUser')).username;
+    this.subscriptions.push(this.service.getAllApplicationsByCandidate(username)
+      .subscribe(applications => this.applications = applications,
+        error => this.error = error));
   }
 
   onClickMe() {
@@ -168,5 +182,9 @@ export class CandidateApplicationsListComponent implements OnInit {
 
   onInternshipSelected(internshipEl: any) {
     console.log('Selected internship: ' + internshipEl);
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 }

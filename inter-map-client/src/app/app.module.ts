@@ -54,6 +54,8 @@ import {FormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {JwtInterceptor} from './auth/JwtInterceptor';
 import {ErrorInterceptor} from './auth/ErrorInterceptor';
+import { ShowMoreLessTextComponent } from './components/show-more-less-text/show-more-less-text.component';
+import {TruncateModule} from '@yellowspot/ng-truncate';
 
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -83,7 +85,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     SwiperModule,
     FormsModule,
     HttpClientModule,
-    MaterialFileInputModule
+    MaterialFileInputModule,
+    TruncateModule
   ],
   providers: [{
     provide: {SWIPER_CONFIG},

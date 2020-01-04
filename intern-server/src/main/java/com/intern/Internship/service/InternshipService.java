@@ -24,4 +24,6 @@ public interface InternshipService {
     Internship update(InternshipDTO internshipDTO);
 
     Internship save(InternshipDTO internshipDTO);
+
+    List<InternshipDTO> getInternships();
 }

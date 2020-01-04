@@ -1,13 +1,14 @@
 package com.intern.Internship.utils;
 
+import com.intern.Internship.model.Feedback;
 import com.intern.Internship.model.Internship;
+import com.intern.Internship.model.dto.ApplicationDTO;
+import com.intern.Internship.model.dto.FeedbackDTO;
 import com.intern.Internship.model.dto.InternshipDTO;
 import com.intern.Internship.model.dto.PageDTO;
 import org.springframework.data.domain.Page;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Converters {
     public static PageDTO<InternshipDTO> mapPageToInternshipDTOPage(Page<Map<String, ?>> page) {
@@ -83,5 +84,41 @@ public class Converters {
         internship.setLocation(internshipDTO.getLocation());
         internship.setAddedDate(internshipDTO.getAddedDate());
         return internship;
+    }
+
+    public static List<ApplicationDTO> applicationToApplicationDTO(List<Map<String,?>> applications) {
+        List<ApplicationDTO> applicationsDTOS = new ArrayList<>();
+        for (Map<String, ?> map : applications) {
+            ApplicationDTO applicationDTO = new ApplicationDTO(map);
+            applicationsDTOS.add(applicationDTO);
+        }
+        return applicationsDTOS;
+    }
+
+    public static Set<FeedbackDTO> feedbacktoFeedbackDTO(Set<Feedback> feedbackSet) {
+        Set<FeedbackDTO> feedbackDTOS =new LinkedHashSet<>();
+        for(Feedback feedback:feedbackSet){
+            feedbackDTOS.add(Converters.toFeedbackDTO(feedback));
+        }
+        return feedbackDTOS;
+    }
+
+    private static FeedbackDTO toFeedbackDTO(Feedback feedback) {
+        FeedbackDTO feedbackDTO=new FeedbackDTO();
+        feedbackDTO.setID(feedback.getID());
+        feedbackDTO.setAnonymous(feedback.getAnonymous());
+        feedbackDTO.setDescription(feedback.getDescription());
+        feedbackDTO.setRating(feedback.getRating());
+        feedbackDTO.setInternshipId(feedback.getInternship().getID());
+
+        return feedbackDTO;
+    }
+
+    public static Feedback feedbackDTOtoFeedback(FeedbackDTO feedbackDTO) {
+        Feedback feedback =new Feedback();
+        feedback.setRating(feedbackDTO.getRating());
+        feedback.setDescription(feedbackDTO.getDescription());
+        feedback.setAnonymous(feedbackDTO.getAnonymous());
+        return feedback;
     }
 }

@@ -1,6 +1,9 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Internship} from '../../data/Internship';
 import {StarRatingComponent} from 'ng-starrating';
+import {ApplicationDTO, ApplicationStatus} from '../../data/ApplicationDTO';
+import {MatDialog} from '@angular/material';
+import {ExtraMessageDialogComponent} from './extra-message-dialog/extra-message-dialog.component';
 
 @Component({
   selector: 'app-candidate-applications-list-item',
@@ -9,20 +12,32 @@ import {StarRatingComponent} from 'ng-starrating';
 })
 export class CandidateApplicationsListItemComponent implements OnInit {
 
-  @Input() internship: Internship;
-  @Output() internshipSelected = new EventEmitter<void>();
+  @Input() application: ApplicationDTO;
+  @Output() applicationSelected = new EventEmitter<void>();
+  show = false;
 
-  constructor() {
+  constructor(public dialog: MatDialog) {
   }
 
   ngOnInit() {
+
+  }
+
+  public get ApplicationStatus() {
+    return ApplicationStatus;
   }
 
   onInternshipSelected() {
-    this.internshipSelected.emit();
+    this.applicationSelected.emit();
   }
 
   onRate($event: { oldValue: number; newValue: number; starRating: StarRatingComponent }) {
-    this.internship.rating = $event.newValue;
+    // this.application.feedbacks.add() = $event.newValue;
+  }
+
+  onShowExtraMessage() {
+    this.dialog.open(ExtraMessageDialogComponent, {
+      data: this.application.extraMessage
+    });
   }
 }

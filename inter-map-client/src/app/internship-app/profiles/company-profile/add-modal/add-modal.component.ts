@@ -31,32 +31,31 @@ export class AddModalComponent implements OnInit {
     const name = formValue.name;
     const description = formValue.description;
     // const status = formValue.status;
-    const paid = formValue.paid;
+    const paid = !!formValue.paid;
     const startDate = formValue.fromDate;
     const endDate = formValue.toDate;
     const months = Math.trunc((endDate - startDate) / (1000 * 3600 * 24 * 30));
     const location = formValue.location;
 
-    console.log(months);
-
     const internship = new InternshipDTO(
-      '3',
-      name,
-      description,
-      this.service.statuses[0],
-      new Date(Date.now()),
-      startDate,
-      endDate,
-      months,
-      location,
-      0,
-      paid,
-      'https://miro.medium.com/max/720/1*LjR0UrFB2a__5h1DWqzstA.png',
-      0,
       '',
-      '1',
-      this.service.companyUsername
+      name,
+      startDate,
+      endDate, paid,
+      months,
+      description,
+      0,
+      'Open',
+      location,
+      new Date(Date.now()),
+      this.service.companyUsername,
+      'da',
+      3,
+      'sad',
+      5
     );
+
+    console.log(internship);
 
     this.service.addInternship(internship);
   }
