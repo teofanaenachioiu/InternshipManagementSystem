@@ -1,6 +1,8 @@
 import {Component, forwardRef, OnDestroy, OnInit} from '@angular/core';
 import {ControlValueAccessor, FormArray, FormBuilder, FormControl, FormGroup, NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {Subscription} from 'rxjs';
+import {CandidateProfileService} from '../candidate-profile.service';
+import {Experience} from '../../../../core/Experience';
 
 @Component({
   selector: 'app-work-experience',
@@ -19,8 +21,8 @@ import {Subscription} from 'rxjs';
     }
   ]
 })
-export class WorkExperienceComponent implements ControlValueAccessor, OnDestroy {
-
+export class WorkExperienceComponent implements ControlValueAccessor, OnDestroy, OnInit {
+  private experiences: Experience[];
   form: FormGroup;
   subscriptions: Subscription[] = [];
 
@@ -34,7 +36,7 @@ export class WorkExperienceComponent implements ControlValueAccessor, OnDestroy 
     this.onTouched();
   }
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private service: CandidateProfileService) {
     this.form = this.formBuilder.group({
       workExperience: this.formBuilder.array([])
     });
@@ -69,8 +71,10 @@ export class WorkExperienceComponent implements ControlValueAccessor, OnDestroy 
     }
   }
 
-  onChange: any = () => {};
-  onTouched: any = () => {};
+  onChange: any = () => {
+  };
+  onTouched: any = () => {
+  };
 
   writeValue(obj: any): void {
     if (obj) {
@@ -81,20 +85,31 @@ export class WorkExperienceComponent implements ControlValueAccessor, OnDestroy 
       this.form.reset();
     }
   }
+
   registerOnChange(fn: any): void {
     this.onChange = fn;
   }
+
   registerOnTouched(fn: any): void {
     this.onTouched = fn;
   }
 
   // communicate the inner form validation to the parent form
   validate(_: FormControl) {
-    return this.form.valid ? null : { profile: { valid: false, }, };
+    return this.form.valid ? null : {profile: {valid: false,},};
   }
 
   ngOnDestroy() {
     this.subscriptions.forEach(s => s.unsubscribe());
   }
 
+  submitForm() {
+    this.service.isEditWorkExperience = false;
+  }
+
+  ngOnInit(): void {
+    this.experiences = this.service.candidate.experiences;
+    const varr = this.form.controls.workExperience.setValue(this.experiences);
+    console.log(varr);
+  }
 }

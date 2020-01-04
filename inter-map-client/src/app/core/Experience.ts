@@ -1,7 +1,7 @@
 export class Experience {
   companyName: string;
-  startDate: string;
-  endDate: string;
+  startDate: Date;
+  endDate: Date;
   jobName: string;
   description: string;
 }

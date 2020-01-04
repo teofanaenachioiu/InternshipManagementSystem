@@ -1,24 +1,46 @@
-<div [formGroup]="form">
-  <mat-form-field class="full-width">
-    <mat-chip-list #chipList class="in">
-      <mat-chip *ngFor="let interest of interestsControls.controls; let i = index;" [selectable]="selectable"
-                [removable]="removable" (removed)="remove(i)">
-        {{ interest.value }}
+<div [formGroup]="form" class="container-interest">
+  <mat-form-field>
+    <mat-chip-list #chipList aria-label="Fruit selection">
+      <mat-chip
+        *ngFor="let fruit of fruits"
+        [selectable]="selectable"
+        [removable]="removable"
+        (removed)="remove(fruit)">
+        {{fruit}}
         <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
       </mat-chip>
-      <input  placeholder="New interest..."
-             [matChipInputFor]="chipList"
-             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-             [matChipInputAddOnBlur]="addOnBlur"
-             (matChipInputTokenEnd)="add($event)" />
+      <input
+        placeholder="Interests..."
+        #fruitInput
+        formControlName="fruitCtrl"
+        [matAutocomplete]="auto"
+        [matChipInputFor]="chipList"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        [matChipInputAddOnBlur]="addOnBlur"
+        (matChipInputTokenEnd)="add($event)">
     </mat-chip-list>
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+      <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
+        {{fruit}}
+      </mat-option>
+    </mat-autocomplete>
   </mat-form-field>
 
-  <mat-chip-list aria-label="Fruit selection">
-    <mat-chip *ngFor="let suggestion of suggestionList" [selectable]="selectable"
-              [removable]="removable" (removed)="addSuggestion(suggestion)">
-      {{ suggestion }}
+  <br>
+
+  <p *ngIf="allFruitsSuggested.length>0"> Suggestions:</p>
+
+  <mat-chip-list>
+    <mat-chip *ngFor="let i of allFruitsSuggested" [selectable]="selectable"
+              [removable]="removable" (removed)="removeSuggestion(i)">
+      {{ i }}
       <mat-icon matChipRemove *ngIf="removable">add</mat-icon>
     </mat-chip>
+
   </mat-chip-list>
+
 </div>
+
+<button mat-button style="float: right" (click)="submitForm()">
+  <mat-icon>save</mat-icon>
+</button>

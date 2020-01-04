@@ -1,25 +1,72 @@
-<div style="border: solid 1px black">
+<!--<div style="border: solid 1px black">-->
 
-  <span>
-    <img [src]="internship.imagePath"
-         alt="{{ internship.name }}"
-         style="height: 120px; width: 150px;"/>
-    <star-rating [value]="internship.rating"
-                 checkedcolor="gold"
-                 uncheckedcolor="black"
-                 readonly="false"
-                 size="30px" (rate)="onRate($event)"></star-rating>
-  </span>
+<!--  <span>-->
+<!--    <img [src]="internship.imagePath"-->
+<!--         alt="{{ internship.name }}"-->
+<!--         style="height: 120px; width: 150px;"/>-->
+<!--    <star-rating [value]="internship.rating"-->
+<!--                 checkedcolor="gold"-->
+<!--                 uncheckedcolor="black"-->
+<!--                 readonly="false"-->
+<!--                 size="30px" (rate)="onRate($event)"></star-rating>-->
+<!--  </span>-->
 
 
-  <div (click)="onInternshipSelected()">
-    <h3>
-      {{internship.status}}:
-      {{ internship.name }}</h3>
-    <h4>Posted on by {{ internship.company }}</h4>
-    <p> {{ internship.description }}</p>
-    <p>{{ internship.location }}</p>
-    <p>{{ internship.interests }}</p>
-    <p>{{ internship.status }}</p>
-  </div>
+<!--  <div (click)="onInternshipSelected()">-->
+<!--    <h3>-->
+<!--      {{internship.status}}:-->
+<!--      {{ internship.name }}</h3>-->
+<!--    <h4>Posted on by {{ internship.company }}</h4>-->
+<!--    <p> {{ internship.description }}</p>-->
+<!--    <p>{{ internship.location }}</p>-->
+<!--    <p>{{ internship.interests }}</p>-->
+<!--    <p>{{ internship.status }}</p>-->
+<!--  </div>-->
+<!--</div>-->
+
+<div class="main-div">
+
+  <mat-card>
+    <mat-card-header>
+      <mat-icon mat-card-avatar>publish</mat-icon>
+      <mat-icon *ngIf="application.applicationStatus === ApplicationStatus.Applied" mat-card-avatar>publish</mat-icon>
+      <mat-icon *ngIf="application.applicationStatus === ApplicationStatus.Replied" mat-card-avatar>reply</mat-icon>
+      <mat-icon *ngIf="application.applicationStatus === ApplicationStatus.Accepted" mat-card-avatar>done_all</mat-icon>
+      <mat-card-title>
+        <span class="subtitle-span">{{application.name}}</span>
+        <span>({{application.nameCompany}})</span>
+      </mat-card-title>
+      <mat-card-subtitle>
+        <span class="subtitle-span">{{application.startTime}}</span>
+        <span class="subtitle-span">-</span>
+        <span class="subtitle-span">{{application.endTime}}</span>
+        <span class="subtitle-span">{{application.status}}</span>
+      </mat-card-subtitle>
+      <mat-card-subtitle>
+        <span class="subtitle-span">{{application.location}}</span>
+        <span class="paid-span" *ngIf="application.paid">paid</span>
+        <span class="subtitle-span">
+          <button mat-button matTooltip="Show extra message" (click)="onShowExtraMessage()">
+            <mat-icon>description</mat-icon>
+          </button>
+        </span>
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content style="display: inline-block">
+      <app-show-more-less-text [text]="application.description" limit="20"></app-show-more-less-text>
+    </mat-card-content>
+    <mat-card-footer style="margin-left: 1vw">
+        <span>
+          <star-rating [value]="0"
+                       checkedcolor="gold"
+                       uncheckedcolor="black"
+                       readonly="false"
+                       size="30px" (rate)="onRate($event)"></star-rating>
+        </span>
+        <mat-card-subtitle>
+          {{application.idCompany}}
+        </mat-card-subtitle>
+    </mat-card-footer>
+  </mat-card>
+
 </div>
