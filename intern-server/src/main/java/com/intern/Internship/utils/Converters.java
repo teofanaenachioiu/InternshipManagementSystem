@@ -113,4 +113,12 @@ public class Converters {
 
         return feedbackDTO;
     }
+
+    public static Feedback feedbackDTOtoFeedback(FeedbackDTO feedbackDTO) {
+        Feedback feedback =new Feedback();
+        feedback.setRating(feedbackDTO.getRating());
+        feedback.setDescription(feedbackDTO.getDescription());
+        feedback.setAnonymous(feedbackDTO.getAnonymous());
+        return feedback;
+    }
 }
