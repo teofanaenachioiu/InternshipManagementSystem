@@ -5,6 +5,6 @@ import com.intern.Internship.model.AreaOfInterest;
 import java.util.List;
 
 public interface AreaOfInterestService {
-    List<AreaOfInterest> findAll();
+    List<String> findAll();
     List<AreaOfInterest> findAll(List<String> names);
 }

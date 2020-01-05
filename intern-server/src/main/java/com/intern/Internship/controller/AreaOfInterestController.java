@@ -20,9 +20,9 @@ public class AreaOfInterestController {
     AreaOfInterestService areaOfInterestService;
 
     @GetMapping
-    public ResponseEntity<List<AreaOfInterest>> findAll() {
+    public ResponseEntity<List<String>> findAll() {
         try {
-            List<AreaOfInterest> areasOfInterest = areaOfInterestService.findAll();
+            List<String> areasOfInterest = areaOfInterestService.findAll();
             return ResponseEntity.ok().body(areasOfInterest);
         } catch (Exception e) {
             e.printStackTrace();
