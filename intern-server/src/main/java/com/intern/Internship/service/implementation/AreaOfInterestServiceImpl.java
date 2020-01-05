@@ -11,13 +11,16 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AreaOfInterestServiceImpl implements AreaOfInterestService {
-
     @Autowired
     AreaOfInterestRepository areaOfInterestRepository;
 
     @Override
+    public List<AreaOfInterest> findAll() {
+        return areaOfInterestRepository.findAll();
+    }
+
+    @Override
     public List<AreaOfInterest> findAll(List<String> names) {
-        List<AreaOfInterest> list = areaOfInterestRepository.findAll(AreaOfInterestRepository.multiLikeName(names));
-        return list;
+        return areaOfInterestRepository.findAll(AreaOfInterestRepository.multiLikeName(names));
     }
 }
