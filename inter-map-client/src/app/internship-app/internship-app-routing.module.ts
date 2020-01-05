@@ -19,7 +19,7 @@ const routes: Routes = [
   {path: 'company-profile', component: CompanyProfileComponent},
   {path: 'applications', component: CandidateApplicationsListComponent },
   {path: 'company-internships', component: CompanyInternshipsComponent, canActivate: [AuthCompanyGuard] },
-  {path: 'create-application', component: CreateApplicationComponent}
+  {path: 'create-application/:id', component: CreateApplicationComponent}
 ];
 
 @NgModule({

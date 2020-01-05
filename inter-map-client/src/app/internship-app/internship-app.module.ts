@@ -15,7 +15,6 @@ import {RatingModule} from 'ng-starrating';
 import {FilterRatingPipe} from './data/filter-rating.pipe';
 import {OrderModule} from 'ngx-order-pipe';
 
-
 import {CustomSpinnerComponent} from '../components/custom-spinner/custom-spinner.component';
 import { ContactViewComponent } from './profiles/candidate-profile/contact-view/contact-view.component';
 import { InterestsViewComponent } from './profiles/interests-view/interests-view.component';

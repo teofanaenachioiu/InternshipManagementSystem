@@ -1,2 +1,6 @@
-<p>create-application works!</p>
-<button mat-button (click)="createApplication()">Create Application</button>
+
+<mat-form-field class="example-full-width">
+    <textarea matInput placeholder="Cover letter" rows="10" cols="40" [(ngModel)]="coverLetter" ></textarea>
+</mat-form-field>
+<br>
+<button mat-button (click)="createApplication()" style="margin-left: 50%;">Send Application</button>

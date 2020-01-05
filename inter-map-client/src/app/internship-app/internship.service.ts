@@ -22,12 +22,12 @@ export class InternshipService {
     return this._http.get<Internship[]>(this.apiUrl);
   }
 
-  addApplication(){
+  addApplication(application: Application){
 
     let postData = {
-      idCandidate: 'candidate2@test.com',
-      idInternship: "125",
-      extraMessage: "ultimul"
+      idCandidate: application.idCandidate,
+      idInternship: application.idInternship,
+      extraMessage: application.extraMessage
     }
      this._http.post(this.apiUrlAdd,postData).toPromise().then((data:any) => {
       console.log(data);

@@ -15,7 +15,7 @@ export class InternshipModalDetailsComponent implements OnInit {
   }
 
   createApplication(){
-    this.router.navigate(['internship-app/create-application']);
+    this.router.navigate(['internship-app/create-application',this.internship.id]);
   }
 
 }
