@@ -165,7 +165,7 @@ const materialComponents = [
     MaterialFileInputModule,
     HttpClientModule,
     MatCardModule,
-    TruncateModule,
+    TruncateModule
   ]
 })
 export class InternshipAppModule {
