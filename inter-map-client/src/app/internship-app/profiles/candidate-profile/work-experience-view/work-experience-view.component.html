@@ -1,0 +1,16 @@
+<p>work-experience-view works!</p>
+
+<ul>
+  <li *ngFor="let exp of experiences">
+    <p>Company name: {{exp.companyName}}</p>
+    <p>Strat date: {{exp.startDate}}</p>
+    <p>End date: {{exp.endDate}}</p>
+    <p>Job name: {{exp.jobName}}</p>
+    <p>Description: {{exp.description}}</p>
+  </li>
+</ul>
+
+
+<button mat-button style="float: right" (click)="makeEditable()">
+  <mat-icon>edit</mat-icon>
+</button>

@@ -1,46 +1,57 @@
+<mat-icon class="help-l" matTooltip="Info about work experience" style="float: right">help</mat-icon>
+<p> Work experience</p>
 
 <div [formGroup]="form">
-      <div class="div2" formArrayName="workExperience">
-        <div *ngFor="let work of workExperienceForms.controls; let i=index" [formGroupName]="i">
-          <mat-form-field class="fields">
-          <label>
-            <input class="inputs" matInput placeholder="Where" formControlName="where">
-          </label>
-          </mat-form-field>
-          <mat-form-field class="fields">
-            <label>
-              <input matInput placeholder="Job" formControlName="job">
-            </label>
-          </mat-form-field>
-          <br>
+  <div class="div2" formArrayName="workExperience">
 
-          <mat-form-field class="fields">
-            <label>
-              <input matInput [matDatepicker]="fromDateWork" placeholder="Choose a date" formControlName="fromDate">
-            </label>
-            <mat-datepicker-toggle [for]="fromDateWork" matSuffix></mat-datepicker-toggle>
-            <mat-datepicker #fromDateWork></mat-datepicker>
-          </mat-form-field >
+    <div *ngFor="let work of experiences; let i=index" [formGroupName]="i">
 
-          <mat-form-field class="fields">
-            <label>
-              <input matInput [matDatepicker]="toDateWork" placeholder="Choose a date" formControlName="toDate">
-            </label>
-            <mat-datepicker-toggle [for]="toDateWork" matSuffix></mat-datepicker-toggle>
-            <mat-datepicker #toDateWork></mat-datepicker>
-          </mat-form-field>
+      <mat-form-field class="fields">
+        <label>
+          <input class="inputs" matInput placeholder="Where" formControlName="where">
+        </label>
+      </mat-form-field>
 
-          <br>
+      <mat-form-field class="fields">
+        <label>
+          <input matInput placeholder="Job" formControlName="job">
+        </label>
+      </mat-form-field>
+      <br>
+
+      <mat-form-field class="fields">
+        <label>
+          <input matInput [matDatepicker]="fromDateWork" placeholder="Choose a date" formControlName="fromDate">
+        </label>
+        <mat-datepicker-toggle [for]="fromDateWork" matSuffix></mat-datepicker-toggle>
+        <mat-datepicker #fromDateWork></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="fields">
+        <label>
+          <input matInput [matDatepicker]="toDateWork" placeholder="Choose a date" formControlName="toDate">
+        </label>
+        <mat-datepicker-toggle [for]="toDateWork" matSuffix></mat-datepicker-toggle>
+        <mat-datepicker #toDateWork></mat-datepicker>
+      </mat-form-field>
+
+      <br>
+      <br>
+
+      <button id="delete-button-work" mat-raised-button (click)="removeWork(i)">
+        <mat-icon>delete</mat-icon>
+      </button>
+
+    </div>
+
+    <button id="add-button-work" mat-raised-button (click)="addWork()">
+      <mat-icon>add</mat-icon>
+    </button>
 
 
-
-          <br>
-
-          <button id="delete-button-work" mat-raised-button (click)="removeWork(i)"><mat-icon>delete</mat-icon></button>
-        </div>
-
-        <button id="add-button-work" mat-raised-button (click)="addWork()"><mat-icon>add</mat-icon></button>
-
-
-      </div>
+  </div>
 </div>
+
+<button mat-button style="float: right" (click)="submitForm()">
+  <mat-icon>save</mat-icon>
+</button>

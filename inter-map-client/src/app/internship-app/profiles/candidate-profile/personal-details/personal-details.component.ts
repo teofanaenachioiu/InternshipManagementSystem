@@ -1,8 +1,11 @@
 import {Component, forwardRef, OnDestroy, OnInit} from '@angular/core';
 import {ControlValueAccessor, FormBuilder, FormControl, FormGroup, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validators} from '@angular/forms';
-import {Subscription} from 'rxjs';
+import {fromEvent, Observable, Subscription} from 'rxjs';
 import {Candidat} from '../../../../core/Candidat';
-import {CandidateService} from '../../../candidate.service';
+import {CandidateProfileService} from '../candidate-profile.service';
+import {Sex} from '../../../../core/Sex';
+import {DomSanitizer} from '@angular/platform-browser';
+import {pluck} from 'rxjs/operators';
 
 @Component({
   selector: 'app-personal-details',
@@ -25,10 +28,11 @@ export class PersonalDetailsComponent implements ControlValueAccessor, OnDestroy
   private form: FormGroup;
   private subscriptions: Subscription[] = [];
   private candidate: Candidat;
-  fileData: File = null;
-  previewUrl: any = null;
+  private fileData: File = null;
+  private previewUrl: any = 'assets/img/no-photo.png';
 
   startDate: Date = null;
+  gender: any = '0';
 
   get value(): PersonalDetailsComponent {
     return this.form.value;
@@ -40,7 +44,7 @@ export class PersonalDetailsComponent implements ControlValueAccessor, OnDestroy
     this.onTouched();
   }
 
-  constructor(private formBuilder: FormBuilder, private service: CandidateService) {
+  constructor(private formBuilder: FormBuilder, private service: CandidateProfileService, private sanitizer: DomSanitizer) {
   }
 
   onChange: any = () => {
@@ -76,18 +80,26 @@ export class PersonalDetailsComponent implements ControlValueAccessor, OnDestroy
     this.subscriptions.forEach(s => s.unsubscribe());
   }
 
-  ngOnInit(): void {
+  initializeFormInputs() {
     this.candidate = this.service.candidate;
     this.startDate = new Date(this.candidate.birthDate);
-    this.previewUrl = 'https://image.flaticon.com/icons/png/512/21/21294.png';
+    this.gender = Sex[this.candidate.sex];
+
+    if (this.candidate.avatar != null) {
+      this.previewUrl = 'data:image/jpeg;base64,' + this.candidate.avatar;
+    }
+  }
+
+  ngOnInit(): void {
+    this.initializeFormInputs();
 
     this.form = this.formBuilder.group({
       file: new FormControl({value: ''}, Validators.required),
       name: new FormControl({value: ''}, Validators.required),
       surname: new FormControl({value: ''}, Validators.required),
       dateOfBirth: new FormControl({value: new Date(2000, 0, 12), disabled: false},
-        Validators.required),
-      sex: new FormControl({value: ''})
+        [Validators.required]),
+      sex: new FormControl({value: 0})
     });
 
     this.subscriptions.push(
@@ -101,6 +113,7 @@ export class PersonalDetailsComponent implements ControlValueAccessor, OnDestroy
 
   submitForm() {
     let doUpdate = false;
+
     console.log(this.form.value);
     if (this.form.get('name').value != null || '') {
       this.service.candidate.firstName = this.form.get('name').value;
@@ -113,18 +126,18 @@ export class PersonalDetailsComponent implements ControlValueAccessor, OnDestroy
     }
 
     if (this.form.get('sex').value != null || '') {
+      console.log(typeof (this.form.get('sex').value));
       this.service.candidate.sex = this.form.get('sex').value;
-      console.log('gender: ' + this.form.get('sex').value);
       doUpdate = true;
     }
 
     if (this.form.get('dateOfBirth').value != null || '') {
       this.service.candidate.birthDate = this.form.get('dateOfBirth').value.toString();
-      console.log('dateOfBirth: ' + this.form.get('dateOfBirth').value);
       doUpdate = true;
     }
 
     if (doUpdate) {
+      console.log('do update');
       this.service.updateCandidate();
     }
 
@@ -133,10 +146,26 @@ export class PersonalDetailsComponent implements ControlValueAccessor, OnDestroy
 
   fileProgress(fileInput: any) {
     this.fileData = fileInput.target.files[0] as File;
-    this.preview();
+    this.onPreviewImage();
+    this.onUploadImage();
   }
 
-  preview() {
+  onUploadImage() {
+    const fileReader = new FileReader();
+    this.imageToBase64(fileReader, this.fileData)
+      .subscribe(base64image => {
+        const onlyBytes = base64image.split(',')[1];
+        this.service.candidate.avatar = onlyBytes;
+        console.log(onlyBytes);
+      });
+  }
+
+  imageToBase64(fileReader: FileReader, fileToRead: File): Observable<string> {
+    fileReader.readAsDataURL(fileToRead);
+    return fromEvent(fileReader, 'load').pipe(pluck('currentTarget', 'result'));
+  }
+
+  onPreviewImage() {
     const mimeType = this.fileData.type;
     if (mimeType.match(/image\/*/) == null) {
       return;
@@ -149,14 +178,10 @@ export class PersonalDetailsComponent implements ControlValueAccessor, OnDestroy
     };
   }
 
-  // onSubmitPhoto() {
-  //   const formData = new FormData();
-  //   formData.append('file', this.fileData);
-  //   this.http.post('url/to/your/api', formData)
-  //     .subscribe(res => {
-  //       console.log(res);
-  //       this.uploadedFilePath = res.data.filePath;
-  //       alert('SUCCESS !!');
-  //     })
-  // }
+
+  /* Handle form errors in Angular 8 */
+  public errorHandling = (control: string, error: string, msg: string) => {
+    return this.form.controls[control].hasError(error) ? msg : '';
+  };
+
 }

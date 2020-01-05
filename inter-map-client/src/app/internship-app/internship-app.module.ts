@@ -1,22 +1,30 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {InternshipsComponent} from './internships/internships.component';
 import {InternshipAppRoutingModule} from './internship-app-routing.module';
 import {HttpClientModule} from '@angular/common/http';
 
-import { InternshipItemComponent } from './internship-list/internship-item/internship-item.component';
-import { InternshipListComponent } from './internship-list/internship-list.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FilterCompanyPipe } from './data/filter-company.pipe';
+import {InternshipItemComponent} from './internship-list/internship-item/internship-item.component';
+import {InternshipListComponent} from './internship-list/internship-list.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FilterCompanyPipe} from './data/filter-company.pipe';
 import {NgxPaginationModule} from 'ngx-pagination';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { FilterForMultipleCompanyPipe } from './data/filter-for-multiple-company.pipe';
-import { RatingModule } from 'ng-starrating';
-import { FilterRatingPipe } from './data/filter-rating.pipe';
-import { OrderModule } from 'ngx-order-pipe';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {FilterForMultipleCompanyPipe} from './data/filter-for-multiple-company.pipe';
+import {RatingModule} from 'ng-starrating';
+import {FilterRatingPipe} from './data/filter-rating.pipe';
+import {OrderModule} from 'ngx-order-pipe';
 
+import {CustomSpinnerComponent} from '../components/custom-spinner/custom-spinner.component';
+import { ContactViewComponent } from './profiles/candidate-profile/contact-view/contact-view.component';
+import { InterestsViewComponent } from './profiles/interests-view/interests-view.component';
+import { TellUsMoreViewComponent } from './profiles/candidate-profile/tell-us-more-view/tell-us-more-view.component';
+import { LanguagesViewComponent } from './profiles/candidate-profile/languages-view/languages-view.component';
+import { WorkExperienceViewComponent } from './profiles/candidate-profile/work-experience-view/work-experience-view.component';
+import { StudiesViewComponent } from './profiles/candidate-profile/studies-view/studies-view.component';
 import {
-  MatFormFieldModule,
+     MatCardModule,
+	  MatFormFieldModule,
   MatInputModule,
   MatSelectModule,
   MatButtonModule,
@@ -30,9 +38,10 @@ import {
   MatRadioModule,
   MatChipsModule,
   MatTooltipModule,
-  MatDialogModule
+  MatDialogModule,
+  MatProgressSpinnerModule, MatAutocompleteModule,
 } from
-    '@angular/material';
+        '@angular/material';
 import { FilterForMultipleInterestPipe } from './data/filter-for-multiple-interest.pipe';
 import { CandidateProfileComponent } from './profiles/candidate-profile/candidate-profile.component';
 import { CandidateMenuComponent } from '../components/candidate-menu/candidate-menu.component';
@@ -60,6 +69,10 @@ import { CandidateApplicationsListItemComponent } from './candidate-applications
 import { ProfileViewComponent } from './profiles/company-profile/profile-view/profile-view.component';
 import { InternshipModalDetailsComponent } from './internship-modal-details/internship-modal-details.component';
 import { CreateApplicationComponent } from './create-application/create-application.component';
+import {TruncateModule} from '@yellowspot/ng-truncate';
+import {AppModule} from '../app.module';
+import {ShowMoreLessTextComponent} from '../components/show-more-less-text/show-more-less-text.component';
+import { ExtraMessageDialogComponent } from './candidate-applications-list/candidate-applications-list-item/extra-message-dialog/extra-message-dialog.component';
 
 
 const materialComponents = [
@@ -77,6 +90,9 @@ const materialComponents = [
   MatRadioModule,
   MatChipsModule,
   MatTooltipModule,
+
+  MatProgressSpinnerModule,
+  MatAutocompleteModule,
   MatDialogModule
 ];
 
@@ -111,15 +127,25 @@ const materialComponents = [
     PersonalDetailsViewComponent,
     CandidateApplicationsListComponent,
     CandidateApplicationsListItemComponent,
+    CustomSpinnerComponent,
+    ContactViewComponent,
+    InterestsViewComponent,
+    TellUsMoreViewComponent,
+    LanguagesViewComponent,
+    WorkExperienceViewComponent,
+    StudiesViewComponent,
     ProfileViewComponent,
     InternshipModalDetailsComponent,
     CreateApplicationComponent,
+    ShowMoreLessTextComponent,
+    ExtraMessageDialogComponent
   ],
   entryComponents: [
     AddModalComponent,
     EditModalComponent,
     ConfirmRemoveInternshipComponent,
-    InternshipModalDetailsComponent
+    InternshipModalDetailsComponent,
+    ExtraMessageDialogComponent
   ],
   imports: [
     CommonModule,
@@ -137,7 +163,10 @@ const materialComponents = [
     MatDialogModule,
     MatCheckboxModule,
     MaterialFileInputModule,
-    HttpClientModule
+    HttpClientModule,
+    MatCardModule,
+    TruncateModule,
   ]
 })
-export class InternshipAppModule { }
+export class InternshipAppModule {
+}

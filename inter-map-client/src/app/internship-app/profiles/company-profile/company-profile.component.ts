@@ -1,6 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {Internship} from '../../data/Internship';
 import {CompanyProfileService} from './company-profile.service';
 import {InternshipDTO} from '../../data/InternshipDTO';
 

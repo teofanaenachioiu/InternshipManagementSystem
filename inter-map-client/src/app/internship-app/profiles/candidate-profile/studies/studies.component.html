@@ -1,40 +1,52 @@
- <div [formGroup]="form">
-    <div class="div2" formArrayName="studies">
-      <div *ngFor="let study of studiesForms.controls; let i=index" [formGroupName]="i">
-        <mat-form-field class="fields">
-          <label>
-            <input matInput placeholder="Name of institution" formControlName="nameOfInstitution">
-          </label>
-        </mat-form-field>
-        <br>
-        <mat-form-field class="fields">
-          <label>
-            <input matInput placeholder="Profile" formControlName="profile">
-          </label>
-        </mat-form-field>
-        <mat-form-field class="fields">
-          <label>
-            <input matInput [matDatepicker]="fromDate" placeholder="Choose a date" formControlName="fromDate">
-          </label>
-          <mat-datepicker-toggle [for]="fromDate" matSuffix></mat-datepicker-toggle>
-          <mat-datepicker #fromDate></mat-datepicker>
-        </mat-form-field>
-        <mat-form-field class="fields">
-          <label>
-            <input matInput [matDatepicker]="toDate" placeholder="Choose a date" formControlName="toDate">
-          </label>
-          <mat-datepicker-toggle [for]="toDate" matSuffix></mat-datepicker-toggle>
-          <mat-datepicker #toDate></mat-datepicker>
-        </mat-form-field>
-        <br>
-        <mat-form-field class="desc1">
-          <label >
+<mat-icon class="help-l" matTooltip="Info about studies" style="float: right">help</mat-icon>
+
+<p> Studies </p>
+
+<div [formGroup]="form">
+  <div class="div2" formArrayName="studies">
+    <div *ngFor="let study of studiesForms.controls; let i=index" [formGroupName]="i">
+      <mat-form-field class="fields">
+        <label>
+          <input matInput placeholder="Name of institution" formControlName="nameOfInstitution">
+        </label>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="fields">
+        <label>
+          <input matInput placeholder="Profile" formControlName="profile">
+        </label>
+      </mat-form-field>
+      <mat-form-field class="fields">
+        <label>
+          <input matInput [matDatepicker]="fromDate" placeholder="Choose a date" formControlName="fromDate">
+        </label>
+        <mat-datepicker-toggle [for]="fromDate" matSuffix></mat-datepicker-toggle>
+        <mat-datepicker #fromDate></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field class="fields">
+        <label>
+          <input matInput [matDatepicker]="toDate" placeholder="Choose a date" formControlName="toDate">
+        </label>
+        <mat-datepicker-toggle [for]="toDate" matSuffix></mat-datepicker-toggle>
+        <mat-datepicker #toDate></mat-datepicker>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="desc1">
+        <label>
             <textarea matInput placeholder="Tell us more about what you have studied" formControlName="more">
             </textarea>
-          </label>
-        </mat-form-field>
-        <button id="delete-button-study" mat-raised-button (click)="removeStudy(i)"><mat-icon>delete</mat-icon></button>
-      </div>
-      <button id="add-button-study" mat-raised-button (click)="addStudy()"><mat-icon>add</mat-icon></button>
+        </label>
+      </mat-form-field>
+      <button id="delete-button-study" mat-raised-button (click)="removeStudy(i)">
+        <mat-icon>delete</mat-icon>
+      </button>
     </div>
- </div>
+    <button id="add-button-study" mat-raised-button (click)="addStudy()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</div>
+
+<button mat-button style="float: right" (click)="submitForm()">
+  <mat-icon>save</mat-icon>
+</button>
