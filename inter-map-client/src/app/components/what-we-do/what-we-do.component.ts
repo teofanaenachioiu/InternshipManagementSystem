@@ -22,13 +22,13 @@ export class WhatWeDoComponent implements OnInit {
           'After that, every location on interMAP is yours to explore.'
       },
       {
-        hidden: true, title: 'For students', icon: 'assets/img/ForStud.png', icontext: 'assets/img/right-side-image_2.jpg',
+        hidden: true, title: 'For students', icon: 'assets/img/ForStud.png', icontext: 'assets/img/ForStudentsImage.jpg',
         tag: 'for-students', text: 'If you are a student, all you have to do is want one of our internship. ' +
           'Check the list we have prepared for you, and if at least one fits you. All you need is to create an account, ' +
           'fill in some data and you can apply for the dream internship.'
       },
       {
-        hidden: true, title: 'For companies', icon: 'assets/img/forComp.jpg', icontext: 'assets/img/right-side-image_3.jpg',
+        hidden: true, title: 'For companies', icon: 'assets/img/forComp.jpg', icontext: 'assets/img/ForCompaniesImage.jpg',
         tag: 'for-companies', text: 'As a company, you are the key element of student development. All you have to do is come and meet' +
           ' the students with internship offers and openness to learn new things. Prepare interesting and educational internship and ' +
           'upload them to our platform. Once this is public, you can see in real time the number of registered candidates, ' +
@@ -36,7 +36,7 @@ export class WhatWeDoComponent implements OnInit {
           'application.'
       },
       {
-        hidden: true, title: 'About CV', icon: 'assets/img/cv.jpg', icontext: 'assets/img/right-side-image_4.jpg',
+        hidden: true, title: 'About CV', icon: 'assets/img/cv.jpg', icontext: 'assets/img/ForCVImage.jpg',
         tag: 'about-cv', text: 'When it comes to applying for an internship the important element is the CV. ' +
           'We all went through the stress of organizing it and the panic that we forgot to write something. ' +
           'Here, on interMap, this is already a memory. After you sign in, enter your profile and there you have a series of fields to ' +
@@ -44,8 +44,12 @@ export class WhatWeDoComponent implements OnInit {
           ' them. This is how companies get rid of tens of emails with CVs and you get rid of the stress of creating it.'
       },
       {
-        hidden: true, title: 'Photos', icon: 'assets/img/fivth-list-icon.png', icontext: 'assets/img/right-side-image_5.jpg',
-        tag: 'photos', text: ''
+        hidden: true, title: 'Why interMap', icon: 'assets/img/information.png', icontext: 'assets/img/right-side-image_5.jpg',
+        tag: 'photos', text: '\n' +
+          'Are you looking for an internship for college? Want to see what the atmosphere is in a company or a team that works ' +
+          'enthusiastic on a project? Or maybe you just want to do an internship that will help you to be employed later. Stop with the ' +
+          'list of companies and the mountain of leaflets next to you trying to find something suitable. You can find all this just a ' +
+          'click away on interMap. Come on, press LOGIN and you will see that we all the right things in the right place!'
       },
     ];
   }

@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 .banner {
   background-image: url('../../../assets/img/banner-bg.jpg');
   background-repeat: no-repeat;
@@ -41,18 +41,15 @@
   margin: 10px;
 }
 
-
-=======
->>>>>>> alina_branch
 .intro {
   background-color: #46bae2;
   text-align: center;
-  padding: 80px 0px;
+  padding: 40px;
 }
 
 .intro h4 {
   margin-top: 0px;
-  font-size: 44px;
+  font-size: 35px;
   font-weight: 300;
   color: #fff;
 }
@@ -148,4 +145,17 @@ p {
   min-height: 1px;
   padding-right: 10px;
   padding-left: 10px;
+}
+
+.coloana {
+  flex: 50%;
+}
+.randulet{
+  display: flex;
+  align-content: center;
+}
+.cifre{
+  font-size: 100px;
+  margin-top: 40px;
+  margin-left: 160px;
 }
