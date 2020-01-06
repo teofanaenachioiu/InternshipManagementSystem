@@ -19,3 +19,8 @@ export function RepeatPasswordValidator(group: FormGroup) {
 
   return password === passwordConfirmation ? null : { passwordsNotEqual: true }
 }
+export function CheckEmailExistValidator(group: FormGroup) {
+  const email = group.controls.email.value;
+
+
+}

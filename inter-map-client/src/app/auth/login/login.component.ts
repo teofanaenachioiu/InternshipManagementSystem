@@ -50,6 +50,7 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(this.email.value, this.password.value)
       .subscribe((res) => {
+        console.log(res);
         this.loginMessage = null;
         if (res.role.name === Role.COMPANY) {
           this.router.navigate(['/internship-app/company-profile']);
