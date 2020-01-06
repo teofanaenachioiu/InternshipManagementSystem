@@ -5,14 +5,16 @@ import {User} from '../../../core/User';
 
 const serverUrl = 'localhost:3000';
 const httpServerUrl = `http://${serverUrl}`;
-const interestsUrl = `${httpServerUrl}/api/candidate`;
+const interestsUrl = `${httpServerUrl}/api/areaOfInterest`;
 
 @Injectable({
   providedIn: 'root'
 })
 export class InterestsService {
-  isLoading = false;
+  isLoading = true;
   isEditInterests = false;
+  private isLoadingAll = true;
+  private isLoadingUser = true;
   private token: string;
   private user: User;
   interests: string[];
@@ -29,21 +31,33 @@ export class InterestsService {
   }
 
   constructor(private http: HttpClient) {
-    this.isLoading = true;
     this.token = localStorage.getItem('token');
     this.user = JSON.parse(localStorage.getItem('currentUser'));
 
-    // this.getAllInterests(this.user.username).subscribe(
+    this.getAllInterests().subscribe(
+      (res) => {
+        this.interests = res;
+        // console.log(res);
+        this.isLoadingAll = false;
+        this.isLoading = this.isLoadingAll && this.interestsUser;
+      },
+      (err) => console.log(err),
+      () => console.log('done!')
+    );
+
+    // this.interests = ['java', '.net', 'c#', 'php', 'frontend', 'backend', 'angular', 'networking'];
+
+    // this.getAllUserInterests(this.user.username).subscribe(
     //   (res) => {
-    //     this.interests = res;
+    //     this.interestsUser = res;
     //     console.log(res);
-    //     this.isLoading = false;
+    //     this.isLoadingUser = false;
+    //     this.isLoading = this.isLoadingAll && this.isLoadingUser;
     //   },
     //   (err) => console.log(err),
     //   () => console.log('done!')
     // );
 
-    this.interests = ['java', '.net', 'c#', 'php', 'frontend', 'backend', 'angular', 'networking'];
     this.interestsUser = ['java', '.net'];
     this.isLoading = false;
   }
@@ -53,11 +67,11 @@ export class InterestsService {
   }
 
   getAllUserInterests(email: any): Observable<string[]> {
-    return this.http.get<string[]>(`${interestsUrl}`, this.authHttpOptions());
+    return this.http.get<string[]>(`${interestsUrl}/${email}`, this.authHttpOptions());
   }
 
-  updateInterests(fruits: string[]) {
-    this.interestsUser = fruits;
-    console.log(fruits);
+  updateInterests(interests: string[]) {
+    this.interestsUser = interests;
+    console.log(interests);
   }
 }

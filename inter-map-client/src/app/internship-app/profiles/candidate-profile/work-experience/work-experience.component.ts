@@ -37,17 +37,7 @@ export class WorkExperienceComponent implements ControlValueAccessor, OnDestroy,
   }
 
   constructor(private formBuilder: FormBuilder, private service: CandidateProfileService) {
-    this.form = this.formBuilder.group({
-      workExperience: this.formBuilder.array([])
-    });
 
-    this.subscriptions.push(
-      // any time the inner form changes update the parent of any change
-      this.form.valueChanges.subscribe(value => {
-        this.onChange(value);
-        this.onTouched();
-      })
-    );
 
   }
 
@@ -109,7 +99,28 @@ export class WorkExperienceComponent implements ControlValueAccessor, OnDestroy,
 
   ngOnInit(): void {
     this.experiences = this.service.candidate.experiences;
-    const varr = this.form.controls.workExperience.setValue(this.experiences);
-    console.log(varr);
+
+    this.form = this.formBuilder.group({
+      workExperience: this.formBuilder.array([])
+    });
+
+    this.subscriptions.push(
+      // any time the inner form changes update the parent of any change
+      this.form.valueChanges.subscribe(value => {
+        this.onChange(value);
+        this.onTouched();
+      })
+    );
+
+    // tslint:disable-next-line:forin
+    for (const i in this.experiences) {
+      const study = this.formBuilder.group({
+        where: '',
+        fromDate: new Date(),
+        toDate: new Date(),
+        job: ''
+      });
+      this.workExperienceForms.push(study);
+    }
   }
 }

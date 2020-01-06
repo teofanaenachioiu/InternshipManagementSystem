@@ -2,26 +2,27 @@
 <p> Work experience</p>
 
 <div [formGroup]="form">
-  <div class="div2" formArrayName="workExperience">
+  <div formArrayName="workExperience">
 
     <div *ngFor="let work of experiences; let i=index" [formGroupName]="i">
 
       <mat-form-field class="fields">
         <label>
-          <input class="inputs" matInput placeholder="Where" formControlName="where">
+          <input matInput placeholder="Where" formControlName="where" value = "{{work.companyName}}">
         </label>
       </mat-form-field>
 
       <mat-form-field class="fields">
         <label>
-          <input matInput placeholder="Job" formControlName="job">
+          <input matInput placeholder="Job" formControlName="job" value = "{{work.jobName}}">
         </label>
       </mat-form-field>
       <br>
 
       <mat-form-field class="fields">
         <label>
-          <input matInput [matDatepicker]="fromDateWork" placeholder="Choose a date" formControlName="fromDate">
+          <input matInput [matDatepicker]="fromDateWork" placeholder="Choose a date" formControlName="fromDate"
+                 value = "{{work.startDate}}">
         </label>
         <mat-datepicker-toggle [for]="fromDateWork" matSuffix></mat-datepicker-toggle>
         <mat-datepicker #fromDateWork></mat-datepicker>
@@ -29,25 +30,24 @@
 
       <mat-form-field class="fields">
         <label>
-          <input matInput [matDatepicker]="toDateWork" placeholder="Choose a date" formControlName="toDate">
+          <input matInput [matDatepicker]="toDateWork" placeholder="Choose a date" formControlName="toDate"
+                 value = "{{work.endDate}}">
         </label>
         <mat-datepicker-toggle [for]="toDateWork" matSuffix></mat-datepicker-toggle>
         <mat-datepicker #toDateWork></mat-datepicker>
       </mat-form-field>
 
       <br>
-      <br>
 
-      <button id="delete-button-work" mat-raised-button (click)="removeWork(i)">
+      <button mat-raised-button (click)="removeWork(i)">
         <mat-icon>delete</mat-icon>
       </button>
 
     </div>
 
-    <button id="add-button-work" mat-raised-button (click)="addWork()">
+    <button mat-raised-button (click)="addWork()">
       <mat-icon>add</mat-icon>
     </button>
-
 
   </div>
 </div>

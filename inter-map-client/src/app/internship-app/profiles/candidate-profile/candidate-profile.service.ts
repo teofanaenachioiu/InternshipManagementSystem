@@ -46,12 +46,6 @@ export class CandidateProfileService {
         this.candidate = res;
         console.log(res);
         this.isLoading = false;
-        const exp = new Experience();
-        exp.companyName = 'Arobs';
-        exp.endDate = new Date(2018, 11, 10);
-        exp.startDate = new Date(2018, 10, 10);
-        exp.jobName = 'intern';
-        this.candidate.experiences = [exp];
       },
       (err) => console.log(err),
       () => console.log('done!')
