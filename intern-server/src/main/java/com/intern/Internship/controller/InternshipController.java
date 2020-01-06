@@ -1,5 +1,6 @@
 package com.intern.Internship.controller;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import com.intern.Internship.model.dto.InternshipDTO;
 import com.intern.Internship.model.dto.PageDTO;
 import com.intern.Internship.model.enums.Direction;
 import com.intern.Internship.model.enums.OrderBy;
+import com.intern.Internship.model.validator.ValidationException;
 import com.intern.Internship.service.AreaOfInterestService;
 import com.intern.Internship.service.InternshipService;
 
@@ -52,11 +54,13 @@ public class InternshipController {
     }
 
     @GetMapping("/company")
-    public ResponseEntity<PageDTO<InternshipDTO>> findInternshipsByCompany(@RequestParam("company") String companyName,
-            @RequestParam("page") int page, @RequestParam("size") int size) {
+    public ResponseEntity<PageDTO<InternshipDTO>> findInternshipsByCompanyPaginated(
+            @RequestParam("company") String companyName, @RequestParam("page") int page,
+            @RequestParam("size") int size) {
 
         try {
-            PageDTO<InternshipDTO> pageInternship = internshipService.getInternshipsByCompany(page, size, companyName);
+            PageDTO<InternshipDTO> pageInternship = internshipService.getInternshipsByCompanyPaginated(page, size,
+                    companyName);
             return ResponseEntity.ok().body(pageInternship);
         } catch (Exception e) {
             e.printStackTrace();
@@ -64,12 +68,26 @@ public class InternshipController {
         }
     }
 
-    @GetMapping("/candidate")
-    public ResponseEntity<PageDTO<InternshipDTO>> findInternshipsByCandidate(@RequestParam("candidate") String candidateId,
-            @RequestParam("page") int page, @RequestParam("size") int size) {
+    @GetMapping("/company/all")
+    public ResponseEntity<List<InternshipDTO>> findInternshipsByCompany(@RequestParam("company") String companyName) {
 
         try {
-            PageDTO<InternshipDTO> pageInternship = internshipService.getInternshipsByCandidate(page, size, candidateId);
+            List<InternshipDTO> pageInternship = internshipService.getInternshipsByCompany(companyName);
+            return ResponseEntity.ok().body(pageInternship);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(new ArrayList<InternshipDTO>());
+        }
+    }
+
+    @GetMapping("/candidate")
+    public ResponseEntity<PageDTO<InternshipDTO>> findInternshipsByCandidate(
+            @RequestParam("candidate") String candidateId, @RequestParam("page") int page,
+            @RequestParam("size") int size) {
+
+        try {
+            PageDTO<InternshipDTO> pageInternship = internshipService.getInternshipsByCandidate(page, size,
+                    candidateId);
             return ResponseEntity.ok().body(pageInternship);
         } catch (Exception e) {
             e.printStackTrace();
@@ -93,12 +111,16 @@ public class InternshipController {
         if (internshipDTO == null) {
             return ResponseEntity.badRequest().body(new InternshipDTO());
         }
-        Internship internship = internshipService.save(internshipDTO);
-        if (internship == null) {
+        try {
+            Internship internship = internshipService.save(internshipDTO);
+            if (internship == null) {
+                return ResponseEntity.badRequest().body(new InternshipDTO());
+            }
+
+            return ResponseEntity.ok().body(new InternshipDTO(internship));
+        } catch (ValidationException ex) {
             return ResponseEntity.badRequest().body(new InternshipDTO());
         }
-
-        return ResponseEntity.ok().body(new InternshipDTO(internship));
     }
 
     @PutMapping()
@@ -106,10 +128,26 @@ public class InternshipController {
         if (internshipDTO == null) {
             return ResponseEntity.badRequest().body(new InternshipDTO());
         }
-        Internship internship = internshipService.update(internshipDTO);
-        if (internship == null) {
+
+        try {
+            Internship internship = internshipService.update(internshipDTO);
+            if (internship == null) {
+                return ResponseEntity.badRequest().body(new InternshipDTO());
+            }
+            return ResponseEntity.ok().body(new InternshipDTO(internship));
+        } catch (ValidationException ex) {
             return ResponseEntity.badRequest().body(new InternshipDTO());
         }
-        return ResponseEntity.ok().body(new InternshipDTO(internship));
+    }
+    @GetMapping("/all")
+    public ResponseEntity<List<InternshipDTO>> findInternships() {
+
+        try {
+            List<InternshipDTO> internships = internshipService.getInternships();
+            return ResponseEntity.ok().body(internships);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(new ArrayList<InternshipDTO>());
+        }
     }
 }

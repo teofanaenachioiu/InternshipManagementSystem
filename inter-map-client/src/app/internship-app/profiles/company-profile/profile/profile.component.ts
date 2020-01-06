@@ -4,6 +4,7 @@ import {Subscription} from 'rxjs';
 import {Router} from '@angular/router';
 import {MatDialog} from '@angular/material';
 import {AddModalComponent} from '../add-modal/add-modal.component';
+import {CompanyProfileService} from '../company-profile.service';
 
 
 
@@ -39,7 +40,7 @@ export class ProfileComponent implements ControlValueAccessor, OnDestroy {
     this.onTouched();
   }
 
-  constructor(private formBuilder: FormBuilder, private router: Router, public dialog: MatDialog) {
+  constructor(private formBuilder: FormBuilder, private router: Router, public dialog: MatDialog, private service: CompanyProfileService) {
     this.form = this.formBuilder.group({
       name: '',
       phone: '',
@@ -89,5 +90,30 @@ export class ProfileComponent implements ControlValueAccessor, OnDestroy {
         action: 'add'
       }
     });
+  }
+
+  submitForm() {
+    let doUpdate = false;
+    console.log(this.form.value);
+    if (this.form.get('name').value != null || '') {
+      this.service.company.name = this.form.get('name').value;
+      doUpdate = true;
+    }
+
+    if (this.form.get('email').value != null || '') {
+      this.service.company.email = this.form.get('email').value;
+      doUpdate = true;
+    }
+
+    if (this.form.get('phone').value != null || '') {
+      this.service.company.phone = this.form.get('phone').value;
+      doUpdate = true;
+    }
+
+    if (doUpdate) {
+      // this.service.updateCompany();
+    }
+
+    this.service.isEditProfile = false;
   }
 }

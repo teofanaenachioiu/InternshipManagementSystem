@@ -13,7 +13,7 @@ import {
   MatMenuModule,
   MatSidenavModule,
   MatToolbarModule,
-  MatDialogModule, MatInputModule
+  MatDialogModule, MatInputModule, MatProgressSpinnerModule
 } from '@angular/material';
 
 import {GeneralMenuComponent} from './components/general-menu/general-menu.component';
@@ -25,8 +25,7 @@ import {FeedbackComponent} from './components/feedback/feedback.component';
 import {ContactComponent} from './components/contact/contact.component';
 import {StatisticsComponent} from './components/statistics/statistics.component';
 import {FooterComponent} from './components/footer/footer.component';
-
-
+import { MaterialFileInputModule } from 'ngx-material-file-input';
 const materialComponents = [
   MatButtonModule,
   MatToolbarModule,
@@ -38,7 +37,13 @@ const materialComponents = [
   MatCardModule,
   MatExpansionModule,
   MatDialogModule,
-  MatInputModule
+  MatInputModule,
+  MatToolbarModule,
+  MatSidenavModule,
+  MatListModule,
+  MatIconModule,
+  MatButtonModule,
+  MatProgressSpinnerModule
 ];
 
 import {SwiperModule} from 'ngx-swiper-wrapper';
@@ -49,6 +54,9 @@ import {FormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {JwtInterceptor} from './auth/JwtInterceptor';
 import {ErrorInterceptor} from './auth/ErrorInterceptor';
+import { ShowMoreLessTextComponent } from './components/show-more-less-text/show-more-less-text.component';
+import {TruncateModule} from '@yellowspot/ng-truncate';
+
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -67,7 +75,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ContactComponent,
     StatisticsComponent,
     FooterComponent,
-    LogoutDialog
+    LogoutDialog,
   ],
   imports: [
     BrowserModule,
@@ -76,14 +84,19 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     materialComponents,
     SwiperModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MaterialFileInputModule,
+    TruncateModule
   ],
   providers: [{
     provide: {SWIPER_CONFIG},
-    useValue: DEFAULT_SWIPER_CONFIG},
+    useValue: DEFAULT_SWIPER_CONFIG
+  },
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
-    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }],
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}],
   entryComponents: [LogoutDialog],
+  exports: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

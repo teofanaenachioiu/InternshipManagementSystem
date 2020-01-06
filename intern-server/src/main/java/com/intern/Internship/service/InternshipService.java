@@ -11,9 +11,11 @@ public interface InternshipService {
     PageDTO<InternshipDTO> getInternships(int pageNumber, int pageSize, List<AreaOfInterest> areaOfInterestList,
             String sortCriteria, String sortDirection);
 
-    PageDTO<InternshipDTO> getInternshipsByCompany(int pageNumber, int pageSize, String companyName);
+    PageDTO<InternshipDTO> getInternshipsByCompanyPaginated(int pageNumber, int pageSize, String companyName);
 
-    PageDTO<InternshipDTO> getInternshipsByCandidate(int page,int size,String companyName);
+    List<InternshipDTO> getInternshipsByCompany(String companyName);
+
+    PageDTO<InternshipDTO> getInternshipsByCandidate(int page, int size, String companyName);
 
     Internship findById(String internshipId);
 
@@ -22,4 +24,6 @@ public interface InternshipService {
     Internship update(InternshipDTO internshipDTO);
 
     Internship save(InternshipDTO internshipDTO);
+
+    List<InternshipDTO> getInternships();
 }

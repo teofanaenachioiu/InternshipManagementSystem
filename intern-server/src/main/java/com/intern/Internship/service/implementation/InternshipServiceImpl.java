@@ -11,6 +11,7 @@ import com.intern.Internship.model.dto.InternshipDTO;
 import com.intern.Internship.model.dto.PageDTO;
 import com.intern.Internship.model.enums.Direction;
 import com.intern.Internship.model.enums.OrderBy;
+import com.intern.Internship.model.validator.Validator;
 import com.intern.Internship.repository.AreaOfInterestRepository;
 import com.intern.Internship.repository.CompanyRepository;
 import com.intern.Internship.repository.InternshipRepository;
@@ -36,6 +37,9 @@ public class InternshipServiceImpl implements InternshipService {
     @Autowired
     private CompanyRepository companyRepository;
 
+    @Autowired
+    private Validator<InternshipDTO> validator;
+
     public PageDTO<InternshipDTO> getInternships(int pageNumber, int pageSize, List<AreaOfInterest> areaOfInterestList,
             String sortCriteria, String direction) {
         Order order = null;
@@ -60,11 +64,20 @@ public class InternshipServiceImpl implements InternshipService {
 
     }
 
-    public PageDTO<InternshipDTO> getInternshipsByCompany(int pageNumber, int pageSize, String companyName) {
+    public PageDTO<InternshipDTO> getInternshipsByCompanyPaginated(int pageNumber, int pageSize, String companyName) {
         Company company = companyRepository.findByName(companyName);
-        Page<Internship> page = internshipRepository.findAllByCompanyName(company.getName(),
+        Page<Internship> page = internshipRepository.findAllByCompanyNamePage(company.getName(),
                 PageRequest.of(pageNumber, pageSize));
         return Converters.internshipPageToInternshipDTOPage(page);
+    }
+
+    public List<InternshipDTO> getInternshipsByCompany(String companyUsername) {
+        Optional<Company> company = companyRepository.findById(companyUsername);
+        if (company.isPresent()) {
+            List<Internship> page = internshipRepository.findAllByCompanyUsername(company.get().getID());
+            return Converters.internshipPageToInternshipDTOPage(page);
+        }
+        return null;
     }
 
     public PageDTO<InternshipDTO> getInternshipsByCandidate(int pageNumber, int size, String candidateId) {
@@ -84,20 +97,32 @@ public class InternshipServiceImpl implements InternshipService {
     }
 
     public Internship save(InternshipDTO internshipDTO) {
+        validator.validate(internshipDTO);
+
         Internship internship = findById(internshipDTO.getID());
         if (internship == null) {
-            Company company = companyRepository.findByName(internshipDTO.getCompany());
-            AreaOfInterest areaOfInterest = areaOfInterestRepository.findByName(internshipDTO.getAreaOfInterest());
+            Optional<Company> company = companyRepository.findById(internshipDTO.getCompany());
+            if (company.isPresent()) {
+                AreaOfInterest areaOfInterest = areaOfInterestRepository.findByName(internshipDTO.getAreaOfInterest());
 
-            internship = Converters.toInternship(internshipDTO);
-            internship.setCompany(company);
-            internship.setAreaOfInterest(areaOfInterest);
-            return internshipRepository.save(internship);
+                internship = Converters.toInternship(internshipDTO);
+                internship.setCompany(company.get());
+                internship.setAreaOfInterest(areaOfInterest);
+                return internshipRepository.save(internship);
+            }
         }
         return null;
     }
 
+    @Override
+    public List<InternshipDTO> getInternships() {
+        List<Internship> internships = internshipRepository.findAll();
+        return Converters.internshipPageToInternshipDTOPage(internships);
+    }
+
     public Internship update(InternshipDTO internshipDTO) {
+        validator.validate(internshipDTO);
+
         Internship intern = findById(internshipDTO.getID());
         if (intern != null) {
             intern = Converters.dtoToInternshipUpdate(intern, internshipDTO);

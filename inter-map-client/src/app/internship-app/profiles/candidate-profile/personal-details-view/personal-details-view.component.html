@@ -1,0 +1,30 @@
+<div class="container-details">
+  <img id="profileImg" [src]="previewUrl" alt="ProfilePicture">
+
+  <div class="div1">
+    <br>
+    <label class="profile-title">Name</label>
+    <br>
+    <p>{{candidate.firstName}}</p>
+    <br>
+
+    <label class="profile-title">Surname</label>
+    <br>
+    <p>{{candidate.lastName}}</p>
+    <br>
+
+    <label class="profile-title">Birthday</label>
+    <br>
+    <p>{{dateFormatted}}</p>
+    <br>
+
+    <label class="profile-title">Gender</label>
+    <br>
+    <p>{{candidate.sex}}</p>
+  </div>
+</div>
+
+<button mat-button style="float: right"  (click)="makeEditable()">
+  <mat-icon>edit</mat-icon>
+</button>
+

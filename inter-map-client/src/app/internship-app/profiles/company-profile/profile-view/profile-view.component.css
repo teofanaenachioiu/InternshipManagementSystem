@@ -1,0 +1,16 @@
+#profileImg {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+}
+
+.container-details{
+  display: flex;
+  flex-direction: column;
+  align-items:  center;
+}
+
+.div1{
+  margin-left: 3vw;
+  align-self: start;
+}

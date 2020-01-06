@@ -1,8 +1,10 @@
-import {Component, forwardRef, OnDestroy, OnInit} from '@angular/core';
+import {Component, ElementRef, forwardRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ControlValueAccessor, FormArray, FormBuilder, FormControl, FormGroup, NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {Subscription} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {MatChipInputEvent, MatChipSelectionChange} from '@angular/material';
+import {MatAutocomplete, MatAutocompleteSelectedEvent, MatChipInputEvent} from '@angular/material';
+import {startWith, map} from 'rxjs/operators';
+import {InterestsService} from './interests.service';
 
 @Component({
   selector: 'app-interests',
@@ -21,18 +23,23 @@ import {MatChipInputEvent, MatChipSelectionChange} from '@angular/material';
     }
   ]
 })
-export class InterestsComponent implements ControlValueAccessor, OnDestroy {
-
-  form: FormGroup;
-  subscriptions: Subscription[] = [];
+export class InterestsComponent implements ControlValueAccessor, OnDestroy, OnInit {
+  private form: FormGroup;
+  private subscriptions: Subscription[] = [];
 
   visible = true;
   selectable = true;
   removable = true;
-  addOnBlur = true;
-  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
 
-  suggestionList = ['Java', 'Kotlin', 'C', 'Angular'];
+
+  separatorKeysCodes: number[] = [ENTER, COMMA];
+  filteredFruits: Observable<string[]>;
+  fruits: string[];
+  allFruits: string[];
+  allFruitsSuggested: string[];
+
+  @ViewChild('fruitInput', {static: false}) fruitInput: ElementRef<HTMLInputElement>;
+  @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
 
   get value(): InterestsComponent {
     return this.form.value;
@@ -44,23 +51,25 @@ export class InterestsComponent implements ControlValueAccessor, OnDestroy {
     this.onTouched();
   }
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private service: InterestsService) {
     this.form = this.formBuilder.group({
-      interests: this.formBuilder.array([]),
-      // suggestions: ['']
+      fruitCtrl: new FormControl()
     });
 
     this.subscriptions.push(
-      // any time the inner form changes update the parent of any change
       this.form.valueChanges.subscribe(value => {
         this.onChange(value);
         this.onTouched();
       })
     );
+
+
   }
 
-  onChange: any = () => {};
-  onTouched: any = () => {};
+  onChange: any = () => {
+  };
+  onTouched: any = () => {
+  };
 
   writeValue(obj: any): void {
     if (obj) {
@@ -71,57 +80,93 @@ export class InterestsComponent implements ControlValueAccessor, OnDestroy {
       this.form.reset();
     }
   }
+
   registerOnChange(fn: any): void {
     this.onChange = fn;
   }
+
   registerOnTouched(fn: any): void {
     this.onTouched = fn;
   }
 
-  // communicate the inner form validation to the parent form
   validate(_: FormControl) {
-    return this.form.valid ? null : { profile: { valid: false, }, };
+    return this.form.valid ? null : {profile: {valid: false,},};
   }
 
   ngOnDestroy() {
     this.subscriptions.forEach(s => s.unsubscribe());
   }
 
+  ngOnInit(): void {
+    this.allFruits = this.service.interests;
+    this.fruits = this.service.interestsUser;
+    this.allFruitsSuggested = this.service.interests.slice(0, 3);
+
+    this.filteredFruits = this.form.controls.fruitCtrl.valueChanges.pipe(
+      startWith(null),
+      map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));
+
+  }
+
   add(event: MatChipInputEvent): void {
-    const input = event.input;
-    const value = event.value;
+    // Add fruit only when MatAutocomplete is not open
+    // To make sure this does not conflict with OptionSelected Event
+    if (!this.matAutocomplete.isOpen) {
+      const input = event.input;
+      const value = event.value;
 
-    if ((value || '').trim()) {
-      const interests = this.form.get('interests') as FormArray;
-      interests.push(this.formBuilder.control(value.trim()));
-    }
+      // Add our fruit
+      if ((value || '').trim() && !this.fruits.find(x => x.toLowerCase() === value.toLowerCase())) {
+        this.fruits.push(value.trim());
+      }
 
-    if (input) {
-      input.value = '';
+      // Reset the input value
+      if (input) {
+        input.value = '';
+      }
+
+      this.form.controls.fruitCtrl.setValue(this.fruits);
     }
   }
 
-  get interestsControls() {
-    return this.form.get('interests') as FormArray;
-  }
-
-  remove(index: number): void {
-
-    const interests = this.form.get('interests') as FormArray;
+  remove(fruit: string): void {
+    const index = this.fruits.indexOf(fruit);
 
     if (index >= 0) {
-      interests.removeAt(index);
+      this.fruits.splice(index, 1);
     }
   }
 
-  addSuggestion(suggestion) {
-    const interests = this.form.get('interests') as FormArray;
-    interests.push(this.formBuilder.control(suggestion));
+  selected(event: MatAutocompleteSelectedEvent): void {
+    const interest = event.option.viewValue;
+    if (!this.fruits.find(x => x.toLowerCase() === interest.toLowerCase())) {
+      this.fruits.push(event.option.viewValue);
+      this.fruitInput.nativeElement.value = '';
+      this.form.controls.fruitCtrl.setValue(this.fruits);
+    }
+  }
 
-    const index = this.suggestionList.indexOf(suggestion);
+  private _filter(value: string): string[] {
+    return this.allFruits.filter(fruit => fruit.indexOf(value) === 0);
+  }
+
+  removeSuggestion(suggestion: string) {
+    const index = this.allFruitsSuggested.indexOf(suggestion);
 
     if (index >= 0) {
-      this.suggestionList.splice(index, 1);
+      this.allFruitsSuggested.splice(index, 1);
     }
+
+    // Add our fruit
+    if ((suggestion || '').trim() && !this.fruits.find(x => x.toLowerCase() === suggestion.toLowerCase())) {
+      this.fruits.push(suggestion.trim());
+    }
+
+    this.form.controls.fruitCtrl.setValue(this.fruits);
+  }
+
+  submitForm() {
+    this.service.updateInterests(this.fruits);
+    this.service.isEditInterests = false;
   }
 }

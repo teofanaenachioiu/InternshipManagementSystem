@@ -1,14 +1,19 @@
-<mat-toolbar color="primary" (scroll)="scrollHandler($event)" style="position: absolute; z-index: 1">
-  <span class="nav-title">
-    <img class="imagine" src='assets/img/logo_white.png' alt='logo'>
-    interMap
-  </span>
-</mat-toolbar>
+<!--<mat-toolbar color="primary" (scroll)="scrollHandler($event)" style="position: absolute; z-index: 1">-->
+<!--  <span class="nav-title">-->
+<!--    <img class="imagine" src='assets/img/logo_white.png' alt='logo'>-->
+<!--    interMap-->
+<!--  </span>-->
+<!--</mat-toolbar>-->
+<app-company-menu></app-company-menu>
+
 <div class="main-div">
   <form [formGroup]="profileForm">
     Value: {{ profileForm.value | json }} <br>
     <div class="side-div">
-      <div class="form-div" >
+      <div class="form-div" *ngIf="!companyService.isEditProfile">
+        <app-profile-view></app-profile-view>
+      </div>
+      <div class="form-div" *ngIf="companyService.isEditProfile">
         <app-profile formControlName="profile"></app-profile>
       </div>
     </div>

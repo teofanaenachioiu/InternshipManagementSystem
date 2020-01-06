@@ -14,10 +14,12 @@ p {
   letter-spacing: 0.25px;
   font-weight: 300;
 }
+
 .col-xs-15 {
   width: 20%;
   float: left;
 }
+
 .section-heading p {
   color: #7a7a7a;
 }
@@ -57,6 +59,7 @@ p {
     float: left;
   }
 }
+
 #feed {
   background-color: #f4f4f4;
 }
@@ -64,7 +67,6 @@ p {
 #feed .section-heading {
   text-align: center;
 }
-
 
 
 #feed .tabs {
@@ -78,14 +80,15 @@ p {
   margin-bottom: 30px;
 }
 
-.my-items{
+.my-items {
   background-color: white;
   padding: 10px 10px 10px 40px;
   border-radius: 5px;
   box-shadow: 0px 0px 10px #cdcdcd;
   margin-right: 20px;
 }
-.info-post{
+
+.info-post {
   margin-left: -40px;
 }
 
@@ -93,10 +96,12 @@ p {
   margin-top: 0px;
   margin-bottom: 15px;
 }
+
 .tabgroup img {
   width: 100%;
 }
-.tabgroup .text-content  {
+
+.tabgroup .text-content {
   background-color: #fff;
   color: #fff;
   padding: 25px;
@@ -107,6 +112,7 @@ p {
   position: relative;
   box-shadow: 0px 0px 10px #cdcdcd;
 }
+
 .tabgroup .text-content h4 {
   font-size: 20px;
   font-weight: 700;
@@ -132,9 +138,9 @@ p {
 }
 
 .clearfix:after {
-  content:"";
-  display:table;
-  clear:both;
+  content: "";
+  display: table;
+  clear: both;
 }
 
 #feed {
@@ -151,4 +157,39 @@ p {
   font-size: 15px;
   font-weight: 300;
   text-transform: capitalize;
+}
+
+#feed .info-post li i {
+  color: #46bae2;
+}
+
+#feed .info-post2 li {
+  display: inline;
+  margin-right: 15px;
+}
+
+#feed .info-post2 li {
+  color: #000000;
+  font-size: 15px;
+  font-weight: 300;
+  text-transform: capitalize;
+}
+
+#feed .info-post2 li i {
+  color: #000000;
+}
+
+.feedback ul {
+  width: 525px;
+  background-color: #fff;
+  color: #fff;
+  text-align: left;
+  margin: 10px;
+  position: relative;
+  box-shadow: 0px 0px 10px #cdcdcd;
+}
+
+.feedback li {
+  color: #46bae2;
+  margin-right: 15px;
 }

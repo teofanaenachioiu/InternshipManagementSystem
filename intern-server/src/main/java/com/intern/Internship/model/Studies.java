@@ -7,6 +7,10 @@ import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import java.time.LocalDate;
 
 @Getter
@@ -14,8 +18,8 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Entity
 @ToString
-public class Studies implements HasID<String>{
-    private static final long serialVersionUID=1230476547116308556L;
+public class Studies implements HasID<String> {
+    private static final long serialVersionUID = 1230476547116308556L;
 
     @Id
     @GeneratedValue(generator = "system-uuid")
@@ -29,20 +33,23 @@ public class Studies implements HasID<String>{
     private String description;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn
+    @JsonIdentityInfo(generator = ObjectIdGenerators.StringIdGenerator.class, property = "@ID")
     private Candidate candidate;
 
     /**
      * Studies constructor
+     * 
      * @param nameOfInstitution: String
-     * @param profile: String
-     * @param startDate: LocalDate
-     * @param endDate: LocalDate
-     * @param description: String
-     * @param candidate: Candidate
+     * @param profile:           String
+     * @param startDate:         LocalDate
+     * @param endDate:           LocalDate
+     * @param description:       String
+     * @param candidate:         Candidate
      */
-    public Studies(String nameOfInstitution, String profile, LocalDate startDate, LocalDate endDate, String description, Candidate candidate) {
-        this.nameOfInstitution=nameOfInstitution;
-        this.profile=profile;
+    public Studies(String nameOfInstitution, String profile, LocalDate startDate, LocalDate endDate, String description,
+            Candidate candidate) {
+        this.nameOfInstitution = nameOfInstitution;
+        this.profile = profile;
         this.startDate = startDate;
         this.endDate = endDate;
         this.description = description;

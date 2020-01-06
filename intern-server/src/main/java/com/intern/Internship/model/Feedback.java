@@ -13,12 +13,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
 @ToString
-public class Feedback implements HasID<String>{
+public class Feedback implements HasID<String> {
     private static final long serialVersionUID = -3534054198190203549L;
 
     @Id
@@ -32,19 +35,22 @@ public class Feedback implements HasID<String>{
 
     @ManyToOne
     @JoinColumn
+    @JsonIdentityInfo(generator = ObjectIdGenerators.StringIdGenerator.class, property = "@ID")
+    @ToString.Exclude
     private Internship internship;
 
     /**
      * Feedback constructor
+     * 
      * @param description: String
-     * @param anonymous: Boolean
-     * @param rating: int
-     * @param internship: Internship
+     * @param anonymous:   Boolean
+     * @param rating:      int
+     * @param internship:  Internship
      */
-    public Feedback(String description,Boolean anonymous,int rating,Internship internship){
-        this.description=description;
-        this.anonymous=anonymous;
-        this.rating=rating;
-        this.internship = internship;        
+    public Feedback(String description, Boolean anonymous, int rating, Internship internship) {
+        this.description = description;
+        this.anonymous = anonymous;
+        this.rating = rating;
+        this.internship = internship;
     }
 }

@@ -10,13 +10,7 @@ import lombok.ToString;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 import java.time.LocalDate;
 import java.util.Set;
@@ -41,6 +35,7 @@ public class Internship implements HasID<String> {
     private LocalDate endTime;
     private Boolean paid;
     private int nrMonths;
+    @Column(length = 5000)
     private String description;
     private int nrApplicants;
     private InternshipStatus status;
@@ -48,29 +43,32 @@ public class Internship implements HasID<String> {
     private LocalDate addedDate;
     @ManyToOne
     @JoinColumn
+    @ToString.Exclude
     @JsonIdentityInfo(generator = ObjectIdGenerators.StringIdGenerator.class, property = "@ID")
     private Company company;
     @ManyToOne
     @JoinColumn
     private AreaOfInterest areaOfInterest;
+    @ToString.Exclude
     @OneToMany(mappedBy = "internship", cascade = CascadeType.ALL)
     private Set<Feedback> feedbacks;
 
     /**
      * Internship constructor
-     * @param name: String
-     * @param startTime: LocalDate
-     * @param endTime: LocalDate
-     * @param paid: Boolean
-     * @param nrMonths: int
-     * @param description: String
-     * @param nrApplicants: int
-     * @param status: InternshipStatus, can be Open or Closed
-     * @param location: String
-     * @param addedDate: LocalDate
-     * @param company: Company
+     * 
+     * @param name:           String
+     * @param startTime:      LocalDate
+     * @param endTime:        LocalDate
+     * @param paid:           Boolean
+     * @param nrMonths:       int
+     * @param description:    String
+     * @param nrApplicants:   int
+     * @param status:         InternshipStatus, can be Open or Closed
+     * @param location:       String
+     * @param addedDate:      LocalDate
+     * @param company:        Company
      * @param areaOfInterest: AreaOfInterest
-     * @param feedbacks: Feedback...
+     * @param feedbacks:      Feedback...
      */
     public Internship(String name, LocalDate startTime, LocalDate endTime, Boolean paid, int nrMonths,
             String description, int nrApplicants, InternshipStatus status, String location, LocalDate addedDate,

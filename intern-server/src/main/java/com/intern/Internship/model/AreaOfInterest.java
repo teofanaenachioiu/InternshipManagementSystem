@@ -26,10 +26,7 @@ public class AreaOfInterest implements HasID<String> {
 
     private String name;
 
-    private String tagType;
-
-    public AreaOfInterest(String name, String tagType) {
+    public AreaOfInterest(String name) {
         this.name = name;
-        this.tagType = tagType;
     }
 }

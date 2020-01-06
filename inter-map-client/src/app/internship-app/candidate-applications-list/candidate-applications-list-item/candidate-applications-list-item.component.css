@@ -1,0 +1,46 @@
+
+.right {
+  float: right;
+
+}
+.left {
+  float: left;
+}
+
+.main-div {
+  margin: 3vw;
+}
+
+.header-image {
+  background-size: cover;
+  border: 1px solid blue;
+}
+
+.avatar-img {
+  width: 100%;
+}
+
+.paid-span {
+  background-color: greenyellow;
+  padding-left: 1vw;
+  padding-right: 1vw;
+}
+
+.subtitle-span {
+  padding-right: 1vw;
+}
+
+.container {
+  line-height: 3vw;
+  height: 3vw;
+  overflow: hidden;
+}
+
+.show {
+  overflow: visible;
+  height: auto;
+}
+
+.show-more {
+  float: left;
+}

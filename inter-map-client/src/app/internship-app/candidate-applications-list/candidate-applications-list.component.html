@@ -1,0 +1,18 @@
+<app-candidate-menu></app-candidate-menu>
+
+<div class="container-applications">
+  <div class="left">
+    <app-candidate-applications-list-item
+      *ngFor="let application of applications"
+      [application]="application"
+      (applicationSelected)="onInternshipSelected(application)"
+    >
+    </app-candidate-applications-list-item>
+  </div>
+  <div class="right">
+    <p> Clasificare </p>
+  </div>
+</div>
+
+
+

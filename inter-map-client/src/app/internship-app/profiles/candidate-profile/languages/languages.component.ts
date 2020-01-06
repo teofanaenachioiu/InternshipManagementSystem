@@ -1,6 +1,10 @@
 import {Component, forwardRef, OnDestroy, OnInit} from '@angular/core';
-import {ControlValueAccessor, FormArray, FormBuilder, FormControl, FormGroup, NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {ControlValueAccessor, FormBuilder, FormControl, FormGroup, NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {Subscription} from 'rxjs';
+import {MatAutocompleteSelectedEvent, MatChipInputEvent} from '@angular/material';
+import {startWith} from 'rxjs/operators';
+import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import {CandidateProfileService} from '../candidate-profile.service';
 
 @Component({
   selector: 'app-languages',
@@ -19,13 +23,16 @@ import {Subscription} from 'rxjs';
     }
   ]
 })
-export class LanguagesComponent implements ControlValueAccessor, OnDestroy {
+export class LanguagesComponent implements ControlValueAccessor, OnDestroy, OnInit {
 
   form: FormGroup;
   languageList = ['English', 'France'];
   subscriptions: Subscription[] = [];
+  separatorKeysCodes: number[] = [ENTER, COMMA];
+  addOnBlur = true;
 
-  newLanguage = '';
+  selectable = true;
+  removable = true;
 
   get value(): LanguagesComponent {
     return this.form.value;
@@ -37,9 +44,8 @@ export class LanguagesComponent implements ControlValueAccessor, OnDestroy {
     this.onTouched();
   }
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private service: CandidateProfileService) {
     this.form = this.formBuilder.group({
-      languages: [''],
       newLanguage: ''
     });
 
@@ -52,8 +58,10 @@ export class LanguagesComponent implements ControlValueAccessor, OnDestroy {
     );
   }
 
-  onChange: any = () => {};
-  onTouched: any = () => {};
+  onChange: any = () => {
+  };
+  onTouched: any = () => {
+  };
 
   writeValue(obj: any): void {
     if (obj) {
@@ -64,26 +72,59 @@ export class LanguagesComponent implements ControlValueAccessor, OnDestroy {
       this.form.reset();
     }
   }
+
   registerOnChange(fn: any): void {
     this.onChange = fn;
   }
+
   registerOnTouched(fn: any): void {
     this.onTouched = fn;
   }
 
   // communicate the inner form validation to the parent form
   validate(_: FormControl) {
-    return this.form.valid  ? null : { profile: { valid: false, }, };
+    return this.form.valid ? null : {profile: {valid: false,},};
   }
 
   ngOnDestroy() {
     this.subscriptions.forEach(s => s.unsubscribe());
   }
 
-  addIcon() {
-    const newLanguage = this.form.get('newLanguage').value;
-    this.languageList.push(newLanguage);
-    console.log(this.form.get('languages').value);
+  remove(language: string): void {
+    const index = this.languageList.indexOf(language);
+
+    if (index >= 0) {
+      this.languageList.splice(index, 1);
+    }
   }
 
+  ngOnInit(): void {
+  }
+
+  add(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+
+    if ((value || '').trim() && !this.languageList.find(x => x.toLowerCase() === value.toLowerCase())) {
+      this.languageList.push(value.trim());
+    }
+    this.form.controls.newLanguage.setValue(null);
+
+    if (input) {
+      input.value = '';
+    }
+  }
+
+  addLanguage() {
+    const value = this.form.controls.newLanguage.value;
+    if ((value || '').trim() && !this.languageList.find(x => x.toLowerCase() === value.toLowerCase())) {
+      this.languageList.push(value.trim());
+    }
+    this.form.controls.newLanguage.setValue(null);
+  }
+
+  submitForm() {
+    this.service.updateCandidate();
+    this.service.isEditLanguage = false;
+  }
 }

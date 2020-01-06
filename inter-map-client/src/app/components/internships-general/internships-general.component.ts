@@ -14,13 +14,12 @@ export class InternshipsGeneralComponent implements OnInit {
   public show = true;
 
   public slides = [
-    'assets/img/feed-post-1.jpg',
-    'assets/img/feed-post-2.jpg',
-    'assets/img/feed-post-3.jpg',
-    'assets/img/feed-post-4.jpg',
-    'assets/img/feed-post-5.jpg',
+    'assets/img/Internship1.png',
+    'assets/img/Internship2.jpg',
+    'assets/img/Internship3.png',
+    'assets/img/Internship4.jpg',
+    'assets/img/Internship5.jpg',
   ];
-
   private pagination: SwiperPaginationInterface = {
     el: '.swiper-pagination',
     clickable: true,

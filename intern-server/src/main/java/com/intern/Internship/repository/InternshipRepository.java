@@ -31,7 +31,13 @@ public interface InternshipRepository extends JpaRepository<Internship, String>,
     }
 
     @Query("select i from Internship i,Company c WHERE i.company.ID like c.ID and c.name=?1 ")
-    Page<Internship> findAllByCompanyName(String companyName, Pageable page);
+    Page<Internship> findAllByCompanyNamePage(String companyName, Pageable page);
+
+    @Query("select i from Internship i,Company c WHERE i.company.ID like c.ID and c.name=?1 ")
+    List<Internship> findAllByCompanyName(String companyName);
+
+    @Query("select i from Internship i,Company c WHERE i.company.ID like c.ID and c.ID=?1 ")
+    List<Internship> findAllByCompanyUsername(String companyUsername);
 
     @Query("select i from Internship i inner join Application a on i.ID=a.internship.ID "
             + " inner join Candidate c on c.ID=a.candidate.ID where c.ID=?1")
