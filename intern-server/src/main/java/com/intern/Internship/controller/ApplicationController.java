@@ -4,6 +4,7 @@ import com.intern.Internship.model.Application;
 import com.intern.Internship.model.Candidate;
 import com.intern.Internship.model.dto.ApplicationDTO;
 import com.intern.Internship.model.dto.ApplicationRequest;
+import com.intern.Internship.model.dto.InternshipCandidateDTO;
 import com.intern.Internship.model.enums.ApplicationStatus;
 import com.intern.Internship.service.ApplicationService;
 import com.intern.Internship.service.CandidateService;
@@ -55,14 +56,21 @@ public class ApplicationController {
             return ResponseEntity.ok().body(internships);
         } catch (Exception e) {
             e.printStackTrace();
-            return ResponseEntity.badRequest().body(new ArrayList<ApplicationDTO>());
+            return ResponseEntity.badRequest().body(new ArrayList<>());
         }
     }
 
-    @RequestMapping(value = "/CandidateInternship", method = RequestMethod.GET)
+    @GetMapping("/CandidateInternship")
     public ResponseEntity<Application> findApplicationByCandidateInternship(@RequestParam("candidate_email") String candidateID, @RequestParam("internship_id") String internshipID) {
         Application application = applicationService.findApplicationByCandidateInternship(candidateID, internshipID);
         if (application != null) return ResponseEntity.ok().body(application);
         else return ResponseEntity.badRequest().body(new Application());
+    }
+
+    @GetMapping("/InternshipCandidates")
+    public ResponseEntity<List<InternshipCandidateDTO>> findAllCandidatesInternship(@RequestParam("internship_id") String internship_id) {
+        List<InternshipCandidateDTO> internshipCandidateDTOList = applicationService.findAllCandidatesInternship(internship_id);
+        if (internshipCandidateDTOList.size() != 0) return ResponseEntity.ok().body(internshipCandidateDTOList);
+        else return ResponseEntity.badRequest().body(new ArrayList<>());
     }
 }

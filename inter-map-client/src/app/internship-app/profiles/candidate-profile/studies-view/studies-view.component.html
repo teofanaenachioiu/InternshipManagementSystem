@@ -1,4 +1,16 @@
 <p>studies-view works!</p>
+
+
+<ul>
+  <li *ngFor="let study of studies">
+    <p>Institution name: {{study.nameOfInstitution}}</p>
+    <p>Profile: {{study.profile}}</p>
+    <p>Start date: {{formatDate(study.startDate)}}</p>
+    <p>End date: {{formatDate(study.endDate)}}</p>
+    <p>Description: {{study.description}}</p>
+  </li>
+</ul>
+
 <button mat-button style="float: right" (click)="makeEditable()">
   <mat-icon>edit</mat-icon>
 </button>

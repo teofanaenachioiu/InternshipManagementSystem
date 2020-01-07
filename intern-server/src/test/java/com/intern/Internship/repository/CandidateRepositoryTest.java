@@ -43,7 +43,6 @@ class CandidateRepositoryTest {
                 "LinkedIn goes here",
                 "Github goes here",
                 "Description goes here",
-                "Languages go here",
                 new HashSet<>(),
                 new HashSet<>()
         );

@@ -44,6 +44,7 @@ export class CandidateProfileService {
     this.getCandidateByEmail(this.user.username).subscribe(
       (res) => {
         this.candidate = res;
+        this.candidate.languages = ['English', 'France'];
         console.log(res);
         this.isLoading = false;
       },
@@ -57,7 +58,10 @@ export class CandidateProfileService {
   }
 
   updateCandidate() {
-    // this.http.put(candidateUrl, this.candidate, this.authHttpOptions());
     console.log(this.candidate);
+    this.http.put<Candidat>(candidateUrl, this.candidate, this.authHttpOptions()).subscribe(res => {
+      },
+      error => console.log(error)
+    );
   }
 }

@@ -11,7 +11,7 @@
       </mat-chip>
       <input
         placeholder="Interests..."
-        #fruitInput
+        #interestInput
         formControlName="fruitCtrl"
         [matAutocomplete]="auto"
         [matChipInputFor]="chipList"
@@ -24,8 +24,8 @@
         {{fruit}}
       </mat-option>
     </mat-autocomplete>
+    <mat-icon matSuffix (click)="addInterest()" style="cursor: pointer">add</mat-icon>
   </mat-form-field>
-
   <br>
 
   <p *ngIf="allFruitsSuggested.length>0"> Suggestions:</p>

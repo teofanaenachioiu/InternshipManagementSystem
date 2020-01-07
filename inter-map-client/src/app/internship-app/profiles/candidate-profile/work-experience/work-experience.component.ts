@@ -23,8 +23,8 @@ import {Experience} from '../../../../core/Experience';
 })
 export class WorkExperienceComponent implements ControlValueAccessor, OnDestroy, OnInit {
   private experiences: Experience[];
-  form: FormGroup;
-  subscriptions: Subscription[] = [];
+  private form: FormGroup;
+  private subscriptions: Subscription[] = [];
 
   get value(): WorkExperienceComponent {
     return this.form.value;
@@ -37,8 +37,6 @@ export class WorkExperienceComponent implements ControlValueAccessor, OnDestroy,
   }
 
   constructor(private formBuilder: FormBuilder, private service: CandidateProfileService) {
-
-
   }
 
   get workExperienceForms() {
@@ -46,17 +44,19 @@ export class WorkExperienceComponent implements ControlValueAccessor, OnDestroy,
   }
 
   addWork() {
+    this.experiences.push(new Experience());
     const study = this.formBuilder.group({
-      where: '',
-      fromDate: new Date(),
-      toDate: new Date(),
-      job: ''
+      companyName: '',
+      startDate: new Date(),
+      endDate: new Date(),
+      jobName: ''
     });
     this.workExperienceForms.push(study);
   }
 
   removeWork(i) {
     if (i >= 0) {
+      this.experiences.splice(i, 1);
       this.workExperienceForms.removeAt(i);
     }
   }
@@ -93,8 +93,28 @@ export class WorkExperienceComponent implements ControlValueAccessor, OnDestroy,
     this.subscriptions.forEach(s => s.unsubscribe());
   }
 
+  changeExperience(): Experience[] {
+    const newExp = [];
+    for (let i = 0; i < this.workExperienceForms.length; i++) {
+      const exp = this.workExperienceForms.controls[i].value;
+      Object.keys(exp).forEach(key => {
+        if (exp[key] == null) {
+          exp[key] = this.experiences[i][key];
+        }
+      });
+      newExp.push(exp);
+    }
+    return newExp;
+  }
+
   submitForm() {
+    if (!this.workExperienceForms.valid) {
+      return;
+    }
+
     this.service.isEditWorkExperience = false;
+    this.service.candidate.experiences = this.changeExperience();
+    this.service.updateCandidate();
   }
 
   ngOnInit(): void {
@@ -115,12 +135,19 @@ export class WorkExperienceComponent implements ControlValueAccessor, OnDestroy,
     // tslint:disable-next-line:forin
     for (const i in this.experiences) {
       const study = this.formBuilder.group({
-        where: '',
-        fromDate: new Date(),
-        toDate: new Date(),
-        job: ''
+        companyName: '',
+        startDate: new Date(),
+        endDate: new Date(),
+        jobName: ''
       });
       this.workExperienceForms.push(study);
     }
   }
+
+  // checkDates(group: FormGroup) {
+  //   if (group.controls.endDate.value < group.controls.startDate.value) {
+  //     return {notValid: true};
+  //   }
+  //   return null;
+  // }
 }
