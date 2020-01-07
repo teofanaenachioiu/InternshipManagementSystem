@@ -45,7 +45,7 @@ export class PersonalDetailsComponent implements ControlValueAccessor, OnDestroy
     this.onTouched();
   }
 
-  constructor(private formBuilder: FormBuilder, private service: CandidateProfileService, private sanitizer: DomSanitizer) {
+  constructor(private formBuilder: FormBuilder, private service: CandidateProfileService) {
 
   }
 

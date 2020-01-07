@@ -10,7 +10,7 @@ import {Company} from '../../../../core/Company';
 export class ProfileViewComponent implements OnInit {
 
   private isEditMode: boolean;
-  previewUrl: any = null;
+  previewUrl: any = 'assets/img/no-photo.png';
   company: Company;
 
   constructor(private service: CompanyProfileService) { }

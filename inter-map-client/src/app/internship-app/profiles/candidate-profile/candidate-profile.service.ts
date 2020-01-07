@@ -44,12 +44,13 @@ export class CandidateProfileService {
     this.getCandidateByEmail(this.user.username).subscribe(
       (res) => {
         this.candidate = res;
+
+        // TO DELETE THIS
         this.candidate.languages = ['English', 'France'];
-        console.log(res);
         this.isLoading = false;
       },
       (err) => console.log(err),
-      () => console.log('done!')
+      () => console.log('done with loading candidate profile!')
     );
   }
 

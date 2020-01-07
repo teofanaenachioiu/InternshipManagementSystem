@@ -35,8 +35,8 @@ export class InterestsComponent implements ControlValueAccessor, OnDestroy, OnIn
   separatorKeysCodes: number[] = [ENTER, COMMA];
   filteredFruits: Observable<string[]>;
   fruits: string[];
-  allFruits: string[];
-  allFruitsSuggested: string[];
+  allInterests: string[];
+  allInterestsSuggested: string[];
 
   @ViewChild('interestInput', {static: false}) fruitInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
@@ -96,13 +96,13 @@ export class InterestsComponent implements ControlValueAccessor, OnDestroy, OnIn
   }
 
   ngOnInit(): void {
-    this.allFruits = this.service.interests;
+    this.allInterests = this.service.interests;
     this.fruits = this.service.interestsUser;
-    this.allFruitsSuggested = this.service.interests.slice(0, 3);
+    this.allInterestsSuggested = this.service.interests.slice(0, 3);
 
     this.filteredFruits = this.form.controls.fruitCtrl.valueChanges.pipe(
       startWith(null),
-      map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));
+      map((fruit: string | null) => fruit ? this._filter(fruit) : this.allInterests.slice()));
   }
 
   add(event: MatChipInputEvent): void {
@@ -146,15 +146,15 @@ export class InterestsComponent implements ControlValueAccessor, OnDestroy, OnIn
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 
-    return this.allFruits.filter(keyWord => keyWord.toLowerCase().indexOf(filterValue) === 0);
+    return this.allInterests.filter(keyWord => keyWord.toLowerCase().indexOf(filterValue) === 0);
 
   }
 
   removeSuggestion(suggestion: string) {
-    const index = this.allFruitsSuggested.indexOf(suggestion);
+    const index = this.allInterestsSuggested.indexOf(suggestion);
 
     if (index >= 0) {
-      this.allFruitsSuggested.splice(index, 1);
+      this.allInterestsSuggested.splice(index, 1);
     }
 
     // Add our fruit
