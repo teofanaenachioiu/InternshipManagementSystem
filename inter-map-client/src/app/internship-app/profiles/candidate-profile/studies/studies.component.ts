@@ -55,12 +55,12 @@ export class StudiesComponent implements ControlValueAccessor, OnDestroy, OnInit
 
   createStudyControl(): AbstractControl{
     return this.formBuilder.group({
-      nameOfInstitution: new FormControl({value: ''}, Validators.required),
-      profile: new FormControl({value: ''}, Validators.required),
-      startDate: new FormControl({value: new Date()}, Validators.required),
-      endDate: new FormControl({value: new Date()}, Validators.required),
+      nameOfInstitution: new FormControl({value: ''}, ),
+      profile: new FormControl({value: ''}, ),
+      startDate: new FormControl({value: new Date()}, ),
+      endDate: new FormControl({value: new Date()}, ),
       description: new FormControl({value: ''}),
-    }, {validator: this.checkDates});
+    });
   }
 
   addStudy() {
@@ -158,9 +158,21 @@ export class StudiesComponent implements ControlValueAccessor, OnDestroy, OnInit
     }
   }
 
-  checkDates(group: FormGroup) {
-    if (group.controls.endDate.value < group.controls.startDate.value) {
-      return {notValid: true};
+  // checkDates(group: FormGroup) {
+  //   if (group.controls.endDate.value < group.controls.startDate.value) {
+  //     return {notValid: true};
+  //   }
+  //   return null;
+  // }
+
+  /* Handle form errors in Angular 8 */
+  public errorHandling = (control: string, error: string, msg: string) => {
+    return this.form.get(control).hasError(error) ? msg : '';
+  };
+
+  checkInputs(control: FormControl) {
+    if (control.value === '') {
+      return {emptyInput: true};
     }
     return null;
   }

@@ -17,6 +17,7 @@
         <label>
           <input matInput placeholder="Profile" formControlName="profile"
                  value="{{studies[i].profile}}">
+
         </label>
       </mat-form-field>
 
@@ -26,6 +27,7 @@
         <label>
           <input matInput [matDatepicker]="fromDate" placeholder="Start date" formControlName="startDate"
                  value="{{studies[i].startDate}}">
+
         </label>
         <mat-datepicker-toggle [for]="fromDate" matSuffix></mat-datepicker-toggle>
         <mat-datepicker #fromDate></mat-datepicker>
@@ -35,6 +37,7 @@
         <label>
           <input matInput [matDatepicker]="toDate" placeholder="End date" formControlName="endDate"
                  value="{{studies[i].endDate}}">
+
         </label>
         <mat-datepicker-toggle [for]="toDate" matSuffix></mat-datepicker-toggle>
         <mat-datepicker #toDate ></mat-datepicker>

@@ -30,7 +30,7 @@ export class InterestsComponent implements ControlValueAccessor, OnDestroy, OnIn
   visible = true;
   selectable = true;
   removable = true;
-
+  addOnBlur = true;
 
   separatorKeysCodes: number[] = [ENTER, COMMA];
   filteredFruits: Observable<string[]>;
@@ -38,7 +38,7 @@ export class InterestsComponent implements ControlValueAccessor, OnDestroy, OnIn
   allFruits: string[];
   allFruitsSuggested: string[];
 
-  @ViewChild('fruitInput', {static: false}) fruitInput: ElementRef<HTMLInputElement>;
+  @ViewChild('interestInput', {static: false}) fruitInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
 
   get value(): InterestsComponent {
@@ -62,8 +62,6 @@ export class InterestsComponent implements ControlValueAccessor, OnDestroy, OnIn
         this.onTouched();
       })
     );
-
-
   }
 
   onChange: any = () => {
@@ -105,7 +103,6 @@ export class InterestsComponent implements ControlValueAccessor, OnDestroy, OnIn
     this.filteredFruits = this.form.controls.fruitCtrl.valueChanges.pipe(
       startWith(null),
       map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));
-
   }
 
   add(event: MatChipInputEvent): void {
@@ -140,14 +137,17 @@ export class InterestsComponent implements ControlValueAccessor, OnDestroy, OnIn
   selected(event: MatAutocompleteSelectedEvent): void {
     const interest = event.option.viewValue;
     if (!this.fruits.find(x => x.toLowerCase() === interest.toLowerCase())) {
-      this.fruits.push(event.option.viewValue);
-      this.fruitInput.nativeElement.value = '';
-      this.form.controls.fruitCtrl.setValue(this.fruits);
+      this.fruits.push(interest);
     }
+    this.fruitInput.nativeElement.value = '';
+    this.form.controls.fruitCtrl.setValue(null);
   }
 
   private _filter(value: string): string[] {
-    return this.allFruits.filter(fruit => fruit.indexOf(value) === 0);
+    const filterValue = value.toLowerCase();
+
+    return this.allFruits.filter(keyWord => keyWord.toLowerCase().indexOf(filterValue) === 0);
+
   }
 
   removeSuggestion(suggestion: string) {
@@ -162,11 +162,19 @@ export class InterestsComponent implements ControlValueAccessor, OnDestroy, OnIn
       this.fruits.push(suggestion.trim());
     }
 
-    this.form.controls.fruitCtrl.setValue(this.fruits);
+    this.form.controls.fruitCtrl.setValue(null);
   }
 
   submitForm() {
     this.service.updateInterests(this.fruits);
     this.service.isEditInterests = false;
+  }
+
+  addInterest() {
+    const value = this.form.controls.fruitCtrl.value;
+    if ((value || '').trim() && !this.fruits.find(x => x.toLowerCase() === value.toLowerCase())) {
+      this.fruits.push(value.trim());
+    }
+    this.form.controls.fruitCtrl.setValue(null);
   }
 }
