@@ -71,6 +71,7 @@ export class InterestsService {
   }
 
   updateInterests(interests: string[]) {
+    // TO DO UPDATE
     this.interestsUser = interests;
     console.log(interests);
   }

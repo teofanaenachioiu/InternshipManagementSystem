@@ -94,15 +94,12 @@ export class WorkExperienceComponent implements ControlValueAccessor, OnDestroy,
   }
 
   changeExperience(): Experience[] {
-    // console.log(this.experiences);
     const newExp = [];
     for (let i = 0; i < this.workExperienceForms.length; i++) {
       const exp = this.workExperienceForms.controls[i].value;
-      // console.log(exp);
       Object.keys(exp).forEach(key => {
         if (exp[key] == null) {
           exp[key] = this.experiences[i][key];
-          // console.log(`Exp[key] = ${this.experiences[i]}`);
         }
       });
       newExp.push(exp);
@@ -111,6 +108,10 @@ export class WorkExperienceComponent implements ControlValueAccessor, OnDestroy,
   }
 
   submitForm() {
+    if (!this.workExperienceForms.valid) {
+      return;
+    }
+
     this.service.isEditWorkExperience = false;
     this.service.candidate.experiences = this.changeExperience();
     this.service.updateCandidate();
@@ -142,4 +143,11 @@ export class WorkExperienceComponent implements ControlValueAccessor, OnDestroy,
       this.workExperienceForms.push(study);
     }
   }
+
+  // checkDates(group: FormGroup) {
+  //   if (group.controls.endDate.value < group.controls.startDate.value) {
+  //     return {notValid: true};
+  //   }
+  //   return null;
+  // }
 }

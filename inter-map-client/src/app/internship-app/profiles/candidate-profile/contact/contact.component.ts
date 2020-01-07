@@ -39,11 +39,11 @@ export class ContactComponent implements ControlValueAccessor, OnDestroy, OnInit
 
   constructor(private formBuilder: FormBuilder, private service: CandidateProfileService) {
     this.form = this.formBuilder.group({
-      address: new FormControl('', Validators.required),
-      phone: new FormControl('', Validators.required),
-      email: new FormControl({value: '', disabled: true}, Validators.required),
-      linkedIn: new FormControl(''),
-      github: new FormControl(''),
+      address: new FormControl('', ),
+      phone: new FormControl('', {validators: this.checkInputs}),
+      email: new FormControl({value: '', disabled: true}, {validators: this.checkInputs}),
+      linkedIn: new FormControl('', ),
+      github: new FormControl('', {validators: this.checkInputs}),
     });
 
     this.subscriptions.push(
@@ -92,6 +92,10 @@ export class ContactComponent implements ControlValueAccessor, OnDestroy, OnInit
   }
 
   submitForm() {
+    if (this.form.invalid) {
+      return;
+    }
+
     let doUpdate = false;
 
     console.log(this.form.value);
@@ -120,5 +124,17 @@ export class ContactComponent implements ControlValueAccessor, OnDestroy, OnInit
       this.service.updateCandidate();
     }
     this.service.isEditContact = false;
+  }
+
+  /* Handle form errors in Angular 8 */
+  public errorHandling = (control: string, error: string, msg: string) => {
+    return this.form.get(control).hasError(error) ? msg : '';
+  };
+
+  checkInputs(control: FormControl) {
+    if (control.value === '') {
+      return {emptyInput: true};
+    }
+    return null;
   }
 }

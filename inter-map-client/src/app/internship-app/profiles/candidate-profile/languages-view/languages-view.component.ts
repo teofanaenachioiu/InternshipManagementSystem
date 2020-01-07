@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CandidateProfileService} from '../candidate-profile.service';
 
 @Component({
@@ -7,13 +7,16 @@ import {CandidateProfileService} from '../candidate-profile.service';
   styleUrls: ['./languages-view.component.css']
 })
 export class LanguagesViewComponent implements OnInit {
+  private languages: string[];
 
-  constructor(private service: CandidateProfileService) { }
-
-  ngOnInit() {
+  constructor(private service: CandidateProfileService) {
   }
 
-  makeEditable(){
+  ngOnInit() {
+    this.languages = this.service.candidate.languages;
+  }
+
+  makeEditable() {
     this.service.isEditLanguage = true;
   }
 
