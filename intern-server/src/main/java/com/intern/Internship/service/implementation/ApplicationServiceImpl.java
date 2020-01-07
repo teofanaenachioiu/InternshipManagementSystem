@@ -4,6 +4,7 @@ import com.intern.Internship.model.Application;
 import com.intern.Internship.model.Feedback;
 import com.intern.Internship.model.dto.ApplicationDTO;
 import com.intern.Internship.model.dto.InternshipCandidateDTO;
+import com.intern.Internship.model.enums.ApplicationStatus;
 import com.intern.Internship.repository.ApplicationRepository;
 import com.intern.Internship.repository.FeedbackRepository;
 import com.intern.Internship.service.ApplicationService;
@@ -29,6 +30,17 @@ public class ApplicationServiceImpl implements ApplicationService {
         if (application == null)
             throw new IllegalArgumentException();
         return applicationRepository.save(application);
+    }
+
+    @Override
+    public Application update(String candidateID, String internshipID, ApplicationStatus applicationStatus) {
+        for (Application a : applicationRepository.findAll()) {
+            if (a.getCandidate().getID().equals(candidateID) && a.getInternship().getID().equals(internshipID)) {
+                a.setApplicationStatus(applicationStatus);
+                return a;
+            }
+        }
+        throw new IllegalArgumentException();
     }
 
     @Override

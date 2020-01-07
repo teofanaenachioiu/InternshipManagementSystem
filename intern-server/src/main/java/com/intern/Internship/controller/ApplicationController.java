@@ -49,6 +49,18 @@ public class ApplicationController {
             return ResponseEntity.badRequest().body(new ApplicationDTO());
         }
     }
+
+    @PutMapping()
+    public ResponseEntity<Application> update(@RequestParam("candidate_email") String candidateID, @RequestParam("internship_id") String internshipID, @RequestParam("status") ApplicationStatus applicationStatus) {
+        try {
+            Application application = applicationService.update(candidateID, internshipID, applicationStatus);
+            return ResponseEntity.ok().body(application);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(new Application());
+        }
+    }
+
     @GetMapping
     public ResponseEntity<List<ApplicationDTO>> findApplicationByCandidate(@RequestParam("username") String username) {
         try {

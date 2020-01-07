@@ -37,4 +37,14 @@ public class AreaOfInterestController {
             return ResponseEntity.badRequest().body(new ArrayList<>());
         }
     }
+    @PutMapping
+    public ResponseEntity update(@RequestParam("email") String email,@RequestBody List<String> areaOfInterests) {
+        try {
+            areaOfInterestService.update(email,areaOfInterests);
+            return  ResponseEntity.ok().build();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().build();
+        }
+    }
 }

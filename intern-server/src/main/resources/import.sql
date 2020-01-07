@@ -60,3 +60,6 @@ insert into feedback values('10',true,'could be better',3,'candidate2@test.com',
 
 insert into studies(id,start_date,end_date,name_of_institution,profile,candidate_email,description) values('id1','2009-10-01','2012-06-30','UBB','Computer Science','candidate2@test.com','I have learnt a lot of things.')
 insert into studies(id,start_date,end_date,name_of_institution,profile,candidate_email,description) values('id2','2008-10-01','2011-06-30','UTCN','Computer Science','candidate@test.com','It was a wonderful experience.')
+
+insert into candidate_area_of_interest(id,candidate_email,area_of_interest_id) values('id1','candidate2@test.com','id1');
+insert into candidate_area_of_interest(id,candidate_email,area_of_interest_id) values('id2','candidate2@test.com','id2');
