@@ -4,25 +4,25 @@
 <div [formGroup]="form">
   <div formArrayName="workExperience">
 
-    <div *ngFor="let work of experiences; let i=index" [formGroupName]="i">
+    <div *ngFor="let work of workExperienceForms.controls; let i=index" [formGroupName]="i">
 
       <mat-form-field class="fields">
         <label>
-          <input matInput placeholder="Where" formControlName="where" value = "{{work.companyName}}">
+          <input matInput placeholder="Where" formControlName="companyName" value = "{{experiences[i].companyName}}">
         </label>
       </mat-form-field>
 
       <mat-form-field class="fields">
         <label>
-          <input matInput placeholder="Job" formControlName="job" value = "{{work.jobName}}">
+          <input matInput placeholder="Job" formControlName="jobName" value = "{{experiences[i].jobName}}">
         </label>
       </mat-form-field>
       <br>
 
       <mat-form-field class="fields">
         <label>
-          <input matInput [matDatepicker]="fromDateWork" placeholder="Choose a date" formControlName="fromDate"
-                 value = "{{work.startDate}}">
+          <input matInput [matDatepicker]="fromDateWork" placeholder="Choose a date" formControlName="startDate"
+                 value = "{{experiences[i].startDate}}">
         </label>
         <mat-datepicker-toggle [for]="fromDateWork" matSuffix></mat-datepicker-toggle>
         <mat-datepicker #fromDateWork></mat-datepicker>
@@ -30,8 +30,8 @@
 
       <mat-form-field class="fields">
         <label>
-          <input matInput [matDatepicker]="toDateWork" placeholder="Choose a date" formControlName="toDate"
-                 value = "{{work.endDate}}">
+          <input matInput [matDatepicker]="toDateWork" placeholder="Choose a date" formControlName="endDate"
+                 value = "{{experiences[i].endDate}}">
         </label>
         <mat-datepicker-toggle [for]="toDateWork" matSuffix></mat-datepicker-toggle>
         <mat-datepicker #toDateWork></mat-datepicker>

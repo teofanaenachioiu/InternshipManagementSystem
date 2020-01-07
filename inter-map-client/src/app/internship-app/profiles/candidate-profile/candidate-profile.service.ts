@@ -57,7 +57,10 @@ export class CandidateProfileService {
   }
 
   updateCandidate() {
-    // this.http.put(candidateUrl, this.candidate, this.authHttpOptions());
     console.log(this.candidate);
+    this.http.put<Candidat>(candidateUrl, this.candidate, this.authHttpOptions()).subscribe(res => {
+      },
+      error => console.log(error)
+    );
   }
 }

@@ -28,11 +28,12 @@ export class PersonalDetailsComponent implements ControlValueAccessor, OnDestroy
   private form: FormGroup;
   private subscriptions: Subscription[] = [];
   private candidate: Candidat;
+
   private fileData: File = null;
   private previewUrl: any = 'assets/img/no-photo.png';
-
-  startDate: Date = null;
-  gender: any = '0';
+  private startDate: Date = null;
+  private maxDate: Date = new Date();
+  private gender: any = '0';
 
   get value(): PersonalDetailsComponent {
     return this.form.value;
@@ -45,6 +46,7 @@ export class PersonalDetailsComponent implements ControlValueAccessor, OnDestroy
   }
 
   constructor(private formBuilder: FormBuilder, private service: CandidateProfileService, private sanitizer: DomSanitizer) {
+
   }
 
   onChange: any = () => {
@@ -90,16 +92,17 @@ export class PersonalDetailsComponent implements ControlValueAccessor, OnDestroy
     }
   }
 
+
   ngOnInit(): void {
     this.initializeFormInputs();
 
     this.form = this.formBuilder.group({
-      file: new FormControl({value: ''}, Validators.required),
-      name: new FormControl({value: ''}, Validators.required),
-      surname: new FormControl({value: ''}, Validators.required),
-      dateOfBirth: new FormControl({value: new Date(2000, 0, 12), disabled: false},
-        [Validators.required]),
-      sex: new FormControl({value: 0})
+      file: new FormControl({value: 'default'}, {validators: this.checkInputs}),
+      name: new FormControl({value: 'default'}, {validators: this.checkInputs}),
+      surname: new FormControl({value: 'default'}, {validators: this.checkInputs}),
+      dateOfBirth: new FormControl({value: new Date(2000, 0, 12)},
+        {validators: [this.checkInputs]}),
+      sex: new FormControl({value: 0}, {validators: this.checkInputs})
     });
 
     this.subscriptions.push(
@@ -112,6 +115,11 @@ export class PersonalDetailsComponent implements ControlValueAccessor, OnDestroy
   }
 
   submitForm() {
+    console.log(this.form.controls.name.value);
+    if (this.form.invalid) {
+      return;
+    }
+
     let doUpdate = false;
 
     console.log(this.form.value);
@@ -178,10 +186,19 @@ export class PersonalDetailsComponent implements ControlValueAccessor, OnDestroy
     };
   }
 
-
   /* Handle form errors in Angular 8 */
   public errorHandling = (control: string, error: string, msg: string) => {
-    return this.form.controls[control].hasError(error) ? msg : '';
+    return this.form.get(control).hasError(error) ? msg : '';
   };
 
+  cancelForm() {
+    this.service.isEditPersonalDetails = false;
+  }
+
+  checkInputs(control: FormControl) {
+    if (control.value === '') {
+      return {emptyInput: true};
+    }
+    return null;
+  }
 }

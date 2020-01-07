@@ -5,7 +5,7 @@
 <div class="main-div" *ngIf="!service.isLoading && !serviceInt.isLoading">
 
   <form [formGroup]="profileForm">
-    Value: {{ profileForm.value | json }} <br>
+<!--    Value: {{ profileForm.value | json }} <br>-->
     <div class="form-profile-content">
       <div class="side-div sticky">
 
@@ -35,11 +35,14 @@
         <div class="form-div" *ngIf="service.isEditContact">
           <app-contact formControlName="contact"></app-contact>
         </div>
-        <!--        <div class="form-div">-->
-        <!--          Studies-->
-        <!--          <mat-icon class="help-s" matTooltip="Info about studies">help</mat-icon>-->
-        <!--          <app-studies formControlName="studies"></app-studies>-->
-        <!--        </div>-->
+
+        <div class="form-div" *ngIf="!service.isEditStudies">
+          <app-studies-view></app-studies-view>
+        </div>
+
+        <div class="form-div" *ngIf="service.isEditStudies">
+          <app-studies formControlName="studies"></app-studies>
+        </div>
 
         <div class="form-div" *ngIf="!service.isEditLanguage">
           <app-languages-view></app-languages-view>
@@ -64,7 +67,6 @@
         <div class="form-div" *ngIf="service.isEditDescription">
           <app-tell-us-more formControlName="tellUsMore"></app-tell-us-more>
         </div>
-
       </div>
     </div>
   </form>
