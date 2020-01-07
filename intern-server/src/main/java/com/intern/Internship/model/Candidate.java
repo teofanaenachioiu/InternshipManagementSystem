@@ -45,7 +45,6 @@ public class Candidate implements HasID<String> {
     private String linkLinkedin;
     private String linkGithub;
     private String description;
-    private String languages;
     @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL)
     @ToString.Exclude
     private Set<Application> applications;
@@ -71,14 +70,13 @@ public class Candidate implements HasID<String> {
      * @param linkLinkedin:    String
      * @param linkGithub:      String
      * @param description:     String
-     * @param languages:       String
      * @param studies:         Set<Studies>
      * @param experiences:     Set<Experience>
      * @param applications:    Application...
      */
     public Candidate(String ID, String lastName, String firstName, String address, String telephone,
             LocalDate birthDate, Sex sex, CandidateStatus candidateStatus, byte[] avatar, String linkLinkedin,
-            String linkGithub, String description, String languages, Set<Studies> studies, Set<Experience> experiences,
+            String linkGithub, String description, Set<Studies> studies, Set<Experience> experiences,
             Application... applications) {
         this.ID = ID;
         this.lastName = lastName;
@@ -92,7 +90,6 @@ public class Candidate implements HasID<String> {
         this.linkLinkedin = linkLinkedin;
         this.linkGithub = linkGithub;
         this.description = description;
-        this.languages = languages;
 
         this.studies = new HashSet<>();
         this.studies.addAll(studies);
