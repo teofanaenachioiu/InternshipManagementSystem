@@ -166,7 +166,8 @@ export class InterestsComponent implements ControlValueAccessor, OnDestroy, OnIn
   }
 
   submitForm() {
-    this.service.updateInterests(this.fruits);
+    this.service.interestsUser = this.fruits;
+    this.service.updateInterests();
     this.service.isEditInterests = false;
   }
 
