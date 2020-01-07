@@ -84,24 +84,28 @@ class CompanyRepositoryTest {
                 "Description1",
                 true,
                 5,
+                null,
                 internship11
         );
         Feedback feedback112 = new Feedback(
                 "Description2",
                 false,
                 4,
+                null,
                 internship11
         );
         Feedback feedback121 = new Feedback(
                 "Description3",
                 true,
                 6,
+                null,
                 internship12
         );
         Feedback feedback122 = new Feedback(
                 "Description4",
                 false,
                 7,
+                null,
                 internship12
         );
         feedbackRepository.save(feedback111);
@@ -124,7 +128,7 @@ class CompanyRepositoryTest {
         internshipRepository.save(internship12);
 
         Internship fromRepositoryInternship11 = internshipRepository.getOne(internship11.getID());
-        assert (internship11.getFeedbacks().size() != 0);
+        assert (fromRepositoryInternship11.getFeedbacks().size() != 0);
 
         HashSet<Internship> hashSet3 = new HashSet<>();
         hashSet3.add(internship11);
@@ -133,7 +137,7 @@ class CompanyRepositoryTest {
         companyRepository.save(company1);
 
         Company fromRepositoryCompany = companyRepository.getOne(company1.getID());
-        assert (company1.getInternships().size() != 0);
+        assert (fromRepositoryCompany.getInternships().size() != 0);
 
         assert(companyRepository.count() == countBefore + 1);
         companyRepository.delete(company1);
