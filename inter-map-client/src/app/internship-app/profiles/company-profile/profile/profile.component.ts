@@ -1,11 +1,12 @@
 import {Component, forwardRef, OnDestroy, OnInit} from '@angular/core';
 import {ControlValueAccessor, FormBuilder, FormControl, FormGroup, NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {Subscription} from 'rxjs';
+import {fromEvent, Observable, Subscription} from 'rxjs';
 import {Router} from '@angular/router';
 import {MatDialog} from '@angular/material';
 import {AddModalComponent} from '../add-modal/add-modal.component';
 import {CompanyProfileService} from '../company-profile.service';
-
+import {Company} from '../../../../core/Company';
+import {pluck} from 'rxjs/operators';
 
 
 @Component({
@@ -25,10 +26,15 @@ import {CompanyProfileService} from '../company-profile.service';
     }
   ]
 })
-export class ProfileComponent implements ControlValueAccessor, OnDestroy {
+export class ProfileComponent implements ControlValueAccessor, OnDestroy, OnInit {
 
-  form: FormGroup;
-  subscriptions: Subscription[] = [];
+  private form: FormGroup;
+  private subscriptions: Subscription[] = [];
+
+  private company: Company;
+
+  private fileData: File = null;
+  private previewUrl: any = 'assets/img/no-photo.png';
 
   get value(): ProfileComponent {
     return this.form.value;
@@ -41,10 +47,21 @@ export class ProfileComponent implements ControlValueAccessor, OnDestroy {
   }
 
   constructor(private formBuilder: FormBuilder, private router: Router, public dialog: MatDialog, private service: CompanyProfileService) {
+
+  }
+
+  ngOnInit(): void {
+    this.company = this.service.company;
+
+    if (this.company.logo != null) {
+      this.previewUrl = 'data:image/jpeg;base64,' + this.company.logo;
+    }
+
     this.form = this.formBuilder.group({
-      name: '',
-      phone: '',
-      email: ''
+      file: new FormControl({value: 'default'}, {validators: this.checkInputs}),
+      name: new FormControl({value: 'default'}, {validators: this.checkInputs}),
+      phone: new FormControl({value: 'default'}, {validators: this.checkInputs}),
+      email: new FormControl({value: 'default', disabled: true}, {validators: this.checkInputs}),
     });
 
     this.subscriptions.push(
@@ -94,26 +111,71 @@ export class ProfileComponent implements ControlValueAccessor, OnDestroy {
 
   submitForm() {
     let doUpdate = false;
-    console.log(this.form.value);
+
     if (this.form.get('name').value != null || '') {
       this.service.company.name = this.form.get('name').value;
       doUpdate = true;
     }
 
-    if (this.form.get('email').value != null || '') {
-      this.service.company.email = this.form.get('email').value;
-      doUpdate = true;
-    }
-
     if (this.form.get('phone').value != null || '') {
-      this.service.company.phone = this.form.get('phone').value;
+      this.service.company.telephone = this.form.get('phone').value;
       doUpdate = true;
     }
 
     if (doUpdate) {
-      // this.service.updateCompany();
+      this.service.updateCompany();
     }
 
     this.service.isEditProfile = false;
   }
+
+
+  fileProgress(fileInput: any) {
+    this.fileData = fileInput.target.files[0] as File;
+    this.onPreviewImage();
+    this.onUploadImage();
+  }
+
+  onUploadImage() {
+    const fileReader = new FileReader();
+    this.imageToBase64(fileReader, this.fileData)
+      .subscribe(base64image => {
+        this.service.company.logo = base64image.split(',')[1];
+      });
+  }
+
+  imageToBase64(fileReader: FileReader, fileToRead: File): Observable<string> {
+    fileReader.readAsDataURL(fileToRead);
+    return fromEvent(fileReader, 'load').pipe(pluck('currentTarget', 'result'));
+  }
+
+  onPreviewImage() {
+    const mimeType = this.fileData.type;
+    if (mimeType.match(/image\/*/) == null) {
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.readAsDataURL(this.fileData);
+    reader.onload = (event) => {
+      this.previewUrl = reader.result;
+    };
+  }
+
+  /* Handle form errors in Angular 8 */
+  public errorHandling = (control: string, error: string, msg: string) => {
+    return this.form.get(control).hasError(error) ? msg : '';
+  };
+
+  cancelForm() {
+    this.service.isEditProfile = false;
+  }
+
+  checkInputs(control: FormControl) {
+    if (control.value === '') {
+      return {emptyInput: true};
+    }
+    return null;
+  }
+
 }

@@ -25,7 +25,7 @@
         </div>
 
         <div class="next-button">
-          <button mat-button matStepperNext (click)="clickOnNext()" >
+          <button mat-button matStepperNext [disabled]="selectedProfile == null"(click)="clickOnNext()" >
             <mat-icon>navigate_next</mat-icon>
           </button>
         </div>
@@ -89,45 +89,49 @@
                 <br>
                 <div class="form-field">
                     <mat-checkbox name="acceptTerms" formControlName="acceptTerms">I accept terms and conditions</mat-checkbox>
+                  <mat-checkbox name="checkEmail" formControlName="checkEmail" (change)="checkEmailExistence($event)">Check email</mat-checkbox>
+
                 </div>
             </div>
             <div class="form-bottom">
-               <button mat-raised-button matStepperNext [disabled]="!form.valid" (click)="clickOnAboutYou()"  >Create Account</button>-->
+               <button mat-raised-button matStepperNext [disabled]="(!form.valid || !exitEmail)" (click)="clickOnAboutYou()"  >Create Account</button>-->
             </div>
         </form>
        </div>
 
   </mat-step>
-  <mat-step label="About you candidate">
+  <mat-step label="About you candidate" *ngIf="candidateStep">
     <div class="div-title">
       <p class="step-title">Step 2:&nbsp;</p><p class="step-title description-title">About you</p>
     </div>
     <div class="div-key-words">
-      <app-about-you-candidate></app-about-you-candidate>
+      <app-about-you-candidate #candidate></app-about-you-candidate>
       <div class="form-bottom">
-        <button mat-raised-button matStepperNext [disabled]="!form.valid" (click)="clickOnAboutYou()"  >Skip</button>-->
-        <button mat-raised-button matStepperNext [disabled]="!form.valid" (click)="clickOnAboutYou()"  >Next Step</button>-->
+<!--        <button mat-raised-button matStepperNext [disabled]="!form.valid" (click)="clickOnNext()"  >Skip</button>&ndash;&gt;-->
+        <button mat-raised-button [disabled]="!form.valid" (click)="this.candidate.clickOnNext()" [routerLink]="'/internship-app/candidate-profile'" >Done</button>-->
       </div>
     </div>
   </mat-step>
-  <mat-step label="About you company">
+  <mat-step label="About you company" *ngIf="companyStep">
     <div class="div-title">
       <p class="step-title">Step 2:&nbsp;</p><p class="step-title description-title">About you</p>
     </div>
     <div class="div-key-words">
-      <app-about-you-company></app-about-you-company>
+      <app-about-you-company #company></app-about-you-company>
       <div class="form-bottom">
-        <button mat-raised-button matStepperNext [disabled]="!form.valid" (click)="clickOnAboutYou()"  >Skip</button>-->
-        <button mat-raised-button matStepperNext [disabled]="!form.valid" (click)="clickOnAboutYou()"  >Next Step</button>-->
+        <button mat-raised-button matStepperNext [disabled]="!form.valid" (click)="clickOnNext()"  >Skip</button>-->
+        <button mat-raised-button matStepperNext [disabled]="!form.valid" (click)="this.company.clickOnNext()"   >Next Step</button>-->
       </div>
     </div>
   </mat-step>
-  <mat-step label="Key words">
+  <mat-step label="Key words" >
     <div class="div-title">
       <p class="step-title">Step 3:&nbsp;</p><p class="step-title description-title">Key words</p>
     </div>
-    <div class="div-key-words">
-      <app-key-words></app-key-words>
+    <div class="div-key-words" >
+      <app-key-words #key></app-key-words>
+      <button mat-raised-button (click)="this.key.onClickFinish()"  [routerLink]="'/internship-app/company-profile'">Done</button>-->
+
     </div>
   </mat-step>
 </mat-horizontal-stepper>

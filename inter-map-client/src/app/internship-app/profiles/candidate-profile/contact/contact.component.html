@@ -5,6 +5,7 @@
       <mat-icon matPrefix>person_pin</mat-icon>
       <label>
         <input matInput placeholder="address" formControlName="address" value = "{{candidate.address}}">
+
       </label>
     </mat-form-field>
   </div>
@@ -13,6 +14,9 @@
       <mat-icon matPrefix>phone</mat-icon>
       <label>
         <input matInput placeholder="phone" formControlName="phone" value = "{{candidate.telephone}}">
+        <mat-error *ngIf="form.get('phone').invalid">
+          {{errorHandling('phone', 'emptyInput', 'required')}}
+        </mat-error>
       </label>
     </mat-form-field>
 
@@ -20,6 +24,9 @@
       <mat-icon matPrefix>email</mat-icon>
       <label>
         <input matInput placeholder="email" formControlName="email" value = "{{candidate.id}}">
+        <mat-error *ngIf="form.get('email').invalid">
+          {{errorHandling('email', 'emptyInput', 'required')}}
+        </mat-error>
       </label>
     </mat-form-field>
   </div>

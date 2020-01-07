@@ -27,6 +27,7 @@ public class Experience implements HasID<String> {
     private String ID;
 
     private String companyName;
+    private String description;
     private LocalDate startDate;
     private LocalDate endDate;
     private String jobName;

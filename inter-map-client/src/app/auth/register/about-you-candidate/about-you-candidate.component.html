@@ -2,39 +2,37 @@
   <form [formGroup]="form" >
     <div class="main-div">
     <div class="form-div">
-<!--      <div class="add-photo-div" >-->
-        <label class="upload-image-div">
-          <span>Add a profile picture</span>
-          <input #imageInput
-                 type="file"
-                 accept="image/*"
-                 (change)="processFile(imageInput)" formControlName="avatar">
-        </label>
+      <label class="image-upload-container btn btn-bwm">
+        <span>Add a profile picture</span>
+        <input #imageInput
+               type="file"
+               accept="image/*"
+               (change)="processFile(imageInput)">
+      </label>
       <br>
       <mat-form-field class="fields" >
         <label>
-          <input matInput placeholder="name" formControlName="name">
+          <input matInput placeholder="first name" formControlName="firstName">
         </label>
       </mat-form-field>
       <br>
       <mat-form-field class="fields" >
         <label>
-          <input matInput placeholder="surname" formControlName="surname">
+          <input matInput placeholder="last name" formControlName="lastName">
         </label>
       </mat-form-field>
       <br>
       <mat-form-field>
-        <label>
-          <input matInput [matDatepicker]="dateOfBirth" placeholder="Date of birth">
-        </label>
-        <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
+        <input matInput [matDatepicker]="picker" placeholder="Day of Birth"
+               (dateInput)="addDate('input', $event)" (dateChange)="addDate('change', $event)">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
       <br>
       <mat-radio-group aria-label="Select an option" formControlName="sex" class="fields">
         <mat-radio-button value="M" class="radioB">M</mat-radio-button>
         <mat-radio-button value="F" class="radioB">F</mat-radio-button>
-        <mat-radio-button value="NO" class="radioB">NO</mat-radio-button>
+<!--        <mat-radio-button value="NO" class="radioB">NO</mat-radio-button>-->
       </mat-radio-group>
       <br>
       <mat-form-field class="fields" >
@@ -49,8 +47,6 @@
         </label>
       </mat-form-field>
       <br>
-
-
     </div>
     </div>
 

@@ -1,5 +1,9 @@
 package com.intern.Internship.service.implementation;
 
+import java.util.Optional;
+
+import javax.persistence.EntityNotFoundException;
+
 import com.intern.Internship.model.Company;
 import com.intern.Internship.repository.CompanyRepository;
 import com.intern.Internship.service.CompanyService;
@@ -14,7 +18,10 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public Company findByEmail(String email) {
-        return companyRepository.getOne(email);
+        Optional<Company> company = companyRepository.findById(email);
+        if (!company.isPresent())
+            throw new EntityNotFoundException();
+        return company.get();
     }
 
     @Override
@@ -30,7 +37,7 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public Company update(Company company) {     
+    public Company update(Company company) {
         if (company == null || findByEmail(company.getID()) == null) {
             throw new IllegalArgumentException();
         }

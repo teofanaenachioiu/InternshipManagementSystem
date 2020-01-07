@@ -2,13 +2,20 @@
   <form [formGroup]="form" >
     <div class="main-div">
       <div class="form-div">
-        <label class="upload-image-div">
+        <label class="image-upload-container btn btn-bwm">
           <span>Add a profile picture</span>
           <input #imageInput
                  type="file"
                  accept="image/*"
-                 (change)="processFile(imageInput)" formControlName="avatar">
+                 (change)="processFile(imageInput)">
         </label>
+<!--        <label class="upload-image-div">-->
+<!--          <span>Add a profile picture</span>-->
+<!--          <input #imageInput-->
+<!--                 type="file"-->
+<!--                 accept="image/*"-->
+<!--                 (change)="processFile(imageInput)" formControlName="avatar">-->
+<!--        </label>-->
         <br>
         <!--      </div>-->
         <mat-form-field class="fields" >
@@ -34,6 +41,7 @@
             <textarea matInput placeholder="company description" formControlName="companyDescription"></textarea>
           </label>
         </mat-form-field>
+
         <br>
       </div>
     </div>
