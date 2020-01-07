@@ -23,13 +23,13 @@ insert into internship(id, status,added_date, paid,name, company_email, nr_appli
 insert into internship(id, status,added_date, paid,name, company_email, nr_applicants, nr_months, area_of_interest_id, start_time, end_time, location, description) values('129',2,'2018-02-02', true,'Study&Fun', 'company@test.com', 4, 3, 'id5','2018-04-15','2018-06-15','Str. Republicii, nr. 109, Cluj-Napoca','Be a rockstar in our internship. Let your coding skills take the stage while learning progress open edge. Are you passionate about technology, always curious, driven by learning and exploring, team player & BSc or MSc student or fresh graduate with OOP and Database knowledge? Join our band!');
 insert into internship(id, status,added_date, paid,name, company_email, nr_applicants, nr_months, area_of_interest_id, start_time, end_time, location, description) values('130',1,'2019-02-04', false,'FunnyWinter', 'company2@test.com', 4, 2, 'id6','2019-03-14','2019-05-14','Str. Frunzisului, nr. 106, Cluj-Napoca','Do you want to work in a fun environment and get stuff done? Your mission, should you choose to accept it, is to join our talented team of developers and together discover either .Net or Node.js, popular front-end frameworks and databases, in our Internships!');
 
-insert into application(id, internship_id, candidate_email,application_status) values('app1', '123', 'candidate@test.com',3);
+insert into application(id, internship_id, candidate_email,application_status) values('app1', '123', 'candidate@test.com',0);
 insert into application(id, internship_id, candidate_email,application_status) values('app2', '124', 'candidate2@test.com',2);
-insert into application(id, internship_id, candidate_email,application_status) values('app3', '125', 'candidate@test.com',3);
+insert into application(id, internship_id, candidate_email,application_status) values('app3', '125', 'candidate@test.com',0);
 insert into application(id, internship_id, candidate_email,application_status) values('app4', '126', 'candidate@test.com',1);
 insert into application(id, internship_id, candidate_email,application_status) values('app5', '124', 'candidate2@test.com',1);
 insert into application(id, internship_id, candidate_email,application_status) values('app6', '127', 'candidate@test.com',2);
-insert into application(id, internship_id, candidate_email,application_status) values('app7', '128', 'candidate@test.com',3);
+insert into application(id, internship_id, candidate_email,application_status) values('app7', '128', 'candidate@test.com',0);
 insert into application(id, internship_id, candidate_email,application_status) values('app8', '129', 'candidate2@test.com',1);
 insert into application(id, internship_id, candidate_email,application_status) values('app9', '129', 'candidate@test.com',1);
 insert into application(id, internship_id, candidate_email,application_status) values('app10', '130', 'candidate@test.com',2);
