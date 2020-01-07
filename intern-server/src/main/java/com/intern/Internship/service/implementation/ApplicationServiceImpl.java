@@ -38,4 +38,14 @@ public class ApplicationServiceImpl implements ApplicationService {
         }
         return applicationDTOS;
     }
+
+    @Override
+    public Application findApplicationByCandidateInternship(String candidateID, String internshipID) {
+        List<Application> applications = applicationRepository.findAll();
+        for (Application application : applications) {
+            if (application.getCandidate().getID().equals(candidateID) && application.getInternship().getID().equals(internshipID))
+                return application;
+        }
+        return null;
+    }
 }

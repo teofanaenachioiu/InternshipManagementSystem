@@ -1,6 +1,7 @@
 package com.intern.Internship.controller;
 
 import com.intern.Internship.model.Application;
+import com.intern.Internship.model.Candidate;
 import com.intern.Internship.model.dto.ApplicationDTO;
 import com.intern.Internship.model.dto.ApplicationRequest;
 import com.intern.Internship.model.enums.ApplicationStatus;
@@ -49,7 +50,6 @@ public class ApplicationController {
     }
     @GetMapping
     public ResponseEntity<List<ApplicationDTO>> findApplicationByCandidate(@RequestParam("username") String username) {
-
         try {
             List<ApplicationDTO> internships = applicationService.getApplicationsByUsername(username);
             return ResponseEntity.ok().body(internships);
@@ -57,5 +57,12 @@ public class ApplicationController {
             e.printStackTrace();
             return ResponseEntity.badRequest().body(new ArrayList<ApplicationDTO>());
         }
+    }
+
+    @RequestMapping(value = "/CandidateInternship", method = RequestMethod.GET)
+    public ResponseEntity<Application> findApplicationByCandidateInternship(@RequestParam("candidate_email") String candidateID, @RequestParam("internship_id") String internshipID) {
+        Application application = applicationService.findApplicationByCandidateInternship(candidateID, internshipID);
+        if (application != null) return ResponseEntity.ok().body(application);
+        else return ResponseEntity.badRequest().body(new Application());
     }
 }

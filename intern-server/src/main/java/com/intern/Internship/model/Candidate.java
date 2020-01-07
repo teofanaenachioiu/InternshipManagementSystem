@@ -1,4 +1,4 @@
-package com.intern.Internship.model;
+ package com.intern.Internship.model;
 
 import com.intern.Internship.model.enums.CandidateStatus;
 import com.intern.Internship.model.enums.Sex;

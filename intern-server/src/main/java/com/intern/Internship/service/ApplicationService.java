@@ -9,4 +9,6 @@ public interface ApplicationService {
     Application save(Application application);
 
     List<ApplicationDTO> getApplicationsByUsername(String username);
+
+    Application findApplicationByCandidateInternship(String candidateID, String internshipID);
 }
