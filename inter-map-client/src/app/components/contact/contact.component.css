@@ -84,7 +84,6 @@ p {
 #contact button {
   padding: 10px 20px;
   letter-spacing: 1px;
-  /*background-color:*/
   /*color: #fff;*/
   text-transform: uppercase;
   font-size: 13px;
@@ -92,4 +91,6 @@ p {
   text-decoration: none;
   border-radius: 0;
 }
-
+.btn {
+  background-color:lightgray;
+}

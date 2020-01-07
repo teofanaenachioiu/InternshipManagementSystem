@@ -13,7 +13,6 @@
       <swiper *ngIf="show" class="swiper-container" [config]="config">
         <div *ngFor="let slide of slides" class="swiper-slide">
           <div class="img" [ngStyle]="{'background-image': 'url(' + slide + ')'}">
-            <div class="text"> Internships</div>
           </div>
         </div>
       </swiper>
