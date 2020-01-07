@@ -29,4 +29,12 @@ public class AreaOfInterestServiceImpl implements AreaOfInterestService {
     public List<AreaOfInterest> findAll(List<String> names) {
         return areaOfInterestRepository.findAll(AreaOfInterestRepository.multiLikeName(names));
     }
+
+    @Override
+    public List<String> findAll(String email) {
+        System.out.println(email);
+        List<String> list = (List<String>) areaOfInterestRepository.getAllByEmail(email);
+        System.out.println(list);
+        return list;
+    }
 }
