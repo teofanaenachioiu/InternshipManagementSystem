@@ -67,9 +67,12 @@ public class AreaOfInterestServiceImpl implements AreaOfInterestService {
             candidateAreaOfInterestRepository.deleteByIdAreaOfInterest(areaOfInterest.getID());
         }
         for(String name:areaOfInterests){
-            AreaOfInterest areaOfInterest =new AreaOfInterest(name);
-            AreaOfInterest areaOfInterestRepo =areaOfInterestRepository.save(areaOfInterest);
-            CandidateAreaOfInterest candidateAreaOfInterest =new CandidateAreaOfInterest(candidate.get(),areaOfInterestRepo);
+            AreaOfInterest areaOfInterest =areaOfInterestRepository.findByName(name);
+            if(areaOfInterest == null) {
+                areaOfInterest = new AreaOfInterest(name);
+                areaOfInterest =areaOfInterestRepository.save(areaOfInterest);
+            }
+            CandidateAreaOfInterest candidateAreaOfInterest =new CandidateAreaOfInterest(candidate.get(),areaOfInterest);
             candidateAreaOfInterestRepository.save(candidateAreaOfInterest);
         }
     }
