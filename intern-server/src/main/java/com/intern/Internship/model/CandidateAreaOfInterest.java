@@ -9,6 +9,7 @@ import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.Optional;
 
 @Getter
 @Setter
@@ -39,4 +40,6 @@ public class CandidateAreaOfInterest implements HasID<String> {
         this.candidate = candidate;
         this.areaOfInterest = areaOfInterest;
     }
+
+
 }
