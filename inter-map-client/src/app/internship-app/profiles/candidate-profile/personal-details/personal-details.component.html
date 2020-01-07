@@ -11,24 +11,29 @@
     <br>
     <mat-form-field class="fields">
       <label>
-        <input matInput placeholder="name" formControlName="name" value="{{candidate.firstName}}">
-<!--        <mat-error *ngIf="form.controls['name'].invalid">-->
-<!--          {{errorHandling('name', 'required', 'required')}}-->
-<!--        </mat-error>-->
+        <input matInput placeholder="name" formControlName="name" [value]="candidate.firstName">
+        <mat-error *ngIf="form.get('name').invalid">
+          {{errorHandling('name', 'emptyInput', 'required')}}
+        </mat-error>
       </label>
     </mat-form-field>
     <br>
     <mat-form-field class="fields">
       <label>
-        <input matInput placeholder="surname" formControlName="surname" value="{{candidate.lastName}}"
-        >
+        <input matInput placeholder="surname" formControlName="surname" value="{{candidate.lastName}}">
+        <mat-error *ngIf="form.get('surname').invalid">
+          {{errorHandling('surname', 'emptyInput', 'required')}}
+        </mat-error>
       </label>
     </mat-form-field>
     <br>
     <mat-form-field class="fields">
       <label>
-        <input matInput [matDatepicker]="myDatePicker" placeholder="Choose a date"
-               formControlName="dateOfBirth" [value]="startDate">
+        <input matInput [matDatepicker]="myDatePicker" placeholder="choose a date"
+               formControlName="dateOfBirth" [value]="startDate" [max]="maxDate">
+        <mat-error *ngIf="form.get('dateOfBirth').invalid">
+          {{errorHandling('dateOfBirth', 'emptyInput', 'required')}}
+        </mat-error>
       </label>
       <mat-datepicker-toggle [for]="myDatePicker" matSuffix></mat-datepicker-toggle>
       <mat-datepicker [disabled]="false" #myDatePicker></mat-datepicker>
