@@ -3,6 +3,7 @@ package com.intern.Internship.service.implementation;
 import com.intern.Internship.model.Application;
 import com.intern.Internship.model.Feedback;
 import com.intern.Internship.model.dto.ApplicationDTO;
+import com.intern.Internship.model.dto.InternshipCandidateDTO;
 import com.intern.Internship.repository.ApplicationRepository;
 import com.intern.Internship.repository.FeedbackRepository;
 import com.intern.Internship.service.ApplicationService;
@@ -10,6 +11,7 @@ import com.intern.Internship.utils.Converters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -47,5 +49,20 @@ public class ApplicationServiceImpl implements ApplicationService {
                 return application;
         }
         return null;
+    }
+
+    @Override
+    public List<InternshipCandidateDTO> findAllCandidatesInternship(String internship_id) {
+        List<Application> applications = applicationRepository.findAll();
+        List<InternshipCandidateDTO> internshipCandidateDTOList = new ArrayList<>();
+        for (Application application : applications) {
+            if (application.getInternship().getID().equals(internship_id))
+                internshipCandidateDTOList.add(new InternshipCandidateDTO(
+                        application.getCandidate().getID(),
+                        application.getCandidate().getFirstName() + " " + application.getCandidate().getLastName(),
+                        application.getApplicationStatus()
+                ));
+        }
+        return internshipCandidateDTOList;
     }
 }
