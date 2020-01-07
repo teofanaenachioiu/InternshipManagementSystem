@@ -1,5 +1,9 @@
 export class Company {
-  email: string;
+  id: string;
   name: string;
-  phone: string;
+  telephone: string;
+  field: string;
+  description: string;
+  address: string;
+  logo: any;
 }

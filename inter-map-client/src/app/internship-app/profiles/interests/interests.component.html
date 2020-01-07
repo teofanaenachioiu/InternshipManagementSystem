@@ -28,10 +28,10 @@
   </mat-form-field>
   <br>
 
-  <p *ngIf="allFruitsSuggested.length>0"> Suggestions:</p>
+  <p *ngIf="allInterestsSuggested.length>0"> Suggestions:</p>
 
   <mat-chip-list>
-    <mat-chip *ngFor="let i of allFruitsSuggested" [selectable]="selectable"
+    <mat-chip *ngFor="let i of allInterestsSuggested" [selectable]="selectable"
               [removable]="removable" (removed)="removeSuggestion(i)">
       {{ i }}
       <mat-icon matChipRemove *ngIf="removable">add</mat-icon>

@@ -1,27 +1,46 @@
-<img class="profileImg" src="https://image.flaticon.com/icons/png/512/21/21294.png" alt="profilePicture">
+<img class="profileImg" [src]="previewUrl" alt="profilePicture">
 <div [formGroup]="form">
+
+  <mat-form-field class="fields">
+    <ngx-mat-file-input formControlName="file" placeholder="file" accept="image/*"
+                        (change)="fileProgress($event)">
+    </ngx-mat-file-input>
+    <mat-icon matSuffix>photo</mat-icon>
+  </mat-form-field>
+  <br>
+
   <mat-form-field class="fields">
     <label>
-      <input matInput placeholder="name" formControlName="name">
+      <input matInput placeholder="name" formControlName="name" value="{{company.name}}">
+      <mat-error *ngIf="form.get('name').invalid">
+        {{errorHandling('name', 'emptyInput', 'required')}}
+      </mat-error>
     </label>
   </mat-form-field>
+
   <br>
   <mat-form-field  class="fields">
     <label>
-      <input matInput placeholder="phone" formControlName="phone">
+      <input matInput placeholder="phone" formControlName="phone" value="{{company.telephone}}">
+      <mat-error *ngIf="form.get('phone').invalid">
+        {{errorHandling('phone', 'emptyInput', 'required')}}
+      </mat-error>
     </label>
   </mat-form-field>
+
   <br>
   <mat-form-field  class="fields">
     <label>
-      <input matInput placeholder="email" formControlName="email">
+      <input matInput placeholder="email" formControlName="email" value="{{company.id}}">
     </label>
   </mat-form-field>
+
   <br>
-  <button  class="fields" mat-raised-button (click)="addInternshipHandler()">ADD INTERNSHIP</button>
 </div>
 
 <button mat-button style="float: right" (click)="submitForm()">
   <mat-icon>save</mat-icon>
 </button>
+
+<button  class="fields" mat-raised-button (click)="addInternshipHandler()">ADD INTERNSHIP</button>
 
