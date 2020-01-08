@@ -26,7 +26,7 @@ import {CandidateProfileService} from '../candidate-profile.service';
 export class LanguagesComponent implements ControlValueAccessor, OnDestroy, OnInit {
 
   form: FormGroup;
-  languageList = ['English', 'France'];
+  private languageList: string[];
   subscriptions: Subscription[] = [];
   separatorKeysCodes: number[] = [ENTER, COMMA];
   addOnBlur = true;
@@ -99,6 +99,7 @@ export class LanguagesComponent implements ControlValueAccessor, OnDestroy, OnIn
   }
 
   ngOnInit(): void {
+    this.languageList = this.service.candidate.languages;
   }
 
   add(event: MatChipInputEvent): void {

@@ -11,11 +11,11 @@ export class Candidat {
   birthDate: Date;
   sex: Sex;
   candidateStatus: CandidateStatus;
+  languages: string[];
   avatar: any; // byte[]
   linkLinkedin: string;
   linkGithub: string;
   description: string;
-  languages: string;
   applications: any;
   studies: Studies[];
   experiences: Experience[];

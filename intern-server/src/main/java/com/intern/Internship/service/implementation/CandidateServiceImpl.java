@@ -1,5 +1,9 @@
 package com.intern.Internship.service.implementation;
 
+import java.util.Optional;
+
+import javax.persistence.EntityNotFoundException;
+
 import com.intern.Internship.model.Candidate;
 import com.intern.Internship.repository.CandidateRepository;
 import com.intern.Internship.service.CandidateService;
@@ -14,7 +18,10 @@ public class CandidateServiceImpl implements CandidateService {
 
     @Override
     public Candidate findByEmail(String email) {
-        return candidateRepository.getOne(email);
+        Optional<Candidate> candidate = candidateRepository.findById(email);
+        if (!candidate.isPresent())
+            throw new EntityNotFoundException();
+        return candidate.get();
     }
 
     @Override

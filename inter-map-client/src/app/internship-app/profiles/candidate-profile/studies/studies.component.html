@@ -3,47 +3,65 @@
 <p> Studies </p>
 
 <div [formGroup]="form">
-  <div class="div2" formArrayName="studies">
+  <div formArrayName="studies">
     <div *ngFor="let study of studiesForms.controls; let i=index" [formGroupName]="i">
-      <mat-form-field class="fields">
+
+      <mat-form-field>
         <label>
-          <input matInput placeholder="Name of institution" formControlName="nameOfInstitution">
+          <input matInput placeholder="Name of institution" formControlName="nameOfInstitution"
+                 value="{{studies[i].nameOfInstitution}}">
         </label>
       </mat-form-field>
+
+      <mat-form-field >
+        <label>
+          <input matInput placeholder="Profile" formControlName="profile"
+                 value="{{studies[i].profile}}">
+
+        </label>
+      </mat-form-field>
+
       <br>
-      <mat-form-field class="fields">
+
+      <mat-form-field >
         <label>
-          <input matInput placeholder="Profile" formControlName="profile">
-        </label>
-      </mat-form-field>
-      <mat-form-field class="fields">
-        <label>
-          <input matInput [matDatepicker]="fromDate" placeholder="Choose a date" formControlName="fromDate">
+          <input matInput [matDatepicker]="fromDate" placeholder="Start date" formControlName="startDate"
+                 value="{{studies[i].startDate}}">
+
         </label>
         <mat-datepicker-toggle [for]="fromDate" matSuffix></mat-datepicker-toggle>
         <mat-datepicker #fromDate></mat-datepicker>
       </mat-form-field>
-      <mat-form-field class="fields">
+
+      <mat-form-field >
         <label>
-          <input matInput [matDatepicker]="toDate" placeholder="Choose a date" formControlName="toDate">
+          <input matInput [matDatepicker]="toDate" placeholder="End date" formControlName="endDate"
+                 value="{{studies[i].endDate}}">
+
         </label>
         <mat-datepicker-toggle [for]="toDate" matSuffix></mat-datepicker-toggle>
-        <mat-datepicker #toDate></mat-datepicker>
+        <mat-datepicker #toDate ></mat-datepicker>
       </mat-form-field>
+
       <br>
-      <mat-form-field class="desc1">
+
+      <mat-form-field >
         <label>
-            <textarea matInput placeholder="Tell us more about what you have studied" formControlName="more">
+            <textarea matInput placeholder="Tell us more about what you have studied" formControlName="description"
+                      value="{{studies[i].description}}">
             </textarea>
         </label>
       </mat-form-field>
-      <button id="delete-button-study" mat-raised-button (click)="removeStudy(i)">
+
+      <button mat-raised-button (click)="removeStudy(i)">
         <mat-icon>delete</mat-icon>
       </button>
     </div>
-    <button id="add-button-study" mat-raised-button (click)="addStudy()">
+
+    <button  mat-raised-button (click)="addStudy()">
       <mat-icon>add</mat-icon>
     </button>
+
   </div>
 </div>
 

@@ -44,17 +44,13 @@ export class CandidateProfileService {
     this.getCandidateByEmail(this.user.username).subscribe(
       (res) => {
         this.candidate = res;
-        console.log(res);
+
+        // TO DELETE THIS
+        this.candidate.languages = ['English', 'France'];
         this.isLoading = false;
-        const exp = new Experience();
-        exp.companyName = 'Arobs';
-        exp.endDate = new Date(2018, 11, 10);
-        exp.startDate = new Date(2018, 10, 10);
-        exp.jobName = 'intern';
-        this.candidate.experiences = [exp];
       },
       (err) => console.log(err),
-      () => console.log('done!')
+      () => console.log('done with loading candidate profile!')
     );
   }
 
@@ -63,7 +59,10 @@ export class CandidateProfileService {
   }
 
   updateCandidate() {
-    // this.http.put(candidateUrl, this.candidate, this.authHttpOptions());
     console.log(this.candidate);
+    this.http.put<Candidat>(candidateUrl, this.candidate, this.authHttpOptions()).subscribe(res => {
+      },
+      error => console.log(error)
+    );
   }
 }

@@ -1,48 +1,58 @@
-<div id="feed">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="section-heading">
-          <h4>What others think of interMap ?</h4>
-          <p>Take a look at some feedbacks.</p>
+<div>
+  <section class="tabs-content" id="feed">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="section-heading">
+            <h4>What others think of interMap ?</h4>
+            <p>Take a look at some feedbacks.</p>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-md-5">
-        <ul class="tabs clearfix" *ngFor="let item of items">
-          <li class="my-items" (click)="toggle(items, item)">
-            <h3>{{item.title}}</h3>
-            <ul class="info-post">
-              <li>
-                <mat-icon aria-hidden="false" aria-label="Example home icon">face icon</mat-icon>
-                {{item.username}}</li>
-              <li>
-                <mat-icon aria-hidden="false" aria-label="Example home icon">calendar_today</mat-icon>
-                {{item.date}}</li>
+      <div class="row">
+        <div class="wrapper">
+          <div class="col-md-6">
+            <ul class="feedback" style="list-style: none;" data-tabgroup="first-tab-group" *ngFor="let item of items">
+              <li (click)="toggle(items, item)">
+                <ul class="info-post">
+                  <li><h4 fontweight="20">{{item.title}}</h4></li>
+                  <li><i>
+                    <mat-icon>account_circle</mat-icon>
+                  </i>{{item.username}}</li>
+                  <li><i>
+                    <mat-icon>calendar_today</mat-icon>
+                  </i>{{item.date}}</li>
+                  <li><i>
+                    <mat-icon>bookmark</mat-icon>
+                  </i>{{item.internship}}</li>
+                </ul>
+              </li>
             </ul>
-          </li>
-        </ul>
-      </div>
-      <div class="col-md-7">
-        <div class="tabgroup" *ngFor="let item of items">
-          <div [hidden]="item.hidden">
-            <img src="assets/img/feed-post-1.jpg" alt="">
-            <div class="text-content">
-              <h4>{{item.title}}</h4>
-              <ul class="info-post">
-                <li>
-                  <mat-icon aria-hidden="false" aria-label="Example home icon">face icon</mat-icon>
-                  {{item.username}}</li>
-                <li>
-                  <mat-icon aria-hidden="false" aria-label="Example home icon">calendar_today</mat-icon>
-                  {{item.date}}</li>
-              </ul>
-              <p>{{item.text}}</p>
+          </div>
+          <div class="col-md-6">
+            <div id="first-tab-group" class="tabgroup" *ngFor="let item of items">
+              <div [hidden]="item.hidden">
+                <img src={{item.image}} alt="">
+                <div class="text-content">
+                  <h4 fontweight="20">{{item.title}}</h4>
+                  <ul class="info-post2" style="list-style: none;">
+                    <li><i>
+                      <mat-icon>account_circle</mat-icon>
+                    </i>{{item.username}}</li>
+                    <li><i>
+                      <mat-icon>calendar_today</mat-icon>
+                    </i>{{item.date}}</li>
+                    <li><i>
+                      <mat-icon>bookmark</mat-icon>
+                    </i>{{item.internship}}</li>
+                  </ul>
+                  <p color="black">{{item.feedback}}</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 </div>

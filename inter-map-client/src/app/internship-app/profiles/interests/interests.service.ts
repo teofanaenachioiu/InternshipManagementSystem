@@ -2,17 +2,20 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {User} from '../../../core/User';
+import {error} from 'util';
 
 const serverUrl = 'localhost:3000';
 const httpServerUrl = `http://${serverUrl}`;
-const interestsUrl = `${httpServerUrl}/api/candidate`;
+const interestsUrl = `${httpServerUrl}/api/areaOfInterest`;
 
 @Injectable({
   providedIn: 'root'
 })
 export class InterestsService {
-  isLoading = false;
+  isLoading = true;
   isEditInterests = false;
+  private isLoadingAll = true;
+  private isLoadingUser = true;
   private token: string;
   private user: User;
   interests: string[];
@@ -29,23 +32,30 @@ export class InterestsService {
   }
 
   constructor(private http: HttpClient) {
-    this.isLoading = true;
     this.token = localStorage.getItem('token');
     this.user = JSON.parse(localStorage.getItem('currentUser'));
 
-    // this.getAllInterests(this.user.username).subscribe(
-    //   (res) => {
-    //     this.interests = res;
-    //     console.log(res);
-    //     this.isLoading = false;
-    //   },
-    //   (err) => console.log(err),
-    //   () => console.log('done!')
-    // );
+    this.getAllUserInterests(this.user.username).subscribe(
+      (res) => {
+        this.interestsUser = res;
+        console.log(res);
+        this.isLoadingUser = false;
+        this.isLoading = this.isLoadingAll && this.isLoadingUser;
+      },
+      (err) => console.log(err),
+      () => console.log('done with loading user interests!')
+    );
 
-    this.interests = ['java', '.net', 'c#', 'php', 'frontend', 'backend', 'angular', 'networking'];
-    this.interestsUser = ['java', '.net'];
-    this.isLoading = false;
+    this.getAllInterests().subscribe(
+      (res) => {
+        this.interests = res;
+        // console.log(res);
+        this.isLoadingAll = false;
+        this.isLoading = this.isLoadingAll && this.interestsUser;
+      },
+      (err) => console.log(err),
+      () => console.log('done with loading interests!')
+    );
   }
 
   getAllInterests(): Observable<string[]> {
@@ -53,11 +63,17 @@ export class InterestsService {
   }
 
   getAllUserInterests(email: any): Observable<string[]> {
-    return this.http.get<string[]>(`${interestsUrl}`, this.authHttpOptions());
+    return this.http.get<string[]>(`${interestsUrl}/all?email=${email}`, this.authHttpOptions());
   }
 
-  updateInterests(fruits: string[]) {
-    this.interestsUser = fruits;
-    console.log(fruits);
+  updateInterests() {
+    console.log(this.interestsUser);
+    const el = `${interestsUrl}?email=${this.user.username}`;
+    console.log(el);
+    this.http.put<string[]>(el, this.interestsUser, this.authHttpOptions()).subscribe(res => {
+      console.log(res);
+    }, err => {
+      console.log(err);
+    });
   }
 }

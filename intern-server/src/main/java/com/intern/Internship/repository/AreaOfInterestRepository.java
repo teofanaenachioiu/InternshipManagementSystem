@@ -1,9 +1,11 @@
 package com.intern.Internship.repository;
 
 import com.intern.Internship.model.AreaOfInterest;
+import com.intern.Internship.model.Language;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Query;
 
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
@@ -23,6 +25,9 @@ public interface AreaOfInterestRepository
             return criteriaBuilder.or(predicates.toArray(new Predicate[] {}));
         };
     }
+
+    @Query("SELECT a.name from AreaOfInterest a,CandidateAreaOfInterest c WHERE  c.areaOfInterest.ID like a.ID and c.candidate.ID=?1 ")
+    List<?> getAllByEmail(String email);
 
     AreaOfInterest findByName(String name);
 }

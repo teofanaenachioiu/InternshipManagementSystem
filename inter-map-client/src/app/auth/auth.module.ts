@@ -42,8 +42,7 @@ const materialComponents = [
   MatNativeDateModule,
 ];
 
-@NgModule({
-  declarations: [LoginComponent, RegisterComponent, ForgetPasswordComponent, ResetPasswordComponent, KeyWordsComponent, AboutYouCandidateComponent, AboutYouCompanyComponent],
+@NgModule({declarations: [LoginComponent, RegisterComponent, ForgetPasswordComponent, ResetPasswordComponent, KeyWordsComponent, AboutYouCandidateComponent, AboutYouCompanyComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,
