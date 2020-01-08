@@ -2,7 +2,6 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {CompanyProfileService} from './company-profile.service';
 import {InternshipDTO} from '../../data/InternshipDTO';
-import {HttpClient} from '@angular/common/http';
 import {InterestsService} from '../interests/interests.service';
 
 @Component({
@@ -38,9 +37,6 @@ export class CompanyProfileComponent implements OnInit, OnDestroy {
 
   getInternships() {
     return this.internships;
-  }
-
-  processFile(imageInput: HTMLInputElement) {
   }
 
   ngOnDestroy(): void {

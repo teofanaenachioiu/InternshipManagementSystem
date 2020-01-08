@@ -41,7 +41,6 @@ export class CompanyProfileService {
       (res) => {
         this.company = res;
         console.log(res);
-
         this.isLoading = false;
       },
       (err) => console.log(err),

@@ -13,10 +13,14 @@ export class ProfileViewComponent implements OnInit {
   previewUrl: any = 'assets/img/no-photo.png';
   company: Company;
 
-  constructor(private service: CompanyProfileService) { }
+  constructor(private service: CompanyProfileService) {
+  }
 
   ngOnInit() {
     this.company = this.service.company;
+    if (this.company.logo != null) {
+      this.previewUrl = 'data:image/jpeg;base64,' + this.company.logo;
+    }
   }
 
   makeEditable() {
