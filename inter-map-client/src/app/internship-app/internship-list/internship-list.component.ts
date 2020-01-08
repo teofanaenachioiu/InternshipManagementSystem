@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Internship } from '../data/Internship';
 import { StarRatingComponent } from 'ng-starrating';
 import { InternshipService } from '../internship.service';
+import { InternshipDTO } from '../data/InternshipDTO';
 
 @Component({
   selector: 'app-internship-list',
@@ -12,7 +13,7 @@ export class InternshipListComponent implements OnInit {
 
   @Output() internshipWasSelected = new EventEmitter<Internship>();
 
-  internships: Internship[];
+  internships: InternshipDTO[];
 
   filteredChildCompany = "";
   filteredMultipleCompany = "";
@@ -26,9 +27,8 @@ export class InternshipListComponent implements OnInit {
 
   checked = false;
   indeterminate = false;
-  statusString = [{ name: "apply" , selected: false } ,
-                  { name: "pending" , selected: false } ,
-                  { name: "endeed" , selected: false } ];
+  statusString = [{ name: "Open" , selected: false } ,
+                  { name: "Closed" , selected: false } ];
 
   ratingString =  [ { value : 1 , selected: false},
                     { value : 2 , selected: false},
@@ -43,12 +43,12 @@ export class InternshipListComponent implements OnInit {
       .subscribe(data => this.internships = data);
   }
 
-  onClickMe() {
-    console.log('You are my hero!');
-     this.getCompanyList();
-     console.log(this.getNumberInternshipsOfCompany("Fortech"));
-     console.log(this.getTechnologyList());
-  }
+  // onClickMe() {
+  //   console.log('You are my hero!');
+  //    this.getCompanyList();
+  //    console.log(this.getNumberInternshipsOfCompany("Fortech"));
+  //    console.log(this.getTechnologyList());
+  // }
 
 
 getCompanyList(){
@@ -65,7 +65,7 @@ getTechnologyList(){
 
   let technologies = [];
   for(let i=0 ; i<this.internships.length ; i++){
-    let stringOfTechnologies = this.internships[i].interests.split(",");
+    let stringOfTechnologies = this.internships[i].areaOfInterest.split(",");
     for(let j = 0 ; j < stringOfTechnologies.length ; j++)
       if(technologies.indexOf(stringOfTechnologies[j]) === -1 )
         technologies.push(stringOfTechnologies[j]);
@@ -86,7 +86,7 @@ getNumberInternshipsOfCompany(companyName){
 getNumberInternshipsOfTechnology(technologyName){
   let count = 0;
   for( let i = 0 ; i < this.internships.length ;i++)
-    if(this.internships[i].interests.indexOf(technologyName) !== -1)
+    if(this.internships[i].areaOfInterest === technologyName)
               count ++;   
   return count;
 }
@@ -94,9 +94,10 @@ getNumberInternshipsOfTechnology(technologyName){
 getNumberInternshipsWithRating(rating){
   let count = 0;
   for( let i = 0 ; i < this.internships.length ; i++)
-    if(this.internships[i].rating >= rating)
+    if(this.internships[i].averageOfFeedbacks >= rating)
       count ++;
   return count;
+
 }
 
 onChange(companyName:string, isChecked: boolean) {

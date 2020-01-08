@@ -1,16 +1,18 @@
+
+<mat-dialog-content>
+<p> {{internship.description}}</p>
 <p> {{ internship.name }} </p>
 <p> {{ internship.startTime }}</p>
 <p> {{internship.endTime }}</p>
 <p> {{internship.paid }}</p>
 <p> {{internship.nrMonths}}</p>
-<p> {{internship.description}}</p>
 <p> {{internship.nrApplicant}}</p>
 <p> {{internship.status}}</p>
 <p> {{internship.location}}</p>
 <p> {{internship.addedDate}}</p>
 <p> {{internship.company}}</p>
 <p> {{internship.imagePath}}</p>
-<p> {{internship.interests}}</p>
+<p> {{internship.areaOfInterest}}</p>
 <p> {{internship.numberOfFeedbacks}}</p>
 <p> {{internship.averageOfFeedbacks}}</p>
 
@@ -19,7 +21,6 @@
 <button mat-button mat-dialog-close (click)="createApplication()">Apply</button>
 <button mat-button mat-dialog-close>Close</button>
 
-<mat-dialog-content>
 <h4>Comments section</h4>
 <div class="container task-list">
     <div class="row">
