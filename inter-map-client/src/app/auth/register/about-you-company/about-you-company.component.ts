@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 
 import { EmailValidation, PasswordValidation, RepeatPasswordEStateMatcher, RepeatPasswordValidator } from '../validators';
 import {AuthService} from 'src/app/auth/auth.service';
+import {Company} from "../../../core/Company";
 class ImageSnippet {
   constructor(public src: string, public file: File) {}
 }
@@ -35,10 +36,22 @@ export class AboutYouCompanyComponent implements OnInit {
     const companyDescription = this.form.get('companyDescription').value;
     const phone = this.form.get('phone').value;
     const companyName = this.form.get('companyName').value;
+
     let img = null;
     if ( this.toArray != null ) {
       img = this.toArray[1];
     }
+  //   let company: Company = {
+  //     id: '',
+  //     name: companyName,
+  //     telephone: phone,
+  //     field: '',
+  //     description: companyDescription,
+  //     address,
+  //     logo: img;
+  //
+  //
+  // }
     this.authService.updateCompany(address, companyDescription, phone, companyName, img)
       .subscribe((res) => {
         console.log(res);

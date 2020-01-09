@@ -24,6 +24,8 @@ export class RegisterComponent implements OnInit {
   passwordsMatcher = new RepeatPasswordEStateMatcher();
   exitEmail: boolean;
   errorEmail: boolean;
+  registerStep: boolean;
+  checkEmail: boolean;
 
   constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router) {
     this.selectedProfile = null;
@@ -36,6 +38,7 @@ export class RegisterComponent implements OnInit {
     }, {validator: RepeatPasswordValidator});
     this.exitEmail = false;
     this.errorEmail = true;
+    this.registerStep = true;
   }
 
   ngOnInit() {
@@ -67,25 +70,11 @@ export class RegisterComponent implements OnInit {
         this.candidateStep = true;
         console.log(this.companyStep + '-' + this.candidateStep);
       }
-      this.authService.register(email, password, this.selectedProfile)
-        .subscribe((res) => {
-          console.log(res);
-        }, (error) => {
-          console.log(error.statusText);
-          this.candidateStep = false;
-          this.companyStep = false;
-        });
-    }
-  }
-
-  checkEmailExistence(event: MatCheckboxChange) {
-    const email = this.form.get('email').value;
-    if (event.checked) {
       this.authService.getCompany(email).subscribe((res) => {
-       console.log(res);
-       this.exitEmail = false;
-       this.errorEmail = false;
-     }, (error) => {
+        console.log(res);
+        this.exitEmail = false;
+        this.errorEmail = false;
+      }, (error) => {
         this.authService.getCandidate(email).subscribe((res) => {
           console.log(res);
           this.exitEmail = false;
@@ -93,11 +82,27 @@ export class RegisterComponent implements OnInit {
         }, (error1) => {
           this.exitEmail = true;
           this.errorEmail = true;
+          this.authService.register(email, password, this.selectedProfile)
+            .subscribe((res) => {
+              console.log(res);
+              this.registerStep = false;
+            }, (error2) => {
+              this.registerStep = true;
+              console.log('eroare');
+              console.log(error.statusText);
+              this.candidateStep = false;
+              this.companyStep = false;
+            });
         });
-     });
-    } else {
-      console.log('nu');
+      });
+     // if ( this.exitEmail === true) {
+
+      //}
     }
+  }
+
+  checkEmailExistence() {
+
   }
 }
 
