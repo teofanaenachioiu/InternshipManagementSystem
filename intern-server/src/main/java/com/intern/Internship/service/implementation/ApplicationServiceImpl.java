@@ -72,7 +72,8 @@ public class ApplicationServiceImpl implements ApplicationService {
                 internshipCandidateDTOList.add(new InternshipCandidateDTO(
                         application.getCandidate().getID(),
                         application.getCandidate().getFirstName() + " " + application.getCandidate().getLastName(),
-                        application.getApplicationStatus()
+                        application.getApplicationStatus(),
+                        application.getExtraMessage()
                 ));
         }
         return internshipCandidateDTOList;
