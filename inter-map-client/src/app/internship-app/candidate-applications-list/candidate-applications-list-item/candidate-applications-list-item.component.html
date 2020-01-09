@@ -42,6 +42,7 @@
         <span class="subtitle-span">{{application.status}}</span>
       </mat-card-subtitle>
       <mat-card-subtitle>
+        <span class="subtitle-span">{{application.idCompany}}</span>
         <span class="subtitle-span">{{application.location}}</span>
         <span class="paid-span" *ngIf="application.paid">paid</span>
         <span class="subtitle-span">
@@ -54,17 +55,24 @@
     <mat-card-content style="display: inline-block">
       <app-show-more-less-text [text]="application.description" limit="20"></app-show-more-less-text>
     </mat-card-content>
-    <mat-card-footer style="margin-left: 1vw">
-        <span>
-          <star-rating [value]="0"
+    <mat-card-footer *ngIf="application.status === InternshipStatus.Closed" style="margin-left: 1vw">
+      <mat-divider></mat-divider>
+
+        <star-rating [value]="0"
                        checkedcolor="gold"
                        uncheckedcolor="black"
                        readonly="false"
-                       size="30px" (rate)="onRate($event)"></star-rating>
-        </span>
-        <mat-card-subtitle>
-          {{application.idCompany}}
-        </mat-card-subtitle>
+                       size="30px" (rate)="onRate($event)">
+
+        </star-rating>
+
+
+      <mat-form-field>
+          <label>
+            <textarea matInput placeholder="Leave a comment" [(ngModel)]="feedbackComment"></textarea>
+          </label>
+        </mat-form-field>
+        <button mat-button (click)="submitRating()">SUBMIT</button>
     </mat-card-footer>
   </mat-card>
 
