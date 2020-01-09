@@ -6,6 +6,10 @@ import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {InternshipCandidateDTO} from '../data/InternshipCandidateDTO';
 import {ApplicationStatus} from '../data/ApplicationDTO';
 
+class CandidateToCheck extends InternshipCandidateDTO {
+  checked = false;
+}
+
 @Component({
   selector: 'app-internship-candidates',
   templateUrl: './internship-candidates.component.html',
@@ -15,8 +19,10 @@ export class InternshipCandidatesComponent implements OnInit, OnDestroy {
 
   private subscriptions = [];
   private internshipId;
-  private candidates: InternshipCandidateDTO[] = [];
-  private getUrl = 'http://localhost:3000/api/application/InternshipCandidates';
+  private candidatesToCheck: CandidateToCheck[] = [];
+  private apiUrl = 'http://localhost:3000/api/application';
+  private getUrl = `${this.apiUrl}/InternshipCandidates`;
+  private allChecked = false;
 
   constructor(private companyService: CompanyProfileService,
               private http: HttpClient) { }
@@ -44,16 +50,61 @@ export class InternshipCandidatesComponent implements OnInit, OnDestroy {
       .set('internship_id', this.internshipId);
 
     this.subscriptions.push(
-      this.http.get<InternshipCandidateDTO[]>(`${this.getUrl}`, {params, headers: this.httpHeaders()})
+      this.http.get<InternshipCandidateDTO[]>(`${this.getUrl}`, { params, headers: this.httpHeaders() })
         .subscribe(res => {
-          this.candidates = res;
-          console.log(this.candidates);
+          this.candidatesToCheck = res as CandidateToCheck[];
+          this.candidatesToCheck.forEach(c => c.checked = false);
+          console.log(this.candidatesToCheck);
         }, error => console.log(error))
     );
   }
 
   ngOnDestroy(): void {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
+  }
+
+  changeChecked(event: any, candidate: InternshipCandidateDTO) {
+    const checked = event.checked;
+    let all = true;
+    for (let i = 0; i < this.candidatesToCheck.length; i++) {
+      if (this.candidatesToCheck[i].email === candidate.email) {
+        this.candidatesToCheck[i].checked = checked;
+      }
+      if (!this.candidatesToCheck[i].checked) {
+        all = false;
+      }
+    }
+    this.allChecked = all;
+    console.log(this.candidatesToCheck);
+  }
+
+  checkAll(event: any) {
+    this.allChecked = event.checked;
+    this.candidatesToCheck.forEach(c => c.checked = this.allChecked);
+    console.log(this.candidatesToCheck);
+  }
+
+  updateCandidate(candidate: InternshipCandidateDTO, status: ApplicationStatus) {
+    const params = new HttpParams()
+      .set('candidate_email', candidate.email)
+      .set('internship_id', this.internshipId)
+      .set('status', status);
+
+    this.subscriptions.push(
+      this.http.put(this.apiUrl, {}, { params, headers: this.httpHeaders() })
+        .subscribe(res => {
+          console.log(res);
+          candidate.status = status;
+        }, error => console.log(error))
+    );
+  }
+
+  updateCandidates(status: ApplicationStatus) {
+    this.candidatesToCheck.forEach(candidate => {
+      if (candidate.checked) {
+        this.updateCandidate(candidate, status);
+      }
+    });
   }
 
 }

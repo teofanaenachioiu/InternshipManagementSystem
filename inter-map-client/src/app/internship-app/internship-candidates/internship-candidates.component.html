@@ -1,11 +1,19 @@
 
 
-<div>
-  <mat-card class="card" *ngFor="let candidate of candidates">
+<div class="main-div">
+  <mat-card class="card">
+    <mat-checkbox matTooltip="Select All" [checked]="allChecked" (change)="checkAll($event)"></mat-checkbox>
+    <button mat-button [matMenuTriggerFor]="menu">Change status</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="updateCandidates(applicationStatus.Replied)">REPLY</button>
+      <button mat-menu-item (click)="updateCandidates(applicationStatus.Accepted)">ACCEPT</button>
+    </mat-menu>
+  </mat-card>
+  <mat-card class="card" *ngFor="let candidate of candidatesToCheck">
     <mat-card-header>
-      <mat-icon *ngIf="candidate.status == applicationStatus.Applied" mat-card-avatar>publish</mat-icon>
-      <mat-icon *ngIf="candidate.status == applicationStatus.Replied" mat-card-avatar>reply</mat-icon>
-      <mat-icon *ngIf="candidate.status == applicationStatus.Accepted" mat-card-avatar>done_all</mat-icon>
+      <mat-icon matTooltip="{{candidate.status}}" *ngIf="candidate.status == applicationStatus.Applied" mat-card-avatar>publish</mat-icon>
+      <mat-icon matTooltip="{{candidate.status}}" *ngIf="candidate.status == applicationStatus.Replied" mat-card-avatar>reply</mat-icon>
+      <mat-icon matTooltip="{{candidate.status}}" *ngIf="candidate.status == applicationStatus.Accepted" mat-card-avatar>done_all</mat-icon>
       <mat-card-title>
         {{candidate.name}}
       </mat-card-title>
@@ -14,7 +22,8 @@
       </mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-      <app-show-more-less-text text="{{candidate.extraMessage}}" limit="40"></app-show-more-less-text>
+      <app-show-more-less-text style="" text="{{candidate.extraMessage}}" limit="40"></app-show-more-less-text>
     </mat-card-content>
+    <mat-checkbox matTooltip="Select" [checked]="candidate.checked" (change)="changeChecked($event, candidate)"></mat-checkbox>
   </mat-card>
 </div>
