@@ -36,7 +36,9 @@ public class ApplicationServiceImpl implements ApplicationService {
     public Application update(String candidateID, String internshipID, ApplicationStatus applicationStatus) {
         for (Application a : applicationRepository.findAll()) {
             if (a.getCandidate().getID().equals(candidateID) && a.getInternship().getID().equals(internshipID)) {
+                applicationRepository.delete(a);
                 a.setApplicationStatus(applicationStatus);
+                applicationRepository.save(a);
                 return a;
             }
         }
