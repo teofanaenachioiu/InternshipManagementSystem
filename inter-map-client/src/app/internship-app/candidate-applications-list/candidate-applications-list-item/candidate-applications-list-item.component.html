@@ -28,7 +28,6 @@
 
   <mat-card>
     <mat-card-header>
-      <mat-icon mat-card-avatar>publish</mat-icon>
       <mat-icon *ngIf="application.applicationStatus === ApplicationStatus.Applied" mat-card-avatar>publish</mat-icon>
       <mat-icon *ngIf="application.applicationStatus === ApplicationStatus.Replied" mat-card-avatar>reply</mat-icon>
       <mat-icon *ngIf="application.applicationStatus === ApplicationStatus.Accepted" mat-card-avatar>done_all</mat-icon>

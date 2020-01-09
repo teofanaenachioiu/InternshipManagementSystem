@@ -21,6 +21,7 @@ export class CompanyProfileService {
   isEditProfile = false;
 
   private internshipsSubject: BehaviorSubject<InternshipDTO[]> = new BehaviorSubject<InternshipDTO[]>([]);
+  private selectedInternshipId: number = null;
 
   authHttpOptions() {
     const httpOptions = {
@@ -131,6 +132,14 @@ export class CompanyProfileService {
         }
       },
         error => console.log(error));
+  }
+
+  public setSelectedInternshipId(id) {
+    this.selectedInternshipId = id;
+  }
+
+  public getSelectedInternshipId() {
+    return this.selectedInternshipId;
   }
 
   // public updateCompany(company: Company) {

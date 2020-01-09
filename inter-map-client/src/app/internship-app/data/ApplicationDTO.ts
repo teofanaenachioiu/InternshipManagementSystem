@@ -27,9 +27,9 @@ export enum InternshipStatus {
 }
 
 export enum ApplicationStatus {
-  Applied,
-  Replied,
-  Accepted
+  Applied = 'Applied',
+  Replied = 'Replied',
+  Accepted = 'Accepted'
 }
 
 

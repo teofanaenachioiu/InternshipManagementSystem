@@ -31,10 +31,10 @@
             {{internship.status}}
           </div>
           <div class="edit-div">
-            <button mat-raised-button (click)="editInternshipHandler()"><mat-icon>edit</mat-icon></button>
+            <button mat-button matTooltip="Edit status" (click)="editInternshipHandler()"><mat-icon>edit</mat-icon></button>
           </div>
           <div class="edit-div">
-            <button mat-raised-button (click)="removeInternshipHandler()"><mat-icon>delete</mat-icon></button>
+            <button mat-button matTooltip="Remove internship" (click)="removeInternshipHandler()"><mat-icon>delete</mat-icon></button>
           </div>
         </div>
       </div>
@@ -46,15 +46,21 @@
         {{internship.location}}
       </div>
       <div class="description-div">
-        {{internship.description}}
+        <app-show-more-less-text text="{{internship.description}}" limit="50"></app-show-more-less-text>
       </div>
 
     </div>
   </div>
 
-  <div class="feedbacks-div">
-    FEEDBACKS
+  <div class="name-status-div">
+    <div class="feedbacks-div">
+      FEEDBACKS
+    </div>
+    <div class="edit-div">
+      <button mat-button matTooltip="Show candidates" (click)="showCandidates()"><mat-icon>list</mat-icon></button>
+    </div>
   </div>
+
 
 </div>
 

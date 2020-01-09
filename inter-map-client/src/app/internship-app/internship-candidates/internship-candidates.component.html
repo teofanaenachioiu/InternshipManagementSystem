@@ -1,0 +1,20 @@
+
+
+<div>
+  <mat-card class="card" *ngFor="let candidate of candidates">
+    <mat-card-header>
+      <mat-icon *ngIf="candidate.status == applicationStatus.Applied" mat-card-avatar>publish</mat-icon>
+      <mat-icon *ngIf="candidate.status == applicationStatus.Replied" mat-card-avatar>reply</mat-icon>
+      <mat-icon *ngIf="candidate.status == applicationStatus.Accepted" mat-card-avatar>done_all</mat-icon>
+      <mat-card-title>
+        {{candidate.name}}
+      </mat-card-title>
+      <mat-card-subtitle>
+        {{candidate.email}}
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <app-show-more-less-text text="{{candidate.extraMessage}}" limit="40"></app-show-more-less-text>
+    </mat-card-content>
+  </mat-card>
+</div>

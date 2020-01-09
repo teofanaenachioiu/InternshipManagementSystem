@@ -73,6 +73,7 @@ import {TruncateModule} from '@yellowspot/ng-truncate';
 import {AppModule} from '../app.module';
 import {ShowMoreLessTextComponent} from '../components/show-more-less-text/show-more-less-text.component';
 import { ExtraMessageDialogComponent } from './candidate-applications-list/candidate-applications-list-item/extra-message-dialog/extra-message-dialog.component';
+import { InternshipCandidatesComponent } from './internship-candidates/internship-candidates.component';
 
 
 const materialComponents = [
@@ -138,7 +139,8 @@ const materialComponents = [
     InternshipModalDetailsComponent,
     CreateApplicationComponent,
     ShowMoreLessTextComponent,
-    ExtraMessageDialogComponent
+    ExtraMessageDialogComponent,
+    InternshipCandidatesComponent
   ],
   entryComponents: [
     AddModalComponent,
