@@ -35,6 +35,10 @@ public class Feedback implements HasID<String> {
 
     @ManyToOne
     @JoinColumn
+    private Candidate candidate;
+
+    @ManyToOne
+    @JoinColumn
     @JsonIdentityInfo(generator = ObjectIdGenerators.StringIdGenerator.class, property = "@ID")
     @ToString.Exclude
     private Internship internship;
@@ -47,10 +51,11 @@ public class Feedback implements HasID<String> {
      * @param rating:      int
      * @param internship:  Internship
      */
-    public Feedback(String description, Boolean anonymous, int rating, Internship internship) {
+    public Feedback(String description, Boolean anonymous, int rating, Candidate candidate, Internship internship) {
         this.description = description;
         this.anonymous = anonymous;
         this.rating = rating;
+        this.candidate = candidate;
         this.internship = internship;
     }
 }

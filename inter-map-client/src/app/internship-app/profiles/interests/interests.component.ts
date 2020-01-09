@@ -30,15 +30,15 @@ export class InterestsComponent implements ControlValueAccessor, OnDestroy, OnIn
   visible = true;
   selectable = true;
   removable = true;
-
+  addOnBlur = true;
 
   separatorKeysCodes: number[] = [ENTER, COMMA];
   filteredFruits: Observable<string[]>;
   fruits: string[];
-  allFruits: string[];
-  allFruitsSuggested: string[];
+  allInterests: string[];
+  allInterestsSuggested: string[];
 
-  @ViewChild('fruitInput', {static: false}) fruitInput: ElementRef<HTMLInputElement>;
+  @ViewChild('interestInput', {static: false}) fruitInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
 
   get value(): InterestsComponent {
@@ -62,8 +62,6 @@ export class InterestsComponent implements ControlValueAccessor, OnDestroy, OnIn
         this.onTouched();
       })
     );
-
-
   }
 
   onChange: any = () => {
@@ -98,14 +96,13 @@ export class InterestsComponent implements ControlValueAccessor, OnDestroy, OnIn
   }
 
   ngOnInit(): void {
-    this.allFruits = this.service.interests;
+    this.allInterests = this.service.interests;
     this.fruits = this.service.interestsUser;
-    this.allFruitsSuggested = this.service.interests.slice(0, 3);
+    this.allInterestsSuggested = this.service.interests.slice(0, 3);
 
     this.filteredFruits = this.form.controls.fruitCtrl.valueChanges.pipe(
       startWith(null),
-      map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));
-
+      map((fruit: string | null) => fruit ? this._filter(fruit) : this.allInterests.slice()));
   }
 
   add(event: MatChipInputEvent): void {
@@ -140,21 +137,24 @@ export class InterestsComponent implements ControlValueAccessor, OnDestroy, OnIn
   selected(event: MatAutocompleteSelectedEvent): void {
     const interest = event.option.viewValue;
     if (!this.fruits.find(x => x.toLowerCase() === interest.toLowerCase())) {
-      this.fruits.push(event.option.viewValue);
-      this.fruitInput.nativeElement.value = '';
-      this.form.controls.fruitCtrl.setValue(this.fruits);
+      this.fruits.push(interest);
     }
+    this.fruitInput.nativeElement.value = '';
+    this.form.controls.fruitCtrl.setValue(null);
   }
 
   private _filter(value: string): string[] {
-    return this.allFruits.filter(fruit => fruit.indexOf(value) === 0);
+    const filterValue = value.toLowerCase();
+
+    return this.allInterests.filter(keyWord => keyWord.toLowerCase().indexOf(filterValue) === 0);
+
   }
 
   removeSuggestion(suggestion: string) {
-    const index = this.allFruitsSuggested.indexOf(suggestion);
+    const index = this.allInterestsSuggested.indexOf(suggestion);
 
     if (index >= 0) {
-      this.allFruitsSuggested.splice(index, 1);
+      this.allInterestsSuggested.splice(index, 1);
     }
 
     // Add our fruit
@@ -162,11 +162,20 @@ export class InterestsComponent implements ControlValueAccessor, OnDestroy, OnIn
       this.fruits.push(suggestion.trim());
     }
 
-    this.form.controls.fruitCtrl.setValue(this.fruits);
+    this.form.controls.fruitCtrl.setValue(null);
   }
 
   submitForm() {
-    this.service.updateInterests(this.fruits);
+    this.service.interestsUser = this.fruits;
+    this.service.updateInterests();
     this.service.isEditInterests = false;
+  }
+
+  addInterest() {
+    const value = this.form.controls.fruitCtrl.value;
+    if ((value || '').trim() && !this.fruits.find(x => x.toLowerCase() === value.toLowerCase())) {
+      this.fruits.push(value.trim());
+    }
+    this.form.controls.fruitCtrl.setValue(null);
   }
 }

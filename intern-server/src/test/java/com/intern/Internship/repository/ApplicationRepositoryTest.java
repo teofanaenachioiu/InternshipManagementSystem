@@ -99,24 +99,28 @@ class ApplicationRepositoryTest {
                 "Description1",
                 true,
                 5,
+                null,
                 internship11
         );
         Feedback feedback112 = new Feedback(
                 "Description2",
                 false,
                 4,
+                null,
                 internship11
         );
         Feedback feedback121 = new Feedback(
                 "Description3",
                 true,
                 6,
+                null,
                 internship12
         );
         Feedback feedback122 = new Feedback(
                 "Description4",
                 false,
                 7,
+                null,
                 internship12
         );
         feedbackRepository.save(feedback111);
@@ -156,7 +160,6 @@ class ApplicationRepositoryTest {
                 "LinkedIn goes here",
                 "Github goes here",
                 "Description goes here",
-                "Languages go here",
                 new HashSet<>(),
                 new HashSet<>()
         );

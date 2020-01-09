@@ -7,4 +7,8 @@ import java.util.List;
 public interface AreaOfInterestService {
     List<String> findAll();
     List<AreaOfInterest> findAll(List<String> names);
+
+    List<String> findAll(String email);
+
+    void update(String email, List<String> areaOfInterests);
 }

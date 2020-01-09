@@ -47,10 +47,10 @@ class InternshipRepositoryTest {
                 Internship internship12 = new Internship("Internship12", LocalDate.now(), LocalDate.now(), true, 4,
                                 "Company 1 Internship 2", 3, InternshipStatus.Open, "Zambilei 15", LocalDate.now(),
                                 company1, areaOfInterest2);
-                Feedback feedback111 = new Feedback("Description1", true, 5, internship11);
-                Feedback feedback112 = new Feedback("Description2", false, 4, internship11);
-                Feedback feedback121 = new Feedback("Description3", true, 6, internship12);
-                Feedback feedback122 = new Feedback("Description4", false, 7, internship12);
+                Feedback feedback111 = new Feedback("Description1", true, 5, null, internship11);
+                Feedback feedback112 = new Feedback("Description2", false, 4, null, internship11);
+                Feedback feedback121 = new Feedback("Description3", true, 6, null, internship12);
+                Feedback feedback122 = new Feedback("Description4", false, 7, null, internship12);
                 feedbackRepository.save(feedback111);
                 feedbackRepository.save(feedback112);
                 feedbackRepository.save(feedback121);
@@ -79,7 +79,6 @@ class InternshipRepositoryTest {
                 Internship fromRepositoryInternship11 = internshipRepository.getOne(internship11.getID());
                 assert (fromRepositoryInternship11 != null);
                 assert (internship11.getFeedbacks().size() != 0);
-                assert (internshipRepository.findAll().size() > 2);
 
                 assert (internshipRepository.count() == countBefore + 2);
                 assert (internship12.getCompany().getID() != null);

@@ -19,7 +19,7 @@ export class InternshipService {
   constructor(private _http: HttpClient) { }
 
   getInternships(){
-    return this._http.get<Internship[]>(this.apiUrl);
+    return this._http.get<InternshipDTO[]>(this.apiUrl);
   }
 
   addApplication(application: Application){

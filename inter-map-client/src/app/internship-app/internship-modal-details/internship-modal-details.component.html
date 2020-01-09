@@ -1,21 +1,46 @@
-<p>internship-modal-details works!</p>
-<h2> {{ internship.name }} </h2>
-<h2> {{ internship.startTime }}</h2>
-<h2> {{internship.endTime }}</h2>
-<h2> {{internship.paid }}</h2>
-<h2> {{internship.nrMonths}}</h2>
-<h2> {{internship.description}}</h2>
-<h2> {{internship.nrApplicant}}</h2>
-<h2> {{internship.status}}</h2>
-<h2> {{internship.location}}</h2>
-<h2> {{internship.addedDate}}</h2>
-<h2> {{internship.company}}</h2>
-<h2> {{internship.imagePath}}</h2>
-<h2> {{internship.interests}}</h2>
-<h2> {{internship.numberOfFeedbacks}}</h2>
-<h2> {{internship.averageOfFeedbacks}}</h2>
+
+<mat-dialog-content>
+<p> {{internship.description}}</p>
+<p> {{ internship.name }} </p>
+<p> {{ internship.startTime }}</p>
+<p> {{internship.endTime }}</p>
+<p> {{internship.paid }}</p>
+<p> {{internship.nrMonths}}</p>
+<p> {{internship.nrApplicant}}</p>
+<p> {{internship.status}}</p>
+<p> {{internship.location}}</p>
+<p> {{internship.addedDate}}</p>
+<p> {{internship.company}}</p>
+<p> {{internship.imagePath}}</p>
+<p> {{internship.areaOfInterest}}</p>
+<p> {{internship.numberOfFeedbacks}}</p>
+<p> {{internship.averageOfFeedbacks}}</p>
 
 
 
 <button mat-button mat-dialog-close (click)="createApplication()">Apply</button>
 <button mat-button mat-dialog-close>Close</button>
+
+<h4>Comments section</h4>
+<div class="container task-list">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel panel-white post panel-shadow" *ngFor="let feedback of feedbacks">
+                <div class="post-heading">
+                  
+                        <img src="http://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
+                    
+                    
+                        <star-rating [value]="feedback.rating" checkedcolor="gold" uncheckedcolor="black" 
+                            size="20px"  readonly="true" (rate)="onRate($event)"></star-rating>
+                    
+                </div> 
+                <div class="post-description"> 
+                    <p>{{feedback.description}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</mat-dialog-content>

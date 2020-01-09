@@ -8,17 +8,15 @@
   <span class="left" >
     <img
       [src]="internship.imagePath"
-      alt="{{ internship.name }}"
+      alt="{{ internship.company }}"
       class="img-responsive"
       style="height: 120px; width: 150px;">
-      <star-rating [value]="internship.rating" checkedcolor="gold" uncheckedcolor="black" 
+      <star-rating [value]="internship.averageOfFeedbacks" checkedcolor="gold" uncheckedcolor="black" 
       size="30px"  readonly="true" (rate)="onRate($event)"></star-rating>
   </span>
   <div class="right">
     <h3 class="list-group-item-heading">{{ internship.name }}</h3>
-    <h4 class="list-group-item-text">Post on 12/12/2019 by {{ internship.company }}</h4>
     <!-- <p class="list-group-item-text"> {{ description }}}</p> -->
-    <p class="list-group-item-text"> {{ internship.description }}</p>
     <p class="list-group-item-text">{{ internship.location }}</p>
     <p class="list-group-item-text">{{ internship.interests }}</p>
     <p class="list-group-item-text">{{ internship.status }}</p>

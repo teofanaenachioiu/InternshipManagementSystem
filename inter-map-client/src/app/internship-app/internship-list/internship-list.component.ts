@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Internship } from '../data/Internship';
 import { StarRatingComponent } from 'ng-starrating';
 import { InternshipService } from '../internship.service';
+import { InternshipDTO } from '../data/InternshipDTO';
 
 @Component({
   selector: 'app-internship-list',
@@ -12,26 +13,7 @@ export class InternshipListComponent implements OnInit {
 
   @Output() internshipWasSelected = new EventEmitter<Internship>();
 
-  // internships : Internship[] = [
-  //   new Internship('name1',true,3,'Cel mai tare intenrship jursssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss','Manastur',
-  //   'Ntt Data','http://www.youngoos.com/cdn/site/images/jobs/crop_jobs/thumb-NTT-Data_logo.png',2,".net,c/c++","apply"),
-  //   new Internship('name2',false,1,'Cel mai tare intenrship jur 2 ','Zorilor',
-  //   'Evozon','https://network.sensiolabs.com/assets/cache/partner_thumbnail/uploads/270-Logo-Evozon-(200x90)[4784].png',4,"java,.net","pending"),
-  //   new Internship('name3',true,6,'Cel mai tare intenrship jur 3 ','Gheorgheni',
-  //   'Stratec','https://i0.wp.com/www.bluespoint.net/wp-content/uploads/2017/03/stratec_logo_4c-border.jpg?fit=480%2C260&ssl=1',4,".net,web","apply"),
-  //   new Internship('name4',false,2,'Cel mai tare intenrship jur 4','Grigorescu',
-  //   'Fortech','https://www.fortech.ro/wp-content/uploads/2017/11/FortechSoftwareOutsourcingCompany.jpg',3,"java,web","apply"),
-  //   new Internship('name4',false,2,'Cel mai tare intenrship jur 4','Grigorescu',
-  //   'Arobs','https://runinclujorg.files.wordpress.com/2018/08/logo-arobs-transilvania-software.png',4,"c/c++,java","endeed"),
-  //   new Internship('name4',false,2,'Cel mai tare intenrship jur 4','Grigorescu',
-  //   'Fortech','https://www.fortech.ro/wp-content/uploads/2017/11/FortechSoftwareOutsourcingCompany.jpg',2,"java,c/c++","endeed"),
-  //   new Internship('name4',false,2,'Cel mai tare intenrship jur 4','Grigorescu',
-  //   'Fortech','https://www.fortech.ro/wp-content/uploads/2017/11/FortechSoftwareOutsourcingCompany.jpg',3,"c/c++,colob","endeed"),
-  //   new Internship('name3',true,6,'Cel mai tare intenrship jur 3 ','Gheorgheni',
-  //   'Stratec','https://i0.wp.com/www.bluespoint.net/wp-content/uploads/2017/03/stratec_logo_4c-border.jpg?fit=480%2C260&ssl=1',5,".net,java","pending")
-  // ]
-
-  internships: Internship[];
+  internships: InternshipDTO[];
 
   filteredChildCompany = "";
   filteredMultipleCompany = "";
@@ -45,9 +27,8 @@ export class InternshipListComponent implements OnInit {
 
   checked = false;
   indeterminate = false;
-  statusString = [{ name: "apply" , selected: false } ,
-                  { name: "pending" , selected: false } ,
-                  { name: "endeed" , selected: false } ];
+  statusString = [{ name: "Open" , selected: false } ,
+                  { name: "Closed" , selected: false } ];
 
   ratingString =  [ { value : 1 , selected: false},
                     { value : 2 , selected: false},
@@ -58,16 +39,16 @@ export class InternshipListComponent implements OnInit {
   constructor(private internshipService: InternshipService) { }
 
   ngOnInit() {
-    return this.internshipService.getInternships()
+   this.internshipService.getInternships()
       .subscribe(data => this.internships = data);
   }
 
-  onClickMe() {
-    console.log('You are my hero!');
-     this.getCompanyList();
-     console.log(this.getNumberInternshipsOfCompany("Fortech"));
-     console.log(this.getTechnologyList());
-  }
+  // onClickMe() {
+  //   console.log('You are my hero!');
+  //    this.getCompanyList();
+  //    console.log(this.getNumberInternshipsOfCompany("Fortech"));
+  //    console.log(this.getTechnologyList());
+  // }
 
 
 getCompanyList(){
@@ -84,7 +65,7 @@ getTechnologyList(){
 
   let technologies = [];
   for(let i=0 ; i<this.internships.length ; i++){
-    let stringOfTechnologies = this.internships[i].interests.split(",");
+    let stringOfTechnologies = this.internships[i].areaOfInterest.split(",");
     for(let j = 0 ; j < stringOfTechnologies.length ; j++)
       if(technologies.indexOf(stringOfTechnologies[j]) === -1 )
         technologies.push(stringOfTechnologies[j]);
@@ -105,7 +86,7 @@ getNumberInternshipsOfCompany(companyName){
 getNumberInternshipsOfTechnology(technologyName){
   let count = 0;
   for( let i = 0 ; i < this.internships.length ;i++)
-    if(this.internships[i].interests.indexOf(technologyName) !== -1)
+    if(this.internships[i].areaOfInterest === technologyName)
               count ++;   
   return count;
 }
@@ -113,9 +94,10 @@ getNumberInternshipsOfTechnology(technologyName){
 getNumberInternshipsWithRating(rating){
   let count = 0;
   for( let i = 0 ; i < this.internships.length ; i++)
-    if(this.internships[i].rating >= rating)
+    if(this.internships[i].averageOfFeedbacks >= rating)
       count ++;
   return count;
+
 }
 
 onChange(companyName:string, isChecked: boolean) {
