@@ -3,6 +3,7 @@ package com.intern.Internship.controller;
 import javax.persistence.EntityNotFoundException;
 
 import com.intern.Internship.model.Company;
+import com.intern.Internship.model.dto.CompanyDTO;
 import com.intern.Internship.service.CompanyService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,32 +25,41 @@ public class CompanyController {
     private CompanyService companyService;
 
     @GetMapping()
-    public ResponseEntity<Company> findByEmail(@RequestParam String email) {
+    public ResponseEntity<CompanyDTO> findByEmail(@RequestParam String email) {
         try {
             Company company = companyService.findByEmail(email);
-            return ResponseEntity.accepted().body(company);
+            CompanyDTO companyDTO = new CompanyDTO(
+                    company.getID(),
+                    company.getName(),
+                    company.getAddress(),
+                    company.getTelephone(),
+                    company.getDescription(),
+                    company.getField(),
+                    company.getLogo()
+            );
+            return ResponseEntity.accepted().body(companyDTO);
         } catch (EntityNotFoundException e) {
-            return ResponseEntity.badRequest().body(new Company());
+            return ResponseEntity.badRequest().body(new CompanyDTO());
         }
     }
 
     @PostMapping()
-    public ResponseEntity<Company> save(@RequestBody Company company) {
+    public ResponseEntity<CompanyDTO> save(@RequestBody CompanyDTO companyDTO) {
         try {
-            Company result = companyService.save(company);
+            CompanyDTO result = companyService.save(companyDTO);
             return ResponseEntity.ok().body(result);
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(new Company());
+            return ResponseEntity.badRequest().body(new CompanyDTO());
         }
     }
 
     @PutMapping()
-    public ResponseEntity<Company> update(@RequestBody Company company) {
+    public ResponseEntity<CompanyDTO> update(@RequestBody CompanyDTO companyDTO) {
         try {
-            Company result = companyService.update(company);
+            CompanyDTO result = companyService.update(companyDTO);
             return ResponseEntity.ok().body(result);
         } catch (IllegalArgumentException | EntityNotFoundException e) {
-            return ResponseEntity.badRequest().body(new Company());
+            return ResponseEntity.badRequest().body(new CompanyDTO());
         }
     }
 }
