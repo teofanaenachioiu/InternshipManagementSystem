@@ -8,8 +8,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.time.LocalDate;
 
@@ -33,7 +32,7 @@ public class Studies implements HasID<String> {
     private String description;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn
-    @JsonIdentityInfo(generator = ObjectIdGenerators.StringIdGenerator.class, property = "@ID")
+    @JsonIgnore
     private Candidate candidate;
 
     /**

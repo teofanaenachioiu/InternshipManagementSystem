@@ -3,7 +3,6 @@ package com.intern.Internship.service;
 import com.intern.Internship.model.Feedback;
 import com.intern.Internship.model.dto.FeedbackDTO;
 
-import java.util.List;
 import java.util.Set;
 
 public interface FeedbackService {
