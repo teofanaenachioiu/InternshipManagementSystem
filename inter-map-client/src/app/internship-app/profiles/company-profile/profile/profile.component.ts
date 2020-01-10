@@ -3,7 +3,7 @@ import {ControlValueAccessor, FormBuilder, FormControl, FormGroup, NG_VALIDATORS
 import {fromEvent, Observable, Subscription} from 'rxjs';
 import {Router} from '@angular/router';
 import {MatDialog} from '@angular/material';
-import {AddModalComponent} from '../add-modal/add-modal.component';
+import {AddModalComponent} from '../../../my-internships/add-modal/add-modal.component';
 import {CompanyProfileService} from '../company-profile.service';
 import {Company} from '../../../../core/Company';
 import {pluck} from 'rxjs/operators';

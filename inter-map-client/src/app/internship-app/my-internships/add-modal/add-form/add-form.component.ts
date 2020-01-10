@@ -1,7 +1,7 @@
 import {Component, forwardRef, OnDestroy, OnInit} from '@angular/core';
 import {ControlValueAccessor, FormBuilder, FormControl, FormGroup, NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {Subscription} from 'rxjs';
-import {CompanyProfileService} from '../../company-profile.service';
+import {CompanyProfileService} from '../../../profiles/company-profile/company-profile.service';
 
 @Component({
   selector: 'app-add-form',

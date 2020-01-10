@@ -57,9 +57,9 @@ import { ProfileComponent } from './profiles/company-profile/profile/profile.com
 import { TellUsMoreComponent } from './profiles/candidate-profile/tell-us-more/tell-us-more.component';
 import { InterestsComponent } from './profiles/interests/interests.component';
 import { CompanyInternshipsComponent } from './profiles/company-profile/company-internships/company-internships.component';
-import { AddModalComponent } from './profiles/company-profile/add-modal/add-modal.component';
+import { AddModalComponent } from './my-internships/add-modal/add-modal.component';
 import { ConfirmRemoveInternshipComponent } from './profiles/company-profile/company-internships/confirm-remove-internship/confirm-remove-internship.component';
-import { AddFormComponent } from './profiles/company-profile/add-modal/add-form/add-form.component';
+import { AddFormComponent } from './my-internships/add-modal/add-form/add-form.component';
 import { EditModalComponent } from './profiles/company-profile/edit-modal/edit-modal.component';
 import { EditFormComponent } from './profiles/company-profile/edit-modal/edit-form/edit-form.component';
 import {MaterialFileInputModule} from 'ngx-material-file-input';
@@ -74,6 +74,7 @@ import {AppModule} from '../app.module';
 import {ShowMoreLessTextComponent} from '../components/show-more-less-text/show-more-less-text.component';
 import { ExtraMessageDialogComponent } from './candidate-applications-list/candidate-applications-list-item/extra-message-dialog/extra-message-dialog.component';
 import { InternshipCandidatesComponent } from './internship-candidates/internship-candidates.component';
+import { MyInternshipsComponent } from './my-internships/my-internships.component';
 
 
 const materialComponents = [
@@ -140,7 +141,8 @@ const materialComponents = [
     CreateApplicationComponent,
     ShowMoreLessTextComponent,
     ExtraMessageDialogComponent,
-    InternshipCandidatesComponent
+    InternshipCandidatesComponent,
+    MyInternshipsComponent
   ],
   entryComponents: [
     AddModalComponent,

@@ -27,18 +27,18 @@ export class CompanyProfileComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.loadItems();
+    // this.loadItems();
   }
 
-  loadItems() {
-    this.subscriptions.push(this.companyService.getAllInternships()
-      .subscribe(internships => this.internships = internships,
-        error => this.error = error));
-  }
+  // loadItems() {
+  //   this.subscriptions.push(this.companyService.getAllInternships()
+  //     .subscribe(internships => this.internships = internships,
+  //       error => this.error = error));
+  // }
 
-  getInternships() {
-    return this.internships;
-  }
+  // getInternships() {
+  //   return this.internships;
+  // }
 
   processFile(imageInput: HTMLInputElement) {
   }
