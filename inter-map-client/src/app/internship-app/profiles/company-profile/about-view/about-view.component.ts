@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Candidat} from '../../../../core/Candidat';
+import {CandidateProfileService} from '../../candidate-profile/candidate-profile.service';
+import {CompanyProfileService} from '../company-profile.service';
+import {Company} from '../../../../core/Company';
 
 @Component({
   selector: 'app-about-view',
@@ -6,10 +10,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./about-view.component.css']
 })
 export class AboutViewComponent implements OnInit {
+  private company: Company;
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private service: CompanyProfileService) {
   }
 
+  ngOnInit() {
+    this.company = this.service.company;
+  }
+
+  makeEditable() {
+    this.service.isEditAbout = true;
+  }
 }
