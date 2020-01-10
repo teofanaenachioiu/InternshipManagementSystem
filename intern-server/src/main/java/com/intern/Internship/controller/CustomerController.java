@@ -85,10 +85,10 @@ public class CustomerController {
     @PostMapping("/api/auth/login")
     public ResponseEntity<Customer> login(@RequestBody Customer userForm) {
         try {
-            Customer user = userService.findByUser(userForm.getUsername(), userForm.getPassword());
-            String token = getJWTToken(user.getUsername());
-            user.setToken(token);
-            return ResponseEntity.ok().body(user);
+            Customer customer = userService.findByUser(userForm.getUsername(), userForm.getPassword());
+            String token = getJWTToken(customer.getUsername());
+            customer.setToken(token);
+            return ResponseEntity.ok().body(customer);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(new Customer());
         }
@@ -97,12 +97,12 @@ public class CustomerController {
     @PostMapping("/api/auth/forgot")
     public ResponseEntity<Customer> forgot(@RequestBody Customer userForm) {
         try {
-            Customer user = userService.findByUsername(userForm.getUsername());
+            Customer customer = userService.findByUsername(userForm.getUsername());
             String subject = "Reset password request";
             String body = "You received this e-mail because you requested a password request for your InterMAP account. Please enter the following address to get started: http://localhost:4200/reset/"
-                    + Encryption.encrypt(user.getUsername());
+                    + Encryption.encrypt(customer.getUsername());
             Email.sendMail(subject, body, userForm.getUsername());
-            return ResponseEntity.ok().body(user);
+            return ResponseEntity.ok().body(customer);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(new Customer());
         }
@@ -112,8 +112,8 @@ public class CustomerController {
     public ResponseEntity<Customer> reset(@RequestBody Customer userForm) {
         String username = Encryption.decrypt(userForm.getUsername());
         userService.changePassword(username, userForm.getPassword());
-        Customer user = userService.findByUsername(username);
-        return ResponseEntity.ok().body(user);
+        Customer customer = userService.findByUsername(username);
+        return ResponseEntity.ok().body(customer);
     }
 
     @GetMapping({ "/", "/api/auth/welcome" })

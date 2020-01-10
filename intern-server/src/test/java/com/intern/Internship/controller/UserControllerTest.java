@@ -1,7 +1,7 @@
 package com.intern.Internship.controller;
 
 import com.intern.Internship.model.Role;
-import com.intern.Internship.model.User;
+import com.intern.Internship.model.Customer;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,23 +16,23 @@ import org.springframework.test.context.junit4.SpringRunner;
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 class UserControllerTest {
     @Autowired
-    UserController userController;
+    CustomerController userController;
 
     @Test
     void login() {
-        User user = new User();
-        user.setUsername("User1");
-        user.setPassword("Password1");
+        Customer customer = new Customer();
+        customer.setUsername("User1");
+        customer.setPassword("Password1");
         Role role = new Role();
         role.setName("CANDIDATE");
-        user.setRole(role);
+        customer.setRole(role);
 
-        ResponseEntity<User> loginResult = userController.login(user);
+        ResponseEntity<Customer> loginResult = userController.login(customer);
         assert (loginResult.getBody().getUsername() == null);
 
-        user.setUsername("candidate@test.com");
-        user.setPassword("candidate");
-        loginResult = userController.login(user);
+        customer.setUsername("candidate@test.com");
+        customer.setPassword("candidate");
+        loginResult = userController.login(customer);
         assert (loginResult.getBody().getUsername().equals("candidate@test.com"));
     }
 }
