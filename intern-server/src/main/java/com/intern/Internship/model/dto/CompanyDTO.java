@@ -15,6 +15,10 @@ import javax.persistence.Id;
 @Entity
 @ToString
 public class CompanyDTO implements HasID<String> {
+    /**
+     *
+     */
+    private static final long serialVersionUID = 2489521016193917059L;
     @Id
     private String ID;
     private String name;
