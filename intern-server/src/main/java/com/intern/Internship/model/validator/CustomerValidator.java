@@ -5,11 +5,11 @@ import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserValidator implements Validator<Customer> {
+public class CustomerValidator implements Validator<Customer> {
     /**
-     * User validator
+     * Customer validator
      * 
-     * @param entity: User
+     * @param entity: Customer
      * @throws ValidationException if entity is invalid
      */
 
