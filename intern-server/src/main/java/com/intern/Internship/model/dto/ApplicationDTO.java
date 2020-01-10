@@ -1,6 +1,5 @@
 package com.intern.Internship.model.dto;
 
-import com.intern.Internship.model.Feedback;
 import com.intern.Internship.model.enums.ApplicationStatus;
 import com.intern.Internship.model.enums.InternshipStatus;
 import lombok.Getter;

@@ -9,7 +9,6 @@ import com.intern.Internship.model.Company;
 import com.intern.Internship.model.User;
 import com.intern.Internship.service.CandidateService;
 import com.intern.Internship.service.CompanyService;
-import com.intern.Internship.service.SecurityService;
 import com.intern.Internship.service.UserService;
 
 import com.intern.Internship.utils.Email;
@@ -37,9 +36,6 @@ public class UserController {
     private CandidateService candidateService;
     @Autowired
     private CompanyService companyService;
-
-    @Autowired
-    private SecurityService securityService;
 
     @GetMapping("/api/auth/signup")
     public String registration(Model model) {

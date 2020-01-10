@@ -1,7 +1,6 @@
 package com.intern.Internship.controller;
 
 import com.intern.Internship.model.Application;
-import com.intern.Internship.model.Candidate;
 import com.intern.Internship.model.dto.ApplicationDTO;
 import com.intern.Internship.model.dto.ApplicationRequest;
 import com.intern.Internship.model.dto.InternshipCandidateDTO;
