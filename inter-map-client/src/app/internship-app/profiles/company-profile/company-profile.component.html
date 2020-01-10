@@ -18,12 +18,20 @@
     </div>
     <div class="side-div">
 
-      <div class="form-div" id="about-div">
+      <div class="form-div" *ngIf= "!companyService.isEditAbout" id="about-div">
+        <app-about-view></app-about-view>
+      </div>
+
+      <div class="form-div" *ngIf= "companyService.isEditAbout" id="about-div">
         <app-about formControlName="about"></app-about>
       </div>
 
       <br>
-      <div class="form-div" id="interests-div">
+      <div *ngIf="!serviceInt.isEditInterests" class="form-div" id="interests-div">
+        <app-interests-view></app-interests-view>
+      </div>
+
+      <div  *ngIf="serviceInt.isEditInterests" class="form-div" id="interests-div">
         <app-interests formControlName="interests"></app-interests>
       </div>
       </div>

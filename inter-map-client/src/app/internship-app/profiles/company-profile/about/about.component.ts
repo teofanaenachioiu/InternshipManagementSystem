@@ -1,6 +1,8 @@
 import {Component, forwardRef, OnDestroy, OnInit} from '@angular/core';
 import {ControlValueAccessor, FormBuilder, FormControl, FormGroup, NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {Subscription} from 'rxjs';
+import {Company} from '../../../../core/Company';
+import {CompanyProfileService} from '../company-profile.service';
 
 @Component({
   selector: 'app-about',
@@ -19,10 +21,11 @@ import {Subscription} from 'rxjs';
     }
   ]
 })
-export class AboutComponent implements ControlValueAccessor, OnDestroy {
+export class AboutComponent implements ControlValueAccessor, OnDestroy, OnInit {
 
-  form: FormGroup;
-  subscriptions: Subscription[] = [];
+  private form: FormGroup;
+  private subscriptions: Subscription[] = [];
+  private company: Company;
 
   get value(): AboutComponent {
     return this.form.value;
@@ -34,10 +37,17 @@ export class AboutComponent implements ControlValueAccessor, OnDestroy {
     this.onTouched();
   }
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private service: CompanyProfileService) {
+
+  }
+
+  ngOnInit(): void {
+    this.company = this.service.company;
+
     this.form = this.formBuilder.group({
-      address: '',
-      description: ''
+      address: new FormControl({value: 'default'}, {validators: this.checkInputs}),
+      field: new FormControl({value: 'default'}, {validators: this.checkInputs}),
+      description: new FormControl({value: 'default'}, ),
     });
 
     this.subscriptions.push(
@@ -49,8 +59,10 @@ export class AboutComponent implements ControlValueAccessor, OnDestroy {
     );
   }
 
-  onChange: any = () => {};
-  onTouched: any = () => {};
+  onChange: any = () => {
+  };
+  onTouched: any = () => {
+  };
 
   writeValue(obj: any): void {
     if (obj) {
@@ -61,20 +73,62 @@ export class AboutComponent implements ControlValueAccessor, OnDestroy {
       this.form.reset();
     }
   }
+
   registerOnChange(fn: any): void {
     this.onChange = fn;
   }
+
   registerOnTouched(fn: any): void {
     this.onTouched = fn;
   }
 
   // communicate the inner form validation to the parent form
   validate(_: FormControl) {
-    return this.form.valid ? null : { profile: { valid: false, }, };
+    return this.form.valid ? null : {profile: {valid: false,},};
   }
 
   ngOnDestroy() {
     this.subscriptions.forEach(s => s.unsubscribe());
   }
 
+  /* Handle form errors in Angular 8 */
+  public errorHandling = (control: string, error: string, msg: string) => {
+    return this.form.get(control).hasError(error) ? msg : '';
+  };
+
+  checkInputs(control: FormControl) {
+    if (control.value === '') {
+      return {emptyInput: true};
+    }
+    return null;
+  }
+
+  submitForm() {
+    let doUpdate = false;
+
+    if (this.form.invalid) {
+      return;
+    }
+    console.log(this.form.value);
+    if (this.form.get('address').value != null || '') {
+      this.service.company.address = this.form.get('address').value;
+      doUpdate = true;
+    }
+
+    if (this.form.get('field').value != null || '') {
+      this.service.company.field = this.form.get('field').value;
+      doUpdate = true;
+    }
+
+    if (this.form.get('description').value != null || '') {
+      this.service.company.description = this.form.get('description').value;
+      doUpdate = true;
+    }
+
+    if (doUpdate) {
+      this.service.updateCompany();
+    }
+
+    this.service.isEditAbout= false;
+  }
 }

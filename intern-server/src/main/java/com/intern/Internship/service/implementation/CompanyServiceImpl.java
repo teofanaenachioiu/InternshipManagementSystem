@@ -5,6 +5,7 @@ import java.util.Optional;
 import javax.persistence.EntityNotFoundException;
 
 import com.intern.Internship.model.Company;
+import com.intern.Internship.model.dto.CompanyDTO;
 import com.intern.Internship.repository.CompanyRepository;
 import com.intern.Internship.service.CompanyService;
 
@@ -30,6 +31,31 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
+    public CompanyDTO save(CompanyDTO companyDTO) {
+        if (companyDTO == null)
+            throw new IllegalArgumentException();
+        Company company = companyRepository.save(new Company(
+                companyDTO.getID(),
+                companyDTO.getName(),
+                companyDTO.getAddress(),
+                companyDTO.getTelephone(),
+                companyDTO.getDescription(),
+                companyDTO.getField(),
+                companyDTO.getLogo()
+                )
+        );
+        return new CompanyDTO(
+                company.getID(),
+                company.getName(),
+                company.getAddress(),
+                company.getTelephone(),
+                company.getDescription(),
+                company.getField(),
+                company.getLogo()
+        );
+    }
+
+    @Override
     public Company save(Company company) {
         if (company == null)
             throw new IllegalArgumentException();
@@ -37,10 +63,26 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public Company update(Company company) {
-        if (company == null || findByEmail(company.getID()) == null) {
+    public CompanyDTO update(CompanyDTO companyDTO) {
+        if (companyDTO == null || findByEmail(companyDTO.getID()) == null) {
             throw new IllegalArgumentException();
         }
-        return save(company);
+        Company company = companyRepository.getOne(companyDTO.getID());
+        company.setName(companyDTO.getName());
+        company.setAddress(companyDTO.getAddress());
+        company.setTelephone(companyDTO.getTelephone());
+        company.setDescription(companyDTO.getDescription());
+        company.setField(companyDTO.getField());
+        company.setLogo(companyDTO.getLogo());
+        Company savedCompany = save(company);
+        return new CompanyDTO(
+                savedCompany.getID(),
+                savedCompany.getName(),
+                savedCompany.getAddress(),
+                savedCompany.getTelephone(),
+                savedCompany.getDescription(),
+                savedCompany.getField(),
+                savedCompany.getLogo()
+        );
     }
 }
