@@ -70,11 +70,11 @@ import { ProfileViewComponent } from './profiles/company-profile/profile-view/pr
 import { InternshipModalDetailsComponent } from './internship-modal-details/internship-modal-details.component';
 import { CreateApplicationComponent } from './create-application/create-application.component';
 import {TruncateModule} from '@yellowspot/ng-truncate';
-import {AppModule} from '../app.module';
 import {ShowMoreLessTextComponent} from '../components/show-more-less-text/show-more-less-text.component';
 import { ExtraMessageDialogComponent } from './candidate-applications-list/candidate-applications-list-item/extra-message-dialog/extra-message-dialog.component';
 import { InternshipCandidatesComponent } from './internship-candidates/internship-candidates.component';
 import { MyInternshipsComponent } from './my-internships/my-internships.component';
+import { AboutViewComponent } from './profiles/company-profile/about-view/about-view.component';
 
 
 const materialComponents = [
@@ -142,7 +142,8 @@ const materialComponents = [
     ShowMoreLessTextComponent,
     ExtraMessageDialogComponent,
     InternshipCandidatesComponent,
-    MyInternshipsComponent
+    MyInternshipsComponent,
+    AboutViewComponent,
   ],
   entryComponents: [
     AddModalComponent,

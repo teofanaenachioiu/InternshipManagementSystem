@@ -20,7 +20,7 @@ export class CandidateMenuComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
   ) {
     this.authService.currentUser.subscribe(x => this.currentUser = x);
   }
