@@ -4,6 +4,8 @@ import javax.persistence.EntityNotFoundException;
 
 import com.intern.Internship.model.Candidate;
 import com.intern.Internship.service.CandidateService;
+import com.intern.Internship.service.ExperienceService;
+import com.intern.Internship.service.StudiesService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +24,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class CandidateController {
     @Autowired
     private CandidateService candidateService;
+    @Autowired
+    private ExperienceService experienceService;
+
+    @Autowired
+    private StudiesService studiesService;
 
     @GetMapping()
     public ResponseEntity<Candidate> findByEmail(@RequestParam String email) {
@@ -47,6 +54,14 @@ public class CandidateController {
     @PutMapping()
     public ResponseEntity<Candidate> update(@RequestBody Candidate candidate) {
         try {
+            // System.out.println("Experiences");
+            // candidate.getExperiences().forEach(System.out::println);
+            // System.out.println("Studies");
+            // candidate.getStudies().forEach(System.out::println);
+
+            experienceService.saveAll(candidate, candidate.getExperiences());
+            studiesService.saveAll(candidate, candidate.getStudies());
+
             Candidate result = candidateService.update(candidate);
             return ResponseEntity.ok().body(result);
         } catch (Exception e) {
