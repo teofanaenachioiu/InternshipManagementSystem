@@ -9,7 +9,7 @@
     float: right;
     list-style: none;
     width: 450px;
-    
+
 }
 
  .list-group-item-heading {
@@ -18,9 +18,9 @@
 
 .list-group-item-text {
     margin-right: 100px;
-    width: 60%;   
+    width: 60%;
     float: left;
-  
+
 }
 
 
@@ -28,3 +28,39 @@
    float: left;
 }
 
+
+
+.card {
+  background-color: #eeeeff;
+  /*margin-left: 13vw;*/
+  /*margin-right: 13vw;*/
+  margin-top: 5vw;
+}
+
+.status-edit-div {
+  float: left;
+  display: flex;
+}
+
+.status-div {
+  border: 2px solid black;
+  padding-left: 1vw;
+  padding-right: 1vw;
+  vertical-align: middle;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: 1vw;
+}
+
+.paid-div {
+  background-color: greenyellow;
+}
+
+.footer-div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.more-button {
+  float: left;
+}

@@ -6,7 +6,7 @@ import {CandidateProfileComponent} from './profiles/candidate-profile/candidate-
 import {CompanyProfileComponent} from './profiles/company-profile/company-profile.component';
 import {AuthCandidateGuard} from '../auth/auth-candidate.guard';
 import {AuthCompanyGuard} from '../auth/auth-company.guard';
-import {CompanyInternshipsComponent} from './profiles/company-profile/company-internships/company-internships.component';
+import {CompanyInternshipsComponent} from './my-internships/company-internships/company-internships.component';
 import {InternshipListComponent} from './internship-list/internship-list.component';
 import {CandidateApplicationsListComponent} from './candidate-applications-list/candidate-applications-list.component';
 import { CreateApplicationComponent } from './create-application/create-application.component';

@@ -1,0 +1,126 @@
+
+<!--<div class="main-div">-->
+
+<!--  <div class="top-div">-->
+<!--    <div class="img-div">-->
+<!--      <img class="img-logo" src="{{internship.imagePath}}" alt="{{internship.name}}">-->
+<!--      <div class="rating-div">-->
+<!--        <mat-icon class="yellow-color star" *ngFor="let dummy of ' '.repeat(internship.rating).split(''), let x = index">-->
+<!--          star-->
+<!--        </mat-icon>-->
+<!--        <mat-icon class="star" *ngFor="let dummy of ' '.repeat(5 - internship.rating).split(''), let x = index">-->
+<!--          star-->
+<!--        </mat-icon>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    <div class="details-div">-->
+
+<!--      <div class="name-status-div">-->
+<!--        <div class="name-div">-->
+<!--          {{internship.name}}-->
+<!--        </div>-->
+<!--        <div class="status-edit-div">-->
+<!--          <div *ngIf="internship.paid" class="status-div paid-div">-->
+<!--            paid-->
+<!--          </div>-->
+<!--          <div class="status-div">-->
+<!--            {{internship.nrMonths}} months-->
+<!--          </div>-->
+<!--          <div class="status-div">-->
+<!--            {{internship.status}}-->
+<!--          </div>-->
+<!--          <div class="edit-div">-->
+<!--            <button mat-button matTooltip="Edit status" (click)="editInternshipHandler()"><mat-icon>edit</mat-icon></button>-->
+<!--          </div>-->
+<!--          <div class="edit-div">-->
+<!--            <button mat-button matTooltip="Remove internship" (click)="removeInternshipHandler()"><mat-icon>delete</mat-icon></button>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="posted-div">-->
+<!--        Posted on: {{internship.addedDate}}-->
+<!--      </div>-->
+<!--      <div>-->
+<!--        {{internship.location}}-->
+<!--      </div>-->
+<!--      <div class="description-div">-->
+<!--        <app-show-more-less-text text="{{internship.description}}" limit="50"></app-show-more-less-text>-->
+<!--      </div>-->
+
+<!--    </div>-->
+<!--  </div>-->
+
+<!--  <div class="name-status-div">-->
+<!--    <div class="feedbacks-div">-->
+<!--      FEEDBACKS-->
+<!--    </div>-->
+<!--    <div class="edit-div">-->
+<!--      <button mat-button matTooltip="Show candidates" (click)="showCandidates()"><mat-icon>list</mat-icon></button>-->
+<!--    </div>-->
+<!--  </div>-->
+
+
+<!--</div>-->
+
+<div>
+
+  <mat-card style="background-color: #eeeeff">
+
+    <mat-card-header>
+      <div matCardAvatar>
+        <img style="width: 100%" src="{{internship.imagePath}}" alt="no img">
+      </div>
+      <mat-card-title>
+        {{internship.name}}
+      </mat-card-title>
+      <mat-card-subtitle>
+        <div class="posted-div">
+          Posted on: {{internship.addedDate}}
+        </div>
+        <div>
+          {{internship.location}}
+        </div>
+      </mat-card-subtitle>
+      <mat-card-subtitle>
+        <div class="status-edit-div">
+          <div *ngIf="internship.paid" class="status-div paid-div">
+            paid
+          </div>
+          <div class="status-div">
+            {{internship.nrMonths}} months
+          </div>
+          <div class="status-div">
+            {{internship.status}}
+          </div>
+          <div class="edit-div">
+            <button mat-button matTooltip="Edit status" (click)="editInternshipHandler()"><mat-icon>edit</mat-icon></button>
+          </div>
+          <div class="edit-div">
+            <button mat-button matTooltip="Remove internship" (click)="removeInternshipHandler()"><mat-icon>delete</mat-icon></button>
+          </div>
+        </div>
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <app-show-more-less-text text="{{internship.description}}" limit="50"></app-show-more-less-text>
+    </mat-card-content>
+
+    <mat-divider></mat-divider>
+    <mat-card-footer>
+      <div class="name-status-div">
+        <div class="feedbacks-div">
+          FEEDBACKS
+        </div>
+        <div class="edit-div">
+          <button mat-button matTooltip="Show candidates" (click)="showCandidates()"><mat-icon>list</mat-icon></button>
+        </div>
+      </div>
+    </mat-card-footer>
+
+  </mat-card>
+
+</div>
+

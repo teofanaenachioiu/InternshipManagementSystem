@@ -1,8 +1,9 @@
 #profileImg {
-  width: 250px;
-  height: 250px;
+  width: 13vw;
+  height: 13vw;
   border-radius: 50%;
 }
+
 
 .fields{
   width: 100%;

@@ -6,6 +6,7 @@ import {MatDialog} from '@angular/material';
 import {ExtraMessageDialogComponent} from './extra-message-dialog/extra-message-dialog.component';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {FeedbackDTO} from '../../data/FeedbackDTO';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-candidate-applications-list-item',
@@ -38,10 +39,6 @@ export class CandidateApplicationsListItemComponent implements OnInit, OnDestroy
     return InternshipStatus;
   }
 
-  onInternshipSelected() {
-    this.applicationSelected.emit();
-  }
-
   onRate(event: any) {
     this.ratingValue = event.newValue;
   }
@@ -70,6 +67,7 @@ export class CandidateApplicationsListItemComponent implements OnInit, OnDestroy
       this.http.post<FeedbackDTO>(this.apiUrl, feedbackDTO, { headers: this.httpHeaders() })
         .subscribe(res => {
             console.log(res);
+            window.location.reload();
           },
           error => console.log(error))
     );

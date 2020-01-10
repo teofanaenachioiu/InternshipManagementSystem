@@ -1,27 +1,76 @@
 
 
 
-<div class="container">
-<a
-  class="list-group-item clearfix"
-  (click)="onSelected()">
-  <span class="left" >
-    <img
-      [src]="internship.imagePath"
-      alt="{{ internship.company }}"
-      class="img-responsive"
-      style="height: 120px; width: 150px;">
-      <star-rating [value]="internship.averageOfFeedbacks" checkedcolor="gold" uncheckedcolor="black" 
-      size="30px"  readonly="true" (rate)="onRate($event)"></star-rating>
-  </span>
-  <div class="right">
-    <h3 class="list-group-item-heading">{{ internship.name }}</h3>
-    <!-- <p class="list-group-item-text"> {{ description }}}</p> -->
-    <p class="list-group-item-text">{{ internship.location }}</p>
-    <p class="list-group-item-text">{{ internship.interests }}</p>
-    <p class="list-group-item-text">{{ internship.status }}</p>
-    <h3 class="list-group-item-text">{{ internship.addedDate }}</h3>
-  </div>
-  <button mat-raised-button (click)="openDialog()">More</button>
-</a>
+<!--<div class="container">-->
+<!--<a-->
+<!--  class="list-group-item clearfix"-->
+<!--  (click)="onSelected()">-->
+<!--  <span class="left" >-->
+<!--    <img-->
+<!--      [src]="internship.imagePath"-->
+<!--      alt="{{ internship.company }}"-->
+<!--      class="img-responsive"-->
+<!--      style="height: 120px; width: 150px;">-->
+<!--      <star-rating [value]="internship.averageOfFeedbacks" checkedcolor="gold" uncheckedcolor="black"-->
+<!--      size="30px"  readonly="true" (rate)="onRate($event)"></star-rating>-->
+<!--  </span>-->
+<!--  <div class="right">-->
+<!--    <h3 class="list-group-item-heading">{{ internship.name }}</h3>-->
+<!--    &lt;!&ndash; <p class="list-group-item-text"> {{ description }}}</p> &ndash;&gt;-->
+<!--    <p class="list-group-item-text">{{ internship.location }}</p>-->
+<!--    <p class="list-group-item-text">{{ internship.interests }}</p>-->
+<!--    <p class="list-group-item-text">{{ internship.status }}</p>-->
+<!--    <h3 class="list-group-item-text">{{ internship.addedDate }}</h3>-->
+<!--  </div>-->
+<!--  <button mat-raised-button (click)="openDialog()">More</button>-->
+<!--</a>-->
+<!--</div>-->
+
+<div>
+
+  <mat-card class="card">
+
+    <mat-card-header>
+      <div matCardAvatar>
+        <img style="width: 100%" src="{{internship.imagePath}}" alt="no img">
+      </div>
+      <mat-card-title>
+        {{internship.name}}
+      </mat-card-title>
+      <mat-card-subtitle>
+        <div class="posted-div">
+          Posted on: {{internship.addedDate}}
+        </div>
+      </mat-card-subtitle>
+      <mat-card-subtitle>
+        <div class="status-edit-div">
+          <div *ngIf="internship.paid" class="status-div paid-div">
+            paid
+          </div>
+          <div class="status-div">
+            {{internship.nrMonths}} months
+          </div>
+          <div class="status-div">
+            {{internship.status}}
+          </div>
+
+        </div>
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+
+    </mat-card-content>
+
+    <mat-divider></mat-divider>
+    <mat-card-footer>
+      <div class="footer-div">
+        <star-rating [value]="internship.averageOfFeedbacks" checkedcolor="gold" size="30px" uncheckedcolor="black"></star-rating>
+        <button mat-button class="more-button" (click)="openDialog()">MORE</button>
+      </div>
+
+    </mat-card-footer>
+
+  </mat-card>
+
 </div>
