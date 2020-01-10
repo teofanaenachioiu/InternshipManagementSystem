@@ -56,9 +56,9 @@ import { AboutComponent } from './profiles/company-profile/about/about.component
 import { ProfileComponent } from './profiles/company-profile/profile/profile.component';
 import { TellUsMoreComponent } from './profiles/candidate-profile/tell-us-more/tell-us-more.component';
 import { InterestsComponent } from './profiles/interests/interests.component';
-import { CompanyInternshipsComponent } from './profiles/company-profile/company-internships/company-internships.component';
+import { CompanyInternshipsComponent } from './my-internships/company-internships/company-internships.component';
 import { AddModalComponent } from './my-internships/add-modal/add-modal.component';
-import { ConfirmRemoveInternshipComponent } from './profiles/company-profile/company-internships/confirm-remove-internship/confirm-remove-internship.component';
+import { ConfirmRemoveInternshipComponent } from './my-internships/company-internships/confirm-remove-internship/confirm-remove-internship.component';
 import { AddFormComponent } from './my-internships/add-modal/add-form/add-form.component';
 import { EditModalComponent } from './profiles/company-profile/edit-modal/edit-modal.component';
 import { EditFormComponent } from './profiles/company-profile/edit-modal/edit-form/edit-form.component';

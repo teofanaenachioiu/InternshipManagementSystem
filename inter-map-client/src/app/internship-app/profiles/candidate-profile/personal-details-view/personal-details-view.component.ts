@@ -3,6 +3,7 @@ import {Candidat} from '../../../../core/Candidat';
 import {CandidateProfileService} from '../candidate-profile.service';
 import {formatDate} from '@angular/common';
 import {DomSanitizer} from '@angular/platform-browser';
+import {Sex} from '../../../../core/Sex';
 
 @Component({
   selector: 'app-personal-details-view',
@@ -29,5 +30,9 @@ export class PersonalDetailsViewComponent implements OnInit {
 
   makeEditable() {
     this.service.isEditPersonalDetails = true;
+  }
+
+  sex() {
+    return Sex;
   }
 }

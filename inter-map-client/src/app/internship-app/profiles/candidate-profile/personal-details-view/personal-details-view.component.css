@@ -1,6 +1,6 @@
 #profileImg {
-  width: 250px;
-  height: 250px;
+  width: 10vw;
+  height: 10vw;
   border-radius: 50%;
 }
 
@@ -13,4 +13,13 @@
 .div1{
   margin-left: 3vw;
   align-self: start;
+  /*align-content: center;*/
+}
+
+.profile-title {
+  font-size: 16px;
+}
+
+p {
+  font-size: 20px;
 }

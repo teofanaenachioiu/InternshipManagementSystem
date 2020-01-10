@@ -1,32 +1,8 @@
-<!--<div style="border: solid 1px black">-->
 
-<!--  <span>-->
-<!--    <img [src]="internship.imagePath"-->
-<!--         alt="{{ internship.name }}"-->
-<!--         style="height: 120px; width: 150px;"/>-->
-<!--    <star-rating [value]="internship.rating"-->
-<!--                 checkedcolor="gold"-->
-<!--                 uncheckedcolor="black"-->
-<!--                 readonly="false"-->
-<!--                 size="30px" (rate)="onRate($event)"></star-rating>-->
-<!--  </span>-->
-
-
-<!--  <div (click)="onInternshipSelected()">-->
-<!--    <h3>-->
-<!--      {{internship.status}}:-->
-<!--      {{ internship.name }}</h3>-->
-<!--    <h4>Posted on by {{ internship.company }}</h4>-->
-<!--    <p> {{ internship.description }}</p>-->
-<!--    <p>{{ internship.location }}</p>-->
-<!--    <p>{{ internship.interests }}</p>-->
-<!--    <p>{{ internship.status }}</p>-->
-<!--  </div>-->
-<!--</div>-->
 
 <div class="main-div">
 
-  <mat-card>
+  <mat-card style="background-color: #eeeeff">
     <mat-card-header>
       <mat-icon matTooltip="{{application.applicationStatus}}" *ngIf="application.applicationStatus === ApplicationStatus.Applied" mat-card-avatar>publish</mat-icon>
       <mat-icon matTooltip="{{application.applicationStatus}}" *ngIf="application.applicationStatus === ApplicationStatus.Replied" mat-card-avatar>reply</mat-icon>
@@ -53,7 +29,7 @@
       </mat-card-subtitle>
     </mat-card-header>
     <mat-card-content style="display: inline-block">
-      <app-show-more-less-text [text]="application.description" limit="20"></app-show-more-less-text>
+      <app-show-more-less-text [text]="application.description" limit="80"></app-show-more-less-text>
     </mat-card-content>
     <mat-card-footer *ngIf="application.status === InternshipStatus.Closed" style="margin-left: 1vw">
       <mat-divider></mat-divider>

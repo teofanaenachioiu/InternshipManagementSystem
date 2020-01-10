@@ -7,64 +7,64 @@
   <form [formGroup]="profileForm">
 <!--    Value: {{ profileForm.value | json }} <br>-->
     <div class="form-profile-content">
-      <div class="side-div sticky">
+      <div class="side-div sticky left-div">
 
-        <div class="form-div" *ngIf="!service.isEditPersonalDetails">
+        <div class="form-div form-div-left" *ngIf="!service.isEditPersonalDetails">
           <app-personal-details-view></app-personal-details-view>
         </div>
 
-        <div class="form-div" *ngIf="service.isEditPersonalDetails">
+        <div class="form-div form-div-left" *ngIf="service.isEditPersonalDetails">
           <app-personal-details formControlName="personalDetails"></app-personal-details>
         </div>
 
-        <div class="form-div" *ngIf="!serviceInt.isEditInterests">
+        <div class="form-div form-div-left" *ngIf="!serviceInt.isEditInterests">
           <app-interests-view></app-interests-view>
         </div>
 
-        <div class="form-div" *ngIf="serviceInt.isEditInterests">
+        <div class="form-div form-div-left" *ngIf="serviceInt.isEditInterests">
           <app-interests formControlName="interests"></app-interests>
         </div>
 
       </div>
-      <div class="side-div sticky">
+      <div class="side-div sticky right-div">
 
-        <div class="form-div" *ngIf="!service.isEditContact">
+        <div class="form-div form-div-right" *ngIf="!service.isEditContact">
           <app-contact-view></app-contact-view>
         </div>
 
-        <div class="form-div" *ngIf="service.isEditContact">
+        <div class="form-div form-div-right" *ngIf="service.isEditContact">
           <app-contact formControlName="contact"></app-contact>
         </div>
 
-        <div class="form-div" *ngIf="!service.isEditStudies">
+        <div class="form-div form-div-right" *ngIf="!service.isEditStudies">
           <app-studies-view></app-studies-view>
         </div>
 
-        <div class="form-div" *ngIf="service.isEditStudies">
+        <div class="form-div form-div-right" *ngIf="service.isEditStudies">
           <app-studies formControlName="studies"></app-studies>
         </div>
 
-        <div class="form-div" *ngIf="!service.isEditLanguage">
+        <div class="form-div form-div-right" *ngIf="!service.isEditLanguage">
           <app-languages-view></app-languages-view>
         </div>
 
-        <div class="form-div" *ngIf="service.isEditLanguage">
+        <div class="form-div form-div-right" *ngIf="service.isEditLanguage">
           <app-languages formControlName="languages"></app-languages>
         </div>
 
-        <div class="form-div" *ngIf="!service.isEditWorkExperience">
+        <div class="form-div form-div-right" *ngIf="!service.isEditWorkExperience">
           <app-work-experience-view></app-work-experience-view>
         </div>
 
-        <div class="form-div" *ngIf="service.isEditWorkExperience">
+        <div class="form-div form-div-right" *ngIf="service.isEditWorkExperience">
           <app-work-experience formControlName="workExperience"></app-work-experience>
         </div>
 
-        <div class="form-div" *ngIf="!service.isEditDescription">
+        <div class="form-div form-div-right" *ngIf="!service.isEditDescription">
           <app-tell-us-more-view></app-tell-us-more-view>
         </div>
 
-        <div class="form-div" *ngIf="service.isEditDescription">
+        <div class="form-div form-div-right" *ngIf="service.isEditDescription">
           <app-tell-us-more formControlName="tellUsMore"></app-tell-us-more>
         </div>
       </div>
