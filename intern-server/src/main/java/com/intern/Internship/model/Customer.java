@@ -15,7 +15,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Entity(name = "users")
 @ToString
-public class User implements Serializable {
+public class Customer implements Serializable {
     private static final long serialVersionUID = -8413271848855656581L;
 
     @Id

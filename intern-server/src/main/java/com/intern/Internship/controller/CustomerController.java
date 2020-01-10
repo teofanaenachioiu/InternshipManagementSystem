@@ -6,10 +6,10 @@ import java.util.stream.Collectors;
 
 import com.intern.Internship.model.Candidate;
 import com.intern.Internship.model.Company;
-import com.intern.Internship.model.User;
+import com.intern.Internship.model.Customer;
 import com.intern.Internship.service.CandidateService;
 import com.intern.Internship.service.CompanyService;
-import com.intern.Internship.service.UserService;
+import com.intern.Internship.service.CustomerService;
 
 import com.intern.Internship.utils.Email;
 import com.intern.Internship.utils.Encryption;
@@ -29,9 +29,9 @@ import io.jsonwebtoken.SignatureAlgorithm;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-public class UserController {
+public class CustomerController {
     @Autowired
-    private UserService userService;
+    private CustomerService userService;
     @Autowired
     private CandidateService candidateService;
     @Autowired
@@ -39,15 +39,15 @@ public class UserController {
 
     @GetMapping("/api/auth/signup")
     public String registration(Model model) {
-        model.addAttribute("userForm", new User());
+        model.addAttribute("userForm", new Customer());
 
         return "registration";
     }
 
     @PostMapping("/api/auth/signup")
-    public ResponseEntity<User> registration(@RequestBody User userForm) {
+    public ResponseEntity<Customer> registration(@RequestBody Customer userForm) {
         if (userForm == null) {
-            return ResponseEntity.badRequest().body(new User());
+            return ResponseEntity.badRequest().body(new Customer());
         }
 
         String token = getJWTToken(userForm.getUsername());
@@ -56,7 +56,7 @@ public class UserController {
         try {
             userService.save(userForm);
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(new User());
+            return ResponseEntity.badRequest().body(new Customer());
         }
         if (userForm.getRole().getName().equals("CANDIDATE")) {
             Candidate candidate = new Candidate();
@@ -83,35 +83,36 @@ public class UserController {
     }
 
     @PostMapping("/api/auth/login")
-    public ResponseEntity<User> login(@RequestBody User userForm) {
+    public ResponseEntity<Customer> login(@RequestBody Customer userForm) {
         try {
-            User user = userService.findByUser(userForm.getUsername(), userForm.getPassword());
+            Customer user = userService.findByUser(userForm.getUsername(), userForm.getPassword());
             String token = getJWTToken(user.getUsername());
             user.setToken(token);
             return ResponseEntity.ok().body(user);
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(new User());
+            return ResponseEntity.badRequest().body(new Customer());
         }
     }
 
     @PostMapping("/api/auth/forgot")
-    public ResponseEntity<User> forgot(@RequestBody User userForm) {
+    public ResponseEntity<Customer> forgot(@RequestBody Customer userForm) {
         try {
-            User user = userService.findByUsername(userForm.getUsername());
+            Customer user = userService.findByUsername(userForm.getUsername());
             String subject = "Reset password request";
-            String body = "You received this e-mail because you requested a password request for your InterMAP account. Please enter the following address to get started: http://localhost:4200/reset/" + Encryption.encrypt(user.getUsername());
+            String body = "You received this e-mail because you requested a password request for your InterMAP account. Please enter the following address to get started: http://localhost:4200/reset/"
+                    + Encryption.encrypt(user.getUsername());
             Email.sendMail(subject, body, userForm.getUsername());
             return ResponseEntity.ok().body(user);
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(new User());
+            return ResponseEntity.badRequest().body(new Customer());
         }
     }
 
     @PostMapping("/api/auth/reset")
-    public ResponseEntity<User> reset(@RequestBody User userForm) {
+    public ResponseEntity<Customer> reset(@RequestBody Customer userForm) {
         String username = Encryption.decrypt(userForm.getUsername());
         userService.changePassword(username, userForm.getPassword());
-        User user = userService.findByUsername(username);
+        Customer user = userService.findByUsername(username);
         return ResponseEntity.ok().body(user);
     }
 
