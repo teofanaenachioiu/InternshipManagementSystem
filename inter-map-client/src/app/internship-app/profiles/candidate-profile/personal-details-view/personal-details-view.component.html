@@ -20,7 +20,15 @@
 
     <label class="profile-title">Gender</label>
     <br>
-    <p>{{candidate.sex}}</p>
+    <p *ngIf="candidate.sex === sex().M">
+      male
+    </p>
+    <p *ngIf="candidate.sex === sex().F">
+      female
+    </p>
+    <p *ngIf="candidate.sex === sex().O">
+      other
+    </p>
   </div>
 </div>
 

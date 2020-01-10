@@ -1,0 +1,10 @@
+div {
+  margin: 1vw;
+  padding: 1vw;
+  border-radius: 2vw;
+  background-color: white;
+}
+
+ul {
+  list-style: none;
+}

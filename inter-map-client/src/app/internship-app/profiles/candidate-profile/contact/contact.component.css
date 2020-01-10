@@ -1,6 +1,9 @@
 .fields{
   width: 100%;
-  margin: 10px;
+  margin: 2vw;
+  padding: 1vw;
+  background-color: white;
+  border-radius: 3vw;
 }
 
 .container-contact{
