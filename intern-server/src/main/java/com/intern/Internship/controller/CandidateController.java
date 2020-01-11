@@ -53,12 +53,7 @@ public class CandidateController {
 
     @PutMapping()
     public ResponseEntity<Candidate> update(@RequestBody Candidate candidate) {
-        try {
-            // System.out.println("Experiences");
-            // candidate.getExperiences().forEach(System.out::println);
-            // System.out.println("Studies");
-            // candidate.getStudies().forEach(System.out::println);
-
+        try {        
             experienceService.saveAll(candidate, candidate.getExperiences());
             studiesService.saveAll(candidate, candidate.getStudies());
 

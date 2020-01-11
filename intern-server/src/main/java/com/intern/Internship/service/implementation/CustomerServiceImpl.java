@@ -9,6 +9,8 @@ import com.intern.Internship.service.ServiceException;
 import com.intern.Internship.service.CustomerService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +25,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void save(Customer customer) {
+
         validator.validate(customer);
 
         if (customerRepository.existsById(customer.getUsername()))
@@ -31,6 +34,12 @@ public class CustomerServiceImpl implements CustomerService {
         customer.setPassword(bCryptPasswordEncoder.encode(customer.getPassword()));
 
         customerRepository.save(customer);
+    }
+
+    @Override
+    public Customer update(Customer customer) {
+        customer.setToken(customer.getToken());
+        return customerRepository.save(customer);
     }
 
     @Override
@@ -59,11 +68,14 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public Optional<Customer> findByToken(String token) {
+    public Optional<User> findByToken(String token) {
         Optional<Customer> customer = customerRepository.findByToken(token);
         if (customer.isPresent()) {
             Customer user1 = customer.get();
+            User user = new User(user1.getUsername(), user1.getPassword(), true, true, true, true,
+                    AuthorityUtils.createAuthorityList("CANDIDATE", "COMPANY"));
+            return Optional.of(user);
         }
-        return null;
+        return Optional.empty();
     }
 }
