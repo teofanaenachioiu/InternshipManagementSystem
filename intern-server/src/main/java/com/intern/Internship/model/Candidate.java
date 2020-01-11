@@ -1,5 +1,6 @@
- package com.intern.Internship.model;
+package com.intern.Internship.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.intern.Internship.model.enums.CandidateStatus;
 import com.intern.Internship.model.enums.Sex;
 import lombok.Getter;
@@ -45,6 +46,7 @@ public class Candidate implements HasID<String> {
     private String linkLinkedin;
     private String linkGithub;
     private String description;
+    @JsonIgnore
     @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL)
     @ToString.Exclude
     private Set<Application> applications;

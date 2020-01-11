@@ -1,10 +1,10 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA} from '@angular/material';
-import {DialogData} from '../../../../components/candidate-menu/candidate-menu.component';
+import {DialogData} from '../../../components/candidate-menu/candidate-menu.component';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {CompanyProfileService} from '../company-profile.service';
-import {Internship} from '../../../data/Internship';
-import {InternshipDTO} from '../../../data/InternshipDTO';
+import {CompanyProfileService} from '../../profiles/company-profile/company-profile.service';
+import {Internship} from '../../data/Internship';
+import {InternshipDTO} from '../../data/InternshipDTO';
 
 @Component({
   selector: 'app-add-edit-modal',

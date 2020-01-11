@@ -1,7 +1,6 @@
 package com.intern.Internship.repository;
 
 import com.intern.Internship.model.AreaOfInterest;
-import com.intern.Internship.model.Language;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
@@ -27,7 +26,7 @@ public interface AreaOfInterestRepository
     }
 
     @Query("SELECT a.name from AreaOfInterest a,CandidateAreaOfInterest c WHERE  c.areaOfInterest.ID like a.ID and c.candidate.ID=?1 ")
-    List<?> getAllByEmail(String email);
+    List<String> getAllByEmail(String email);
 
     AreaOfInterest findByName(String name);
 }

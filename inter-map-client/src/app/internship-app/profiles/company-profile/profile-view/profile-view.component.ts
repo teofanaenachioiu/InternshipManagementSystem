@@ -10,13 +10,19 @@ import {Company} from '../../../../core/Company';
 export class ProfileViewComponent implements OnInit {
 
   private isEditMode: boolean;
-  previewUrl: any = 'assets/img/no-photo.png';
-  company: Company;
+  private previewUrl: any = 'assets/img/no-photo.png';
+  private company: Company;
 
-  constructor(private service: CompanyProfileService) { }
+  constructor(private service: CompanyProfileService) {
+  }
 
   ngOnInit() {
     this.company = this.service.company;
+    console.log("HOLAAA");
+    console.log(this.company);
+    if (this.company.logo != null) {
+      this.previewUrl = 'data:image/jpeg;base64,' + this.company.logo;
+    }
   }
 
   makeEditable() {

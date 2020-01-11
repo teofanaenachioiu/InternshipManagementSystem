@@ -1,20 +1,20 @@
 package com.intern.Internship.model.validator;
 
-import com.intern.Internship.model.User;
+import com.intern.Internship.model.Customer;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserValidator implements Validator<User> {
+public class CustomerValidator implements Validator<Customer> {
     /**
-     * User validator
+     * Customer validator
      * 
-     * @param entity: User
+     * @param entity: Customer
      * @throws ValidationException if entity is invalid
      */
 
     @Override
-    public void validate(User entity) {
+    public void validate(Customer entity) {
         String msg = "";
 
         if (!EmailValidator.getInstance().isValid(entity.getUsername()))

@@ -38,6 +38,7 @@ export class InterestsService {
     this.getAllUserInterests(this.user.username).subscribe(
       (res) => {
         this.interestsUser = res;
+        console.log('user interests');
         console.log(res);
         this.isLoadingUser = false;
         this.isLoading = this.isLoadingAll && this.isLoadingUser;
@@ -49,7 +50,8 @@ export class InterestsService {
     this.getAllInterests().subscribe(
       (res) => {
         this.interests = res;
-        // console.log(res);
+        console.log('interests');
+        console.log(res);
         this.isLoadingAll = false;
         this.isLoading = this.isLoadingAll && this.interestsUser;
       },
@@ -70,10 +72,6 @@ export class InterestsService {
     console.log(this.interestsUser);
     const el = `${interestsUrl}?email=${this.user.username}`;
     console.log(el);
-    this.http.put<string[]>(el, this.interestsUser, this.authHttpOptions()).subscribe(res => {
-      console.log(res);
-    }, err => {
-      console.log(err);
-    });
+    this.http.put<any>(el, this.interestsUser, this.authHttpOptions());
   }
 }

@@ -22,14 +22,14 @@ export class ApplicationDTO {
 }
 
 export enum InternshipStatus {
-  Open,
-  Closed
+  Open = 'Open',
+  Closed = 'Closed'
 }
 
 export enum ApplicationStatus {
-  Applied,
-  Replied,
-  Accepted
+  Applied = 'Applied',
+  Replied = 'Replied',
+  Accepted = 'Accepted'
 }
 
 

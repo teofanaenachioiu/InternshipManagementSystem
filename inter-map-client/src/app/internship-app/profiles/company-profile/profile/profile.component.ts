@@ -3,7 +3,7 @@ import {ControlValueAccessor, FormBuilder, FormControl, FormGroup, NG_VALIDATORS
 import {fromEvent, Observable, Subscription} from 'rxjs';
 import {Router} from '@angular/router';
 import {MatDialog} from '@angular/material';
-import {AddModalComponent} from '../add-modal/add-modal.component';
+import {AddModalComponent} from '../../../my-internships/add-modal/add-modal.component';
 import {CompanyProfileService} from '../company-profile.service';
 import {Company} from '../../../../core/Company';
 import {pluck} from 'rxjs/operators';
@@ -27,10 +27,8 @@ import {pluck} from 'rxjs/operators';
   ]
 })
 export class ProfileComponent implements ControlValueAccessor, OnDestroy, OnInit {
-
   private form: FormGroup;
   private subscriptions: Subscription[] = [];
-
   private company: Company;
 
   private fileData: File = null;
@@ -61,7 +59,6 @@ export class ProfileComponent implements ControlValueAccessor, OnDestroy, OnInit
       file: new FormControl({value: 'default'}, {validators: this.checkInputs}),
       name: new FormControl({value: 'default'}, {validators: this.checkInputs}),
       phone: new FormControl({value: 'default'}, {validators: this.checkInputs}),
-      email: new FormControl({value: 'default', disabled: true}, {validators: this.checkInputs}),
     });
 
     this.subscriptions.push(
@@ -112,6 +109,11 @@ export class ProfileComponent implements ControlValueAccessor, OnDestroy, OnInit
   submitForm() {
     let doUpdate = false;
 
+    console.log(this.form.controls.name.value);
+    if (this.form.invalid) {
+      return;
+    }
+    console.log(this.form.value);
     if (this.form.get('name').value != null || '') {
       this.service.company.name = this.form.get('name').value;
       doUpdate = true;
@@ -166,11 +168,6 @@ export class ProfileComponent implements ControlValueAccessor, OnDestroy, OnInit
   public errorHandling = (control: string, error: string, msg: string) => {
     return this.form.get(control).hasError(error) ? msg : '';
   };
-
-  cancelForm() {
-    this.service.isEditProfile = false;
-  }
-
   checkInputs(control: FormControl) {
     if (control.value === '') {
       return {emptyInput: true};

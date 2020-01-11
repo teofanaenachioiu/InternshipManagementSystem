@@ -9,7 +9,6 @@ import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.Optional;
 
 @Getter
 @Setter

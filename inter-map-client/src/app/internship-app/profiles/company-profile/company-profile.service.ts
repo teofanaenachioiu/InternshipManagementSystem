@@ -11,7 +11,7 @@ const companyUrl = 'http://localhost:3000/api/company';
   providedIn: 'root'
 })
 export class CompanyProfileService {
-  isLoading: boolean;
+  isLoading = true;
   internships: InternshipDTO[] = [];
   companyUsername: string;
   statuses: string[] = ['Open', 'Closed'];
@@ -19,8 +19,10 @@ export class CompanyProfileService {
   company: Company = new Company();
 
   isEditProfile = false;
+  isEditAbout = false;
 
   private internshipsSubject: BehaviorSubject<InternshipDTO[]> = new BehaviorSubject<InternshipDTO[]>([]);
+  private selectedInternshipId: number = null;
 
   authHttpOptions() {
     const httpOptions = {
@@ -41,7 +43,6 @@ export class CompanyProfileService {
       (res) => {
         this.company = res;
         console.log(res);
-
         this.isLoading = false;
       },
       (err) => console.log(err),
@@ -55,10 +56,7 @@ export class CompanyProfileService {
 
   updateCompany() {
     console.log(this.company);
-    // this.httpClient.put<Company>(companyUrl, this.company, this.authHttpOptions()).subscribe(res => {
-    //   },
-    //   error => console.log(error)
-    // );
+    this.httpClient.put<any>(companyUrl, this.company, this.authHttpOptions());
   }
 
   httpHeaders() {
@@ -133,7 +131,7 @@ export class CompanyProfileService {
         error => console.log(error));
   }
 
-  // public updateCompany(company: Company) {
-  //   this.company = company;
-  // }
+  public setSelectedInternshipId(id) {
+    this.selectedInternshipId = id;
+  }
 }

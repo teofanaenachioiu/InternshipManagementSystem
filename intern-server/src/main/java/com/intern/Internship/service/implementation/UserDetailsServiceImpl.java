@@ -3,8 +3,8 @@ package com.intern.Internship.service.implementation;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.intern.Internship.model.User;
-import com.intern.Internship.repository.UserRepository;
+import com.intern.Internship.model.Customer;
+import com.intern.Internship.repository.CustomerRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -20,20 +20,20 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
-    private UserRepository userRepository;
+    private CustomerRepository userRepository;
 
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) {
-        User user = userRepository.findByUsername(username);
-        if (user == null)
+        Customer customer = userRepository.findByUsername(username);
+        if (customer == null)
             throw new UsernameNotFoundException(username);
 
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
 
-        grantedAuthorities.add(new SimpleGrantedAuthority(user.getRole().getName()));
+        grantedAuthorities.add(new SimpleGrantedAuthority(customer.getRole().getName()));
 
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(),
+        return new org.springframework.security.core.userdetails.User(customer.getUsername(), customer.getPassword(),
                 grantedAuthorities);
     }
 

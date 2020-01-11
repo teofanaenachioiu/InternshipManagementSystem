@@ -1,6 +1,5 @@
 package com.intern.Internship.controller;
 
-import com.intern.Internship.model.AreaOfInterest;
 import com.intern.Internship.service.AreaOfInterestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -37,11 +36,12 @@ public class AreaOfInterestController {
             return ResponseEntity.badRequest().body(new ArrayList<>());
         }
     }
+
     @PutMapping
-    public ResponseEntity update(@RequestParam("email") String email,@RequestBody List<String> areaOfInterests) {
+    public ResponseEntity<?> update(@RequestParam("email") String email, @RequestBody List<String> areaOfInterests) {
         try {
-            areaOfInterestService.update(email,areaOfInterests);
-            return  ResponseEntity.ok().build();
+            areaOfInterestService.update(email, areaOfInterests);
+            return ResponseEntity.ok().build();
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.badRequest().build();

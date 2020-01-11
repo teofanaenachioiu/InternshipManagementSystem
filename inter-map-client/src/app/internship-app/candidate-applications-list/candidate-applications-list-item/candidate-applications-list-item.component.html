@@ -1,37 +1,12 @@
-<!--<div style="border: solid 1px black">-->
 
-<!--  <span>-->
-<!--    <img [src]="internship.imagePath"-->
-<!--         alt="{{ internship.name }}"-->
-<!--         style="height: 120px; width: 150px;"/>-->
-<!--    <star-rating [value]="internship.rating"-->
-<!--                 checkedcolor="gold"-->
-<!--                 uncheckedcolor="black"-->
-<!--                 readonly="false"-->
-<!--                 size="30px" (rate)="onRate($event)"></star-rating>-->
-<!--  </span>-->
-
-
-<!--  <div (click)="onInternshipSelected()">-->
-<!--    <h3>-->
-<!--      {{internship.status}}:-->
-<!--      {{ internship.name }}</h3>-->
-<!--    <h4>Posted on by {{ internship.company }}</h4>-->
-<!--    <p> {{ internship.description }}</p>-->
-<!--    <p>{{ internship.location }}</p>-->
-<!--    <p>{{ internship.interests }}</p>-->
-<!--    <p>{{ internship.status }}</p>-->
-<!--  </div>-->
-<!--</div>-->
 
 <div class="main-div">
 
-  <mat-card>
+  <mat-card style="background-color: #eeeeff">
     <mat-card-header>
-      <mat-icon mat-card-avatar>publish</mat-icon>
-      <mat-icon *ngIf="application.applicationStatus === ApplicationStatus.Applied" mat-card-avatar>publish</mat-icon>
-      <mat-icon *ngIf="application.applicationStatus === ApplicationStatus.Replied" mat-card-avatar>reply</mat-icon>
-      <mat-icon *ngIf="application.applicationStatus === ApplicationStatus.Accepted" mat-card-avatar>done_all</mat-icon>
+      <mat-icon matTooltip="{{application.applicationStatus}}" *ngIf="application.applicationStatus === ApplicationStatus.Applied" mat-card-avatar>publish</mat-icon>
+      <mat-icon matTooltip="{{application.applicationStatus}}" *ngIf="application.applicationStatus === ApplicationStatus.Replied" mat-card-avatar>reply</mat-icon>
+      <mat-icon matTooltip="{{application.applicationStatus}}" *ngIf="application.applicationStatus === ApplicationStatus.Accepted" mat-card-avatar>done_all</mat-icon>
       <mat-card-title>
         <span class="subtitle-span">{{application.name}}</span>
         <span>({{application.nameCompany}})</span>
@@ -43,6 +18,7 @@
         <span class="subtitle-span">{{application.status}}</span>
       </mat-card-subtitle>
       <mat-card-subtitle>
+        <span class="subtitle-span">{{application.idCompany}}</span>
         <span class="subtitle-span">{{application.location}}</span>
         <span class="paid-span" *ngIf="application.paid">paid</span>
         <span class="subtitle-span">
@@ -53,19 +29,26 @@
       </mat-card-subtitle>
     </mat-card-header>
     <mat-card-content style="display: inline-block">
-      <app-show-more-less-text [text]="application.description" limit="20"></app-show-more-less-text>
+      <app-show-more-less-text [text]="application.description" limit="80"></app-show-more-less-text>
     </mat-card-content>
-    <mat-card-footer style="margin-left: 1vw">
-        <span>
-          <star-rating [value]="0"
+    <mat-card-footer *ngIf="application.status === InternshipStatus.Closed" style="margin-left: 1vw">
+      <mat-divider></mat-divider>
+
+        <star-rating [value]="0"
                        checkedcolor="gold"
                        uncheckedcolor="black"
                        readonly="false"
-                       size="30px" (rate)="onRate($event)"></star-rating>
-        </span>
-        <mat-card-subtitle>
-          {{application.idCompany}}
-        </mat-card-subtitle>
+                       size="30px" (rate)="onRate($event)">
+
+        </star-rating>
+
+
+      <mat-form-field>
+          <label>
+            <textarea matInput placeholder="Leave a comment" [(ngModel)]="feedbackComment"></textarea>
+          </label>
+        </mat-form-field>
+        <button mat-button (click)="submitRating()">SUBMIT</button>
     </mat-card-footer>
   </mat-card>
 

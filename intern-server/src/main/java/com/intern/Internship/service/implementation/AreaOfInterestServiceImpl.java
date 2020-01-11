@@ -48,7 +48,7 @@ public class AreaOfInterestServiceImpl implements AreaOfInterestService {
         Optional<Candidate> candidate = candidateRepository.findById(email);
         if (!candidate.isPresent())
             throw new EntityNotFoundException();
-        List<String> list = (List<String>) areaOfInterestRepository.getAllByEmail(email);
+        List<String> list = areaOfInterestRepository.getAllByEmail(email);
         return list;
     }
 

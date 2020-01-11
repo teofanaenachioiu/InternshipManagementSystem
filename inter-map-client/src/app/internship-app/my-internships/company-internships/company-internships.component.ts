@@ -1,9 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material';
-import {CompanyProfileService} from '../company-profile.service';
+import {CompanyProfileService} from '../../profiles/company-profile/company-profile.service';
 import {ConfirmRemoveInternshipComponent} from './confirm-remove-internship/confirm-remove-internship.component';
-import {EditModalComponent} from '../edit-modal/edit-modal.component';
-import {InternshipDTO} from '../../../data/InternshipDTO';
+import {EditModalComponent} from '../../profiles/company-profile/edit-modal/edit-modal.component';
+import {InternshipDTO} from '../../data/InternshipDTO';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -16,7 +17,9 @@ export class CompanyInternshipsComponent implements OnInit {
   @Input() internship: InternshipDTO;
   @Input() index: number;
 
-  constructor(public dialog: MatDialog, private companyService: CompanyProfileService) { }
+  constructor(public dialog: MatDialog,
+              private companyService: CompanyProfileService,
+              private router: Router) { }
 
   ngOnInit() {
   }
@@ -40,5 +43,11 @@ export class CompanyInternshipsComponent implements OnInit {
         this.companyService.removeInternship(this.internship);
       }
     });
+  }
+
+  showCandidates() {
+    this.companyService.setSelectedInternshipId(this.internship.id);
+    this.router.navigate(['/internship-app/internship-candidates'])
+      .then();
   }
 }

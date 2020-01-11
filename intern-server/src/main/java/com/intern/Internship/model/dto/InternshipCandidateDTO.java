@@ -14,10 +14,12 @@ public class InternshipCandidateDTO {
     String email;
     String name;
     ApplicationStatus status;
+    String extraMessage;
 
-    public InternshipCandidateDTO(String email, String name, ApplicationStatus status) {
+    public InternshipCandidateDTO(String email, String name, ApplicationStatus status, String extraMessage) {
         this.email = email;
         this.name = name;
         this.status = status;
+        this.extraMessage = extraMessage;
     }
 }
