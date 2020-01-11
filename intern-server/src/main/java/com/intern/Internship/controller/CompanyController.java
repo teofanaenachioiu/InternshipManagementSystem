@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/api/company")
-@CrossOrigin(origins = "http://localhost:4200")
+// @CrossOrigin(origins = "http://localhost:4200")
 public class CompanyController {
     @Autowired
     private CompanyService companyService;
@@ -28,15 +28,8 @@ public class CompanyController {
     public ResponseEntity<CompanyDTO> findByEmail(@RequestParam String email) {
         try {
             Company company = companyService.findByEmail(email);
-            CompanyDTO companyDTO = new CompanyDTO(
-                    company.getID(),
-                    company.getName(),
-                    company.getAddress(),
-                    company.getTelephone(),
-                    company.getDescription(),
-                    company.getField(),
-                    company.getLogo()
-            );
+            CompanyDTO companyDTO = new CompanyDTO(company.getID(), company.getName(), company.getAddress(),
+                    company.getTelephone(), company.getDescription(), company.getField(), company.getLogo());
             return ResponseEntity.accepted().body(companyDTO);
         } catch (EntityNotFoundException e) {
             return ResponseEntity.badRequest().body(new CompanyDTO());

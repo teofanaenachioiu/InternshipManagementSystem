@@ -53,7 +53,7 @@ public class CandidateController {
 
     @PutMapping()
     public ResponseEntity<Candidate> update(@RequestBody Candidate candidate) {
-        try {        
+        try {
             experienceService.saveAll(candidate, candidate.getExperiences());
             studiesService.saveAll(candidate, candidate.getStudies());
 
