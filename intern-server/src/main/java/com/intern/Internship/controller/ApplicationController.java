@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/application")
+@RequestMapping(value = "/api/secure/application")
 public class ApplicationController {
     @Autowired
     private ApplicationService applicationService;

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/areaOfInterest")
+@RequestMapping(value = "/api/secure/areaOfInterest")
 public class AreaOfInterestController {
     @Autowired
     AreaOfInterestService areaOfInterestService;
