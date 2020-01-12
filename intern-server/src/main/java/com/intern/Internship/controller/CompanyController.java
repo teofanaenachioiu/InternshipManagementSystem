@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/api/company")
+@RequestMapping(value = "/api/secure/company")
 public class CompanyController {
     @Autowired
     private CompanyService companyService;
