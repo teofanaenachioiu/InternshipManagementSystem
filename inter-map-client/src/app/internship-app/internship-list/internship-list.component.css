@@ -10,21 +10,25 @@
 
 
   .container {
-    width: 1500px;
+    width: 1700px;
     height: 700px;
 
 }
  .right {
   font-size: 15px;
   float : right;
-  margin-right: 50px;
-  margin-top: 50px;
+  margin-right: 250px;
+  margin-top: 1vw;
+  background-color: #eeeeff;
+  border: solid 1px;
+  width: 300px;
  }
  .left {
-   margin-top: 50px;
-   margin-left: 50px;
+  
+   /* margin-left: 50px; */
   float: left;
   list-style: none;
+  width: 1000px;
  }
 
  .left-2 {
@@ -39,4 +43,9 @@
 .nav li {
   display: inline-block;
   font-size: 20px;
+}
+
+.card {
+  background: #eeeeff;
+  height: 700px;
 }

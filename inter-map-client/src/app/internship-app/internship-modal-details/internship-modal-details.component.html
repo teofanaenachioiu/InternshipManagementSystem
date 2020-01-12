@@ -1,6 +1,6 @@
 
 <mat-dialog-content>
-<p> {{internship.description}}</p>
+<!-- <p> {{internship.description}}</p>
 <p> {{ internship.name }} </p>
 <p> {{ internship.startTime }}</p>
 <p> {{internship.endTime }}</p>
@@ -16,10 +16,82 @@
 <p> {{internship.numberOfFeedbacks}}</p>
 <p> {{internship.averageOfFeedbacks}}</p>
 
+ -->
+
+ <div>
+
+    <mat-card class="card">
+  
+      <mat-card-header>
+        <div matCardAvatar>
+          <img style="width: 100%" src="{{internship.imagePath}}" alt="no img">
+        </div>
+        <mat-card-title>
+          {{internship.name}}
+        </mat-card-title>
+        <mat-card-title>
+            {{internship.status}} Intenrship
+          </mat-card-title>
+        <mat-card-subtitle>
+          <div class="posted-div">
+            Posted on: {{internship.addedDate}} by {{ internship.company}}
+          </div>
+        </mat-card-subtitle>
+        <mat-card-subtitle>
+
+            <div class="posted-div">
+              Posted on: {{ internship.description}}
+            </div>
+          </mat-card-subtitle>
+
+        <mat-card-subtitle>
+          <div class="status-edit-div">
+            <div *ngIf="internship.paid" >
+              <h5>Our internship is paid</h5>
+            </div>
+            <div class="status-div">
+              {{internship.nrMonths}} months  ( {{internship.startTime}} - {{ internship.endTime}})
+            </div>
+            <div class="status-div">
+                You can find to our office :  {{internship.location}}
+              </div>
+            <div class="status-div">
+              You will be a master in :  {{internship.areaOfInterest}}
+            </div>
+            <div class="status-div">
+                 {{internship.nrApplicants}} students have already applied here
+              </div>
 
 
-<button mat-button mat-dialog-close (click)="createApplication()">Apply</button>
-<button mat-button mat-dialog-close>Close</button>
+  
+          </div>
+
+          <div *ngIf = "internship.status === 'Open'">
+            <button mat-button mat-dialog-close (click)="createApplication()" style="float: right;">Apply</button>
+        </div>
+
+        </mat-card-subtitle>
+      </mat-card-header>
+  
+      <mat-card-content>
+  
+      </mat-card-content>
+  
+      <mat-divider></mat-divider>
+      <mat-card-footer>
+        <div class="footer-div">
+          <star-rating [value]="internship.averageOfFeedbacks" checkedcolor="gold" size="30px" uncheckedcolor="black"></star-rating>
+        </div>
+  
+      </mat-card-footer>
+  
+    </mat-card>
+  
+  </div>
+  
+
+<div *ngIf = "internship.status === 'Closed' ">
+
 
 <h4>Comments section</h4>
 <div class="container task-list">
@@ -43,4 +115,9 @@
     </div>
 </div>
 
+</div>
+
 </mat-dialog-content>
+
+
+<button mat-button mat-dialog-close style="float: right;">Close</button>
