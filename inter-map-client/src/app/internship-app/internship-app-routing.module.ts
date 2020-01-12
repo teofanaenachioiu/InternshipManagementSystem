@@ -12,6 +12,8 @@ import {CandidateApplicationsListComponent} from './candidate-applications-list/
 import { CreateApplicationComponent } from './create-application/create-application.component';
 import {InternshipCandidatesComponent} from './internship-candidates/internship-candidates.component';
 import {MyInternshipsComponent} from './my-internships/my-internships.component';
+import {ResetPasswordCandidateComponent} from './reset-password-candidate/reset-password-candidate.component';
+import {ResetPasswordCompanyComponent} from "./reset-password-company/reset-password-company.component";
 
 const routes: Routes = [
   {path: '', redirectTo: 'internships', pathMatch: 'full' },
@@ -24,6 +26,9 @@ const routes: Routes = [
   {path: 'create-application/:id', component: CreateApplicationComponent},
   {path: 'internship-candidates', component: InternshipCandidatesComponent},
   {path: 'my-internships', component: MyInternshipsComponent},
+  {path: 'reset-password-candidate', component: ResetPasswordCandidateComponent},
+  {path: 'reset-password-company', component: ResetPasswordCompanyComponent}
+
 ];
 
 @NgModule({

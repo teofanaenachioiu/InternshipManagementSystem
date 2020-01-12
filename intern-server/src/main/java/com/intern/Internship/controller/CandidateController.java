@@ -61,7 +61,6 @@ public class CandidateController {
 
             experienceService.saveAll(candidate, candidate.getExperiences());
             studiesService.saveAll(candidate, candidate.getStudies());
-
             Candidate result = candidateService.update(candidate);
             return ResponseEntity.ok().body(result);
         } catch (Exception e) {

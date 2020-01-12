@@ -14,7 +14,7 @@
     <button mat-button [matMenuTriggerFor]="beforeMenu"><mat-icon>account_circle</mat-icon></button>
     <mat-menu #beforeMenu="matMenu" xPosition="before">
       <button mat-menu-item [routerLink]="'/internship-app/candidate-profile'">Profile</button>
-      <button mat-menu-item>Settings</button>
+      <button mat-menu-item [routerLink]="'/internship-app/reset-password-candidate'">Settings</button>
       <button mat-menu-item (click)="openDialog()">Logout</button>
     </mat-menu>
   </mat-toolbar>

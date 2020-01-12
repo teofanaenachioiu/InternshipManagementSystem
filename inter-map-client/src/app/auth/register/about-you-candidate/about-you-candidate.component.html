@@ -2,13 +2,12 @@
   <form [formGroup]="form" >
     <div class="main-div">
     <div class="form-div">
-      <label class="image-upload-container btn btn-bwm">
-        <span>Add a profile picture</span>
-        <input #imageInput
-               type="file"
-               accept="image/*"
-               (change)="processFile(imageInput)">
-      </label>
+      <mat-form-field class="fields">
+        <ngx-mat-file-input placeholder="file" accept="image/*"
+                            (change)="fileProgress($event)">
+        </ngx-mat-file-input>
+        <mat-icon matSuffix>photo</mat-icon>
+      </mat-form-field>
       <br>
       <mat-form-field class="fields" >
         <label>

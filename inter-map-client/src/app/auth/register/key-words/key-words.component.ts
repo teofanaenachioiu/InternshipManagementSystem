@@ -26,13 +26,21 @@ export class KeyWordsComponent {
   ctrl = new FormControl();
   filteredKeyWords: Observable<string[]>;
   keyWords: string[] = [];
-  allKeyWords: string[] = ['Java', 'C++', 'C#', 'Android', 'Angular'];
+  // allKeyWords: string[] = ['Java', 'C++', 'C#', 'Android', 'Angular'];
+  allKeyWords: string[] = [];
   myKeys: string[] = [];
 
   @ViewChild('input', {static: false}) input: ElementRef<HTMLInputElement>;
   @ViewChild('auto', {static: false}) matAutocomplete: MatAutocomplete;
 
   constructor(private authService: AuthService) {
+    this.authService.getAreaOfInterest().subscribe((res) => {
+      for ( const area of res) {
+        this.allKeyWords.push(area);
+       // console.log(area);
+      }
+    });
+    console.log(this.allKeyWords);
     this.filteredKeyWords = this.ctrl.valueChanges.pipe(
       startWith(null),
       map((keyWord: string | null) => keyWord ? this._filter(keyWord) : this.allKeyWords.slice()));
@@ -58,9 +66,16 @@ export class KeyWordsComponent {
 
   remove(keyWord: string): void {
     const index = this.keyWords.indexOf(keyWord);
+    console.log(index);
     // this.allKeyWords.(keyWord);
-    if (index >= 0) {
+    if (index !== -1) {
       this.keyWords.splice(index, 1);
+    }
+    const index1 = this.myKeys.indexOf(keyWord);
+    console.log(index1);
+    // this.allKeyWords.(keyWord);
+    if (index1 !== -1) {
+      this.myKeys.splice(index1, 1);
     }
   }
 
@@ -82,14 +97,20 @@ export class KeyWordsComponent {
 
     return this.allKeyWords.filter(keyWord => keyWord.toLowerCase().indexOf(filterValue) === 0);
   }
-  onClickFinish() {
-    let field = '';
-    for (const f of this.myKeys) {
-      field = field.concat(f.toString());
-      field = field.concat(',');
-
+  onClickFinish(profile: string) {
+    console.log(profile);
+    if ( profile === 'COMPANY') {
+      let field = '';
+      for (const f of this.myKeys) {
+        field = field.concat(f.toString());
+        field = field.concat(',');
+      }
+      field = field.substring(0, field.length - 1)
+      console.log(field);
+      this.authService.uploadFieldCompany(field);
+    } else if ( profile === 'CANDIDATE' ) {
+      this.authService.uploadAreaOfInterestCandidate(this.myKeys);
     }
-    this.authService.uploadFieldCompany(field);
   }
 
 }

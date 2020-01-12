@@ -105,7 +105,7 @@
 }
 
 .example-container > * {
-  width: 30%;
+  /*width: 40%;*/
 }
 
 .div-key-words {
@@ -128,6 +128,6 @@
   /*border: 1px solid;*/
   /*padding: 2vw;*/
   /*margin-top: 5vw;*/
-  margin-left: 15%;
-  border-radius: 2vw;
+  margin-left: 5%;
+  /*border-radius: 2vw;*/
 }

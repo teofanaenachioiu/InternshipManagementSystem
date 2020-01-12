@@ -12,6 +12,7 @@ import {MatCheckboxChange} from '@angular/material/checkbox';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
+  isEditable = false;
   @Input()
   companyStep: boolean;
   candidateStep: boolean;
@@ -24,9 +25,11 @@ export class RegisterComponent implements OnInit {
   passwordsMatcher = new RepeatPasswordEStateMatcher();
   exitEmail: boolean;
   errorEmail: boolean;
+  errorFormatEmail: boolean;
   registerStep: boolean;
   checkEmail: boolean;
-
+  id: string;
+  profile: string;
   constructor(private authService: AuthService, private formBuilder: FormBuilder, private router: Router) {
     this.selectedProfile = null;
     this.form = this.formBuilder.group({
@@ -39,12 +42,14 @@ export class RegisterComponent implements OnInit {
     this.exitEmail = false;
     this.errorEmail = true;
     this.registerStep = true;
+    this.errorFormatEmail = true;
   }
 
   ngOnInit() {
   }
 
   clickOnNext() {
+    this.authService.getAreaOfInterest().subscribe()
     if (this.selectedProfile == null) {
       console.log('Select');
       this.error = 'Choose one option';
@@ -55,19 +60,23 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  clickOnAboutYou() {
+  clickOnCreateAccount() {
+
     console.log('Write about you');
     const email = this.form.get('email').value;
     const password = this.form.get('password').value;
     const passwordAgain = this.form.get('passwordAgain').value;
+    this.id = email;
     if (password === passwordAgain ) {
       if (this.selectedProfile === 'COMPANY') {
         this.companyStep = true;
         this.candidateStep = false;
+        this.profile = '/internship-app/company-profile';
         console.log(this.companyStep + '-' + this.candidateStep);
       } else {
         this.companyStep = false;
         this.candidateStep = true;
+        this.profile = '/internship-app/candidate-profile';
         console.log(this.companyStep + '-' + this.candidateStep);
       }
       this.authService.getCompany(email).subscribe((res) => {
@@ -84,25 +93,18 @@ export class RegisterComponent implements OnInit {
           this.errorEmail = true;
           this.authService.register(email, password, this.selectedProfile)
             .subscribe((res) => {
+              this.errorFormatEmail = true;
               console.log(res);
               this.registerStep = false;
             }, (error2) => {
               this.registerStep = true;
               console.log('eroare');
               console.log(error.statusText);
-              this.candidateStep = false;
-              this.companyStep = false;
+              this.errorFormatEmail = false;
             });
         });
       });
-     // if ( this.exitEmail === true) {
-
-      //}
     }
-  }
-
-  checkEmailExistence() {
-
   }
 }
 

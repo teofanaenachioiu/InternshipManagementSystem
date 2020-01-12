@@ -4,7 +4,9 @@ import {ActivatedRoute, Router} from '@angular/router';
 
 import { EmailValidation, PasswordValidation, RepeatPasswordEStateMatcher, RepeatPasswordValidator } from '../validators';
 import {AuthService} from 'src/app/auth/auth.service';
-import {Company} from "../../../core/Company";
+import {Company} from '../../../core/Company';
+import {fromEvent, Observable} from 'rxjs';
+import {pluck} from 'rxjs/operators';
 class ImageSnippet {
   constructor(public src: string, public file: File) {}
 }
@@ -19,6 +21,8 @@ export class AboutYouCompanyComponent implements OnInit {
   form: any;
   private error = '';
   toArray: string[];
+  private fileData: File = null;
+  image: any;
   constructor(private authService: AuthService, private formBuilder: FormBuilder) {
     this.form =  this.formBuilder.group({
       address: new FormControl(''),
@@ -30,29 +34,23 @@ export class AboutYouCompanyComponent implements OnInit {
   ngOnInit() {
   }
 
-  clickOnNext() {
+  clickOnNext(id: string) {
     console.log('update data');
     const address = this.form.get('address').value;
     const companyDescription = this.form.get('companyDescription').value;
     const phone = this.form.get('phone').value;
     const companyName = this.form.get('companyName').value;
+    const company: Company = {
+      id,
+      name: companyName,
+      telephone: phone,
+      field: '',
+      description: companyDescription,
+      address,
+      logo: this.image,
+    };
 
-    let img = null;
-    if ( this.toArray != null ) {
-      img = this.toArray[1];
-    }
-  //   let company: Company = {
-  //     id: '',
-  //     name: companyName,
-  //     telephone: phone,
-  //     field: '',
-  //     description: companyDescription,
-  //     address,
-  //     logo: img;
-  //
-  //
-  // }
-    this.authService.updateCompany(address, companyDescription, phone, companyName, img)
+    this.authService.updateCompany(company)
       .subscribe((res) => {
         console.log(res);
       }, (error) => {
@@ -60,15 +58,21 @@ export class AboutYouCompanyComponent implements OnInit {
       });
   }
 
-  processFile(imageInput: any) {
-    const file = imageInput.files[0];
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => {
-      if (typeof reader.result === 'string') {
-        this.toArray = reader.result.split(',');
-      }
-    };
+  fileProgress(fileInput: any) {
+    this.fileData = fileInput.target.files[0] as File;
+    this.onUploadImage();
   }
 
+  onUploadImage() {
+    const fileReader = new FileReader();
+    this.imageToBase64(fileReader, this.fileData)
+      .subscribe(base64image => {
+        this.image = base64image.split(',')[1];
+      });
+  }
+
+  imageToBase64(fileReader: FileReader, fileToRead: File): Observable<string> {
+    fileReader.readAsDataURL(fileToRead);
+    return fromEvent(fileReader, 'load').pipe(pluck('currentTarget', 'result'));
+  }
 }

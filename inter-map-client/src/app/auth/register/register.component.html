@@ -1,13 +1,12 @@
-<mat-horizontal-stepper [linear]="isLinear">
-  <mat-step label="Choose profile" [completed]="selectedProfile">
+<mat-horizontal-stepper>
+  <mat-step label="Choose profile" [editable]="isEditable" >
     <div>
       <div class="div-title">
-        <p class="step-title">Step 1:&nbsp;</p><p class="step-title description-title">Choose profile</p>
+        <p class="step-title">Step 1</p><p class="step-title description-title">Choose profile</p>
       </div>
       <p class="choose-one">{{error}}</p>
 
       <div class="images-div">
-
         <div class="profiles">
           <div class="profile-div">
             <input class="radio" type="radio" value="CANDIDATE" [(ngModel)]="selectedProfile" id="radioStudent">
@@ -33,9 +32,8 @@
 
     </div>
 
-
   </mat-step>
-  <mat-step label="Registration" [completed]="form.valid" >
+  <mat-step label="Registration"  [editable]="isEditable" >
     <div class="div-title">
       <p class="step-title">Step 2:&nbsp;</p><p class="step-title description-title">Registration</p>
     </div>
@@ -54,6 +52,9 @@
                     </mat-form-field>
                   <mat-error *ngIf="!errorEmail">
                     This email already exist!
+                  </mat-error>
+                  <mat-error *ngIf="!errorFormatEmail">
+                    Invalid email format!
                   </mat-error>
 
                 </div>
@@ -90,15 +91,15 @@
 <!--                   <mat-checkbox name="checkEmail" formControlName="checkEmail" (change)="checkEmailExistence()">Check email</mat-checkbox>-->
                 </div>
             </div>
-            <div class="form-bottom">
-               <button mat-raised-button  [disabled]="(!form.valid )" (click)="clickOnAboutYou()" >Create Account</button>
-              <button mat-raised-button  [disabled] ="registerStep" matStepperNext >Next Step</button>
+            <div >
+              <button mat-raised-button  [disabled]="(!form.valid )" (click)="clickOnCreateAccount()" >Create Account</button>
+              <button mat-raised-button  [disabled] ="registerStep" matStepperNext class="form-bottom">Next Step</button>
             </div>
         </form>
        </div>
 
   </mat-step>
-  <mat-step label="About you">
+  <mat-step label="About you" [editable]="isEditable">
 <!--  <mat-step label="About you candidate" *ngIf="candidateStep">-->
     <div class="div-title" *ngIf="candidateStep && registerStep">
       <p class="step-title">Step 2:&nbsp;</p><p class="step-title description-title">About you</p>
@@ -107,8 +108,8 @@
       <app-about-you-candidate #candidate></app-about-you-candidate>
       <div class="form-bottom">
 <!--        <button mat-raised-button matStepperNext [disabled]="!form.valid" (click)="clickOnNext()"  >Skip</button>&ndash;&gt;-->
-        <button mat-raised-button [routerLink]="'/internship-app/candidate-profile'" >Skip</button>-->
-        <button mat-raised-button [disabled]="!form.valid" (click)="this.candidate.clickOnNext()" [routerLink]="'/internship-app/candidate-profile'" >Save</button>-->
+        <button mat-raised-button matStepperNext>Skip</button>
+        <button mat-raised-button [disabled]="!form.valid" (click)="this.candidate.clickOnNext(id)" matStepperNext class="form-bottom" >Save</button>
       </div>
     </div>
 <!--  </mat-step>-->
@@ -119,20 +120,20 @@
     <div class="div-key-words" *ngIf="companyStep">
       <app-about-you-company #company></app-about-you-company>
       <div class="form-bottom">
-        <button mat-raised-button matStepperNext (click)="clickOnNext()" >Skip</button>-->
-        <button mat-raised-button matStepperNext [disabled]="!form.valid" (click)="this.company.clickOnNext()"   >Save</button>-->
+        <button mat-raised-button matStepperNext >Skip</button>
+        <button mat-raised-button matStepperNext [disabled]="!form.valid" (click)="this.company.clickOnNext(id)"    class="form-bottom">Save</button>
       </div>
     </div>
   </mat-step>
 <!--  </mat-step>-->
-  <mat-step label="Key words" >
+  <mat-step label="Key words" [editable]="isEditable">
     <div class="div-title">
       <p class="step-title">Step 3:&nbsp;</p><p class="step-title description-title">Key words</p>
     </div>
     <div class="div-key-words" >
       <app-key-words #key></app-key-words>
-      <button mat-raised-button [routerLink]="'/internship-app/company-profile'">Skip</button>
-      <button mat-raised-button (click)="this.key.onClickFinish()"  [routerLink]="'/internship-app/company-profile'">Save</button>
+      <button mat-raised-button [routerLink]="profile">Skip</button>
+      <button mat-raised-button (click)="this.key.onClickFinish(selectedProfile)"  [routerLink]="profile"  class="form-bottom">Save</button>
     </div>
   </mat-step>
 </mat-horizontal-stepper>

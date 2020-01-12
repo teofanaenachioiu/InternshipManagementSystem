@@ -4,13 +4,16 @@ import {BehaviorSubject, Observable} from 'rxjs';
 import {tap} from 'rxjs/operators';
 import {User} from '../core/User';
 import {UserRole} from '../core/UserRole';
+import {Company} from '../core/Company';
+import {Candidat} from '../core/Candidat';
 
 const authURL = 'http://localhost:3000/api/auth';
 const loginURL = `${authURL}/login`;
 const registerURL = `${authURL}/signup`;
 const companyURL = 'http://localhost:3000/api/company';
 const candidateURL = 'http://localhost:3000/api/candidate';
-
+const areaOfInterest = 'http://localhost:3000/api/areaOfInterest';
+const resetPasswordURL = 'http://localhost:3000/api/auth/reset';
 
 interface AuthResponse {
   token: string;
@@ -41,6 +44,7 @@ export class AuthService {
   login(email: string, password: string): Observable<AuthResponse> {
     return this.httpClient.post<any>(loginURL, {username: email, password}, this.httpOptions)
       .pipe(tap(user => {
+        this.email = email;
         localStorage.setItem('token', user.token);
         localStorage.setItem('currentUser', JSON.stringify(user));
         this.currentUserSubject.next(user);
@@ -56,32 +60,21 @@ export class AuthService {
         this.currentUserSubject.next(user);
       }));
   }
-  updateCandidate(firstName: string, lastName: string, address: string, phone: string, date: string, image: string | ArrayBuffer, sex: string): Observable<AuthResponse> {
-    if (sex) {
+  updateCandidate(candidate: Candidat): Observable<AuthResponse> {
       return this.httpClient.put<any>(candidateURL,
-        {id: this.email, firstName, lastName, address, telephone: phone, birthDate: date, avatar: image, sex},
+        candidate,
         this.httpOptions)
-        .pipe(tap(candidate => {
+        .pipe(tap(candidate1 => {
           this.email = this.email;
-          console.log(candidate);
+          console.log(candidate1);
         }));
-    } else {
-      return this.httpClient.put<any>(candidateURL,
-        {id: this.email, firstName, lastName, address, telephone: phone, birthDate: date, avatar: image},
-        this.httpOptions)
-        .pipe(tap(candidate => {
-          this.email = this.email;
-          console.log(candidate);
-        }));
-    }
   }
-  updateCompany(address: string, companyDescription: string, phone: string, companyName: string, image: string | ArrayBuffer): Observable<AuthResponse> {
-    return this.httpClient.put<any>(companyURL,
-      {id: this.email, address, description: companyDescription, name: companyName,  telephone: phone, logo: image},
+  updateCompany(company: Company): Observable<AuthResponse> {
+    return this.httpClient.put<any>(companyURL, company,
       this.httpOptions)
-      .pipe(tap(company => {
+      .pipe(tap(company1 => {
         this.email = this.email;
-        console.log(company);
+        console.log(company1);
       }));
   }
 
@@ -107,25 +100,53 @@ export class AuthService {
     const  params = new  HttpParams().set('email', this.email);
     this.httpClient.get<any>(companyURL, {params})
       .subscribe((res) => {
-        this.uploadFieldsCompany(res.name, res.description, res.logo, res.address, fields, res.telephone).subscribe();
+        const company: Company = {
+          id: res.id,
+          name: res.name,
+          telephone: res.telephone,
+          field: fields,
+          description: res.description,
+          address: res.adress,
+          logo: res.logo,
+        };
+        this.updateCompany(company).subscribe();
+        });
+  }
+
+  uploadAreaOfInterestCandidate(fields: string[]) {
+    const  params = new  HttpParams().set('email', this.email);
+    this.httpClient.get<any>(candidateURL, {params})
+      .subscribe((res) => {
+        const postBody = {
+          yourParam: [ 'JAVA', 'AI' ]
+        };
+        return this.httpClient.put<any>(candidateURL, {areaOfInterest: fields}, { params } )
+          .pipe(tap((res1) => {
+            console.log(res1);
+          })).subscribe();
       });
   }
 
-  uploadFieldsCompany(name: string, description: string, logo: string | ArrayBuffer, address: string, fields: string, phone: string): Observable<AuthResponse> {
-    return this.httpClient.put<any>(companyURL,
-      {id: this.email, address, description, name,  telephone: phone, logo, field: fields},
-      this.httpOptions)
-      .pipe(tap(company => {
-        this.email = this.email;
-        console.log(company);
+
+  getAreaOfInterest() {
+    return this.httpClient.get<any>(areaOfInterest)
+      .pipe(tap((res) => {
+        console.log(res);
       }));
   }
-
-
   logout() {
     // logout pe server
     // TODO
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
+  }
+
+  resetPassword(password: string): Observable<AuthResponse>  {
+    console.log(this.currentUserSubject.getValue().username);
+    console.log(password);
+    return this.httpClient.post<any>(resetPasswordURL, {username: this.currentUserSubject.getValue().username, password}, this.httpOptions)
+      .pipe(tap(user => {
+        this.currentUserSubject.next(user);
+      }));
   }
 }

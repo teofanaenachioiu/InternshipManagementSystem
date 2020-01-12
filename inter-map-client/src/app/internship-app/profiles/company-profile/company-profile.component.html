@@ -1,7 +1,6 @@
 <app-company-menu></app-company-menu>
 
 <app-custom-spinner *ngIf="companyService.isLoading || serviceInt.isLoading"></app-custom-spinner>
-
 <div class="main-div" *ngIf="!companyService.isLoading && !serviceInt.isLoading">
   <form [formGroup]="profileForm">
     Value: {{ profileForm.value | json }} <br>

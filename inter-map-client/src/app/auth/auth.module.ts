@@ -26,6 +26,8 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import { AboutYouCompanyComponent } from './register/about-you-company/about-you-company.component';
+import {MaterialFileInputModule} from "ngx-material-file-input";
+import {InternshipAppModule} from "../internship-app/internship-app.module";
 
 
 const materialComponents = [
@@ -55,6 +57,8 @@ const materialComponents = [
     MatRadioModule,
     MatSelectModule,
     MatDatepickerModule,
+    MaterialFileInputModule,
+    InternshipAppModule,
   ],
   providers: [
     AuthService]
