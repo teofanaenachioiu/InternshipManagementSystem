@@ -17,7 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +27,6 @@ import io.jsonwebtoken.SignatureAlgorithm;
 
 @RestController
 @RequestMapping(value = "/auth")
-// @CrossOrigin(origins = "http://localhost:4200")
 public class CustomerController {
     @Autowired
     private CustomerService userService;

@@ -41,9 +41,6 @@ class ExperienceServiceImpl implements ExperienceService {
         if (experiences == null) {
             throw new IllegalArgumentException();
         }
-        // for (Experience experience : experiences) {
-        // if(experienceRepository.existsById(experience.getId)
-        // }
         for (Experience experience : experiences) {
             experience.setCandidate(candidate);
             experienceRepository.save(experience);
