@@ -26,7 +26,7 @@ export class CreateApplicationComponent implements OnInit {
     console.log(this.id);
     let application = new Application(this.authService.currentUserValue.username,this.id,this.coverLetter);
     this.internshipService.addApplication(application);
-    this.router.navigate(['internship-app/applications']);
+    this.router.navigate(['internship-app/internships']);
   }
 
 }

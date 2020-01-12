@@ -3,6 +3,9 @@
 <div class="container">
 
   <div class="right">
+    <mat-card class="card">
+      <mat-card-content [style.overflow]="'auto'" [style.height.px]="'650'" >
+
     <input type="text" [(ngModel)]="filteredChildCompany" placeholder="Search..">
     <br><br>
 
@@ -60,7 +63,7 @@
                  (change)="onChangeRating(i+1, $event.target.checked)" type="checkbox">
         </li>
         <li>
-          <star-rating [value]="i+1" checkedcolor="gold" uncheckedcolor="black" size="30px" readonly="true"
+          <star-rating [value]="i+1" checkedcolor="gold" uncheckedcolor="black" size="25px" readonly="true"
                        (rate)="onRate($event)"></star-rating>
         </li>
         <li>
@@ -70,6 +73,10 @@
     </ul>
     <br>
 
+
+  </mat-card-content>
+    </mat-card>
+    
 
   </div>
 
