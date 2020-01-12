@@ -9,8 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/areaOfInterest")
-@CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping(value = "/api/secure/areaOfInterest")
 public class AreaOfInterestController {
     @Autowired
     AreaOfInterestService areaOfInterestService;

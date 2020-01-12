@@ -16,8 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/application")
-@CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping(value = "/api/secure/application")
 public class ApplicationController {
     @Autowired
     private ApplicationService applicationService;

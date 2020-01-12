@@ -13,7 +13,7 @@ export class InternshipListComponent implements OnInit {
 
   @Output() internshipWasSelected = new EventEmitter<Internship>();
 
-  internships: InternshipDTO[];
+  internships: InternshipDTO[] = [];
 
   filteredChildCompany = "";
   filteredMultipleCompany = "";
