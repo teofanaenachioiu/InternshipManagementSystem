@@ -40,9 +40,9 @@
     </mat-form-field>
     <br>
     <mat-radio-group aria-label="Select an option" [value]="gender" formControlName="sex" class="fields">
-      <mat-radio-button value=M [checked]="gender===0" class="radioB">M</mat-radio-button>
-      <mat-radio-button value=F [checked]="gender== 1" class="radioB">F</mat-radio-button>
-      <mat-radio-button value=NO [checked]="gender== 2" class="radioB">NO</mat-radio-button>
+      <mat-radio-button value=M [checked]="gender==='M'" class="radioB">M</mat-radio-button>
+      <mat-radio-button value=F [checked]="gender== 'F'" class="radioB">F</mat-radio-button>
+      <mat-radio-button value=O [checked]="gender== 'O'" class="radioB">NO</mat-radio-button>
     </mat-radio-group>
 
   </div>
