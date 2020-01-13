@@ -42,8 +42,8 @@ export class AuthService {
   login(email: string, password: string): Observable<AuthResponse> {
     return this.httpClient.post<any>(loginURL, {username: email, password}, this.httpOptions)
       .pipe(tap(user => {
-        // localStorage.setItem('token', user.token);
-        // localStorage.setItem('currentUser', JSON.stringify(user));
+        localStorage.setItem('token', user.token);
+        localStorage.setItem('currentUser', JSON.stringify(user));
         this.currentUserSubject.next(user);
       }));
   }

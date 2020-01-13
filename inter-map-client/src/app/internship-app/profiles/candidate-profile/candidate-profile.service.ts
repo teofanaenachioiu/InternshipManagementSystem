@@ -37,11 +37,11 @@ export class CandidateProfileService {
     return httpOptions;
   }
 
-  constructor(private http: HttpClient, private authService: AuthService) {
+  constructor(private http: HttpClient) {
     this.isLoading = true;
-
-    this.token = this.authService.currentUserValue.token;
-    this.username = this.authService.currentUserValue.username;
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.token = localStorage.getItem('token');
+    this.username = currentUser.username;
 
     this.getCandidateByEmail(this.username).subscribe(
       (res) => {
