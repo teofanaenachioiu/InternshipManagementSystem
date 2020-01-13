@@ -1,0 +1,10 @@
+Backend:
+- Java - limbaj de programare orientat-obiect, puternic tipizat, conceput de către James Gosling la Sun Microsystems (acum filială Oracle) la începutul anilor 1990, fiind lansat în 1995.
+- MySQL - sistem de gestiune a bazelor de date relaționale, produs de compania suedeză MySQL AB și distribuit sub Licența Publică Generală GNU. Este cel mai popular SGBD open-source la ora actuală. Există scheme API disponibile pentru MySQL ce permit scrierea aplicațiilor în numeroase limbaje de programare pentru accesarea bazelor de date MySQL, incluzând Java.
+- Spring Hibernate - framework Java destinat facilitării accesului la baze de date şi conectării între lumea obiectuală şi lumea tabelelor relaţionale.
+
+Frontend:
+- Angular - platformă de dezvoltare web cu sursă deschisă bazată pe limbajul TypeScript. Proiectul este dezvoltat de Echipa Angular de la Google și de o comunitate de utilizatori individuali și companii. Angular este o rescriere completă, de către aceeași echipă, a frameworkului AngularJS.
+- Angular Material - implementare a specificației Google Material Design (2014-2017). Acest proiect oferă un set de componente UI reutilizabile, bine testate și accesibile pentru dezvoltatorii AngularJS.
+
+GitHub: serviciu de găzduire web pentru proiecte de dezvoltare a software-ului care utilizează sistemul de control al versiunilor Git. Acesta este un sistem revision control distribuit, folosit în echipe de dezvoltare mari, în care membrii echipei acționează oarecum independent și sunt răspândiți pe o arie geografică mare.
