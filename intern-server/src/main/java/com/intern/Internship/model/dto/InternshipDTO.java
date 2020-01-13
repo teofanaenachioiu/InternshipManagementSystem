@@ -29,7 +29,8 @@ public class InternshipDTO {
     private InternshipStatus status;
     private String location;
     private LocalDate addedDate;
-    private String company;
+    private String company;    
+    private byte[] logo;
     private String areaOfInterest;
     private Long numberOfFeedbacks;
     private Double averageOfFeedbacks;
