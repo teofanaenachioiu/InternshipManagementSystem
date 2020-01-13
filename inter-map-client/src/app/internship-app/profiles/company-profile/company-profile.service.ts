@@ -4,8 +4,8 @@ import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {Company} from '../../../core/Company';
 
-const apiUrl = 'http://localhost:3000/api/internship';
-const companyUrl = 'http://localhost:3000/api/company';
+const apiUrl = 'http://localhost:3000/api/secure/internship';
+const companyUrl = 'http://localhost:3000/api/secure/company';
 
 @Injectable({
   providedIn: 'root'
