@@ -50,12 +50,13 @@ import {SwiperModule} from 'ngx-swiper-wrapper';
 import {SWIPER_CONFIG} from 'ngx-swiper-wrapper';
 import {SwiperConfigInterface} from 'ngx-swiper-wrapper';
 import {LogoutDialog} from './components/logout-dialog/logout-dialog';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {JwtInterceptor} from './auth/JwtInterceptor';
 import {ErrorInterceptor} from './auth/ErrorInterceptor';
 import { ShowMoreLessTextComponent } from './components/show-more-less-text/show-more-less-text.component';
 import {TruncateModule} from '@yellowspot/ng-truncate';
+import {CoreModule} from './core/core.module';
 
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -86,7 +87,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     FormsModule,
     HttpClientModule,
     MaterialFileInputModule,
-    TruncateModule
+    TruncateModule,
+    ReactiveFormsModule
   ],
   providers: [{
     provide: {SWIPER_CONFIG},

@@ -16,8 +16,7 @@ export class ContactService {
   constructor(private httpClient: HttpClient) {
   }
 
-  sendMessageContact(message: Message): void {
-    // TODO: nu functioneaza apelul
-    this.httpClient.post<Message>(contactURL, message, this.httpOptions);
+  sendMessageContact(message: Message): any {
+    return this.httpClient.post<Message>(contactURL, message, this.httpOptions);
   }
 }
