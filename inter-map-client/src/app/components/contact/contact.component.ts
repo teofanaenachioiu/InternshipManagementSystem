@@ -30,16 +30,17 @@ export class ContactComponent implements OnInit {
 
   sendMessage() {
     if (this.name.invalid || this.email.invalid || this.subject.invalid || this.phone.invalid || this.message.invalid) {
+      alert('Invalid data in contact form');
       return;
     }
     const message = new Message(this.name.value, this.email.value, this.subject.value, this.phone.value, this.message.value);
+    this.name.patchValue('');
+    this.phone.patchValue('');
+    this.email.patchValue('');
+    this.subject.patchValue('');
+    this.message.patchValue('');
 
-    this.contactService.sendMessageContact(message).subscribe(res =>{
-      this.name.setValue('');
-      this.phone.setValue('');
-      this.email.setValue('');
-      this.subject.setValue('');
-      this.message.setValue('');
+    this.contactService.sendMessageContact(message).subscribe(res => {
       alert(res);
     }, error => {
       alert(error);
