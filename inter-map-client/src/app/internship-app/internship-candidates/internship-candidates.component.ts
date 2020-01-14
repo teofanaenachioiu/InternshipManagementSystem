@@ -20,7 +20,7 @@ export class InternshipCandidatesComponent implements OnInit, OnDestroy {
   private subscriptions = [];
   private internshipId;
   private candidatesToCheck: CandidateToCheck[] = [];
-  private apiUrl = 'http://localhost:3000/api/application';
+  private apiUrl = 'http://localhost:3000/api/secure/application';
   private getUrl = `${this.apiUrl}/InternshipCandidates`;
   private allChecked = false;
 

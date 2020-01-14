@@ -6,7 +6,7 @@ import {error} from 'util';
 
 const serverUrl = 'localhost:3000';
 const httpServerUrl = `http://${serverUrl}`;
-const interestsUrl = `${httpServerUrl}/api/areaOfInterest`;
+const interestsUrl = `${httpServerUrl}/api/secure/areaOfInterest`;
 
 @Injectable({
   providedIn: 'root'

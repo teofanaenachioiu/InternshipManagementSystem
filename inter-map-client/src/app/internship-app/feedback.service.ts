@@ -7,7 +7,7 @@ import { FeedbackDTO } from './data/FeedbackDTO';
 })
 export class FeedbackService {
 
-  apiUrl = 'http://localhost:3000/api/feedback/internship?id=';
+  apiUrl = 'http://localhost:3000/api/secure/feedback/internship?id=';
   constructor(private _http: HttpClient) { }
 
   getFeedbacks(idInternship : any){

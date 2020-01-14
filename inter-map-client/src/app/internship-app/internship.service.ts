@@ -11,8 +11,8 @@ import {InternshipDTO} from './data/InternshipDTO';
 })
 export class InternshipService {
 
-  apiUrl = 'http://localhost:3000/api/internship/all';
-  apiUrlAdd = 'http://localhost:3000/api/application';
+  apiUrl = 'http://localhost:3000/api/secure/internship/all';
+  apiUrlAdd = 'http://localhost:3000/api/secure/application';
 
   applicationSubject: BehaviorSubject<ApplicationDTO[]> = new BehaviorSubject([]);
 
