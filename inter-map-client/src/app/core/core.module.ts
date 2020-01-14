@@ -25,7 +25,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from '../app-routing.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SwiperModule} from 'ngx-swiper-wrapper';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {MaterialFileInputModule} from 'ngx-material-file-input';
 import {TruncateModule} from '@yellowspot/ng-truncate';
@@ -84,7 +84,8 @@ import {HomeGeneralComponent} from '../components/home-general/home-general.comp
     MatListModule,
     MatIconModule,
     MatButtonModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    ReactiveFormsModule
   ]
 })
 export class CoreModule { }
