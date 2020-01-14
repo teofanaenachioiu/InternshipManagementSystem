@@ -14,27 +14,32 @@
           <div class="row">
             <div class="col-md-6">
               <mat-form-field>
-                <input matInput [(ngModel)]="name"  name="name" type="text" id="name" placeholder="Name" required>
+                <input matInput type="text" id="name" [formControl]="name"  placeholder="Name" required>
+                <mat-error *ngIf="name.invalid">{{getErrorMessage()}}</mat-error>
               </mat-form-field>
             </div>
             <div class="col-md-6">
               <mat-form-field>
-                <input matInput [(ngModel)]="email" name="email" type="email" id="email" placeholder="Email" required>
+                <input matInput  [formControl]="email" type="email" id="email" placeholder="Email" required>
+                <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
               </mat-form-field>
             </div>
             <div class="col-md-6">
               <mat-form-field>
-                <input matInput [(ngModel)]="subject" name="subject" type="text" id="subject" placeholder="Subject" required>
+                <input matInput  [formControl]="subject" type="text" id="subject" placeholder="Subject" required>
+                <mat-error *ngIf="subject.invalid">{{getErrorMessage()}}</mat-error>
               </mat-form-field>
             </div>
             <div class="col-md-6">
               <mat-form-field>
-                <input matInput [(ngModel)]="phone" name="phone" type="phone" id="phone" placeholder="Phone" required>
+                <input matInput [formControl]="phone"  type="phone" id="phone" placeholder="Phone" required>
+                <mat-error *ngIf="phone.invalid">{{getErrorMessage()}}</mat-error>
               </mat-form-field>
             </div>
             <div class="col-md-12">
               <mat-form-field style="width: 85%">
-                <textarea matInput (resize)="message" [(ngModel)]="message" name="message" rows="6"  id="message" placeholder="Message" required></textarea>
+                <textarea matInput (resize)="message"  [formControl]="message" rows="6"  id="message" placeholder="Message" required></textarea>
+                <mat-error *ngIf="message.invalid">{{getErrorMessage()}}</mat-error>
               </mat-form-field>
             </div>
           </div>
