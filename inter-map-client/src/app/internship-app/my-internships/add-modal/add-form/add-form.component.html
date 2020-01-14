@@ -1,4 +1,13 @@
 <div [formGroup]="form">
+<!-- IONUT -->
+  <mat-form-field class="fields">
+    <ngx-mat-file-input formControlName="bytesArray" placeholder="file" accept="image/*"
+                        (change)="fileProgress($event)">
+    </ngx-mat-file-input>
+    <mat-icon matSuffix>photo</mat-icon>
+  </mat-form-field>
+  <br>
+
   <mat-form-field class="field">
     <label>
       <input matInput placeholder="Name" formControlName="name">

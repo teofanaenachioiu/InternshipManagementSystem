@@ -30,6 +30,7 @@ export class ProfileComponent implements ControlValueAccessor, OnDestroy, OnInit
   private form: FormGroup;
   private subscriptions: Subscription[] = [];
   private company: Company;
+  private bytesArray = null;
 
   private fileData: File = null;
   private previewUrl: any = 'assets/img/no-photo.png';
@@ -70,8 +71,10 @@ export class ProfileComponent implements ControlValueAccessor, OnDestroy, OnInit
     );
   }
 
-  onChange: any = () => {};
-  onTouched: any = () => {};
+  onChange: any = () => {
+  };
+  onTouched: any = () => {
+  };
 
   writeValue(obj: any): void {
     if (obj) {
@@ -82,16 +85,18 @@ export class ProfileComponent implements ControlValueAccessor, OnDestroy, OnInit
       this.form.reset();
     }
   }
+
   registerOnChange(fn: any): void {
     this.onChange = fn;
   }
+
   registerOnTouched(fn: any): void {
     this.onTouched = fn;
   }
 
   // communicate the inner form validation to the parent form
   validate(_: FormControl) {
-    return this.form.valid ? null : { profile: { valid: false, }, };
+    return this.form.valid ? null : {profile: {valid: false,},};
   }
 
   ngOnDestroy() {
@@ -119,6 +124,11 @@ export class ProfileComponent implements ControlValueAccessor, OnDestroy, OnInit
       doUpdate = true;
     }
 
+    if (this.bytesArray != null) {
+      this.service.company.logo = this.bytesArray;
+      doUpdate = true;
+    }
+
     if (this.form.get('phone').value != null || '') {
       this.service.company.telephone = this.form.get('phone').value;
       doUpdate = true;
@@ -142,7 +152,9 @@ export class ProfileComponent implements ControlValueAccessor, OnDestroy, OnInit
     const fileReader = new FileReader();
     this.imageToBase64(fileReader, this.fileData)
       .subscribe(base64image => {
-        this.service.company.logo = base64image.split(',')[1];
+        this.bytesArray = base64image.split(',')[1];
+        // this.service.company.logo = onlyBytes;
+        // console.log(onlyBytes);
       });
   }
 
@@ -168,6 +180,7 @@ export class ProfileComponent implements ControlValueAccessor, OnDestroy, OnInit
   public errorHandling = (control: string, error: string, msg: string) => {
     return this.form.get(control).hasError(error) ? msg : '';
   };
+
   checkInputs(control: FormControl) {
     if (control.value === '') {
       return {emptyInput: true};
