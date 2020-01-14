@@ -10,6 +10,8 @@ public interface ExperienceService {
 
     void saveAll(Candidate candidate, Set<Experience> experiences);
 
+    void deleteAll(Candidate candidate);
+
     Experience update(Experience experience);
 
     void delete(Experience experience);

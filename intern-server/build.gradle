@@ -26,10 +26,10 @@ dependencies {
 	implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
 
 	// https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
-	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
+	implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
 
 
-	compile 'commons-validator:commons-validator:1.4.1'
+	implementation 'commons-validator:commons-validator:1.4.1'
 
 	// https://mvnrepository.com/artifact/com.sun.mail/javax.mail
 	implementation group: 'com.sun.mail', name: 'javax.mail', version: '1.6.2'

@@ -46,4 +46,11 @@ class ExperienceServiceImpl implements ExperienceService {
             experienceRepository.save(experience);
         }
     }
+
+    @Override
+    public void deleteAll(Candidate candidate) {
+        for (Experience experience : experienceRepository.findAll())
+            if (experience.getCandidate().getID().equals(candidate.getID()))
+                experienceRepository.delete(experience);
+    }
 }
