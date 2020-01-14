@@ -17,4 +17,6 @@ public interface ApplicationService {
     Application findApplicationByCandidateInternship(String candidateID, String internshipID);
 
     List<InternshipCandidateDTO> findAllCandidatesInternship(String internship_id);
+
+    void deleteByInternship(String internshipId);
 }
