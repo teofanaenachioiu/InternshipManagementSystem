@@ -112,7 +112,7 @@
     <mat-card-footer>
       <div class="name-status-div">
         <div class="feedbacks-div">
-          FEEDBACKS
+          <star-rating [value]="internship.averageOfFeedbacks" checkedcolor="gold" size="30px" uncheckedcolor="black"></star-rating>
         </div>
         <div class="edit-div">
           <button mat-button matTooltip="Show candidates" (click)="showCandidates()"><mat-icon>list</mat-icon></button>
