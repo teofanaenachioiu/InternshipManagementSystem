@@ -21,7 +21,7 @@ export class CandidateApplicationsListItemComponent implements OnInit, OnDestroy
   private feedbackComment: string;
   private ratingValue: number;
   private subscriptions = [];
-  private apiUrl = 'http://localhost:3000/api/feedback';
+  private apiUrl = 'http://localhost:3000/api/secure/feedback';
 
   constructor(public dialog: MatDialog,
               private http: HttpClient) {

@@ -125,10 +125,12 @@ export class AboutComponent implements ControlValueAccessor, OnDestroy, OnInit {
       doUpdate = true;
     }
 
+    console.log(this.service.company);
+
     if (doUpdate) {
       this.service.updateCompany();
     }
 
-    this.service.isEditAbout= false;
+    this.service.isEditAbout = false;
   }
 }

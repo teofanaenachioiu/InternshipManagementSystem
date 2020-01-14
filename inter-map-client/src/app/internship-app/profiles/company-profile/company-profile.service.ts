@@ -15,7 +15,6 @@ export class CompanyProfileService {
   internships: InternshipDTO[] = [];
   companyUsername: string;
   statuses: string[] = ['Open', 'Closed'];
-
   company: Company = new Company();
 
   isEditProfile = false;
@@ -56,7 +55,7 @@ export class CompanyProfileService {
 
   updateCompany() {
     console.log(this.company);
-    this.httpClient.put<any>(companyUrl, this.company, this.authHttpOptions());
+    this.httpClient.put<Company>(companyUrl, this.company, this.authHttpOptions()).subscribe();
   }
 
   httpHeaders() {

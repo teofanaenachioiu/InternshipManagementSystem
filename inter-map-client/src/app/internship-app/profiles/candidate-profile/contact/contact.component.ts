@@ -41,7 +41,7 @@ export class ContactComponent implements ControlValueAccessor, OnDestroy, OnInit
     this.form = this.formBuilder.group({
       address: new FormControl('', ),
       phone: new FormControl('', {validators: this.checkInputs}),
-      email: new FormControl({value: '', disabled: true}, {validators: this.checkInputs}),
+      // email: new FormControl({value: '', disabled: true}, {validators: this.checkInputs}),
       linkedIn: new FormControl('', ),
       github: new FormControl('', {validators: this.checkInputs}),
     });
