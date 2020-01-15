@@ -70,7 +70,8 @@
 
     <mat-card-header>
       <div matCardAvatar>
-        <img style="width: 100%" src="{{internship.imagePath}}" alt="no img">
+        <img style="width: 100%" src="{{internship.logo!=null?
+        'data:image/jpeg;base64,'+internship.logo: 'assets/img/no-photo.png'}}" alt="no img">
       </div>
       <mat-card-title>
         {{internship.name}}

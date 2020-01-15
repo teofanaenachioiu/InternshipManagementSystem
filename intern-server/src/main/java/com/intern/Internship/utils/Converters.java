@@ -83,6 +83,7 @@ public class Converters {
         internship.setStatus(internshipDTO.getStatus());
         internship.setLocation(internshipDTO.getLocation());
         internship.setAddedDate(internshipDTO.getAddedDate());
+        internship.setLogo(internshipDTO.getLogo());
         return internship;
     }
 
