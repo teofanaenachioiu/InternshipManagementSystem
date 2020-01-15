@@ -1,21 +1,21 @@
 
 .fields{
-  margin-left: 1vw;
-  /*margin-right 2vw;*/
-  width: 45%;
-}
-.div2{
-  /*margin-left: 35px ;*/
-  /*flex-direction: column-reverse;*/
-}
-#delete-button{
-  margin-left: 85%;
-  /*margin-left: 25vw;*/
-}
-#add-button{
+  width: 100%;
+  margin-bottom: 1vw;
+  padding: 1vw;
 }
 
+button {
+  margin-bottom: 1vw;
+}
+.container-row-field {
+  display: flex;
+  flex-direction: row;
+}
 
+p {
+  font-size: 16px;
+}
 .desc1{
   position: relative;
   width:450px;

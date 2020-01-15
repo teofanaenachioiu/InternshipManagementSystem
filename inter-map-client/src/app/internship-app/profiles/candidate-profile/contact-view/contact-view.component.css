@@ -5,8 +5,11 @@
 }
 
 p {
-  background-color: white;
-  padding: 1vw;
-  margin: 1vw;
-  border-radius: 2vw;
+  font-size: 16px;
 }
+
+
+.profile-title {
+  font-size: 16px;
+}
+

@@ -4,8 +4,8 @@
 
 <div class="main-div" *ngIf="!companyService.isLoading && !serviceInt.isLoading">
   <form [formGroup]="profileForm">
-    Value: {{ profileForm.value | json }} <br>
-    <div class="side-div">
+    <div class="form-profile-content">
+    <div class="side-div sticky left-div">
 
       <div class="form-div" *ngIf="!companyService.isEditProfile">
         <app-profile-view></app-profile-view>
@@ -16,7 +16,7 @@
       </div>
 
     </div>
-    <div class="side-div">
+    <div class="side-div right-div">
 
       <div class="form-div" *ngIf= "!companyService.isEditAbout" id="about-div">
         <app-about-view></app-about-view>
@@ -35,6 +35,7 @@
 <!--        <app-interests formControlName="interests"></app-interests>-->
 <!--      </div>-->
       </div>
+    </div>
   </form>
 
 

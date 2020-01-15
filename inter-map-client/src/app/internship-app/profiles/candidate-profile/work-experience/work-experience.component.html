@@ -1,24 +1,29 @@
 <mat-icon class="help-l" matTooltip="Info about work experience" style="float: right">help</mat-icon>
-<p> Work experience</p>
+<p> <strong>W O R K</strong> </p>
 
 <div [formGroup]="form">
   <div formArrayName="workExperience">
 
     <div *ngFor="let work of workExperienceForms.controls; let i=index" [formGroupName]="i">
-
+      <div class="container-row-field">
       <mat-form-field class="fields">
         <label>
           <input matInput placeholder="Where" formControlName="companyName" value = "{{experiences[i].companyName}}">
         </label>
       </mat-form-field>
 
+        <button mat-button (click)="removeWork(i)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+      <div class="container-row-field">
       <mat-form-field class="fields">
         <label>
           <input matInput placeholder="Job" formControlName="jobName" value = "{{experiences[i].jobName}}">
         </label>
       </mat-form-field>
-      <br>
-
+      </div>
+      <div class="container-row-field">
       <mat-form-field class="fields">
         <label>
           <input matInput [matDatepicker]="fromDateWork" placeholder="Choose a date" formControlName="startDate"
@@ -36,19 +41,16 @@
         <mat-datepicker-toggle [for]="toDateWork" matSuffix></mat-datepicker-toggle>
         <mat-datepicker #toDateWork></mat-datepicker>
       </mat-form-field>
+      </div>
 
-      <br>
 
-      <button mat-raised-button (click)="removeWork(i)">
-        <mat-icon>delete</mat-icon>
-      </button>
 
     </div>
-
+<div class="container-row-field">
     <button mat-raised-button (click)="addWork()">
       <mat-icon>add</mat-icon>
     </button>
-
+</div>
   </div>
 </div>
 

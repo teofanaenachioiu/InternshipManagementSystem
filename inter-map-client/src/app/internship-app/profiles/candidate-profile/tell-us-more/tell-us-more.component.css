@@ -5,3 +5,8 @@ textarea{
   position: relative;
   width:75%;
 }
+
+
+p {
+  font-size: 16px;
+}

@@ -1,11 +1,31 @@
+<p> <strong>S T U D I E S</strong> </p>
 
+<div class="main-div" *ngFor="let study of studies">
 
-<div *ngFor="let study of studies">
-  <p>Institution name: {{study.nameOfInstitution}}</p>
-  <p>Profile: {{study.profile}}</p>
-  <p>Start date: {{formatDate(study.startDate)}}</p>
-  <p>End date: {{formatDate(study.endDate)}}</p>
-  <p>Description: {{study.description}}</p>
+  <div class="study">
+    <label class="profile-title">Institution name:</label>
+    <p>{{study.nameOfInstitution}}</p>
+  </div>
+
+  <div class="study">
+    <label class="profile-title">Profile:</label>
+    <p>{{study.profile}}</p>
+  </div>
+
+  <div class="study">
+    <label class="profile-title">Start date:</label>
+    <p>{{formatDate(study.startDate)}}</p>
+  </div>
+
+  <div class="study">
+    <label class="profile-title">End date:</label>
+    <p>{{formatDate(study.endDate)}}</p>
+  </div>
+
+  <div class="study">
+    <label class="profile-title">Description:</label>
+    <p>{{study.description}}</p>
+  </div>
 </div>
 
 

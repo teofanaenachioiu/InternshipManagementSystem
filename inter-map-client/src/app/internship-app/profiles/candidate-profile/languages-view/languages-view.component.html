@@ -1,7 +1,12 @@
+<p> <strong>L A N G U A G E S</strong> </p>
 
-<p *ngFor="let i of languages">
-  {{i}}
-</p>
+<div class="container-languages">
+  <p *ngFor="let i of languages">
+    {{i}}
+  </p>
+</div>
+
+
 <button mat-button style="float: right" (click)="makeEditable()">
   <mat-icon>edit</mat-icon>
 </button>

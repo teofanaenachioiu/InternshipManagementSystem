@@ -9,19 +9,19 @@
     <div class="form-profile-content">
       <div class="side-div sticky left-div">
 
-        <div class="form-div form-div-left" *ngIf="!service.isEditPersonalDetails">
+        <div class="form-div " *ngIf="!service.isEditPersonalDetails">
           <app-personal-details-view></app-personal-details-view>
         </div>
 
-        <div class="form-div form-div-left" *ngIf="service.isEditPersonalDetails">
+        <div class="form-div " *ngIf="service.isEditPersonalDetails">
           <app-personal-details formControlName="personalDetails"></app-personal-details>
         </div>
 
-        <div class="form-div form-div-left" *ngIf="!serviceInt.isEditInterests">
+        <div class="form-div " *ngIf="!serviceInt.isEditInterests">
           <app-interests-view></app-interests-view>
         </div>
 
-        <div class="form-div form-div-left" *ngIf="serviceInt.isEditInterests">
+        <div class="form-div " *ngIf="serviceInt.isEditInterests">
           <app-interests formControlName="interests"></app-interests>
         </div>
 

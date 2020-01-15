@@ -1,3 +1,25 @@
+
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+
+@media all and (max-width: 800px) {
+  .sticky {
+    position: static;
+    top: 0;
+    background-color: blue;
+  }
+}
+
+@media all and (max-width: 500px) {
+  .sticky {
+    position: static;
+    top: 0;
+    background-color: green;
+  }
+}
 .nav-title {
   padding-left: 1rem;
 }
@@ -23,6 +45,7 @@ div {
   margin-top: 5vw;
   margin-left: 13vw;
   border-radius: 2vw;
+  background-color: #eeeeff;
 }
 #about-div{
   /*border: 1px solid;*/
@@ -51,4 +74,12 @@ div {
   margin-left: 13vw;
   margin-right: 13vw;
   margin-top: 5vw;
+}
+
+.left-div {
+  width: 30vw;
+}
+
+.right-div {
+  width: 50vw;
 }
