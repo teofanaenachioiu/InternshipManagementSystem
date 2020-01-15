@@ -36,6 +36,7 @@ export class AddModalComponent implements OnInit {
     const endDate = formValue.toDate;
     const months = Math.trunc((endDate - startDate) / (1000 * 3600 * 24 * 30));
     const location = formValue.location;
+    const technology = formValue.technology;
 
     const internship = new InternshipDTO(
       '',
@@ -49,7 +50,7 @@ export class AddModalComponent implements OnInit {
       location,
       new Date(Date.now()),
       this.service.companyUsername,
-      'da',
+      technology,
       3,
       'sad',
       5

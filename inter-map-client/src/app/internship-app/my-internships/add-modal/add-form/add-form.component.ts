@@ -49,6 +49,7 @@ export class AddFormComponent implements ControlValueAccessor, OnDestroy {
       toDate: '',
       status: 'Open',
       location: '',
+      technology: ''
     });
 
     this.subscriptions.push(
