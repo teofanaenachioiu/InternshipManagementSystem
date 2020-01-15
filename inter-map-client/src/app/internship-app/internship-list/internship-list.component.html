@@ -80,6 +80,8 @@
 
   </div>
 
+
+
   <div class="left">
     <div class="row">
       <div class="col-xs-12">
@@ -89,7 +91,7 @@
       | orderBy: sortSelected
       | filterForMultipleCompany:filteredMultipleCompany:'company'
       | filterRating:ratingSelected:'averageOfFeedbacks'
-      | filterForMultipleInterest: filteredMultipleTechnology:'areaOfInterest'
+      | filterForMultipleInterest: filteredChildCompany:'areaOfInterest'
       | filterCompany:statusSelected:'status'
       | paginate: { itemsPerPage: 3, currentPage: p } "
           [internship]="internshipEl"
@@ -101,6 +103,9 @@
       <pagination-controls class="my-pagination" (pageChange)="p= $event"></pagination-controls>
     </div>
 
+    <div *ngIf="loading">
+      loading
+    </div>
 
   </div>
 </div>

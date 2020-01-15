@@ -35,12 +35,16 @@ export class InternshipListComponent implements OnInit {
                     { value : 3 , selected: false},
                     { value : 4 , selected: false},
                     { value : 5 , selected: false},  ];
+  loading = true;
 
   constructor(private internshipService: InternshipService) { }
 
   ngOnInit() {
    this.internshipService.getInternships()
-      .subscribe(data => this.internships = data);
+      .subscribe(data => {
+        this.loading = false;
+        this.internships = data;
+      }, error => this.loading = true);
   }
 
   // onClickMe() {
@@ -61,16 +65,24 @@ getCompanyList(){
   return companies
 }
 
+
 getTechnologyList(){
-
-  let technologies = [];
-  for(let i=0 ; i<this.internships.length ; i++){
-    let stringOfTechnologies = this.internships[i].areaOfInterest.split(",");
-    for(let j = 0 ; j < stringOfTechnologies.length ; j++)
-      if(technologies.indexOf(stringOfTechnologies[j]) === -1 )
-        technologies.push(stringOfTechnologies[j]);
-
+  console.log(this.internships);
+  const technologies = [];
+  for (let i = 0; i < this.internships.length; i++) {
+    const technology = this.internships[i].areaOfInterest;
+    let found = false;
+    for (let j = 0; j < technologies.length; j++) {
+      if (technologies[j] === technology) {
+        found = true;
+        break;
+      }
+    }
+    if (!found) {
+      technologies.push(technology);
+    }
   }
+
   return technologies;
 }
 
@@ -79,7 +91,7 @@ getNumberInternshipsOfCompany(companyName){
     let count = 0;
     for( let i = 0 ; i < this.internships.length ;i++)
       if(this.internships[i].company === companyName)
-                count ++;   
+                count ++;
     return count;
 }
 
@@ -87,7 +99,7 @@ getNumberInternshipsOfTechnology(technologyName){
   let count = 0;
   for( let i = 0 ; i < this.internships.length ;i++)
     if(this.internships[i].areaOfInterest === technologyName)
-              count ++;   
+              count ++;
   return count;
 }
 
@@ -129,7 +141,7 @@ OnChangeStatus(statusName: string , isChecked: boolean){
   if(isChecked){
     this.statusSelected = statusName;
     for (let i = 0; i < this.statusString.length; i++)
-         if (this.statusString[i].name !== statusName) 
+         if (this.statusString[i].name !== statusName)
             this.statusString[i].selected = false;
          else
             this.statusString[i].selected = true;
@@ -145,14 +157,14 @@ onChangeRating(rating: number , isChecked: boolean){
     if(this.ratingString[i].value !== rating)
       this.ratingString[i].selected = false;
     else
-      this.ratingString[i].selected = true;  
+      this.ratingString[i].selected = true;
   }
-  else 
+  else
     this.ratingSelected = -1;
 }
 
 onChangeRating2(rating:number , event){
- 
+
 }
 
 
