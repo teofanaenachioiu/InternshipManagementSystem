@@ -7,9 +7,11 @@ import java.util.Optional;
 import com.intern.Internship.model.AreaOfInterest;
 import com.intern.Internship.model.Candidate;
 import com.intern.Internship.model.CandidateAreaOfInterest;
+import com.intern.Internship.model.Company;
 import com.intern.Internship.repository.AreaOfInterestRepository;
 import com.intern.Internship.repository.CandidateAreaOfInterestRepository;
 import com.intern.Internship.repository.CandidateRepository;
+import com.intern.Internship.repository.CompanyRepository;
 import com.intern.Internship.service.AreaOfInterestService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,9 @@ public class AreaOfInterestServiceImpl implements AreaOfInterestService {
 
     @Autowired
     CandidateRepository candidateRepository;
+
+    @Autowired
+    CompanyRepository companyRepository;
 
     @Override
     public List<String> findAll() {
@@ -46,10 +51,10 @@ public class AreaOfInterestServiceImpl implements AreaOfInterestService {
     @Override
     public List<String> findAll(String email) {
         Optional<Candidate> candidate = candidateRepository.findById(email);
-        if (!candidate.isPresent())
+        Optional<Company> company = companyRepository.findById(email);
+        if (!candidate.isPresent() && !company.isPresent())
             throw new EntityNotFoundException();
-        List<String> list = areaOfInterestRepository.getAllByEmail(email);
-        return list;
+        return areaOfInterestRepository.getAllByEmail(email);
     }
 
     @Override
