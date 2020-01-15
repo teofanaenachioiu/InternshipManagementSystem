@@ -25,6 +25,8 @@ export class ForgetPasswordComponent implements OnInit {
   }
 
   sendMail() {
-
+    if (this.email.invalid) return;
+    const email = this.email.value;
+    this.authService.forgetPassword(email);
   }
 }
