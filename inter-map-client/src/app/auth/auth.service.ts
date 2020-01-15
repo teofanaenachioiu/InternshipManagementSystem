@@ -4,6 +4,7 @@ import {BehaviorSubject, Observable} from 'rxjs';
 import {tap} from 'rxjs/operators';
 import {User} from '../core/User';
 import {UserRole} from '../core/UserRole';
+import {Message} from '../core/Message';
 
 const authURL = 'http://localhost:3000/api/auth';
 const loginURL = `${authURL}/login`;
@@ -128,5 +129,13 @@ export class AuthService {
     // TODO
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
+  }
+
+  forgetPassword(email: string) {
+    const user = new User();
+    user.username = email;
+    return this.httpClient.post<Message>(`${authURL}/forgot`, user, this.httpOptions).subscribe(res=>{
+      alert('Send');
+    }, error => {alert('Error');});
   }
 }

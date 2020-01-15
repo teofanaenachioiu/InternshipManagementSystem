@@ -133,4 +133,8 @@ export class CompanyProfileService {
   public setSelectedInternshipId(id) {
     this.selectedInternshipId = id;
   }
+
+  public getSelectedInternshipId() {
+    return this.selectedInternshipId;
+  }
 }

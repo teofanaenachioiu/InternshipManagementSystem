@@ -88,6 +88,7 @@ public class InternshipDTO {
         this.status = internship.getStatus();
         this.location = internship.getLocation();
         this.addedDate = internship.getAddedDate();
+        this.logo = internship.getLogo();
         if (internship.getCompany() == null) {
             this.company = null;
         } else {

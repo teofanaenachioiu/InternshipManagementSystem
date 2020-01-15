@@ -25,8 +25,6 @@ export class AddFormComponent implements ControlValueAccessor, OnDestroy {
 
   form: FormGroup;
   subscriptions: Subscription[] = [];
-  private bytesArray: string;
-  private fileData: File;
 
   get value(): AddFormComponent {
     return this.form.value;
@@ -41,7 +39,7 @@ export class AddFormComponent implements ControlValueAccessor, OnDestroy {
   constructor(private formBuilder: FormBuilder,
               private companyService: CompanyProfileService) {
     this.form = this.formBuilder.group({
-      bytesArray: '',
+      file: '',
       name: '',
       description: '',
       paid: '',
@@ -87,25 +85,5 @@ export class AddFormComponent implements ControlValueAccessor, OnDestroy {
 
   ngOnDestroy() {
     this.subscriptions.forEach(s => s.unsubscribe());
-  }
-
-  fileProgress(fileInput: any) {
-    this.fileData = fileInput.target.files[0] as File;
-    this.onUploadImage();
-  }
-
-  onUploadImage() {
-    const fileReader = new FileReader();
-    this.imageToBase64(fileReader, this.fileData)
-      .subscribe(base64image => {
-        this.bytesArray = base64image.split(',')[1];
-        // this.service.company.logo = onlyBytes;
-        // console.log(onlyBytes);
-      });
-  }
-
-  imageToBase64(fileReader: FileReader, fileToRead: File): Observable<string> {
-    fileReader.readAsDataURL(fileToRead);
-    return fromEvent(fileReader, 'load').pipe(pluck('currentTarget', 'result'));
   }
 }

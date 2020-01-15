@@ -13,9 +13,9 @@ export class InternshipDTO {
     public location: string,
     public addedDate: Date,
     public company: string,
+    public logo: any,
     public areaOfInterest: string,
     public averageOfFeedbacks: number,
-    public imagePath: string,
     public rating: number
 ) { }
 }
