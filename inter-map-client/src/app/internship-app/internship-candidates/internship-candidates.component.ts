@@ -28,8 +28,8 @@ export class InternshipCandidatesComponent implements OnInit, OnDestroy {
               private http: HttpClient) { }
 
   ngOnInit() {
-    // this.internshipId = this.companyService.getSelectedInternshipId();
-    this.internshipId = '123';
+    this.internshipId = this.companyService.getSelectedInternshipId();
+    // this.internshipId = '123';
     console.log(this.internshipId);
     this.loadCandidates();
   }
