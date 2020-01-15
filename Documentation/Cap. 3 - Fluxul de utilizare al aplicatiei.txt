@@ -1,0 +1,23 @@
+4, 5, 6 - La accesarea website-ului, utilizatorului i se afișează prezentarea aplicației, statistici cu privire la utilizarea aplicațiilor de către candidați și companii, cele mai accesate internship-uri, o listă a recenziilor lăsate de către candidați pentru internship-uri și un formular de contact prin care utilizatorul poate contacta echipa InterMap. Nu în ultimul rând, utilizatorului i se oferă o modalitate de autentificare, accesibilă prin butonul „Login”.
+
+7 - La apăsarea butonului „Login” se deschide o pagină cu care utilizatorul se poate autentifica în sistem prin completarea ID-ului de utilizator (e-mail-ul de înregistrare) și parola. De asemenea, utilizatorului i se permite resetarea parolei și înregistrarea unui cont nou.
+
+8 - La apăsarea butonului „Forgot Password?” se deschide o pagină unde utilizatorul poate introduce adresa de e-mail cu care s-a înregistrat pentru a-și reseta parola. Acesta va primi pe e-mail un link la care va găsi un formular de resetare a parolei, în care poate introduce parola nouă.
+
+CANDIDATE
+
+23 - Odată autentificat, un candidat este redirecționat la pagina profilului său. Aici poate vizualiza și modifica informații personale (avatar, nume, data nașterii, sex, informații de contact - adresă, număr de telefon, e-mail, adresă LinkedIn, adresă GitHub), lista studiilor (se acționează butonul de editare, se modifică detaliile relevante) și se apasă pe simbolul de salvare. De asemenea, de aici se pot vizualiza și modifica informații cu privire la Studii, Limbi străine cunoscute, Experiență anterioară, Interese și Alte detalii. (23 - 30)
+
+15 - Dacă candidatul apasă pe butonul „Applications”, acesta poate vizualiza o listă a tuturor internship-urile propuse de companiile înscrise în platformă. De asemenea, utilizatorul are posibilitatea de a sorta internship-urile după nume, dată și rating, să le filtreze după nume, companie ofertantă, tehnologia de lucru, status sau rating. 
+
+16 - La selectarea unui internship, se deschide un nou card ce va afișa informații despre internship-ul selectat, cum ar fi numele acestuia, status-ul, data postării, descriere, rating și opțiunea de a aplica la respectivul internship prin butonul „Apply”.
+
+COMPANY
+
+32 - Odată autentificată, o companie este redirecținată la pagina profilului acesteia. Aici, se pot vizualiza și modifica detaliile companiei, cum ar fi avatarul, numele, e-mail-ul de contact, numărul de telefon, adresa, domeniul de activitate și descrierea prin acționarea butonului de editare, modificarea câmpurilor relevante, iar mai apoi apăsarea butonului de salvare.
+
+20 - La apăsarea butonului „My internships”, utilizatorul este redirecționat la pagina internship-urilor aferente companiei autentificate. De aici, acesta poate modifica statusul unui internship prin acționarea butonului de editare (OPEN/CLOSED) sau să șteargă un internship.
+
+21 - De asemenea, se oferă posibilitatea adăugării unui nou internship prin acționarea butonului „Add a new internship”, se vor completa: avatarul, numele, descrierea, locația, plătit/neplătit, data de început, data de sfârșit.
+
+22 - Mai mult, se oferă posibilitatea schimbării statusului unor multipli candidați la un anumit internship prin acționarea butonului „Show candidates” (statusul poate fi REPLIED sau ACCEPTED).
