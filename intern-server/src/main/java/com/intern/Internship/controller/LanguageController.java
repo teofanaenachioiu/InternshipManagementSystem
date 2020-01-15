@@ -9,8 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/language")
-//@RequestMapping(value = "/api/secure/language")
+@RequestMapping(value = "/api/secure/language")
 public class LanguageController {
     @Autowired
     LanguageService languageService;
