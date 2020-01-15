@@ -3,9 +3,7 @@
 <app-custom-spinner *ngIf="service.isLoading || serviceInt.isLoading"></app-custom-spinner>
 
 <div class="main-div" *ngIf="!service.isLoading && !serviceInt.isLoading">
-
   <form [formGroup]="profileForm">
-<!--    Value: {{ profileForm.value | json }} <br>-->
     <div class="form-profile-content">
       <div class="side-div sticky left-div">
 
