@@ -1,0 +1,20 @@
+1. Rezumatul procesului de dezvoltare
+	Conform celor 5 sprint-uri, procesul de dezvoltare a avut loc pe parcursul a 12 săptămâni, după cum urmează:
+	- în primele două săptămâni s-a urmărit modelarea entităților din aplicație, implementarea repository-urilor și a serviciilor necesare implementării funcționalităților de Login și Register. Mai mult, pe frontend s-a implementat interfața grafică de binevenire a utilizatorului.
+	- în următoarele două săptămâni s-a urmărit separarea rutelor de acces pentru candidați și companii, modificarea detaliilor acestor entități și implementarea meniurilor principale pentru candidați și companii.
+	- în următoarele două săptămâni s-a concretizat profilul candidatului și cel al companiei, implementându-se și funcționalitatea de vizualizare a detaliilor unui internship de către o companie.
+	- în următoarele două săptămâni s-a urmărit implementarea posibilității de aplicare la internship (din contul de candidat), editarea internship-urilor de către companie și funcționalitatea „Forgot Password”.
+	- în ultimele patru săptămâni am urmărit implementarea funcționalității „Reset Password”, vizualizarea internship-urilor la care s-a aplicat și adăugare de feedback, vizualizarea listei candidaților care au aplicat la internship și schimbarea status-ului lor, finalizarea aplicației.
+
+2. Planificare inițială vs. planificare finală
+	Raportându-ne la planificarea după sprint-uri, aceasta a fost respectată în proporție de 85%, decalajul survenind în urma perioadei sărbătorilor și a anului nou. De asemenea, judecând după design-ul inițial, putem afirma că versiunea finală a aplicației îl respectă în proporție de 90%, exemple fiind enumerate mai jos.
+
+3. Provocări întâmpinate pe parcursul procesului de dezvoltare
+	Evident, procesul de dezvoltare a întâmpinat și un număr apreciabil de probleme de-a lungul desfășurării sale, unul dintre acestea fiind utilizarea GitHub-ului (version control) și integrarea acestuia cu instrumentele deja în uz de către noi (IntelliJ IDEA, Gradle, Lombok). Nu de puține ori s-a întâmplat ca cineva să facă Commit pe master fără a face Pull înainte. 
+	De asemenea, am întâmpinat probleme la folosirea Gradle-ului, dependențele nu ni se soluționau, prin urmare nu puteam face importurile – soluția a fost să schimbăm din „compile” în „implementation” din fișierul „build.gradle”. Mai mult, IntelliSense ne marca codul ca având eroare de sintaxă deoarece nu ne funcționa corespunzător Lombok-ul, dar la rulare codul mergea perfect.
+	O altă sursă de dificultate în dezvoltarea aplicației a fost coordonarea între membrii echipei, anume faptul că la momentul în care o resursă a fost necesară, o funcționalitate reparată sau, în general, orice intervenție la cod din partea altui membru, cel mai adesea cel care trebuia s-o facă era indisponibil, sau devenea disponibil la un moment la care cel care a cerut modificarea era indisponibil pentru clarificare.
+
+4. Lecții învățate
+	În primul rând, am ajuns să apreciem importanța comunicării între membrii unei echipe pentru bunul mers al dezvoltării unei aplicații. Au fost ocazii în care un membru de pe frontend a cerut o cale de pe backend, iar responsabilul de pe backend a implementat altceva datorită unei proaste interpretări a cerinței membrului de pe frontend. Aici intervine și importanța documentării și specificării codului scris, pentru buna înțelegere a acestuia de către toți, nu doar cel care l-a implementat.
+	În al doilea rând, am constatat importanța prezenței fizice a membrilor unei echipe într-un spațiu comun, unde atenția tuturor să se poată îndrepta spre scopul final. Prin urmare, deși este mai confortabil lucrul de acasă, acesta conduce la probleme precum cele de mai sus.
+	Nu în ultimul rând, am apreciat importanța unui team leader implicat și cu capabilități manageriale bune, capabil să coordoneze munca tuturor membrilor echipei. Noi apreciem că am fi reușit cu o dificultate foarte mare să întâlnim deadline-ul fără prezența de spirit și eforturile de coordonare ale team leader-ului nostru.
