@@ -17,5 +17,5 @@ public interface CustomerService {
 
     Optional<User> findByToken(String token);
 
-    void changePassword(String username, String newPassword);
+    boolean changePassword(String username, String newPassword);
 }

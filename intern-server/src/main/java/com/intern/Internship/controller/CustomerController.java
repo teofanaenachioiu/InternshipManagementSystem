@@ -78,7 +78,7 @@ public class CustomerController {
         try {
             Customer customer = userService.findByUsername(userForm.getUsername());
             String subject = "Reset password request";
-            String body = "You received this e-mail because you requested a password request for your InterMAP account. Please enter the following address to get started: http://localhost:4200/reset/"
+            String body = "You received this e-mail because you requested a password request for your InterMAP account. Please enter the following address to get started: http://localhost:4200/auth/reset/"
                     + Encryption.encrypt(customer.getUsername());
             Email.sendMail(subject, body, userForm.getUsername());
             return ResponseEntity.ok().body(customer);
@@ -88,11 +88,15 @@ public class CustomerController {
     }
 
     @PostMapping("/reset")
-    public ResponseEntity<Customer> reset(@RequestBody Customer userForm) {
+    public ResponseEntity<?> reset(@RequestBody Customer userForm) {
         String username = Encryption.decrypt(userForm.getUsername());
-        userService.changePassword(username, userForm.getPassword());
-        Customer customer = userService.findByUsername(username);
-        return ResponseEntity.ok().body(customer);
+        if(userService.changePassword(username, userForm.getPassword())){
+            Customer customer = userService.findByUsername(username);
+            return ResponseEntity.ok().body(customer);
+        }
+       else{
+            return (ResponseEntity<?>) ResponseEntity.notFound();
+        }
     }
 
     private String getJWTToken(String username) {
