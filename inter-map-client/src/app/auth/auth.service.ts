@@ -9,6 +9,7 @@ import {Message} from '../core/Message';
 const authURL = 'http://localhost:3000/api/auth';
 const loginURL = `${authURL}/login`;
 const registerURL = `${authURL}/signup`;
+const resetURL = `${authURL}/reset`;
 const companyURL = 'http://localhost:3000/api/company';
 const candidateURL = 'http://localhost:3000/api/candidate';
 
@@ -137,5 +138,9 @@ export class AuthService {
     return this.httpClient.post<Message>(`${authURL}/forgot`, user, this.httpOptions).subscribe(res=>{
       alert('Send');
     }, error => {alert('Error');});
+  }
+
+  resetPassword(emailHash: string, password: any) {
+    return this.httpClient.post<any>(resetURL, {username: emailHash, password}, this.httpOptions);
   }
 }

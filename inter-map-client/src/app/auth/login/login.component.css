@@ -1,13 +1,16 @@
 .main-container {
-  position: relative;
-  height: 100%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
 }
 
 .login-circle {
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, 15%);
-
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
   width: 38vw;
   height: 38vw;
   min-height: 380px;
@@ -21,18 +24,10 @@
 }
 
 .my-form{
-  position: relative;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -40%);
 }
 
 .hex-icon {
-  position: absolute;
-  top: 10%;
-  left: 50%;
-  transform: translate(-50%, -10%);
-
+  margin-bottom: 5vh;
   width: 10vw;
   height: 10vw;
   min-height: 100px;
@@ -47,29 +42,11 @@
   font-size: 14px;
 }
 
-.input-position {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
 .login-error-message{
-  position: absolute;
-  top: 65%;
-  left: 50%;
-  transform: translate(-50%, -65%);
-
   font-size: 12px;
 }
 
 .input-button {
-  position: absolute;
-
-  top: 75%;
-  left: 50%;
-  transform: translate(-50%, -75%);
-
   width: 26vw;
   height: 2.5vw;
   min-height: 30px;
@@ -78,6 +55,7 @@
   background-color: #0D3c73;
   color: white;
   font-size: 1.2vm;
+  margin-top: 5vh;
 }
 
 .input-button:hover{
@@ -89,25 +67,15 @@
 }
 
 .text{
-  position: absolute;
-  top: 85%;
-  left: 50%;
-  transform: translate(-50%, -85%);
-
   width: auto;
   height: 2.5vw;
   min-height: 30px;
-
+  margin-top: 5vh;
   color: #0D3c73;
   font-size: 12px;
 }
 
 .text1{
-  position: absolute;
-  top: 92%;
-  left: 50%;
-  transform: translate(-50%, -92%);
-
   width: auto;
   height: 2.5vw;
   min-height: 30px;
