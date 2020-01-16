@@ -29,8 +29,3 @@
 		- Funcționalitate Reset Password
 		- Afișare listă de internship-uri la care s-a aplicat (cu posibilitate de adăugare feedback)
 		- Afișarea listei de candidați la internship (cu posibilitate de schimbare status)
-
-3. Provocări întâmpinate pe parcursul procesului de dezvoltare
-	Evident, procesul de dezvoltare a întâmpinat și un număr apreciabil de probleme de-a lungul desfășurării sale, unul dintre acestea fiind utilizarea GitHub-ului (version control) și integrarea acestuia cu instrumentele deja în uz de către noi (IntelliJ IDEA, Gradle, Lombok). Nu de puține ori s-a întâmplat ca cineva să facă Commit pe master fără a face Pull înainte. 
-	De asemenea, am întâmpinat probleme la folosirea Gradle-ului, dependențele nu ni se soluționau, prin urmare nu puteam face importurile – soluția a fost să schimbăm din „compile” în „implementation” din fișierul „build.gradle”. Mai mult, IntelliSense ne marca codul ca având eroare de sintaxă deoarece nu ne funcționa corespunzător Lombok-ul, dar la rulare codul mergea perfect.
-	O altă sursă de dificultate în dezvoltarea aplicației a fost coordonarea între membrii echipei, anume faptul că la momentul în care o resursă a fost necesară, o funcționalitate reparată sau, în general, orice intervenție la cod din partea altui membru, cel mai adesea cel care trebuia s-o facă era indisponibil, sau devenea disponibil la un moment la care cel care a cerut modificarea era indisponibil pentru clarificare.
