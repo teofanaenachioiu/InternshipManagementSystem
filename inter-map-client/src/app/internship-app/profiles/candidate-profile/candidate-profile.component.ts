@@ -30,5 +30,12 @@ export class CandidateProfileComponent implements OnInit {
 
 
   ngOnInit() {
+    this.service.isEditStudies = false;
+    this.service.isEditWorkExperience = false;
+    this.service.isEditLanguage = false;
+    this.service.isEditDescription = false;
+    this.service.isEditContact = false;
+    this.service.isEditPersonalDetails = false;
+    this.serviceInt.isEditInterests = false;
   }
 }

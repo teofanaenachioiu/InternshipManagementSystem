@@ -72,6 +72,6 @@ export class InterestsService {
     console.log(this.interestsUser);
     const el = `${interestsUrl}?email=${this.user.username}`;
     console.log(el);
-    this.http.put<any>(el, this.interestsUser, this.authHttpOptions());
+    this.http.put<any>(el, this.interestsUser, this.authHttpOptions()).subscribe();
   }
 }

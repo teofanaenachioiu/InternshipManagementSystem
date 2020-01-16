@@ -26,18 +26,10 @@ export class CompanyProfileComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    // this.loadItems();
+    this.companyService.isEditAbout = false;
+    this.companyService.isEditProfile = false;
+    this.serviceInt.isEditInterests = false;
   }
-
-  // loadItems() {
-  //   this.subscriptions.push(this.companyService.getAllInternships()
-  //     .subscribe(internships => this.internships = internships,
-  //       error => this.error = error));
-  // }
-
-  // getInternships() {
-  //   return this.internships;
-  // }
 
   ngOnDestroy(): void {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
