@@ -10,8 +10,8 @@ const authURL = 'http://localhost:3000/api/auth';
 const loginURL = `${authURL}/login`;
 const registerURL = `${authURL}/signup`;
 const resetURL = `${authURL}/reset`;
-const companyURL = 'http://localhost:3000/api/company';
-const candidateURL = 'http://localhost:3000/api/candidate';
+const companyURL = 'http://localhost:3000/api/secure/company';
+const candidateURL = 'http://localhost:3000/api/secure/candidate';
 
 
 interface AuthResponse {
@@ -27,12 +27,22 @@ export class AuthService {
   public currentUser: Observable<User>;
   public email: string;
 
+
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
   };
 
+  authHttpOptions() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      })
+    };
+    return httpOptions;
+  }
+
   constructor(private httpClient: HttpClient) {
-    // this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
   }
@@ -59,11 +69,12 @@ export class AuthService {
         this.currentUserSubject.next(user);
       }));
   }
+
   updateCandidate(firstName: string, lastName: string, address: string, phone: string, date: string, image: string | ArrayBuffer, sex: string): Observable<AuthResponse> {
     if (sex) {
       return this.httpClient.put<any>(candidateURL,
         {id: this.email, firstName, lastName, address, telephone: phone, birthDate: date, avatar: image, sex},
-        this.httpOptions)
+        this.authHttpOptions())
         .pipe(tap(candidate => {
           this.email = this.email;
           console.log(candidate);
@@ -78,10 +89,11 @@ export class AuthService {
         }));
     }
   }
+
   updateCompany(address: string, companyDescription: string, phone: string, companyName: string, image: string | ArrayBuffer): Observable<AuthResponse> {
     return this.httpClient.put<any>(companyURL,
       {id: this.email, address, description: companyDescription, name: companyName,  telephone: phone, logo: image},
-      this.httpOptions)
+      this.authHttpOptions())
       .pipe(tap(company => {
         this.email = this.email;
         console.log(company);
