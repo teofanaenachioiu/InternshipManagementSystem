@@ -4,17 +4,10 @@ footer {
   height: 80px;
   margin-top: 50px;
   position: relative;
-  /*position: absolute;*/
-  /*bottom: 0;*/
-  /*left: 0;*/
 }
 
 footer a {
   color: #9CF;
-}
-
-footer a:hover {
-  color: #FC6;
 }
 
 footer .social-icons {

@@ -13,3 +13,16 @@
 }
 
 
+#container {
+  min-height:100%;
+  position:relative;
+}
+#body {
+  padding-bottom:130px;   /* Height of the footer */
+}
+#footer {
+  position:absolute;
+  bottom:0;
+  width:100%;
+}
+
