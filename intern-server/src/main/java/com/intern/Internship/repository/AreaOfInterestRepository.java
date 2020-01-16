@@ -28,5 +28,8 @@ public interface AreaOfInterestRepository
     @Query("SELECT a.name from AreaOfInterest a,CandidateAreaOfInterest c WHERE  c.areaOfInterest.ID like a.ID and c.candidate.ID=?1 ")
     List<String> getAllByEmail(String email);
 
+    @Query("SELECT a.name from AreaOfInterest a,CompanyAreaOfInterest c WHERE  c.areaOfInterest.ID like a.ID and c.company.ID=?1 ")
+    List<String> getAllByEmailCompany(String email);
+
     AreaOfInterest findByName(String name);
 }
