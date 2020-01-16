@@ -1,9 +1,36 @@
+<!--<div class="container-details">-->
+<!--  <img id="profileImg" [src]="previewUrl" alt="ProfilePicture">-->
+
+<!--  <div class="div1">-->
+<!--    <br>-->
+<!--    <label class ="profile-title">Name</label>-->
+<!--    <br>-->
+<!--    <p>{{company.name}}</p>-->
+<!--    <br>-->
+
+<!--    <label class="profile-title">Email</label>-->
+<!--    <br>-->
+<!--    <p>{{company.id}}</p>-->
+<!--    <br>-->
+
+<!--    <label class="profile-title">Phone</label>-->
+<!--    <br>-->
+<!--    <p>{{company.telephone}}</p>-->
+<!--  </div>-->
+
+
+<!--</div>-->
+
+<!--<button mat-button style="float: right" *ngIf="!isEditMode" (click)="makeEditable()">-->
+<!--  <mat-icon>edit</mat-icon>-->
+<!--</button>-->
+
 <div class="container-details">
   <img id="profileImg" [src]="previewUrl" alt="ProfilePicture">
 
   <div class="div1">
     <br>
-    <label class ="profile-title">Name</label>
+    <label class="profile-title">Name</label>
     <br>
     <p>{{company.name}}</p>
     <br>
@@ -16,11 +43,14 @@
     <label class="profile-title">Phone</label>
     <br>
     <p>{{company.telephone}}</p>
+    <br>
+
+
   </div>
-
-
 </div>
 
-<button mat-button style="float: right" *ngIf="!isEditMode" (click)="makeEditable()">
+<button mat-button style="float: right"  (click)="makeEditable()">
   <mat-icon>edit</mat-icon>
 </button>
+
+

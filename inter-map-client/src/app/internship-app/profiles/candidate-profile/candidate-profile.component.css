@@ -53,15 +53,9 @@
   margin: 2vw;
   border-radius: 2vw;
   box-shadow: 0.5vw 0.5vw #0d3c73;
-}
-
-.form-div-left {
   background-color: #eeeeff;
 }
 
-.form-div-right {
-  background-color: #eeeeff;
-}
 
 .help-s {
   margin-left: 95%;

@@ -1,6 +1,6 @@
 <app-company-menu></app-company-menu>
 
-<button  class="internship-item" mat-raised-button (click)="addInternshipHandler()">ADD INTERNSHIP</button>
+<button  class="internship-item" matTooltip="Add a new internship for your company" mat-raised-button (click)="addInternshipHandler()">ADD INTERNSHIP</button>
 
 <div>
   <div *ngFor="let internship of getInternships(); let i=index" class="internship-item">

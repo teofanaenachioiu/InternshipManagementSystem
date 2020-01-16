@@ -1,46 +1,93 @@
+<!--<div class="container-details">-->
+<!--  <img class="profileImg" [src]="previewUrl" alt="profilePicture">-->
+<!--  <br>-->
+<!--  <div class="div1"  [formGroup]="form">-->
+<!--    <mat-form-field class="fields">-->
+<!--      <ngx-mat-file-input formControlName="file" placeholder="file" accept="image/*"-->
+<!--                          (change)="fileProgress($event)">-->
+<!--      </ngx-mat-file-input>-->
+<!--      <mat-icon matSuffix>photo</mat-icon>-->
+<!--    </mat-form-field>-->
+<!--    <br>-->
+
+<!--    <mat-form-field class="fields">-->
+<!--      <label>-->
+<!--        <input matInput placeholder="name" formControlName="name" value="{{company.name}}">-->
+<!--        <mat-error *ngIf="form.get('name').invalid">-->
+<!--          {{errorHandling('name', 'emptyInput', 'required')}}-->
+<!--        </mat-error>-->
+<!--      </label>-->
+<!--    </mat-form-field>-->
+
+<!--    <br>-->
+<!--    <mat-form-field class="fields">-->
+<!--      <label>-->
+<!--        <input matInput placeholder="phone" formControlName="phone" value="{{company.telephone}}">-->
+<!--        <mat-error *ngIf="form.get('phone').invalid">-->
+<!--          {{errorHandling('phone', 'emptyInput', 'required')}}-->
+<!--        </mat-error>-->
+<!--      </label>-->
+<!--    </mat-form-field>-->
+
+<!--    <br>-->
+<!--    <mat-form-field class="fields">-->
+<!--      <label>-->
+<!--        <input matInput placeholder="email" disabled value="{{company.id}}">-->
+<!--      </label>-->
+<!--    </mat-form-field>-->
+
+<!--    <br>-->
+<!--  </div>-->
+
+<!--  <button mat-button style="float: right" (click)="submitForm()">-->
+<!--    <mat-icon>save</mat-icon>-->
+<!--  </button>-->
+<!--</div>-->
+
 <div class="container-details">
-  <img class="profileImg" [src]="previewUrl" alt="profilePicture">
+  <img id="profileImg" [src]="previewUrl" alt="ProfilePicture">
   <br>
-  <div class="div1"  [formGroup]="form">
-    <mat-form-field class="fields">
-      <ngx-mat-file-input formControlName="file" placeholder="file" accept="image/*"
-                          (change)="fileProgress($event)">
-      </ngx-mat-file-input>
-      <mat-icon matSuffix>photo</mat-icon>
-    </mat-form-field>
-    <br>
+  <div class="div1" [formGroup]="form">
+        <mat-form-field class="fields">
+          <ngx-mat-file-input formControlName="file" placeholder="file" accept="image/*"
+                              (change)="fileProgress($event)">
+          </ngx-mat-file-input>
+          <mat-icon matSuffix>photo</mat-icon>
+        </mat-form-field>
+        <br>
 
-    <mat-form-field class="fields">
-      <label>
-        <input matInput placeholder="name" formControlName="name" value="{{company.name}}">
-        <mat-error *ngIf="form.get('name').invalid">
-          {{errorHandling('name', 'emptyInput', 'required')}}
-        </mat-error>
-      </label>
-    </mat-form-field>
+        <mat-form-field class="fields">
+          <label>
+            <input matInput placeholder="name" formControlName="name" value="{{company.name}}">
+            <mat-error *ngIf="form.get('name').invalid">
+              {{errorHandling('name', 'emptyInput', 'required')}}
+            </mat-error>
+          </label>
+        </mat-form-field>
+        <br>
 
-    <br>
-    <mat-form-field class="fields">
-      <label>
-        <input matInput placeholder="phone" formControlName="phone" value="{{company.telephone}}">
-        <mat-error *ngIf="form.get('phone').invalid">
-          {{errorHandling('phone', 'emptyInput', 'required')}}
-        </mat-error>
-      </label>
-    </mat-form-field>
+        <mat-form-field class="fields">
+          <label>
+            <input matInput placeholder="phone" formControlName="phone" value="{{company.telephone}}">
+            <mat-error *ngIf="form.get('phone').invalid">
+              {{errorHandling('phone', 'emptyInput', 'required')}}
+            </mat-error>
+          </label>
+        </mat-form-field>
+        <br>
 
-    <br>
-    <mat-form-field class="fields">
-      <label>
-        <input matInput placeholder="email" disabled value="{{company.id}}">
-      </label>
-    </mat-form-field>
+        <mat-form-field class="fields">
+          <label>
+            <input matInput placeholder="email" disabled value="{{company.id}}">
+          </label>
+        </mat-form-field>
+        <br>
 
-    <br>
   </div>
-
-  <button mat-button style="float: right" (click)="submitForm()">
-    <mat-icon>save</mat-icon>
-  </button>
 </div>
+<button mat-button style="float: right" (click)="submitForm()">
+  <mat-icon>save</mat-icon>
+</button>
+
+
 

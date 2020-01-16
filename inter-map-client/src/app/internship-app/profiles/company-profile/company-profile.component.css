@@ -1,4 +1,90 @@
 
+/*.sticky {*/
+/*  position: -webkit-sticky;*/
+/*  position: sticky;*/
+/*  top: 0;*/
+/*}*/
+
+/*@media all and (max-width: 800px) {*/
+/*  .sticky {*/
+/*    position: static;*/
+/*    top: 0;*/
+/*    background-color: blue;*/
+/*  }*/
+/*}*/
+
+/*@media all and (max-width: 500px) {*/
+/*  .sticky {*/
+/*    position: static;*/
+/*    top: 0;*/
+/*    background-color: green;*/
+/*  }*/
+/*}*/
+/*.nav-title {*/
+/*  padding-left: 1rem;*/
+/*}*/
+/*.imagine{*/
+/*  height: 50px;*/
+/*}*/
+
+/*div {*/
+/*  !*border: 1px solid;*!*/
+/*}*/
+
+/*.main-div {*/
+/*  display: flex;*/
+/*}*/
+
+/*.side-div {*/
+/*  float: left;*/
+/*}*/
+
+/*.form-div {*/
+/*  border: 1px solid;*/
+/*  padding: 2vw;*/
+/*  margin-top: 5vw;*/
+/*  margin-left: 13vw;*/
+/*  border-radius: 2vw;*/
+/*  background-color: #eeeeff;*/
+/*}*/
+/*#about-div{*/
+/*  !*border: 1px solid;*!*/
+/*  !*padding: 2vw;*!*/
+/*  !*margin-top: 5vw;*!*/
+/*  margin-left: 10%;*/
+/*  !*border-radius: 2vw;*!*/
+/*  width: 500px;*/
+/*  !*position: absolute;*!*/
+
+/*}*/
+
+/*#interests-div{*/
+/*  margin-left: 10%;*/
+
+/*  margin-top: 2vw;*/
+/*  !*margin-left: 2.5vw;*!*/
+/*}*/
+
+/*.add-photo-div {*/
+/*  padding: 2vw;*/
+/*  margin-left: 2.5vw;*/
+/*}*/
+
+/*.internship-item {*/
+/*  margin-left: 13vw;*/
+/*  margin-right: 13vw;*/
+/*  margin-top: 5vw;*/
+/*}*/
+
+/*.left-div {*/
+/*  width: 30vw;*/
+/*}*/
+
+/*.right-div {*/
+/*  width: 50vw;*/
+/*}*/
+
+
 .sticky {
   position: -webkit-sticky;
   position: sticky;
@@ -20,60 +106,21 @@
     background-color: green;
   }
 }
-.nav-title {
-  padding-left: 1rem;
-}
-.imagine{
-  height: 50px;
-}
-
-div {
-  /*border: 1px solid;*/
-}
 
 .main-div {
+}
+
+.form-profile-content{
   display: flex;
+  align-items: self-start;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
 }
 
 .side-div {
-  float: left;
-}
-
-.form-div {
-  border: 1px solid;
-  padding: 2vw;
-  margin-top: 5vw;
-  margin-left: 13vw;
-  border-radius: 2vw;
-  background-color: #eeeeff;
-}
-#about-div{
-  /*border: 1px solid;*/
-  /*padding: 2vw;*/
-  /*margin-top: 5vw;*/
-  margin-left: 10%;
-  /*border-radius: 2vw;*/
-  width: 500px;
-  /*position: absolute;*/
-
-}
-
-#interests-div{
-  margin-left: 10%;
-
-  margin-top: 2vw;
-  /*margin-left: 2.5vw;*/
-}
-
-.add-photo-div {
-  padding: 2vw;
-  margin-left: 2.5vw;
-}
-
-.internship-item {
-  margin-left: 13vw;
-  margin-right: 13vw;
-  margin-top: 5vw;
+  display: flex;
+  flex-direction: column;
 }
 
 .left-div {
@@ -83,3 +130,27 @@ div {
 .right-div {
   width: 50vw;
 }
+
+.form-div {
+  border: 1px solid;
+  padding: 2vw;
+  /*margin-top: 5vw;*/
+  /*margin-left: 5vw;*/
+  margin: 2vw;
+  border-radius: 2vw;
+  box-shadow: 0.5vw 0.5vw #0d3c73;
+  background-color: #eeeeff;
+}
+
+.help-s {
+  margin-left: 95%;
+}
+
+.help-l {
+  margin-left: 95%;
+}
+
+.help-w {
+  margin-left: 95%;
+}
+

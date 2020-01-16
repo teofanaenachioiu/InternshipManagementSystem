@@ -3,7 +3,7 @@
 <div class="main-div">
   <mat-card class="card">
     <mat-checkbox matTooltip="Select All" [checked]="allChecked" (change)="checkAll($event)"></mat-checkbox>
-    <button mat-button [matMenuTriggerFor]="menu">Change status</button>
+    <button mat-button matTooltip="Change the status for selected candidates" [matMenuTriggerFor]="menu">Change status</button>
     <mat-menu #menu="matMenu">
       <button mat-menu-item (click)="updateCandidates(applicationStatus.Replied)">REPLY</button>
       <button mat-menu-item (click)="updateCandidates(applicationStatus.Accepted)">ACCEPT</button>
