@@ -47,8 +47,8 @@ export class CandidateProfileService {
       (res) => {
         this.candidate = res;
 
-        // TO DELETE THIS
-        this.candidate.languages = ['English', 'France'];
+        this.candidate.languages = [];
+        // this.candidate.languages = ['English', 'France'];
         this.isLoading = false;
       },
       (err) => console.log(err),
