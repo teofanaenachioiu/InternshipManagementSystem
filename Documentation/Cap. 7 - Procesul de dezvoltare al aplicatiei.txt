@@ -4,6 +4,26 @@
 		- 5 membri ai echipei pe frontend - dintre care unul s-a ocupat în principal de design-ul aplicației
 		- 5 membri ai echipei pe backend - dintre care unul s-a ocupat în principal de documentarea și testarea aplicației
 
+	Un sprint este o perioadă de timp alocată pentru o anumită fază a unui proiect. Sprinturile sunt considerate a fi complete la expirarea perioadei de timp. Este posibil să existe dezacorduri între membrii echipei dacă dezvoltarea este satisfăcătoare sau nu; cu toate acestea, nu va mai fi lucrat în acea fază particulară a proiectului la acel sprint. Fazele rămase ale proiectului vor continua să se dezvolte în intervalele de timp respective.
+
+	Principiile generale ale metodei agile:
+	- Satisfacția clientului și dezvoltarea continuă a software-ului.
+	- Cerințele schimbătoare sunt adoptate pentru avantajul competitiv al clientului.
+	- Furnizarea software-ului funcțional permanent.
+	- Dezvoltatorii și oamenii de afaceri trebuie să lucreze împreună pe întregul proiect.
+	- Proiectele trebuie să se bazeze pe oameni motivați. Oferă-le mediul adecvat și sprijinul de care au nevoie. Ar trebui să aibă încredere pentru a-și duce la bun sfârșit munca.
+	- Comunicarea față în față este cea mai bună modalitate de a transfera informații către și de la o echipă.
+	- Software-ul în lucru este măsurarea principală a progresului.
+	- Procesele agile vor promova dezvoltarea durabilă. Sponsorii, dezvoltatorii și utilizatorii ar trebui să poată menține un ritm nedefinit, constant.
+	- O atenție constantă la excelența tehnică și un design bun va spori agilitatea.
+	- Simplitatea este considerată a fi arta de maximizare a lucrărilor care nu sunt făcute și este esențială.
+	- Echipele auto-organizate creează de obicei cele mai bune modele.
+	- La intervale regulate, echipa va reflecta asupra modului de a deveni mai eficient și va tonifica și ajusta comportamentul în consecință.
+
+	Metoda Agile asigură optimizarea valorii pe tot parcursul procesului de dezvoltare. Utilizarea planificării iterative și a feedback-ului rezultă în echipe care pot alinia continuu un produs livrat care reflectă nevoile dorite ale unui client. Se adaptează cu ușurință la cerințele în schimbare pe parcursul întregului proces prin măsurarea și evaluarea stării unui proiect. Măsurarea și evaluarea permit vizibilitate precisă și timpurie în progresul fiecărui proiect.
+
+	S-ar putea afirma că metoda Agile ajută companiile să construiască produsul potrivit. În loc să încerce să comercializeze software înainte de a fi scris, Metoda Agile abilitează echipele să optimizeze lansarea pe parcursul dezvoltării sale. Acest lucru permite produsului să fie cât mai competitiv posibil pe piață. Păstrează relevanța pieței critice și se asigură că activitatea unei echipe nu se termină colectând praf pe un raft. Acesta este motivul pentru care Metoda Agile este o opțiune atractivă de dezvoltare pentru părți interesate și dezvoltatori.
+
 2. Sprint-uri
 	Procesul de dezvoltare a fost împărțit în 5 sprint-uri, după cum urmează:
 	- Sprint 1: 21.10.2019 - 03.11.2019

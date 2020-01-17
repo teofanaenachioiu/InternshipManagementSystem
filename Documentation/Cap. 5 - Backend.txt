@@ -1,0 +1,212 @@
+Diagrame de secventa
+	- Adaugare Internship
+	- Aplicare la Internship
+	- Schimbare status candidat la Internship
+
+1. API
+	A. SCOP: Save Application
+	   RUTĂ: „/api/secure/application”
+	   METODĂ: POST
+	   BODY: Application
+	   RETURNEAZĂ: Application
+
+	B. SCOP: Update Application
+	   RUTĂ: „/api/secure/application”
+	   METODĂ: PUT
+	   PARAMETRI: candidate_email : String, internship_id : String, status : ApplicationStatus
+	   RETURNEAZĂ: Application
+
+	C. SCOP: Update Application
+	   RUTĂ: „/api/secure/application”
+	   METODĂ: PUT
+	   PARAMETRI: candidate_email : String, internship_id : String, status : ApplicationStatus
+	   RETURNEAZĂ: Application
+
+	D. SCOP: FindAll Application
+	   RUTĂ: „/api/secure/application”
+	   METODĂ: GET
+	   PARAMETRI: username : String
+	   RETURNEAZĂ: List<Application>
+
+	E. SCOP: Find Application by Candidate and Internship
+	   RUTĂ: „/api/secure/application/CandidateInternship”
+	   METODĂ: GET
+	   PARAMETRI: candidate_email : String, internship_id : String
+	   RETURNEAZĂ: Application
+
+	F. SCOP: FindAll Application by Internship and Candidates
+	   RUTĂ: „/api/secure/application/InternshipCandidates”
+	   METODĂ: GET
+	   PARAMETRI: internship_id : String
+	   RETURNEAZĂ: List<Application>
+
+	G. SCOP: FindAll AreaOfInterest
+	   RUTĂ: „/api/secure/areaOfInterest”
+	   METODĂ: GET
+	   RETURNEAZĂ: List<String>
+
+	H. SCOP: FindAll AreaOfInterest by ID
+	   RUTĂ: „/api/secure/areaOfInterest/all”
+	   METODĂ: GET
+	   PARAMETRI: email : String
+	   RETURNEAZĂ: List<String>
+
+	I. SCOP: Update AreaOfInterest for User
+	   RUTĂ: „/api/secure/areaOfInterest”
+	   METODĂ: PUT
+	   PARAMETRI: email : String, areaOfInterests : List<String>
+	   RETURNEAZĂ: List<?>
+
+	J. SCOP: Find Candidate by ID
+	   RUTĂ: „/api/secure/candidate”
+	   METODĂ: GET
+	   PARAMETRI: email : String
+	   RETURNEAZĂ: Candidate
+
+	K. SCOP: Save Candidate
+	   RUTĂ: „/api/secure/candidate”
+	   METODĂ: POST
+	   BODY: candidate : Candidate
+	   RETURNEAZĂ: Candidate
+
+	L. SCOP: Update Candidate
+	   RUTĂ: „/api/secure/candidate”
+	   METODĂ: PUT
+	   PARAMETRI: candidate : Candidate
+	   RETURNEAZĂ: Candidate
+
+	M. SCOP: Find Company by ID
+	   RUTĂ: „/api/secure/company”
+	   METODĂ: GET
+	   PARAMETRI: email : String
+	   RETURNEAZĂ: Company
+
+	N. SCOP: Save Company 
+	   RUTĂ: „/api/secure/company”
+	   METODĂ: POST
+	   BODY: company : Company
+	   RETURNEAZĂ: Company
+
+	O. SCOP: Update Company
+	   RUTĂ: „/api/secure/Company”
+	   METODĂ: PUT
+	   PARAMETRI: company : Company
+	   RETURNEAZĂ: Company
+
+	P. SCOP: Signup Customer
+	   RUTĂ: „/api/auth/signup”
+	   METODĂ: POST
+	   PARAMETRI: userForm : Customer
+	   RETURNEAZĂ: Customer
+
+	Q. SCOP: Login Customer
+	   RUTĂ: „/api/auth/login”
+	   METODĂ: POST
+	   PARAMETRI: userForm : Customer
+	   RETURNEAZĂ: Customer
+
+	R. SCOP: Customer Forgot Password
+	   RUTĂ: „/api/auth/forgot”
+	   METODĂ: POST
+	   PARAMETRI: userForm : Customer
+	   RETURNEAZĂ: Customer
+
+	S. SCOP: Customer Reset Password
+	   RUTĂ: „/api/auth/reset”
+	   METODĂ: POST
+	   PARAMETRI: userForm : Customer
+	   RETURNEAZĂ: Customer
+
+	T. SCOP: Save Feedback 
+	   RUTĂ: „/api/secure/feedback”
+	   METODĂ: POST
+	   BODY: feedback : Feedback
+	   RETURNEAZĂ: Feedback
+
+	U. SCOP: Delete Feedback
+	   RUTĂ: „/api/secure/feedback”
+	   METODĂ: DELETE
+	   BODY: id : String
+	   RETURNEAZĂ: Feedback
+
+	V. SCOP: Find Feedbacks from Internship 
+	   RUTĂ: „/api/secure/feedback/internship”
+	   METODĂ: GET
+	   BODY: id : String
+	   RETURNEAZĂ: Feedback
+
+	W. SCOP: Find Feedback by ID 
+	   RUTĂ: „/api/secure/feedback”
+	   METODĂ: GET
+	   BODY: id : String
+	   RETURNEAZĂ: Feedback
+
+	X. SCOP: Find Internship by AreaOfInterest 
+	   RUTĂ: „/api/secure/internship/areaOfInterest”
+	   METODĂ: GET
+	   PARAMETRI: filter : String, orderBy : String, direction : String, page : int, size : int
+	   RETURNEAZĂ: Page<Internship>
+
+	Y. SCOP: Find Internships by Company 
+	   RUTĂ: „/api/secure/internship/company”
+	   METODĂ: GET
+	   PARAMETRI: filter : String, orderBy : String, direction : String, page : int, size : int
+	   RETURNEAZĂ: Page<Internship>
+
+	Y. SCOP: Find Internship by Company 
+	   RUTĂ: „/api/secure/internship/company/all”
+	   METODĂ: GET
+	   PARAMETRI: companyName : String
+	   RETURNEAZĂ: List<Internship>
+
+	Z. SCOP: Find Internships by Candidate 
+	   RUTĂ: „/api/secure/internship/candidate”
+	   METODĂ: GET
+	   PARAMETRI: candidate : String, page : int, size : int
+	   RETURNEAZĂ: Page<Internship>
+
+	AA. SCOP: Ștergere Internship
+	    RUTĂ: „/api/secure/internship”
+	    METODĂ: DELETE
+	    PARAMETRI: id : String
+	    RETURNEAZĂ: Internship
+
+	AB. SCOP: Salvare Internship
+	    RUTĂ: „/api/secure/internship”
+	    METODĂ: POST
+	    PARAMETRI: internship : Internship
+	    RETURNEAZĂ: Internship
+
+	AB. SCOP: Update Internship
+	    RUTĂ: „/api/secure/internship”
+	    METODĂ: PUT
+	    PARAMETRI: internship : Internship
+	    RETURNEAZĂ: Internship
+
+	AC. SCOP: FindAll Internships
+	    RUTĂ: „/api/secure/internship/all”
+	    METODĂ: GET
+	    RETURNEAZĂ: List<Internship>
+
+	AD. SCOP: FindAll Langugages
+	    RUTĂ: „/api/secure/language”
+	    METODĂ: GET
+	    RETURNEAZĂ: List<String>
+
+	AE. SCOP: FindAll Langugages by ID
+	    RUTĂ: „/api/secure/language/all”
+	    METODĂ: GET
+	    PARAMETRI: email : String
+	    RETURNEAZĂ: List<String>
+
+	AF. SCOP: Update Languages
+	    RUTĂ: „/api/secure/language”
+	    METODĂ: PUT
+
+	AG. SCOP: Trimitere E-mail
+	    RUTĂ: „/api/home/email”
+	    METODĂ: POST
+	    BODY: message : Message
+	    RETURNEAZĂ: String
+
+	Din punctul de vedere al securității, am implementat autentificarea cu JSON Web Token (JWT). Acesta este calculat la momentul login-ului cu succes și se salvează în LocalStorage. De aici, orice operațiune efectuată pe panoul de control necesită prezența acestui JWT. Altfel spus, un utilizator neautentificat va întâmpina o eroare dacă încearcă să acceseze o rută fără să posede un token.
