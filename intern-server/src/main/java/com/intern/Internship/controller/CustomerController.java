@@ -20,6 +20,7 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.jsonwebtoken.Jwts;
@@ -73,6 +74,18 @@ public class CustomerController {
         }
     }
 
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(@RequestParam("email") String username) {
+        try {
+            Customer customer = userService.findByUsername(username);
+            customer.setToken("");
+            customer = userService.update(customer);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
+    }
+
     @PostMapping("/forgot")
     public ResponseEntity<Customer> forgot(@RequestBody Customer userForm) {
         try {
@@ -90,11 +103,10 @@ public class CustomerController {
     @PostMapping("/reset")
     public ResponseEntity<?> reset(@RequestBody Customer userForm) {
         String username = Encryption.decrypt(userForm.getUsername());
-        if(userService.changePassword(username, userForm.getPassword())){
+        if (userService.changePassword(username, userForm.getPassword())) {
             Customer customer = userService.findByUsername(username);
             return ResponseEntity.ok().body(customer);
-        }
-       else{
+        } else {
             return (ResponseEntity<?>) ResponseEntity.notFound();
         }
     }
