@@ -55,6 +55,7 @@ export class AuthService {
   }
 
   login(email: string, password: string): Observable<AuthResponse> {
+
     return this.httpClient.post<any>(loginURL, {username: email, password}, this.httpOptions)
       .pipe(tap(user => {
         this.email = email;
@@ -147,9 +148,13 @@ export class AuthService {
         console.log(res);
       }));
   }
+
   logout() {
-    localStorage.removeItem('currentUser');
-    this.currentUserSubject.next(null);
+    return this.httpClient.post(`${authURL}/logout?email=${this.currentUserValue.username}`,
+      {}, this.authHttpOptions()).subscribe(res => {
+      localStorage.removeItem('currentUser');
+      this.currentUserSubject.next(null);
+    }, error => {console.log('Logout Error'); });
   }
 
 
