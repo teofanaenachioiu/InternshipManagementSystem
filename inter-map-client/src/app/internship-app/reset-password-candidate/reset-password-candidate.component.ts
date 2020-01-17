@@ -31,7 +31,7 @@ export class ResetPasswordCandidateComponent implements OnInit {
   resetPassword() {
     const password = this.form.get('password').value;
     console.log(password);
-    this.authService.resetPassword(password).subscribe();
+    this.authService.resetPasswordUser(password).subscribe();
   }
 
 }

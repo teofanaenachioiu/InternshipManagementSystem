@@ -164,4 +164,8 @@ export class AuthService {
   resetPassword(emailHash: string, password: any) {
     return this.httpClient.post<any>(resetURL, {username: emailHash, password}, this.httpOptions);
   }
+
+  resetPasswordUser(password: any) {
+    return this.httpClient.post<any>(resetURL, {username: this.currentUserValue.username, password}, this.httpOptions);
+  }
 }
