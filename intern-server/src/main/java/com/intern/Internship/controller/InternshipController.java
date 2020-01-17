@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.intern.Internship.model.AreaOfInterest;
 import com.intern.Internship.model.Internship;
+import com.intern.Internship.model.dto.InternshipCandidateDTO;
 import com.intern.Internship.model.dto.InternshipDTO;
 import com.intern.Internship.model.dto.PageDTO;
 import com.intern.Internship.model.enums.Direction;
@@ -15,6 +16,7 @@ import com.intern.Internship.service.ApplicationService;
 import com.intern.Internship.service.AreaOfInterestService;
 import com.intern.Internship.service.FeedbackService;
 import com.intern.Internship.service.InternshipService;
+import com.intern.Internship.utils.Email;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -101,6 +103,11 @@ public class InternshipController {
         }
     }
 
+    private void sendApplicantsEmail(String internshipId, String subject, String message) {
+        List<InternshipCandidateDTO> candidates = applicationService.findAllCandidatesInternship(internshipId);
+        candidates.forEach((candidate) -> Email.sendMail(subject, message, candidate.getEmail()));
+    }
+
     @DeleteMapping()
     public ResponseEntity<InternshipDTO> delete(@RequestParam("id") String internshipId) {
         Internship internship = internshipService.findById(internshipId);
@@ -108,6 +115,8 @@ public class InternshipController {
             return ResponseEntity.badRequest().body(new InternshipDTO());
         }
         applicationService.deleteByInternship(internshipId);
+        // sendApplicantsEmail(internshipId, "Internship deleted", "The internship with name: " + internship.getName()
+        //         + "has been deleted, for more details check your profile");
         feedbackService.deleteByInternship(internshipId);
         internshipService.delete(internship);
         return ResponseEntity.ok().body(new InternshipDTO(internship));
@@ -141,11 +150,15 @@ public class InternshipController {
             if (internship == null) {
                 return ResponseEntity.badRequest().body(new InternshipDTO());
             }
+            // sendApplicantsEmail(internship.getID(), "Internship " + internship.getName() + " updated",
+            //         "The internship with name: " + internship.getName()
+            //                 + "has been updated, for more details check your profile");
             return ResponseEntity.ok().body(new InternshipDTO(internship));
         } catch (ValidationException ex) {
             return ResponseEntity.badRequest().body(new InternshipDTO());
         }
     }
+
     @GetMapping("/all")
     public ResponseEntity<List<InternshipDTO>> findInternships() {
 
