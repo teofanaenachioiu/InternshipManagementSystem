@@ -1,6 +1,6 @@
 Diagrame de secventa
-	- Adaugare Internship
-	- Aplicare la Internship
+	- Adaugare Internship (OK)
+	- Aplicare la Internship (OK)
 	- Schimbare status candidat la Internship
 
 1. API
