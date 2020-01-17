@@ -1,8 +1,9 @@
 .card {
   margin-top: 3vw;
   width: 35vw;
+  background-color: #eeeeff;
 }
 
 .main-div {
-  margin-left: 4vw;
+  margin-left: 10vw;
 }

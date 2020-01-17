@@ -29,7 +29,8 @@ public class InternshipDTO {
     private InternshipStatus status;
     private String location;
     private LocalDate addedDate;
-    private String company;
+    private String company;    
+    private byte[] logo;
     private String areaOfInterest;
     private Long numberOfFeedbacks;
     private Double averageOfFeedbacks;
@@ -87,6 +88,7 @@ public class InternshipDTO {
         this.status = internship.getStatus();
         this.location = internship.getLocation();
         this.addedDate = internship.getAddedDate();
+        this.logo = internship.getLogo();
         if (internship.getCompany() == null) {
             this.company = null;
         } else {

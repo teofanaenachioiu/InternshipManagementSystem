@@ -52,7 +52,9 @@ public class CandidateController {
     @PutMapping()
     public ResponseEntity<Candidate> update(@RequestBody Candidate candidate) {
         try {
+            experienceService.deleteAll(candidate);
             experienceService.saveAll(candidate, candidate.getExperiences());
+            studiesService.deleteAll(candidate);
             studiesService.saveAll(candidate, candidate.getStudies());
             Candidate result = candidateService.update(candidate);
             return ResponseEntity.ok().body(result);

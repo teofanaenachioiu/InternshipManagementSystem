@@ -1,15 +1,27 @@
+<p> <strong>W O R K</strong> </p>
+<div class="main-div" *ngFor="let exp of experiences">
 
-
-<ul>
-  <li *ngFor="let exp of experiences">
-    <p>Company name: {{exp.companyName}}</p>
-    <p>Strat date: {{exp.startDate}}</p>
-    <p>End date: {{exp.endDate}}</p>
-    <p>Job name: {{exp.jobName}}</p>
-    <p>Description: {{exp.description}}</p>
-  </li>
-</ul>
-
+  <div class="work">
+    <label class="profile-title">Company name:</label>
+    <p>{{exp.companyName}}</p>
+  </div>
+  <div class="work">
+    <label class="profile-title">Start date:</label>
+    <p>{{exp.startDate}}</p>
+  </div>
+  <div class="work">
+    <label class="profile-title">End date:</label>
+    <p>{{exp.endDate}}</p>
+  </div>
+  <div class="work">
+    <label class="profile-title">Job name:</label>
+    <p>{{exp.jobName}}</p>
+  </div>
+<!--  <div class="work">-->
+<!--    <label class="profile-title">Description:</label>-->
+<!--    <p>{{exp.description}}</p>-->
+<!--  </div>-->
+</div>
 
 <button mat-button style="float: right" (click)="makeEditable()">
   <mat-icon>edit</mat-icon>

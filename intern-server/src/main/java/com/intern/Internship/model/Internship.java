@@ -46,6 +46,9 @@ public class Internship implements HasID<String> {
     @ToString.Exclude
     @JsonIdentityInfo(generator = ObjectIdGenerators.StringIdGenerator.class, property = "@ID")
     private Company company;
+    @Lob
+    @Column(name = "logo", columnDefinition = "BLOB")
+    private byte[] logo;
     @ManyToOne
     @JoinColumn
     private AreaOfInterest areaOfInterest;

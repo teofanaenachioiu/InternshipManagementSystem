@@ -11,7 +11,9 @@ import com.intern.Internship.model.dto.PageDTO;
 import com.intern.Internship.model.enums.Direction;
 import com.intern.Internship.model.enums.OrderBy;
 import com.intern.Internship.model.validator.ValidationException;
+import com.intern.Internship.service.ApplicationService;
 import com.intern.Internship.service.AreaOfInterestService;
+import com.intern.Internship.service.FeedbackService;
 import com.intern.Internship.service.InternshipService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/api/secure/internship")
 public class InternshipController {
+    @Autowired
+    private ApplicationService applicationService;
+
+    @Autowired
+    private FeedbackService feedbackService;
+
     @Autowired
     private InternshipService internshipService;
 
@@ -99,8 +107,9 @@ public class InternshipController {
         if (internship == null) {
             return ResponseEntity.badRequest().body(new InternshipDTO());
         }
+        applicationService.deleteByInternship(internshipId);
+        feedbackService.deleteByInternship(internshipId);
         internshipService.delete(internship);
-
         return ResponseEntity.ok().body(new InternshipDTO(internship));
     }
 

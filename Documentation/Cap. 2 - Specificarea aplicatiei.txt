@@ -1,0 +1,27 @@
+Scopul aplicației este de a oferi o modalitate prin care o companie se poate înregistra și lista posturile disponibile la internship-urile sale și studentul poate aplica la acestea.
+
+Funcționalitățile aferente unui utilizator neautentificat:
+- Sa vada o scurta descriere a platformei (scopul pentru care a fost creata, ce poate face un student/companie, cum arata CV-ul electronic pe care il pune la dispozitie platforma, ce internshipuri/companii sunt intregistrate pe platforma si care sunt beneficiile creearii unui cont)
+- Sa vada statistici (numarul companiilor intregistrate, numarul candidatiilor inscrisi etc.)
+- Sa vada cele mai apreciate internshipuri incheiate (impreuna cu descrierea lor si feedbackurile oferite de candidati)
+- Sa vada cateva feedback-uri date de utilizatori platformei 
+- Sa compelteze si sa trmita un formular de contact catre administratorul platformei
+- Sa se autentifice pe platforma
+- Sa se intregistreze pe platforma
+
+Funcționalitățile aferente unui candidat autentificat
+- Vizualizarea listei tuturor internship-urilor (si filtrarea acesteia) cu posibilitatea aplicarii
+- Vizualizarea descrierii complete a unui internship cu posibilitatea aplicarii
+- Vizualizarea unor informatii despre o companie
+- Vizualizarea listei tuturor companiilor (si filtrarea acesteia)
+- Aplicarea la internship
+- Vizualizarea listei internship-urilor la care a aplicat utilizatorul pana in acest moment (cu statusul aferent si cu posibilitatea filtrarii)
+- Oferirea unui feedback si un rating acelor internshipuri la care utilizatorul a aplicat si care s-au incheiat
+- Vizualizarea profilului utilizatorului cu posibilitatea editarii acestuia
+
+Funcționalitățile aferente unei companii autentificate:
+- Vizualizarea listei internshipurilor puse la dispozitie de companie (cu posibilitatea filtrarii)
+- Vizualizarea tuturor candidatilor inscrisi la un internship 
+- Vizualizarea unor statistici despre candidatii inscrisi la un internship
+- Vizualizarea CV-ului unui candidat inscris la internship
+- Vizualizarea profilului utilizatorului cu posibilitatea editarii acestuia

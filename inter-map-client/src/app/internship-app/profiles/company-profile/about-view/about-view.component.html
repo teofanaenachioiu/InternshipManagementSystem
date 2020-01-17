@@ -1,7 +1,19 @@
+<p> <strong>A B O U T</strong> </p>
+
 <div class="container-contact">
-  <p>Address: <strong> {{company.address}} </strong></p>
-  <p>Field: <strong>  {{company.field}}</strong></p>
-  <p>Description: <strong>  {{company.description}}</strong></p>
+
+  <label class="profile-title">Address:</label>
+  <p>{{company.address}}</p>
+  <br>
+
+  <label class="profile-title">Field:</label>
+  <p>{{company.field}}</p>
+  <br>
+
+  <label class="profile-title">Description:</label>
+  <p>{{company.description}}</p>
+  <br>
+
 </div>
 <button mat-button style="float: right" (click)="makeEditable()">
   <mat-icon>edit</mat-icon>

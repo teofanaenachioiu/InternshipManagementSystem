@@ -33,7 +33,7 @@ export class PersonalDetailsComponent implements ControlValueAccessor, OnDestroy
   private previewUrl: any = 'assets/img/no-photo.png';
   private startDate: Date = null;
   private maxDate: Date = new Date();
-  private gender: any = '0';
+  private gender: any = 'M';
 
   get value(): PersonalDetailsComponent {
     return this.form.value;
@@ -43,6 +43,10 @@ export class PersonalDetailsComponent implements ControlValueAccessor, OnDestroy
     this.form.setValue(value);
     this.onChange(value);
     this.onTouched();
+  }
+
+  sex() {
+    return Sex;
   }
 
   constructor(private formBuilder: FormBuilder, private service: CandidateProfileService) {

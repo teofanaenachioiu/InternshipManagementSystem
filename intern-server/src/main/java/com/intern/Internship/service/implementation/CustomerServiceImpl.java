@@ -57,14 +57,16 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void changePassword(String username, String newPassword) {
+    public boolean changePassword(String username, String newPassword) {
         if (newPassword.length() < 6 || newPassword.length() > 24)
             throw new ServiceException("Your password is invalid!");
 
         Customer customer = customerRepository.findByUsername(username);
+        if(customer ==null) return false;
         customerRepository.delete(customer);
         customer.setPassword(bCryptPasswordEncoder.encode(newPassword));
         customerRepository.save(customer);
+        return true;
     }
 
     @Override

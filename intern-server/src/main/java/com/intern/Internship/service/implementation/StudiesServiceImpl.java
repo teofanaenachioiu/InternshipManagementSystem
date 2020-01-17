@@ -3,6 +3,7 @@ package com.intern.Internship.service.implementation;
 import java.util.Set;
 
 import com.intern.Internship.model.Candidate;
+import com.intern.Internship.model.Experience;
 import com.intern.Internship.model.Studies;
 import com.intern.Internship.repository.StudiesRepository;
 import com.intern.Internship.service.StudiesService;
@@ -45,5 +46,12 @@ class StudiesServiceImpl implements StudiesService {
     @Override
     public void delete(Studies studies) {
         studiesRepository.delete(studies);
+    }
+
+    @Override
+    public void deleteAll(Candidate candidate) {
+        for (Studies studies : studiesRepository.findAll())
+            if (studies.getCandidate().getID().equals(candidate.getID()))
+                studiesRepository.delete(studies);
     }
 }

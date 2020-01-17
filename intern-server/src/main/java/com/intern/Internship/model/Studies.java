@@ -30,7 +30,7 @@ public class Studies implements HasID<String> {
     private LocalDate startDate;
     private LocalDate endDate;
     private String description;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn
     @JsonIgnore
     private Candidate candidate;

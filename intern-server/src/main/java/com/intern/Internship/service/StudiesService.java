@@ -13,4 +13,6 @@ public interface StudiesService {
     Studies update(Studies studies);
 
     void delete(Studies studies);
+
+    void deleteAll(Candidate candidate);
 }

@@ -80,4 +80,11 @@ public class ApplicationServiceImpl implements ApplicationService {
         }
         return internshipCandidateDTOList;
     }
+
+    @Override
+    public void deleteByInternship(String internshipId) {
+        for (Application application : applicationRepository.findAll())
+            if (application.getInternship().getID().equals(internshipId))
+                applicationRepository.delete(application);
+    }
 }

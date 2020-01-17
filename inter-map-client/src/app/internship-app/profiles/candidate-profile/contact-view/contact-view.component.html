@@ -1,10 +1,27 @@
+<p> <strong>C O N T A C T</strong> </p>
+
 <div class="container-contact">
 
-  <p>Address: <strong> {{candidate.address}} </strong></p>
-  <p>Phone: <strong>  {{candidate.telephone}}</strong></p>
-  <p>Email: <strong>  {{candidate.id}}</strong></p>
-  <p>LinkedIn: <strong>  {{candidate.linkLinkedin}}</strong></p>
-  <p>Github: <strong> {{candidate.linkGithub}}</strong></p>
+  <label class="profile-title">Address:</label>
+  <p>{{candidate.address}}</p>
+  <br>
+
+  <label class="profile-title">Phone:</label>
+  <p>{{candidate.telephone}}</p>
+  <br>
+
+  <label class="profile-title">Email:</label>
+  <p>{{candidate.id}}</p>
+  <br>
+
+  <label class="profile-title">LinkedIn:</label>
+  <p>{{candidate.linkLinkedin}}</p>
+  <br>
+
+  <label class="profile-title">Github:</label>
+  <p>{{candidate.linkGithub}}</p>
+  <br>
+
 </div>
 <button mat-button style="float: right" (click)="makeEditable()">
   <mat-icon>edit</mat-icon>

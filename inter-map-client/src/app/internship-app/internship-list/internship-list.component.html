@@ -21,64 +21,90 @@
 
     <br><br>
 
+      <div *ngFor="let company of getCompanyList() ">
+        <mat-checkbox (change)="onChange(company, $event.checked)">
+          {{company}}   ({{getNumberInternshipsOfCompany(company)}})
+        </mat-checkbox>
+      </div>
 
-    <div class="form-check" *ngFor="let company of getCompanyList() ">
-      <input class="form-check-input" (change)="onChange(company, $event.target.checked)" name="{{ company }}"
-             type="checkbox" id="{{company}}">
-      <label class="form-check-label" for="{{company}}">
-        {{company}}   ({{getNumberInternshipsOfCompany(company)}})
-      </label>
+<!--    <div class="form-check" *ngFor="let company of getCompanyList() ">-->
+<!--      <input class="form-check-input" (change)="onChange(company, $event.target.checked)" name="{{ company }}"-->
+<!--             type="checkbox" id="{{company}}">-->
+<!--      <label class="form-check-label" for="{{company}}">-->
+<!--        {{company}}   ({{getNumberInternshipsOfCompany(company)}})-->
+<!--      </label>-->
 
-    </div>
-
-
-    <br>
-
-    <div class="form-check" *ngFor="let technology of getTechnologyList() ">
-      <input class="form-check-input" (change)="OnChangeTechnology(technology, $event.target.checked)"
-             name="{{ technology }}" type="checkbox" id="{{technology}}">
-      <label class="form-check-label" for="{{technology}}">
-        {{technology}}   ({{getNumberInternshipsOfTechnology(technology)}})
-      </label>
-
-    </div>
+<!--    </div>-->
 
     <br>
 
-    <div class="form-check" *ngFor="let status of statusString ">
-      <input class="form-check-input" (change)="OnChangeStatus(status.name, $event.target.checked)"
-             [checked]="status.selected" name="{{ status.name }}" type="checkbox" id="{{status.name}}">
-      <label class="form-check-label" for="{{status.name}}">
+<!--    <div class="form-check" *ngFor="let technology of getTechnologyList() ">-->
+<!--      <input class="form-check-input" (change)="OnChangeTechnology(technology, $event.target.checked)"-->
+<!--             name="{{ technology }}" type="checkbox" id="{{technology}}">-->
+<!--      <label class="form-check-label" for="{{technology}}">-->
+<!--        {{technology}}   ({{getNumberInternshipsOfTechnology(technology)}})-->
+<!--      </label>-->
+<!--    </div>-->
+
+        <div *ngFor="let technology of getTechnologyList() ">
+          <mat-checkbox (change)="OnChangeTechnology(technology, $event.checked)">
+            {{technology}}   ({{getNumberInternshipsOfTechnology(technology)}})
+          </mat-checkbox>
+        </div>
+
+    <br>
+
+<!--    <div class="form-check" *ngFor="let status of statusString ">-->
+<!--      <input class="form-check-input" (change)="OnChangeStatus(status.name, $event.target.checked)"-->
+<!--             [checked]="status.selected" name="{{ status.name }}" type="checkbox" id="{{status.name}}">-->
+<!--      <label class="form-check-label" for="{{status.name}}">-->
+<!--        {{status.name}}-->
+<!--      </label>-->
+<!--    </div>-->
+
+    <div *ngFor="let status of statusString ">
+      <mat-checkbox (change)="OnChangeStatus(status.name, $event.checked)">
         {{status.name}}
-      </label>
+      </mat-checkbox>
     </div>
-
 
     <br>
 
-    <ul class="nav">
-      <div *ngFor="let rating of ratingString ;  let i = index">
-        <li>
-          <input class="form-check-input" [checked]="rating.selected"
-                 (change)="onChangeRating(i+1, $event.target.checked)" type="checkbox">
-        </li>
-        <li>
+<!--    <ul class="nav">-->
+<!--      <div *ngFor="let rating of ratingString ;  let i = index">-->
+<!--        <li>-->
+<!--          <input class="form-check-input" [checked]="rating.selected"-->
+<!--                 (change)="onChangeRating(i+1, $event.target.checked)" type="checkbox">-->
+<!--        </li>-->
+<!--        <li>-->
+<!--          <star-rating [value]="i+1" checkedcolor="gold" uncheckedcolor="black" size="25px" readonly="true"-->
+<!--                       (rate)="onRate($event)"></star-rating>-->
+<!--        </li>-->
+<!--        <li>-->
+<!--          ({{ getNumberInternshipsWithRating(i + 1) }})-->
+<!--        </li>-->
+<!--      </div>-->
+<!--    </ul>-->
+<!--    <br>-->
+
+    <div *ngFor="let rating of ratingString ;  let i = index">
+      <mat-checkbox [checked]="rating.selected" (change)="onChangeRating(i+1, $event.checked)">
+
           <star-rating [value]="i+1" checkedcolor="gold" uncheckedcolor="black" size="25px" readonly="true"
                        (rate)="onRate($event)"></star-rating>
-        </li>
-        <li>
-          ({{ getNumberInternshipsWithRating(i + 1) }})
-        </li>
-      </div>
-    </ul>
-    <br>
+
+      </mat-checkbox>
+
+    </div>
 
 
   </mat-card-content>
     </mat-card>
-    
+
 
   </div>
+
+
 
   <div class="left">
     <div class="row">
@@ -101,6 +127,9 @@
       <pagination-controls class="my-pagination" (pageChange)="p= $event"></pagination-controls>
     </div>
 
+    <div *ngIf="loading">
+      loading
+    </div>
 
   </div>
 </div>

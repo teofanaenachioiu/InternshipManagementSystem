@@ -4,8 +4,8 @@ import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {Company} from '../../../core/Company';
 
-const apiUrl = 'http://localhost:3000/api/internship';
-const companyUrl = 'http://localhost:3000/api/company';
+const apiUrl = 'http://localhost:3000/api/secure/internship';
+const companyUrl = 'http://localhost:3000/api/secure/company';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,6 @@ export class CompanyProfileService {
   internships: InternshipDTO[] = [];
   companyUsername: string;
   statuses: string[] = ['Open', 'Closed'];
-
   company: Company = new Company();
 
   isEditProfile = false;
@@ -56,7 +55,7 @@ export class CompanyProfileService {
 
   updateCompany() {
     console.log(this.company);
-    this.httpClient.put<any>(companyUrl, this.company, this.authHttpOptions());
+    this.httpClient.put<Company>(companyUrl, this.company, this.authHttpOptions()).subscribe();
   }
 
   httpHeaders() {
@@ -133,5 +132,9 @@ export class CompanyProfileService {
 
   public setSelectedInternshipId(id) {
     this.selectedInternshipId = id;
+  }
+
+  public getSelectedInternshipId() {
+    return this.selectedInternshipId;
   }
 }

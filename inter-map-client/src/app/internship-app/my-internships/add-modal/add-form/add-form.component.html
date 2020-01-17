@@ -1,4 +1,12 @@
 <div [formGroup]="form">
+<!-- IONUT -->
+  <mat-form-field class="fields">
+    <ngx-mat-file-input formControlName="file" placeholder="file" accept="image/*">
+    </ngx-mat-file-input>
+    <mat-icon matSuffix>photo</mat-icon>
+  </mat-form-field>
+  <br>
+
   <mat-form-field class="field">
     <label>
       <input matInput placeholder="Name" formControlName="name">
@@ -16,6 +24,13 @@
   <mat-form-field class="field">
     <label>
       <input matInput placeholder="Location" formControlName="location">
+    </label>
+  </mat-form-field>
+  <br>
+
+  <mat-form-field class="field">
+    <label>
+      <input matInput placeholder="Technology" formControlName="technology">
     </label>
   </mat-form-field>
   <br>

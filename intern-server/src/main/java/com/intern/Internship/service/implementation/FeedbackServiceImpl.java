@@ -51,4 +51,11 @@ public class FeedbackServiceImpl implements FeedbackService {
     public FeedbackDTO getFeedback(String id) {
         return new FeedbackDTO(feedbackRepository.getOne(id));
     }
+
+    @Override
+    public void deleteByInternship(String internshipId) {
+        for (Feedback feedback : feedbackRepository.findAll())
+            if (feedback.getInternship().getID().equals(internshipId))
+                feedbackRepository.delete(feedback);
+    }
 }

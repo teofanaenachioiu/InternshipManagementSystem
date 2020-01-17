@@ -1,4 +1,7 @@
+<p> <strong>C O N T A C T</strong> </p>
+
 <div [formGroup]="form" class="container-contact">
+
 
   <div class="container-row-field">
     <mat-form-field class="fields">
@@ -23,10 +26,7 @@
     <mat-form-field class="fields">
       <mat-icon matPrefix>email</mat-icon>
       <label>
-        <input matInput placeholder="email" formControlName="email" value = "{{candidate.id}}">
-        <mat-error *ngIf="form.get('email').invalid">
-          {{errorHandling('email', 'emptyInput', 'required')}}
-        </mat-error>
+        <input matInput placeholder="email" value = "{{candidate.id}}">
       </label>
     </mat-form-field>
   </div>

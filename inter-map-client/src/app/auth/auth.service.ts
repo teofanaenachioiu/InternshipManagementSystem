@@ -6,14 +6,16 @@ import {User} from '../core/User';
 import {UserRole} from '../core/UserRole';
 import {Company} from '../core/Company';
 import {Candidat} from '../core/Candidat';
+import {Message} from '../core/Message';
 
 const authURL = 'http://localhost:3000/api/auth';
 const loginURL = `${authURL}/login`;
 const registerURL = `${authURL}/signup`;
-const companyURL = 'http://localhost:3000/api/company';
-const candidateURL = 'http://localhost:3000/api/candidate';
-const areaOfInterest = 'http://localhost:3000/api/areaOfInterest';
-const resetPasswordURL = 'http://localhost:3000/api/auth/reset';
+const areaOfInterest = 'http://localhost:3000/api/secure/areaOfInterest';
+const resetURL = `${authURL}/reset`;
+const companyURL = 'http://localhost:3000/api/secure/company';
+const candidateURL = 'http://localhost:3000/api/secure/candidate';
+
 
 interface AuthResponse {
   token: string;
@@ -28,9 +30,20 @@ export class AuthService {
   public currentUser: Observable<User>;
   public email: string;
 
+
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
   };
+
+  authHttpOptions() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+      })
+    };
+    return httpOptions;
+  }
 
   constructor(private httpClient: HttpClient) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
@@ -63,7 +76,7 @@ export class AuthService {
   updateCandidate(candidate: Candidat): Observable<AuthResponse> {
       return this.httpClient.put<any>(candidateURL,
         candidate,
-        this.httpOptions)
+        this.authHttpOptions())
         .pipe(tap(candidate1 => {
           this.email = this.email;
           console.log(candidate1);
@@ -135,18 +148,20 @@ export class AuthService {
       }));
   }
   logout() {
-    // logout pe server
-    // TODO
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
   }
 
-  resetPassword(password: string): Observable<AuthResponse>  {
-    console.log(this.currentUserSubject.getValue().username);
-    console.log(password);
-    return this.httpClient.post<any>(resetPasswordURL, {username: this.currentUserSubject.getValue().username, password}, this.httpOptions)
-      .pipe(tap(user => {
-        this.currentUserSubject.next(user);
-      }));
+
+  forgetPassword(email: string) {
+    const user = new User();
+    user.username = email;
+    return this.httpClient.post<Message>(`${authURL}/forgot`, user, this.httpOptions).subscribe(res => {
+      alert('Send');
+    }, error => {alert('Error'); });
+  }
+
+  resetPassword(emailHash: string, password: any) {
+    return this.httpClient.post<any>(resetURL, {username: emailHash, password}, this.httpOptions);
   }
 }

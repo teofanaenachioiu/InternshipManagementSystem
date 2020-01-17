@@ -1,0 +1,31 @@
+1. Organizarea procesului de dezvoltare
+	Din cei 10 dezvoltatori ai aplicației s-au împărțit în felul următor:
+		- 1 team leader ce va coordona întrepătrunderea backend-ului cu frontend-ul, precum și procedeul general de dezvoltare al aplicației
+		- 5 membri ai echipei pe frontend - dintre care unul s-a ocupat în principal de design-ul aplicației
+		- 5 membri ai echipei pe backend - dintre care unul s-a ocupat în principal de documentarea și testarea aplicației
+
+2. Sprint-uri
+	Procesul de dezvoltare a fost împărțit în 5 sprint-uri, după cum urmează:
+	- Sprint 1: 21.10.2019 - 03.11.2019
+		- Funcționalitare Register
+		- Funcționalitate Login
+		- Afișarea meniului general
+		- Modelare Home Page (incluzând formularul de contact)
+	- Sprint 2: 04.11.2019 - 17.11.2019
+		- Afișarea listei internship-urilor disponibile pentru candidat
+		- Modelarea meniului de companie
+		- Modelarea meniului de candidat
+		- Editare profil candidat
+		- Editare profil companie
+	- Sprint 3: 18.11.2019 - 01.12.2019
+		- Vizualizare profil candidat
+		- Vizualizare profil companie
+		- Vizualizare detalii internship din contul de companie
+	- Sprint 4: 02.12.2019 - 15.12.2019
+		- Vizualizare listă internship-uri din cont de candidat (cu posibilitatea de aplicare)
+		- Funcționalitate CRUD pe internship din contul de companie
+		- Funcționalitate Forgot Password
+	- Sprint 5: 16.12.2019 - 12.01.2020
+		- Funcționalitate Reset Password
+		- Afișare listă de internship-uri la care s-a aplicat (cu posibilitate de adăugare feedback)
+		- Afișarea listei de candidați la internship (cu posibilitate de schimbare status)

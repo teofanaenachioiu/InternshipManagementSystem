@@ -4,10 +4,11 @@ import {Observable} from 'rxjs';
 import {Candidat} from '../../../core/Candidat';
 import {User} from '../../../core/User';
 import {Experience} from '../../../core/Experience';
+import {AuthService} from '../../../auth/auth.service';
 
 const serverUrl = 'localhost:3000';
 const httpServerUrl = `http://${serverUrl}`;
-const candidateUrl = `${httpServerUrl}/api/candidate`;
+const candidateUrl = `${httpServerUrl}/api/secure/candidate`;
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ const candidateUrl = `${httpServerUrl}/api/candidate`;
 export class CandidateProfileService {
   isLoading: boolean;
   private token: string;
-  private user: User;
+  private username: string;
 
   candidate = new Candidat();
   isEditPersonalDetails = false;
@@ -38,10 +39,11 @@ export class CandidateProfileService {
 
   constructor(private http: HttpClient) {
     this.isLoading = true;
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.token = localStorage.getItem('token');
-    this.user = JSON.parse(localStorage.getItem('currentUser'));
+    this.username = currentUser.username;
 
-    this.getCandidateByEmail(this.user.username).subscribe(
+    this.getCandidateByEmail(this.username).subscribe(
       (res) => {
         this.candidate = res;
 

@@ -4,12 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import com.intern.Internship.model.AreaOfInterest;
-import com.intern.Internship.model.Candidate;
-import com.intern.Internship.model.CandidateAreaOfInterest;
-import com.intern.Internship.repository.AreaOfInterestRepository;
-import com.intern.Internship.repository.CandidateAreaOfInterestRepository;
-import com.intern.Internship.repository.CandidateRepository;
+import com.intern.Internship.model.*;
+import com.intern.Internship.repository.*;
 import com.intern.Internship.service.AreaOfInterestService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +22,13 @@ public class AreaOfInterestServiceImpl implements AreaOfInterestService {
     CandidateAreaOfInterestRepository candidateAreaOfInterestRepository;
 
     @Autowired
+    CompanyAreaOfInterestRepository companyAreaOfInterestRepository;
+
+    @Autowired
     CandidateRepository candidateRepository;
+
+    @Autowired
+    CompanyRepository companyRepository;
 
     @Override
     public List<String> findAll() {
@@ -46,20 +48,28 @@ public class AreaOfInterestServiceImpl implements AreaOfInterestService {
     @Override
     public List<String> findAll(String email) {
         Optional<Candidate> candidate = candidateRepository.findById(email);
-        if (!candidate.isPresent())
-            throw new EntityNotFoundException();
-        List<String> list = areaOfInterestRepository.getAllByEmail(email);
-        return list;
+        Optional<Company> company = companyRepository.findById(email);
+        if(candidate.isPresent()){
+            System.out.println(areaOfInterestRepository.getAllByEmail(email));
+            return areaOfInterestRepository.getAllByEmail(email);
+        }
+        if(company.isPresent()){
+            System.out.println(areaOfInterestRepository.getAllByEmailCompany(email));
+            return areaOfInterestRepository.getAllByEmailCompany(email);
+        }
+        throw new EntityNotFoundException();
     }
 
     @Override
     public void update(String email, List<String> areaOfInterests) {
         Optional<Candidate> candidate = candidateRepository.findById(email);
-        if (!candidate.isPresent())
+        Optional<Company> company = companyRepository.findById(email);
+        if (!candidate.isPresent() && !company.isPresent())
             throw new EntityNotFoundException();
 
         List<String> currentAreaOfInterestDeleted = this.findAll(email);
         List<String> currentAreaOfInterestAll = this.findAll(email);
+
         currentAreaOfInterestDeleted.removeAll(areaOfInterests);//deleted
         areaOfInterests.removeAll(currentAreaOfInterestAll); //added
         for(String name: currentAreaOfInterestDeleted){
@@ -72,8 +82,14 @@ public class AreaOfInterestServiceImpl implements AreaOfInterestService {
                 areaOfInterest = new AreaOfInterest(name);
                 areaOfInterest =areaOfInterestRepository.save(areaOfInterest);
             }
-            CandidateAreaOfInterest candidateAreaOfInterest =new CandidateAreaOfInterest(candidate.get(),areaOfInterest);
-            candidateAreaOfInterestRepository.save(candidateAreaOfInterest);
+            if(candidate.isPresent()){
+                CandidateAreaOfInterest candidateAreaOfInterest = new CandidateAreaOfInterest(candidate.get(),areaOfInterest);
+                candidateAreaOfInterestRepository.save(candidateAreaOfInterest);
+            }
+            else{
+                CompanyAreaOfInterest companyAreaOfInterest = new CompanyAreaOfInterest(company.get(),areaOfInterest);
+                companyAreaOfInterestRepository.save(companyAreaOfInterest);
+            }
         }
     }
 }

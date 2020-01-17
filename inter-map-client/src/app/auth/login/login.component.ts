@@ -13,13 +13,14 @@ export class LoginComponent implements OnInit {
   email = new FormControl('', [Validators.required, Validators.email]);
   password = new FormControl('', [Validators.required, Validators.minLength(6)]);
   hidePassword = true;
-  loginMessage: string;
+  loginMessage = ' ';
   form: any;
 
   constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
+    this.loginMessage = ' ';
   }
 
   isLoginInvalid() {
@@ -51,7 +52,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.email.value, this.password.value)
       .subscribe((res) => {
         console.log(res);
-        this.loginMessage = null;
+        this.loginMessage = ' ';
         if (res.role.name === Role.COMPANY) {
           this.router.navigate(['/internship-app/company-profile']);
         } else if (res.role.name === Role.CANDIDATE) {

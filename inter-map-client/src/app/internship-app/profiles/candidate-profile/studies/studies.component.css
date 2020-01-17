@@ -1,0 +1,28 @@
+mat-form-field {
+  width: 100%;
+  margin-bottom: 1vw;
+  padding: 1vw;
+}
+
+.container-row-field {
+  display: flex;
+  flex-direction: row;
+}
+
+.container-studies {
+  display: flex;
+  flex-direction: column;
+  align-items:  center;
+}
+
+button {
+  margin-bottom: 1vw;
+}
+
+
+p {
+  font-size: 16px;
+}
+
+
+

@@ -1,7 +1,8 @@
 import {Component, forwardRef, OnDestroy, OnInit} from '@angular/core';
 import {ControlValueAccessor, FormBuilder, FormControl, FormGroup, NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {Subscription} from 'rxjs';
+import {fromEvent, Observable, Subscription} from 'rxjs';
 import {CompanyProfileService} from '../../../profiles/company-profile/company-profile.service';
+import {pluck} from 'rxjs/operators';
 
 @Component({
   selector: 'app-add-form',
@@ -38,6 +39,7 @@ export class AddFormComponent implements ControlValueAccessor, OnDestroy {
   constructor(private formBuilder: FormBuilder,
               private companyService: CompanyProfileService) {
     this.form = this.formBuilder.group({
+      file: '',
       name: '',
       description: '',
       paid: '',
@@ -45,6 +47,7 @@ export class AddFormComponent implements ControlValueAccessor, OnDestroy {
       toDate: '',
       status: 'Open',
       location: '',
+      technology: ''
     });
 
     this.subscriptions.push(
@@ -83,5 +86,4 @@ export class AddFormComponent implements ControlValueAccessor, OnDestroy {
   ngOnDestroy() {
     this.subscriptions.forEach(s => s.unsubscribe());
   }
-
 }

@@ -63,3 +63,12 @@ insert into studies(id,start_date,end_date,name_of_institution,profile,candidate
 
 insert into candidate_area_of_interest(id,candidate_email,area_of_interest_id) values('id1','candidate2@test.com','id1');
 insert into candidate_area_of_interest(id,candidate_email,area_of_interest_id) values('id2','candidate2@test.com','id2');
+
+insert into company_area_of_interest(id,company_email,area_of_interest_id) values('id1','company@test.com','id1');
+insert into company_area_of_interest(id,company_email,area_of_interest_id) values('id2','company@test.com','id2');
+
+insert into language (id, name) values('id1', 'french'), ('id2', 'english'), ('id3', 'german'), ('id4', 'spanish'), ('id5', 'italian');
+
+
+insert into candidate_language(id,candidate_email,language_id) values('id1','candidate2@test.com','id1');
+insert into candidate_language(id,candidate_email,language_id) values('id2','candidate2@test.com','id2');

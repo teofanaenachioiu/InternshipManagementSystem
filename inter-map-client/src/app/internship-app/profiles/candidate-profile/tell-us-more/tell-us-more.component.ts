@@ -79,6 +79,11 @@ export class TellUsMoreComponent implements ControlValueAccessor, OnDestroy, OnI
   }
 
   submitForm() {
+    if (this.service.candidate.description && !this.form.controls.description.value) {
+      this.service.isEditDescription = false;
+      return;
+    }
+
     this.service.candidate.description = this.form.controls.description.value;
     this.service.updateCandidate();
     this.service.isEditDescription = false;

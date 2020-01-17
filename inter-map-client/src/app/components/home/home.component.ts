@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ContactService} from '../contact/contact.service';
+import {Message} from '../../core/Message';
 
 @Component({
   selector: 'app-home',
@@ -7,12 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
 
-loggedIn() {
+
+
+  loggedIn() {
     if (localStorage.getItem('token')) {
       return true;
     }
